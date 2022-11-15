@@ -7,7 +7,7 @@ site: bookdown::bookdown_site
 
 # Resources {-}
 
-These are personal notes on R written for MLNN (2022-23) and DSSC (2021-22) courses.
+These are personal notes on R mainly for reference, written for MLNN (Machine Learning and Neural Networks) (2022-23) and DSSC (Data Science and Statistical Computing) (2021-22) courses. There may be mistakes and inaccuracies.
 
 - [**R Seek**](https://rseek.org) Search Engine
 - [**Cheat Sheets**](https://www.rstudio.com/resources/cheatsheets/)

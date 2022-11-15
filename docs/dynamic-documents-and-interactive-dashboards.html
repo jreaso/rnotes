@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Dynamic Documents and Interactive Dashboards | R Notes</title>
+  <meta name="description" content="Chapter 5 Dynamic Documents and Interactive Dashboards | R Notes" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Dynamic Documents and Interactive Dashboards | R Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Dynamic Documents and Interactive Dashboards | R Notes" />
+  
+  
+  
+
+<meta name="author" content="Jamie Reason" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-wrangling-using-tidyverse.html"/>
+<link rel="next" href="miscellaneous.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.4.0/str_view.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MLNN R Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Resources</a></li>
+<li class="chapter" data-level="1" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>1</b> R Basics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="r-basics.html"><a href="r-basics.html#misc."><i class="fa fa-check"></i><b>1.1</b> Misc.</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="r-basics.html"><a href="r-basics.html#packages"><i class="fa fa-check"></i><b>1.1.1</b> Packages</a></li>
+<li class="chapter" data-level="1.1.2" data-path="r-basics.html"><a href="r-basics.html#loops"><i class="fa fa-check"></i><b>1.1.2</b> Loops</a></li>
+<li class="chapter" data-level="1.1.3" data-path="r-basics.html"><a href="r-basics.html#functions"><i class="fa fa-check"></i><b>1.1.3</b> Functions</a></li>
+<li class="chapter" data-level="1.1.4" data-path="r-basics.html"><a href="r-basics.html#logical-operators"><i class="fa fa-check"></i><b>1.1.4</b> Logical Operators</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>1.2</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="r-basics.html"><a href="r-basics.html#creating-vectors"><i class="fa fa-check"></i><b>1.2.1</b> Creating Vectors</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-basics.html"><a href="r-basics.html#accessing-vectors"><i class="fa fa-check"></i><b>1.2.2</b> Accessing Vectors</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-basics.html"><a href="r-basics.html#vector-functions"><i class="fa fa-check"></i><b>1.2.3</b> Vector Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="r-basics.html"><a href="r-basics.html#lists"><i class="fa fa-check"></i><b>1.3</b> Lists</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="r-basics.html"><a href="r-basics.html#accessing-lists"><i class="fa fa-check"></i><b>1.3.1</b> Accessing lists</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="r-basics.html"><a href="r-basics.html#data-types"><i class="fa fa-check"></i><b>1.4</b> Data Types</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="r-basics.html"><a href="r-basics.html#categorical-data-factors"><i class="fa fa-check"></i><b>1.4.1</b> Categorical Data (Factors)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>2</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-frames.html"><a href="data-frames.html#creating-data-frames"><i class="fa fa-check"></i><b>2.1</b> Creating Data Frames</a></li>
+<li class="chapter" data-level="2.2" data-path="data-frames.html"><a href="data-frames.html#accessing-data-frames"><i class="fa fa-check"></i><b>2.2</b> Accessing Data Frames</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="data-frames.html"><a href="data-frames.html#advanced-query---accessing-a-subset-of-a-data-frame"><i class="fa fa-check"></i><b>2.2.1</b> Advanced Query - Accessing a Subset of a Data Frame</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="data-frames.html"><a href="data-frames.html#interrogating-data-frames"><i class="fa fa-check"></i><b>2.3</b> Interrogating Data Frames</a></li>
+<li class="chapter" data-level="2.4" data-path="data-frames.html"><a href="data-frames.html#manipulating-data-frames"><i class="fa fa-check"></i><b>2.4</b> Manipulating Data Frames</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="data-frames.html"><a href="data-frames.html#merging-data-frames"><i class="fa fa-check"></i><b>2.4.1</b> Merging Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="data-frames.html"><a href="data-frames.html#missing-data"><i class="fa fa-check"></i><b>2.5</b> Missing Data</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="data-frames.html"><a href="data-frames.html#importing-data-with-missing-values"><i class="fa fa-check"></i><b>2.5.1</b> Importing Data with Missing Values</a></li>
+<li class="chapter" data-level="2.5.2" data-path="data-frames.html"><a href="data-frames.html#remove-ovservations-with-na-entry-na.omit"><i class="fa fa-check"></i><b>2.5.2</b> Remove Ovservations with <code>&lt;NA&gt;</code> Entry (<code>na.omit()</code>)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>3</b> Plotting</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="plotting.html"><a href="plotting.html#plotting-in-base-r"><i class="fa fa-check"></i><b>3.1</b> Plotting in Base R</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="plotting.html"><a href="plotting.html#core-plot-function"><i class="fa fa-check"></i><b>3.1.1</b> Core Plot Function</a></li>
+<li class="chapter" data-level="3.1.2" data-path="plotting.html"><a href="plotting.html#other-plot-functions"><i class="fa fa-check"></i><b>3.1.2</b> Other Plot Functions</a></li>
+<li class="chapter" data-level="3.1.3" data-path="plotting.html"><a href="plotting.html#adding-to-plots"><i class="fa fa-check"></i><b>3.1.3</b> Adding to Plots</a></li>
+<li class="chapter" data-level="3.1.4" data-path="plotting.html"><a href="plotting.html#multiple-plots"><i class="fa fa-check"></i><b>3.1.4</b> Multiple Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="plotting.html"><a href="plotting.html#plotting-in-ggplot2"><i class="fa fa-check"></i><b>3.2</b> Plotting in <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="plotting.html"><a href="plotting.html#main-structure"><i class="fa fa-check"></i><b>3.2.1</b> Main Structure</a></li>
+<li class="chapter" data-level="3.2.2" data-path="plotting.html"><a href="plotting.html#updating-a-plot-plots-in-variables"><i class="fa fa-check"></i><b>3.2.2</b> Updating a Plot (Plots in Variables)</a></li>
+<li class="chapter" data-level="3.2.3" data-path="plotting.html"><a href="plotting.html#faceting"><i class="fa fa-check"></i><b>3.2.3</b> Faceting</a></li>
+<li class="chapter" data-level="3.2.4" data-path="plotting.html"><a href="plotting.html#examples"><i class="fa fa-check"></i><b>3.2.4</b> Examples</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html"><i class="fa fa-check"></i><b>4</b> Data Wrangling (using tidyverse)</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#tidy-form-tidyr"><i class="fa fa-check"></i><b>4.1</b> Tidy Form (<code>tidyr</code>)</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#moving-to-and-from-tidy-data"><i class="fa fa-check"></i><b>4.1.1</b> Moving to and from tidy data</a></li>
+<li class="chapter" data-level="4.1.2" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#other-useful-tidyr-functions"><i class="fa fa-check"></i><b>4.1.2</b> Other useful <code>tidyr</code> functions</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#data-manipulation-dplyr"><i class="fa fa-check"></i><b>4.2</b> Data Manipulation (<code>dplyr</code>)</a></li>
+<li class="chapter" data-level="4.3" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#main-dplyr-functions"><i class="fa fa-check"></i><b>4.3</b> Main <code>dplyr</code> functions</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#pipelines"><i class="fa fa-check"></i><b>4.3.1</b> Pipelines</a></li>
+<li class="chapter" data-level="4.3.2" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#joining-data-frames-in-tidyverse"><i class="fa fa-check"></i><b>4.3.2</b> Joining Data Frames (in tidyverse)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="dynamic-documents-and-interactive-dashboards.html"><a href="dynamic-documents-and-interactive-dashboards.html"><i class="fa fa-check"></i><b>5</b> Dynamic Documents and Interactive Dashboards</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dynamic-documents-and-interactive-dashboards.html"><a href="dynamic-documents-and-interactive-dashboards.html#rmd"><i class="fa fa-check"></i><b>5.1</b> RMD</a></li>
+<li class="chapter" data-level="5.2" data-path="dynamic-documents-and-interactive-dashboards.html"><a href="dynamic-documents-and-interactive-dashboards.html#shiny"><i class="fa fa-check"></i><b>5.2</b> Shiny</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="dynamic-documents-and-interactive-dashboards.html"><a href="dynamic-documents-and-interactive-dashboards.html#ui"><i class="fa fa-check"></i><b>5.2.1</b> UI</a></li>
+<li class="chapter" data-level="5.2.2" data-path="dynamic-documents-and-interactive-dashboards.html"><a href="dynamic-documents-and-interactive-dashboards.html#server-and-ui-outputs"><i class="fa fa-check"></i><b>5.2.2</b> Server and UI Outputs</a></li>
+<li class="chapter" data-level="5.2.3" data-path="dynamic-documents-and-interactive-dashboards.html"><a href="dynamic-documents-and-interactive-dashboards.html#full-example"><i class="fa fa-check"></i><b>5.2.3</b> Full Example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>6</b> Miscellaneous</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="miscellaneous.html"><a href="miscellaneous.html#dates"><i class="fa fa-check"></i><b>6.1</b> Dates</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="miscellaneous.html"><a href="miscellaneous.html#time-zones"><i class="fa fa-check"></i><b>6.1.1</b> Time Zones</a></li>
+<li class="chapter" data-level="6.1.2" data-path="miscellaneous.html"><a href="miscellaneous.html#extracting-from-dates"><i class="fa fa-check"></i><b>6.1.2</b> Extracting From Dates</a></li>
+<li class="chapter" data-level="6.1.3" data-path="miscellaneous.html"><a href="miscellaneous.html#misc"><i class="fa fa-check"></i><b>6.1.3</b> Misc</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="miscellaneous.html"><a href="miscellaneous.html#strings-and-regular-expressions"><i class="fa fa-check"></i><b>6.2</b> Strings and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="miscellaneous.html"><a href="miscellaneous.html#strange-characters"><i class="fa fa-check"></i><b>6.2.1</b> Strange characters</a></li>
+<li class="chapter" data-level="6.2.2" data-path="miscellaneous.html"><a href="miscellaneous.html#stringr-part-of-tidyverse"><i class="fa fa-check"></i><b>6.2.2</b> <code>stringr</code> (part of tidyverse)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="dssc-applications.html"><a href="dssc-applications.html"><i class="fa fa-check"></i><b>7</b> DSSC Applications</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="dssc-applications.html"><a href="dssc-applications.html#probability-distributions"><i class="fa fa-check"></i><b>7.1</b> Probability Distributions</a></li>
+<li class="chapter" data-level="7.2" data-path="dssc-applications.html"><a href="dssc-applications.html#theory-applications"><i class="fa fa-check"></i><b>7.2</b> Theory Applications</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="dssc-applications.html"><a href="dssc-applications.html#monte-carlo-hyothesis-test"><i class="fa fa-check"></i><b>7.2.1</b> Monte Carlo Hyothesis Test</a></li>
+<li class="chapter" data-level="7.2.2" data-path="dssc-applications.html"><a href="dssc-applications.html#boot-strap"><i class="fa fa-check"></i><b>7.2.2</b> Boot Strap</a></li>
+<li class="chapter" data-level="7.2.3" data-path="dssc-applications.html"><a href="dssc-applications.html#monte-carlo-integration"><i class="fa fa-check"></i><b>7.2.3</b> Monte Carlo Integration</a></li>
+<li class="chapter" data-level="7.2.4" data-path="dssc-applications.html"><a href="dssc-applications.html#simulation"><i class="fa fa-check"></i><b>7.2.4</b> Simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="dssc-applications.html"><a href="dssc-applications.html#statistical-tests"><i class="fa fa-check"></i><b>7.3</b> Statistical Tests</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="dynamic-documents-and-interactive-dashboards" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Dynamic Documents and Interactive Dashboards<a href="dynamic-documents-and-interactive-dashboards.html#dynamic-documents-and-interactive-dashboards" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="rmd" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> RMD<a href="dynamic-documents-and-interactive-dashboards.html#rmd" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Document Preamble</strong></p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="dynamic-documents-and-interactive-dashboards.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb93-2"><a href="dynamic-documents-and-interactive-dashboards.html#cb93-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Example&quot;</span></span>
+<span id="cb93-3"><a href="dynamic-documents-and-interactive-dashboards.html#cb93-3" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;(optional) Jamie Reason&quot;</span></span>
+<span id="cb93-4"><a href="dynamic-documents-and-interactive-dashboards.html#cb93-4" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;(optional)&quot;</span></span>
+<span id="cb93-5"><a href="dynamic-documents-and-interactive-dashboards.html#cb93-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span></span>
+<span id="cb93-6"><a href="dynamic-documents-and-interactive-dashboards.html#cb93-6" aria-hidden="true" tabindex="-1"></a>  html_document<span class="sc">:</span> default</span>
+<span id="cb93-7"><a href="dynamic-documents-and-interactive-dashboards.html#cb93-7" aria-hidden="true" tabindex="-1"></a>  pdf_document<span class="sc">:</span> default</span>
+<span id="cb93-8"><a href="dynamic-documents-and-interactive-dashboards.html#cb93-8" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
+<p><a href="https://www.louisaslett.com/Courses/DSSC/slides/07_rmarkdown/07_rmarkdown.html#8">Course Slides on RMD</a></p>
+<p>For further formatting, refer to <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">RMD Cheat Sheet</a></p>
+</div>
+<div id="shiny" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Shiny<a href="dynamic-documents-and-interactive-dashboards.html#shiny" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Resource:</strong> <a href="https://mastering-shiny.org/index.html">Mastering Shiny Book</a></p>
+<p><strong>Outline</strong></p>
+<ul>
+<li><strong>UI</strong></li>
+<li><strong>Server</strong></li>
+</ul>
+<p>R code can be added to any part of a shiny document but only the code in the server will be updated when needed.</p>
+<p>Starting a Shiny Dashboard (create a new shiny app in R studio):</p>
+<p><em><code>fluidpage()</code> is just the most common but there are alternatives</em></p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="dynamic-documents-and-interactive-dashboards.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb94-2"><a href="dynamic-documents-and-interactive-dashboards.html#cb94-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-3"><a href="dynamic-documents-and-interactive-dashboards.html#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="co">#misc code</span></span>
+<span id="cb94-4"><a href="dynamic-documents-and-interactive-dashboards.html#cb94-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-5"><a href="dynamic-documents-and-interactive-dashboards.html#cb94-5" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidpage</span>(</span>
+<span id="cb94-6"><a href="dynamic-documents-and-interactive-dashboards.html#cb94-6" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb94-7"><a href="dynamic-documents-and-interactive-dashboards.html#cb94-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb94-8"><a href="dynamic-documents-and-interactive-dashboards.html#cb94-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-9"><a href="dynamic-documents-and-interactive-dashboards.html#cb94-9" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session){</span>
+<span id="cb94-10"><a href="dynamic-documents-and-interactive-dashboards.html#cb94-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#server code</span></span>
+<span id="cb94-11"><a href="dynamic-documents-and-interactive-dashboards.html#cb94-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb94-12"><a href="dynamic-documents-and-interactive-dashboards.html#cb94-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-13"><a href="dynamic-documents-and-interactive-dashboards.html#cb94-13" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div>
+<div id="ui" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> UI<a href="dynamic-documents-and-interactive-dashboards.html#ui" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><a href="https://shiny.rstudio.com/reference/shiny/1.7.0/">UI elements reference guide</a></p>
+<div id="pages" class="section level4 hasAnchor" number="5.2.1.1">
+<h4><span class="header-section-number">5.2.1.1</span> Pages<a href="dynamic-documents-and-interactive-dashboards.html#pages" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Examples</strong></p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="dynamic-documents-and-interactive-dashboards.html#cb95-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb95-2"><a href="dynamic-documents-and-interactive-dashboards.html#cb95-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;One&quot;</span>,</span>
+<span id="cb95-3"><a href="dynamic-documents-and-interactive-dashboards.html#cb95-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Two&quot;</span>,</span>
+<span id="cb95-4"><a href="dynamic-documents-and-interactive-dashboards.html#cb95-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Three&quot;</span></span>
+<span id="cb95-5"><a href="dynamic-documents-and-interactive-dashboards.html#cb95-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb95-6"><a href="dynamic-documents-and-interactive-dashboards.html#cb95-6" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="dynamic-documents-and-interactive-dashboards.html#cb96-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">navbarPage</span>(</span>
+<span id="cb96-2"><a href="dynamic-documents-and-interactive-dashboards.html#cb96-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Title of page&quot;</span>,</span>
+<span id="cb96-3"><a href="dynamic-documents-and-interactive-dashboards.html#cb96-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabPanel</span>(<span class="st">&quot;My first tab&quot;</span>, <span class="st">&quot;Hello Alice&quot;</span>),</span>
+<span id="cb96-4"><a href="dynamic-documents-and-interactive-dashboards.html#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabPanel</span>(<span class="st">&quot;My second tab&quot;</span>, <span class="st">&quot;Hello Bob&quot;</span>)</span>
+<span id="cb96-5"><a href="dynamic-documents-and-interactive-dashboards.html#cb96-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb96-6"><a href="dynamic-documents-and-interactive-dashboards.html#cb96-6" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
+<p>Other pages: <code>fixedPage()</code>, <code>fillPage()</code>, …</p>
+</div>
+<div id="layouts-and-panels" class="section level4 hasAnchor" number="5.2.1.2">
+<h4><span class="header-section-number">5.2.1.2</span> Layouts and Panels<a href="dynamic-documents-and-interactive-dashboards.html#layouts-and-panels" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Goes inside of the page</p>
+<ul>
+<li><code>titlePanel("My App")</code></li>
+<li><code>sidebarLayout()</code>
+<ul>
+<li>first argument <code>sidebarPanel()</code></li>
+<li>second argument <code>mainPanel()</code></li>
+</ul></li>
+<li><code>fluidrow()</code> - creates a new row with columns in
+<ul>
+<li>```column() calls
+<ul>
+<li>first a number 1 to 12 (all columns numbers must sum to 12) for width
+-other arguments are outputs</li>
+</ul></li>
+</ul></li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="dynamic-documents-and-interactive-dashboards.html#cb97-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb97-2"><a href="dynamic-documents-and-interactive-dashboards.html#cb97-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;My App&quot;</span>),</span>
+<span id="cb97-3"><a href="dynamic-documents-and-interactive-dashboards.html#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb97-4"><a href="dynamic-documents-and-interactive-dashboards.html#cb97-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(<span class="st">&quot;I&#39;m in sidebar&quot;</span>),</span>
+<span id="cb97-5"><a href="dynamic-documents-and-interactive-dashboards.html#cb97-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(<span class="st">&quot;I&#39;m in main panel&quot;</span>)</span>
+<span id="cb97-6"><a href="dynamic-documents-and-interactive-dashboards.html#cb97-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb97-7"><a href="dynamic-documents-and-interactive-dashboards.html#cb97-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb97-8"><a href="dynamic-documents-and-interactive-dashboards.html#cb97-8" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="dynamic-documents-and-interactive-dashboards.html#cb98-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb98-2"><a href="dynamic-documents-and-interactive-dashboards.html#cb98-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidRow</span>(</span>
+<span id="cb98-3"><a href="dynamic-documents-and-interactive-dashboards.html#cb98-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">4</span>, <span class="st">&quot;Lorem ipsum dolor ...&quot;</span>),</span>
+<span id="cb98-4"><a href="dynamic-documents-and-interactive-dashboards.html#cb98-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">8</span>, <span class="st">&quot;Lorem ipsum dolor ...&quot;</span>)</span>
+<span id="cb98-5"><a href="dynamic-documents-and-interactive-dashboards.html#cb98-5" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb98-6"><a href="dynamic-documents-and-interactive-dashboards.html#cb98-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidRow</span>(</span>
+<span id="cb98-7"><a href="dynamic-documents-and-interactive-dashboards.html#cb98-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">6</span>, <span class="st">&quot;Lorem ipsum dolor ...&quot;</span>),</span>
+<span id="cb98-8"><a href="dynamic-documents-and-interactive-dashboards.html#cb98-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">6</span>, <span class="st">&quot;Lorem ipsum dolor ...&quot;</span>)</span>
+<span id="cb98-9"><a href="dynamic-documents-and-interactive-dashboards.html#cb98-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb98-10"><a href="dynamic-documents-and-interactive-dashboards.html#cb98-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb98-11"><a href="dynamic-documents-and-interactive-dashboards.html#cb98-11" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
+</div>
+<div id="ui-inputs" class="section level4 hasAnchor" number="5.2.1.3">
+<h4><span class="header-section-number">5.2.1.3</span> UI Inputs<a href="dynamic-documents-and-interactive-dashboards.html#ui-inputs" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>All inputs take same first argument - <code>inputId</code>, the unique identifier of the input.</p>
+<p>This can be accessed by using <code>input$name</code> (in the server).</p>
+<p>The second argument is a label, or how it’s name appears on the dashboard.</p>
+<p><strong>Text Inputs</strong></p>
+<ul>
+<li><code>textInput()</code></li>
+<li><code>passwordInput()</code></li>
+<li><code>textAreaInput()</code></li>
+</ul>
+<p><strong>Numeric Inputs</strong></p>
+<ul>
+<li><code>numericInput()</code></li>
+<li><code>sliderInput()</code></li>
+</ul>
+<p><strong>Categoric Inputs</strong></p>
+<ul>
+<li><code>selectInput()</code></li>
+<li><code>radioButtons()</code></li>
+<li><code>checkboxGroupInput()</code></li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="dynamic-documents-and-interactive-dashboards.html#cb99-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb99-2"><a href="dynamic-documents-and-interactive-dashboards.html#cb99-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">numericInput</span>(<span class="st">&quot;num&quot;</span>, <span class="st">&quot;Number one&quot;</span>, <span class="at">value =</span> <span class="dv">0</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>),</span>
+<span id="cb99-3"><a href="dynamic-documents-and-interactive-dashboards.html#cb99-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sliderInput</span>(<span class="st">&quot;num2&quot;</span>, <span class="st">&quot;Number two&quot;</span>, <span class="at">value =</span> <span class="dv">50</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>),</span>
+<span id="cb99-4"><a href="dynamic-documents-and-interactive-dashboards.html#cb99-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sliderInput</span>(<span class="st">&quot;rng&quot;</span>, <span class="st">&quot;Range&quot;</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>), <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span>
+<span id="cb99-5"><a href="dynamic-documents-and-interactive-dashboards.html#cb99-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb99-6"><a href="dynamic-documents-and-interactive-dashboards.html#cb99-6" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="dynamic-documents-and-interactive-dashboards.html#cb100-1" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;bird&quot;</span>, <span class="st">&quot;other&quot;</span>, <span class="st">&quot;I hate animals&quot;</span>)</span>
+<span id="cb100-2"><a href="dynamic-documents-and-interactive-dashboards.html#cb100-2" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb100-3"><a href="dynamic-documents-and-interactive-dashboards.html#cb100-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">selectInput</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;What&#39;s your favourite state?&quot;</span>, state.name),</span>
+<span id="cb100-4"><a href="dynamic-documents-and-interactive-dashboards.html#cb100-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">radioButtons</span>(<span class="st">&quot;animal&quot;</span>, <span class="st">&quot;What&#39;s your favourite animal?&quot;</span>, animals),</span>
+<span id="cb100-5"><a href="dynamic-documents-and-interactive-dashboards.html#cb100-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">checkboxGroupInput</span>(<span class="st">&quot;animal2&quot;</span>, <span class="st">&quot;What animals do you like?&quot;</span>, animals)</span>
+<span id="cb100-6"><a href="dynamic-documents-and-interactive-dashboards.html#cb100-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb100-7"><a href="dynamic-documents-and-interactive-dashboards.html#cb100-7" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
+</div>
+</div>
+<div id="server-and-ui-outputs" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Server and UI Outputs<a href="dynamic-documents-and-interactive-dashboards.html#server-and-ui-outputs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>All outputs take same first argument, <code>outputId</code> and an output can be called by <code>output$name</code>.</p>
+<div id="ui-outputs" class="section level4 hasAnchor" number="5.2.2.1">
+<h4><span class="header-section-number">5.2.2.1</span> UI Outputs<a href="dynamic-documents-and-interactive-dashboards.html#ui-outputs" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Text Outputs</strong></p>
+<ul>
+<li><code>textOutput()</code></li>
+<li><code>renderText()</code></li>
+<li><code>verbatimTextOutput()</code></li>
+<li><code>renderPrint()</code></li>
+</ul>
+<p><strong>Plot Outputs</strong></p>
+<ul>
+<li><code>plotOutput()</code> and <code>renderPlot()</code>
+<ul>
+<li><code>width</code> argument</li>
+<li><code>res = 96</code> argument closest to what you see inj RStudio</li>
+</ul></li>
+</ul>
+<p><strong>Examples</strong></p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="dynamic-documents-and-interactive-dashboards.html#cb101-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb101-2"><a href="dynamic-documents-and-interactive-dashboards.html#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textInput</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;What&#39;s your name?&quot;</span>),</span>
+<span id="cb101-3"><a href="dynamic-documents-and-interactive-dashboards.html#cb101-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textOutput</span>(<span class="st">&quot;greet&quot;</span>)</span>
+<span id="cb101-4"><a href="dynamic-documents-and-interactive-dashboards.html#cb101-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb101-5"><a href="dynamic-documents-and-interactive-dashboards.html#cb101-5" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb101-6"><a href="dynamic-documents-and-interactive-dashboards.html#cb101-6" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>greet <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb101-7"><a href="dynamic-documents-and-interactive-dashboards.html#cb101-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">nchar</span>(input<span class="sc">$</span>name) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb101-8"><a href="dynamic-documents-and-interactive-dashboards.html#cb101-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="fu">paste0</span>(<span class="st">&quot;Hello &quot;</span>, input<span class="sc">$</span>name))</span>
+<span id="cb101-9"><a href="dynamic-documents-and-interactive-dashboards.html#cb101-9" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb101-10"><a href="dynamic-documents-and-interactive-dashboards.html#cb101-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">&quot;Hello friend, tell me your name!&quot;</span>)</span>
+<span id="cb101-11"><a href="dynamic-documents-and-interactive-dashboards.html#cb101-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb101-12"><a href="dynamic-documents-and-interactive-dashboards.html#cb101-12" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb101-13"><a href="dynamic-documents-and-interactive-dashboards.html#cb101-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb101-14"><a href="dynamic-documents-and-interactive-dashboards.html#cb101-14" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="dynamic-documents-and-interactive-dashboards.html#cb102-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb102-2"><a href="dynamic-documents-and-interactive-dashboards.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotOutput</span>(<span class="st">&quot;myplot&quot;</span>, <span class="at">width =</span> <span class="st">&quot;400px&quot;</span>)</span>
+<span id="cb102-3"><a href="dynamic-documents-and-interactive-dashboards.html#cb102-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb102-4"><a href="dynamic-documents-and-interactive-dashboards.html#cb102-4" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb102-5"><a href="dynamic-documents-and-interactive-dashboards.html#cb102-5" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>myplot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb102-6"><a href="dynamic-documents-and-interactive-dashboards.html#cb102-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(iris<span class="sc">$</span>Sepal.Length, iris<span class="sc">$</span>Sepal.Width)</span>
+<span id="cb102-7"><a href="dynamic-documents-and-interactive-dashboards.html#cb102-7" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">res =</span> <span class="dv">96</span>)</span>
+<span id="cb102-8"><a href="dynamic-documents-and-interactive-dashboards.html#cb102-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb102-9"><a href="dynamic-documents-and-interactive-dashboards.html#cb102-9" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div>
+</div>
+<div id="variables-outside-outputs-reactive" class="section level4 hasAnchor" number="5.2.2.2">
+<h4><span class="header-section-number">5.2.2.2</span> Variables outside outputs (reactive)<a href="dynamic-documents-and-interactive-dashboards.html#variables-outside-outputs-reactive" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Instead of making variables in the server (<strong>which you can’t do as they wouldn’t be reactive</strong>), you use the <code>reactive({})</code> call:</p>
+<p>Inside the server,</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="dynamic-documents-and-interactive-dashboards.html#cb103-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> ...</span></code></pre></div>
+<p>becomes,</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="dynamic-documents-and-interactive-dashboards.html#cb104-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb104-2"><a href="dynamic-documents-and-interactive-dashboards.html#cb104-2" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb104-3"><a href="dynamic-documents-and-interactive-dashboards.html#cb104-3" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p>And when <code>name</code> is used it should be called as <code>name()</code></p>
+<p><strong>Examples</strong></p>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb105-2"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-2" aria-hidden="true" tabindex="-1"></a>  name <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb105-3"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">toupper</span>(input<span class="sc">$</span>name)</span>
+<span id="cb105-4"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-4" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb105-5"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-5" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>greet <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb105-6"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">nchar</span>(input<span class="sc">$</span>name) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb105-7"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="fu">paste0</span>(<span class="st">&quot;Hello &quot;</span>, <span class="fu">name</span>(), <span class="st">&quot;, here is your plot ...&quot;</span>))</span>
+<span id="cb105-8"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb105-9"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">&quot;Hello friend, tell me your name!&quot;</span>)</span>
+<span id="cb105-10"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb105-11"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-11" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb105-12"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-12" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>myplot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb105-13"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">nchar</span>(input<span class="sc">$</span>name) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb105-14"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>(iris, <span class="fu">aes_string</span>(<span class="at">x =</span> input<span class="sc">$</span>xvar, <span class="at">y =</span> input<span class="sc">$</span>yvar)) <span class="sc">+</span></span>
+<span id="cb105-15"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb105-16"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(<span class="fu">name</span>(), <span class="st">&quot;&#39;s plot!&quot;</span>))</span>
+<span id="cb105-17"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb105-18"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-18" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">res =</span> <span class="dv">96</span>)</span>
+<span id="cb105-19"><a href="dynamic-documents-and-interactive-dashboards.html#cb105-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+</div>
+<div id="full-example" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Full Example<a href="dynamic-documents-and-interactive-dashboards.html#full-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>From exercise 5.78 (Lab 8)</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;shiny&quot;</span>)</span>
+<span id="cb106-2"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ukpolice&quot;</span>)</span>
+<span id="cb106-3"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb106-4"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;leaflet&quot;</span>)</span>
+<span id="cb106-5"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-6"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-6" aria-hidden="true" tabindex="-1"></a>nbd <span class="ot">&lt;-</span> <span class="fu">ukc_neighbourhoods</span>(<span class="st">&quot;durham&quot;</span>)</span>
+<span id="cb106-7"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-7" aria-hidden="true" tabindex="-1"></a>nbd2 <span class="ot">&lt;-</span> nbd<span class="sc">$</span>id</span>
+<span id="cb106-8"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(nbd2) <span class="ot">&lt;-</span> nbd<span class="sc">$</span>name</span>
+<span id="cb106-9"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-10"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Define UI for application</span></span>
+<span id="cb106-11"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-11" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb106-12"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;UK Police Data&quot;</span>),</span>
+<span id="cb106-13"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb106-14"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="cb106-15"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">selectInput</span>(<span class="st">&quot;nbd&quot;</span>, <span class="st">&quot;Choose Durham Constabulary Neighborhood&quot;</span>, nbd2),</span>
+<span id="cb106-16"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">textInput</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;Enter the desired year and month in the format YYYY-MM&quot;</span>, <span class="at">value =</span> <span class="st">&quot;2021-09&quot;</span>)</span>
+<span id="cb106-17"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-17" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb106-18"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-19"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Show a plot of the generated distribution</span></span>
+<span id="cb106-20"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb106-21"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plotOutput</span>(<span class="st">&quot;barchart&quot;</span>),</span>
+<span id="cb106-22"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">leafletOutput</span>(<span class="st">&quot;map&quot;</span>)</span>
+<span id="cb106-23"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb106-24"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-24" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb106-25"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb106-26"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-27"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Define server logic</span></span>
+<span id="cb106-28"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-28" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb106-29"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get boundaries for selected neighbourhood</span></span>
+<span id="cb106-30"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Wrapped in a reactive because we need this to trigger a</span></span>
+<span id="cb106-31"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># change when the input neighborhood changes</span></span>
+<span id="cb106-32"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-32" aria-hidden="true" tabindex="-1"></a>  bdy <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb106-33"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-33" aria-hidden="true" tabindex="-1"></a>    bdy <span class="ot">&lt;-</span> <span class="fu">ukc_neighbourhood_boundary</span>(<span class="st">&quot;durham&quot;</span>, input<span class="sc">$</span>nbd)</span>
+<span id="cb106-34"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-34" aria-hidden="true" tabindex="-1"></a>    bdy <span class="sc">|&gt;</span></span>
+<span id="cb106-35"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">latitude =</span> <span class="fu">as.numeric</span>(latitude),</span>
+<span id="cb106-36"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-36" aria-hidden="true" tabindex="-1"></a>             <span class="at">longitude =</span> <span class="fu">as.numeric</span>(longitude))</span>
+<span id="cb106-37"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-37" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb106-38"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-39"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get crimes for selected neighbourhood</span></span>
+<span id="cb106-40"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Also wrapped in a reactive because we need this to trigger a</span></span>
+<span id="cb106-41"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-41" aria-hidden="true" tabindex="-1"></a>  <span class="co"># change when the boundary above, or date, changes</span></span>
+<span id="cb106-42"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-42" aria-hidden="true" tabindex="-1"></a>  crimes <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb106-43"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-43" aria-hidden="true" tabindex="-1"></a>    bdy2 <span class="ot">&lt;-</span> <span class="fu">bdy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb106-44"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(<span class="at">lat =</span> latitude,</span>
+<span id="cb106-45"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-45" aria-hidden="true" tabindex="-1"></a>             <span class="at">lng =</span> longitude)</span>
+<span id="cb106-46"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-47"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ukc_crime_poly</span>(bdy2[<span class="fu">round</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(bdy2), <span class="at">length.out =</span> <span class="dv">100</span>)), ], input<span class="sc">$</span>date)</span>
+<span id="cb106-48"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-48" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb106-49"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-50"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-50" aria-hidden="true" tabindex="-1"></a>  <span class="co"># First do plot</span></span>
+<span id="cb106-51"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-51" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>barchart <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb106-52"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">crimes</span>()) <span class="sc">+</span></span>
+<span id="cb106-53"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-53" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> category, <span class="at">fill =</span> outcome_status_category)) <span class="sc">+</span></span>
+<span id="cb106-54"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-54" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Crime&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Outcome Status&quot;</span>)</span>
+<span id="cb106-55"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-55" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">res =</span> <span class="dv">96</span>)</span>
+<span id="cb106-56"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-57"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-57" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Then do map</span></span>
+<span id="cb106-58"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-58" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>map <span class="ot">&lt;-</span> <span class="fu">renderLeaflet</span>({</span>
+<span id="cb106-59"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">leaflet</span>() <span class="sc">|&gt;</span></span>
+<span id="cb106-60"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-60" aria-hidden="true" tabindex="-1"></a>      <span class="fu">addTiles</span>() <span class="sc">|&gt;</span></span>
+<span id="cb106-61"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-61" aria-hidden="true" tabindex="-1"></a>      <span class="fu">addPolygons</span>(<span class="at">lng =</span> <span class="fu">bdy</span>()<span class="sc">$</span>longitude, <span class="at">lat =</span> <span class="fu">bdy</span>()<span class="sc">$</span>latitude) <span class="sc">|&gt;</span></span>
+<span id="cb106-62"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-62" aria-hidden="true" tabindex="-1"></a>      <span class="fu">addCircles</span>(<span class="at">lng =</span> <span class="fu">as.numeric</span>(<span class="fu">crimes</span>()<span class="sc">$</span>longitude), <span class="at">lat =</span> <span class="fu">as.numeric</span>(<span class="fu">crimes</span>()<span class="sc">$</span>latitude), <span class="at">label =</span> <span class="fu">crimes</span>()<span class="sc">$</span>category, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb106-63"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-63" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb106-64"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-64" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb106-65"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb106-66"><a href="dynamic-documents-and-interactive-dashboards.html#cb106-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the application</span></span></code></pre></div>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-wrangling-using-tidyverse.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="miscellaneous.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jreaso/rnotes/edit/master/90-dynamicdocs.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/jreaso/rnotes/blob/master/90-dynamicdocs.Rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

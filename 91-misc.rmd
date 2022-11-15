@@ -1,0 +1,348 @@
+
+# Miscellaneous
+
+## Dates
+
+(see Lab 9)
+
+Use lubridates package
+
+```{r, results='hide'}
+library("lubridate")
+```
+
+[lubridate.tidyverse.org](https://lubridate.tidyverse.org)
+
+###Creating Dates
+
+**Current date and time**
+```{r}
+today()
+now()
+
+str(today()) #these are dates not strings
+```
+
+**Constructing dates from strings and numbers**
+
+
+```{r}
+ymd("2021-12-02")
+mdy("December 2nd, 2021")
+ymd(20211202)
+ymd_hms("2021-12-02 12:33:59")
+```
+
+
+**Constructing dates and times from individual components**
+
+```{r}
+make_date(2021, 12, 2)
+make_date("2021", "12", "2")
+make_datetime(2021, 12, 2, 12)
+make_datetime(2021, 12, 2, 12, 33, 59)
+```
+
+### Time Zones
+
+Date creation functions take an argument ```tz = "America/New_York"```.
+```{r}
+now(tz = "America/New_York")
+```
+
+To see all avaliable zones call ```OlsonNames()```
+
+**Changing Time Zone**
+```{r}
+#forces change of time zone without changing date/time
+x <- ymd_hm("2019-12-02 15:10")
+force_tz(x, "America/New_York")
+
+#converts date/tine to a new time zone
+with_tz(x, "America/New_York")
+```
+
+### Extracting From Dates
+
+
+```{r}
+datetime <- today()
+year(datetime)
+yday(datetime)
+wday(datetime, week_start = 1) #by default, sunday is first day of week, use this to make it monday
+month(datetime, label = TRUE)
+```
+
+
+
+**Rounding Dates/Times**
+
+```{r}
+floor_date(datetime, unit = "minute")
+ceiling_date(datetime, unit = "week")
+ceiling_date(datetime, unit = "quarter")
+floor_date(datetime, unit = "week", week_start = 1)
+```
+
+### Misc
+
+**Updating Dates/Times**
+
+```{r}
+datetime <- ymd_hms("2021-12-02 12:33:59")
+datetime <- update(datetime, hour = 11, second = 33)
+datetime
+
+#Alternatively,
+datetime <- ymd_hms("2021-12-02 12:33:59")
+hour(datetime) <- 11
+second(datetime) <- 33
+datetime
+```
+
+
+**Durations**
+
+Can do arithmetic with dates and times
+```{r}
+einstein <- dmy("14th March 1879")
+age <- today() - months(42) - einstein #age 42 months ago
+age
+```
+
+
+Get a duration after arithmetic using ```as.duration()```
+
+```{r}
+as.duration(age)
+```
+
+
+
+## Strings and Regular Expressions
+
+### Strange characters
+
+When you want a string with strange characters, enclose it in ```r("...")``` instead of just ```"..."```.
+
+```{r}
+z <- r"(As Roosevelt said,
+"Believe you can and you're halfway there."
+)"
+cat(z)
+```
+
+```cat()``` is like a print command
+
+
+
+### ```stringr``` (part of tidyverse)
+
+Most ```stringr``` functions begin with ```str_``` so can use autocomplete for many string operations.
+
+#### Basics
+
+**String Length**
+```{r}
+str_length(c("Data Science and Statistical Computing", "by", "Dr Louis Aslett"))
+```
+
+**Combining Strings**
+```{r}
+str_c("Data Science and Statistical Computing", "by", "Dr Louis Aslett")
+str_c("Data Science and Statistical Computing", "by", "Dr Louis Aslett", sep = " ")
+str_c(c("Data Science and Statistical Computing", "by", "Dr Louis Aslett"))
+str_c(c("Data Science and Statistical Computing", "by", "Dr Louis Aslett"), collapse = " ")
+```
+
+**Subsetting Strings**
+```{r}
+z <- c("Alice", "Bob", "Connie", "David")
+str_sub(z, 1, 4)
+
+str_sub(z, 1, 2) <- "Zo"
+z
+```
+
+**Trimming**
+```{r}
+str_trim("  String with  trailing,   middle, and    leading   white space\n\n")
+str_squish("  String with  trailing,   middle, and    leading   white space\n\n")
+```
+
+
+#### Regex's
+
+See all details in docs or [lecture slides](https://www.louisaslett.com/Courses/DSSC/slides/09_dates_strings/09_dates_strings.html#30)
+
+Regex's are used for finding patterns in strings
+
+##### ```str_view()```
+
+Identify a pattern in a string:
+
+**Exact matching**
+```{r}
+str_view("string to find pattern in", "pattern")
+```
+
+**Wildcard matching**
+```{r}
+x <- c("apple", "banana", "pear")
+str_view(x, ".a.")
+```
+
+How to match a ```.```? - ```str_view(c(".bc", "a.c", "be."), "a\\.c")``` (use ```\``` but make sure to escape it)
+
+**Anchoring**
+
+To start:
+```{r}
+str_view(x, "^a")
+```
+
+To end:
+```{r}
+str_view(x, "a$")
+```
+
+can also anchor to both.
+
+**Matching Set of Characters I**
+
+Find exactly first character that matches:
+```{r}
+str_view(x, "[pan]")
+```
+
+Find one or more instance consecutively:
+```{r}
+str_view(x, "[pan]+")
+```
+
+Find exact number of instances occurring consecutively:
+```{r}
+str_view(x, "[pan]{2}")
+```
+
+Find a range or instances occurring consecutively:
+```{r}
+str_view(x, "[pan]{1,3}")
+```
+
+
+**Matching Set of  Characters II**
+
+```{r}
+y <- c("There were 122 in total", "Overall about 390 found", "100 but no more")
+str_view(y, "[0-9]+")
+str_view(y, "[^A-Za-z ]+") #^ anchor inside so acts as a negation
+str_view(y, "^[0-9]+") #^ anchor on outside
+str_view(y, "[a-z ]+")
+```
+
+
+
+# DSSC Applications
+
+## Probability Distributions
+
+| Letter | Function      | Use                                                      |
+| :----- |:--------------| :--------------------------------------------------------|
+| "d"    | ```dnorm()``` | evaluates pdf $f(x)$                                     |
+| "p"    | ```pnorm()``` | evaluates cdf $F(x)$                                     |
+| "q"    | ```qnorm()``` | evaluates inverse cdf $F^{-1}(q)$ i.e. $P(X \leq x) = q$ |
+| "r"    | ```rnorm()``` | generates random numbers                                 |
+
+Parameters will vary, e.g.
+
+- Normal distribution: ```dnorm```, ```pnorm```, ```qnorm```, ```rnorm```. Parameters: ```mean``` ($\mu$) and ```sd``` ($\sigma$).
+- t distribution: ```dt```, ```pt```, ```qt```, ```rt```. Parameter: ```df```
+- $\chi^2$ distribution: ```dchisq```, ```pchisq```, ```qchisq```, ```rchisq```. Parameter: ```df```
+
+## Theory Applications
+
+### Monte Carlo Hyothesis Test
+
+**Example 2.1**
+```{r, eval=FALSE}
+# Specify test statistic and null value
+x.bar <- 8.6
+n <- 6
+mu0 <- 9.2
+
+# Simulate lots of data assuming the null is true
+t <- rep(0, 50000)
+
+for(j in 0:50000) {
+  z <- rnorm(n, mu0, sqrt(0.4)) #random sample (of n=6) generated under H0
+  t[j] <- abs(mean(z)-mu0) #difference in mean of random sample and mean under H0 assumption
+}
+
+# Calculate empirical p-value
+sum(t > abs(x.bar-mu0)) / 50000 #number of random samplea that were at least as far from mu0 as observation
+
+```
+
+### Boot Strap
+
+**Set-up**
+
+- Sample of size $n$ independent samples
+- There is a statistic $S( \cdot )$ we wish to estimate
+- We also want the standard error of this
+
+**General Method:**
+
+1. Draw $B$ new samples of size $n$ **with replacement** from $\mathbf{x} = (x_1, \ldots , x_n)$
+1. Call these samples $\textbf{x}^{\star 1}, \ldots , \textbf{x}^{\star B}$
+1. Calculate the estimate, $\bar{S}^{\star}=\frac{1}{B} \sum_{b=1}^{B} S\left(\mathbf{x}^{\star b}\right)$
+1. Calculate the variance, $\widehat{\operatorname{Var}}(S(\mathbf{x}))=\frac{1}{B-1} \sum_{b=1}^{B}\left(S\left(\mathbf{x}^{\star b}\right)-\bar{S}^{\star}\right)^{2}$
+
+
+**Example 3.1** (Also see 3.5)
+
+```{r, eval=FALSE}
+# Mouse data
+x <- c(94,197,16,38,99,141,23)
+
+# Number of bootstraps
+B <- 1000
+
+# Statistic
+S <- mean
+
+# Perform bootstrap
+S.star <- rep(0, B)
+for(b in 1:B) {
+  x.star <- sample(x, replace = TRUE)
+  S.star[b] <- S(x.star)
+}
+
+# Bootstrap estimate
+mean(S.star)
+
+# Standard error of estimate
+sd(S.star)
+```
+
+**Empirical CDF** - ```ecdf(x)```
+
+### Monte Carlo Integration
+
+(see notes for R code)
+
+Basic Idea: Match an integral with the expectation of a r.v. and take the mean of it from samples
+
+$\mu:=\mathbb{E}[Y]=\mathbb{E}[g(X)]=\int g(x) f_{X}(x) d x$
+
+### Simulation
+
+**Rejection Sampling** - Definition 5.3
+
+**Importance Sampling** - Definition 5.4
+
+## Statistical Tests
+
+
+

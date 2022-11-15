@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>R Notes</title>
-  <meta name="description" content="R Notes" />
+  <title>Chapter 7 Applications | R Notes</title>
+  <meta name="description" content="Chapter 7 Applications | R Notes" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="R Notes" />
+  <meta property="og:title" content="Chapter 7 Applications | R Notes" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="R Notes" />
+  <meta name="twitter:title" content="Chapter 7 Applications | R Notes" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="miscellaneous.html"/>
 
-<link rel="next" href="r-basics.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -236,17 +236,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.2" data-path="miscellaneous.html"><a href="miscellaneous.html#stringr-part-of-tidyverse"><i class="fa fa-check"></i><b>6.2.2</b> <code>stringr</code> (part of tidyverse)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="dssc-applications.html"><a href="dssc-applications.html"><i class="fa fa-check"></i><b>7</b> DSSC Applications</a>
+<li class="chapter" data-level="7" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>7</b> Applications</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="dssc-applications.html"><a href="dssc-applications.html#probability-distributions"><i class="fa fa-check"></i><b>7.1</b> Probability Distributions</a></li>
-<li class="chapter" data-level="7.2" data-path="dssc-applications.html"><a href="dssc-applications.html#theory-applications"><i class="fa fa-check"></i><b>7.2</b> Theory Applications</a>
+<li class="chapter" data-level="7.1" data-path="applications.html"><a href="applications.html#probability-distributions"><i class="fa fa-check"></i><b>7.1</b> Probability Distributions</a></li>
+<li class="chapter" data-level="7.2" data-path="applications.html"><a href="applications.html#theory-applications"><i class="fa fa-check"></i><b>7.2</b> Theory Applications</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="dssc-applications.html"><a href="dssc-applications.html#monte-carlo-hyothesis-test"><i class="fa fa-check"></i><b>7.2.1</b> Monte Carlo Hyothesis Test</a></li>
-<li class="chapter" data-level="7.2.2" data-path="dssc-applications.html"><a href="dssc-applications.html#boot-strap"><i class="fa fa-check"></i><b>7.2.2</b> Boot Strap</a></li>
-<li class="chapter" data-level="7.2.3" data-path="dssc-applications.html"><a href="dssc-applications.html#monte-carlo-integration"><i class="fa fa-check"></i><b>7.2.3</b> Monte Carlo Integration</a></li>
-<li class="chapter" data-level="7.2.4" data-path="dssc-applications.html"><a href="dssc-applications.html#simulation"><i class="fa fa-check"></i><b>7.2.4</b> Simulation</a></li>
+<li class="chapter" data-level="7.2.1" data-path="applications.html"><a href="applications.html#monte-carlo-hyothesis-test"><i class="fa fa-check"></i><b>7.2.1</b> Monte Carlo Hyothesis Test</a></li>
+<li class="chapter" data-level="7.2.2" data-path="applications.html"><a href="applications.html#boot-strap"><i class="fa fa-check"></i><b>7.2.2</b> Boot Strap</a></li>
+<li class="chapter" data-level="7.2.3" data-path="applications.html"><a href="applications.html#monte-carlo-integration"><i class="fa fa-check"></i><b>7.2.3</b> Monte Carlo Integration</a></li>
+<li class="chapter" data-level="7.2.4" data-path="applications.html"><a href="applications.html#simulation"><i class="fa fa-check"></i><b>7.2.4</b> Simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="dssc-applications.html"><a href="dssc-applications.html#statistical-tests"><i class="fa fa-check"></i><b>7.3</b> Statistical Tests</a></li>
+<li class="chapter" data-level="7.3" data-path="applications.html"><a href="applications.html#statistical-tests"><i class="fa fa-check"></i><b>7.3</b> Statistical Tests</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -267,29 +267,132 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">R Notes</h1>
-<p class="author"><em>Jamie Reason</em></p>
-<p class="date"><em>2022-23</em></p>
-</div>
-<div id="resources" class="section level1 unnumbered hasAnchor">
-<h1>Resources<a href="index.html#resources" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>These are personal notes on R mainly for reference, written for MLNN (Machine Learning and Neural Networks) (2022-23) and DSSC (Data Science and Statistical Computing) (2021-22) courses. There may be mistakes and inaccuracies.</p>
+<div id="applications" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Applications<a href="applications.html#applications" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="probability-distributions" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Probability Distributions<a href="applications.html#probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Letter</th>
+<th align="left">Function</th>
+<th align="left">Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">“d”</td>
+<td align="left"><code>dnorm()</code></td>
+<td align="left">evaluates pdf <span class="math inline">\(f(x)\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">“p”</td>
+<td align="left"><code>pnorm()</code></td>
+<td align="left">evaluates cdf <span class="math inline">\(F(x)\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">“q”</td>
+<td align="left"><code>qnorm()</code></td>
+<td align="left">evaluates inverse cdf <span class="math inline">\(F^{-1}(q)\)</span> i.e. <span class="math inline">\(P(X \leq x) = q\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">“r”</td>
+<td align="left"><code>rnorm()</code></td>
+<td align="left">generates random numbers</td>
+</tr>
+</tbody>
+</table>
+<p>Parameters will vary, e.g.</p>
 <ul>
-<li><a href="https://rseek.org"><strong>R Seek</strong></a> Search Engine</li>
-<li><a href="https://www.rstudio.com/resources/cheatsheets/"><strong>Cheat Sheets</strong></a></li>
-<li><a href="https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/"><strong>MLNN Course Notes</strong></a></li>
-<li><a href="https://www.louisaslett.com/Courses/DSSC/notes/"><strong>DSSC Course Notes</strong></a></li>
+<li>Normal distribution: <code>dnorm</code>, <code>pnorm</code>, <code>qnorm</code>, <code>rnorm</code>. Parameters: <code>mean</code> (<span class="math inline">\(\mu\)</span>) and <code>sd</code> (<span class="math inline">\(\sigma\)</span>).</li>
+<li>t distribution: <code>dt</code>, <code>pt</code>, <code>qt</code>, <code>rt</code>. Parameter: <code>df</code></li>
+<li><span class="math inline">\(\chi^2\)</span> distribution: <code>dchisq</code>, <code>pchisq</code>, <code>qchisq</code>, <code>rchisq</code>. Parameter: <code>df</code></li>
 </ul>
+</div>
+<div id="theory-applications" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Theory Applications<a href="applications.html#theory-applications" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="monte-carlo-hyothesis-test" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Monte Carlo Hyothesis Test<a href="applications.html#monte-carlo-hyothesis-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Example 2.1</strong></p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="applications.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify test statistic and null value</span></span>
+<span id="cb194-2"><a href="applications.html#cb194-2" aria-hidden="true" tabindex="-1"></a>x.bar <span class="ot">&lt;-</span> <span class="fl">8.6</span></span>
+<span id="cb194-3"><a href="applications.html#cb194-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb194-4"><a href="applications.html#cb194-4" aria-hidden="true" tabindex="-1"></a>mu0 <span class="ot">&lt;-</span> <span class="fl">9.2</span></span>
+<span id="cb194-5"><a href="applications.html#cb194-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb194-6"><a href="applications.html#cb194-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate lots of data assuming the null is true</span></span>
+<span id="cb194-7"><a href="applications.html#cb194-7" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">50000</span>)</span>
+<span id="cb194-8"><a href="applications.html#cb194-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb194-9"><a href="applications.html#cb194-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">50000</span>) {</span>
+<span id="cb194-10"><a href="applications.html#cb194-10" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu0, <span class="fu">sqrt</span>(<span class="fl">0.4</span>)) <span class="co">#random sample (of n=6) generated under H0</span></span>
+<span id="cb194-11"><a href="applications.html#cb194-11" aria-hidden="true" tabindex="-1"></a>  t[j] <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">mean</span>(z)<span class="sc">-</span>mu0) <span class="co">#difference in mean of random sample and mean under H0 assumption</span></span>
+<span id="cb194-12"><a href="applications.html#cb194-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb194-13"><a href="applications.html#cb194-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb194-14"><a href="applications.html#cb194-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate empirical p-value</span></span>
+<span id="cb194-15"><a href="applications.html#cb194-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(t <span class="sc">&gt;</span> <span class="fu">abs</span>(x.bar<span class="sc">-</span>mu0)) <span class="sc">/</span> <span class="dv">50000</span> <span class="co">#number of random samplea that were at least as far from mu0 as observation</span></span></code></pre></div>
+</div>
+<div id="boot-strap" class="section level3 hasAnchor" number="7.2.2">
+<h3><span class="header-section-number">7.2.2</span> Boot Strap<a href="applications.html#boot-strap" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Set-up</strong></p>
+<ul>
+<li>Sample of size <span class="math inline">\(n\)</span> independent samples</li>
+<li>There is a statistic <span class="math inline">\(S( \cdot )\)</span> we wish to estimate</li>
+<li>We also want the standard error of this</li>
+</ul>
+<p><strong>General Method:</strong></p>
+<ol style="list-style-type: decimal">
+<li>Draw <span class="math inline">\(B\)</span> new samples of size <span class="math inline">\(n\)</span> <strong>with replacement</strong> from <span class="math inline">\(\mathbf{x} = (x_1, \ldots , x_n)\)</span></li>
+<li>Call these samples <span class="math inline">\(\textbf{x}^{\star 1}, \ldots , \textbf{x}^{\star B}\)</span></li>
+<li>Calculate the estimate, <span class="math inline">\(\bar{S}^{\star}=\frac{1}{B} \sum_{b=1}^{B} S\left(\mathbf{x}^{\star b}\right)\)</span></li>
+<li>Calculate the variance, <span class="math inline">\(\widehat{\operatorname{Var}}(S(\mathbf{x}))=\frac{1}{B-1} \sum_{b=1}^{B}\left(S\left(\mathbf{x}^{\star b}\right)-\bar{S}^{\star}\right)^{2}\)</span></li>
+</ol>
+<p><strong>Example 3.1</strong> (Also see 3.5)</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="applications.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mouse data</span></span>
+<span id="cb195-2"><a href="applications.html#cb195-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">94</span>,<span class="dv">197</span>,<span class="dv">16</span>,<span class="dv">38</span>,<span class="dv">99</span>,<span class="dv">141</span>,<span class="dv">23</span>)</span>
+<span id="cb195-3"><a href="applications.html#cb195-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-4"><a href="applications.html#cb195-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of bootstraps</span></span>
+<span id="cb195-5"><a href="applications.html#cb195-5" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb195-6"><a href="applications.html#cb195-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-7"><a href="applications.html#cb195-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistic</span></span>
+<span id="cb195-8"><a href="applications.html#cb195-8" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> mean</span>
+<span id="cb195-9"><a href="applications.html#cb195-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-10"><a href="applications.html#cb195-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform bootstrap</span></span>
+<span id="cb195-11"><a href="applications.html#cb195-11" aria-hidden="true" tabindex="-1"></a>S.star <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, B)</span>
+<span id="cb195-12"><a href="applications.html#cb195-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
+<span id="cb195-13"><a href="applications.html#cb195-13" aria-hidden="true" tabindex="-1"></a>  x.star <span class="ot">&lt;-</span> <span class="fu">sample</span>(x, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb195-14"><a href="applications.html#cb195-14" aria-hidden="true" tabindex="-1"></a>  S.star[b] <span class="ot">&lt;-</span> <span class="fu">S</span>(x.star)</span>
+<span id="cb195-15"><a href="applications.html#cb195-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb195-16"><a href="applications.html#cb195-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-17"><a href="applications.html#cb195-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Bootstrap estimate</span></span>
+<span id="cb195-18"><a href="applications.html#cb195-18" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(S.star)</span>
+<span id="cb195-19"><a href="applications.html#cb195-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-20"><a href="applications.html#cb195-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard error of estimate</span></span>
+<span id="cb195-21"><a href="applications.html#cb195-21" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(S.star)</span></code></pre></div>
+<p><strong>Empirical CDF</strong> - <code>ecdf(x)</code></p>
+</div>
+<div id="monte-carlo-integration" class="section level3 hasAnchor" number="7.2.3">
+<h3><span class="header-section-number">7.2.3</span> Monte Carlo Integration<a href="applications.html#monte-carlo-integration" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>(see notes for R code)</p>
+<p>Basic Idea: Match an integral with the expectation of a r.v. and take the mean of it from samples</p>
+<p><span class="math inline">\(\mu:=\mathbb{E}[Y]=\mathbb{E}[g(X)]=\int g(x) f_{X}(x) d x\)</span></p>
+</div>
+<div id="simulation" class="section level3 hasAnchor" number="7.2.4">
+<h3><span class="header-section-number">7.2.4</span> Simulation<a href="applications.html#simulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Rejection Sampling</strong> - Definition 5.3</p>
+<p><strong>Importance Sampling</strong> - Definition 5.4</p>
+</div>
+</div>
+<div id="statistical-tests" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Statistical Tests<a href="applications.html#statistical-tests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
+<a href="miscellaneous.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="r-basics.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -320,7 +423,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jreaso/rnotes/edit/master/index.Rmd",
+"link": "https://github.com/jreaso/rnotes/edit/master/91-misc.rmd",
 "text": "Edit"
 },
 "history": {
@@ -328,7 +431,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jreaso/rnotes/blob/master/index.Rmd",
+"link": "https://github.com/jreaso/rnotes/blob/master/91-misc.rmd",
 "text": null
 },
 "download": null,
