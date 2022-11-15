@@ -5,5 +5,12 @@ date: "2022-23"
 site: bookdown::bookdown_site
 ---
 
-# Down the rabbit-hole
+# Resources {-}
+
+These are personal notes on R written for MLNN (2022-23) and DSSC (2021-22) courses.
+
+- [**R Seek**](https://rseek.org) Search Engine
+- [**Cheat Sheets**](https://www.rstudio.com/resources/cheatsheets/)
+- [**MLNN Course Notes**](https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/)
+- [**DSSC Course Notes**](https://www.louisaslett.com/Courses/DSSC/notes/)
 

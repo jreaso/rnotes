@@ -1,0 +1,206 @@
+# R Basics
+
+## Misc.
+
+### Packages
+
+- Installing a package: `install.packages("dplyr")`
+- Loading a package: `library("dplyr")`
+
+
+### Loops
+```{r, eval=FALSE}
+for(i in x) {
+  #i iterates over the values in vector x
+}
+```
+You cannot modify the vector `x` from within the loop.
+
+
+
+### Functions
+```{r, eval=FALSE}
+myFunction <- function(arg1, arg2 = 1) { 
+  ...
+  return(...)
+}
+```
+
+To apply a function to a vector, use
+```{r, eval=FALSE}
+sapply(X, Fun)
+```
+and `Fun` will be applied to `X` element-wise
+
+### Logical Operators
+
+Logical operators act element-wise on pairs of vectors (of same size) of `TRUE` and `FALSE` values. AND is `&`, OR is `|`.
+
+## Vectors
+
+### Creating Vectors
+```{r, eval=FALSE}
+# basic vector
+v <- c(2,3,8,5)
+
+#repeated values
+rep(c(1,2),5) 
+
+#sequence
+seq(4,7) #inclusive, and by default counts by 1
+#shorthand
+4:7
+
+#custom length or increments
+seq(0, 10, by = 2)
+seq(0, 3, length.out = 7)
+
+``` 
+
+### Accessing Vectors
+```{r, eval=FALSE}
+myData <- c(2,3,8,5)
+
+#element wise
+myData[2] #selects second entry
+
+myData[-3] #excludes third element
+
+#can also pass in vectors to index it
+myData[c(1,4)]
+myData[2:4]
+```
+
+
+### Vector Functions
+
+**Essential Functions**
+
+- ```mean()```
+- ```sd()```
+- ```var()```
+- ```max()```
+- ```min()```
+- ```median()```
+- ```range()```
+- ```quantile()```
+- ```cumsum()```
+- ```sum()```
+
+**Other Functions**
+
+- ```sort()``` - sorts a vector (alphabetically or by increasing size when numerical)
+- ```rank()``` - provides the rank of each element
+- ```order()``` - gives the indices of the elements in order
+- ```unique()``` - returns just the unique values in the vector
+- ```length()``` - total number of elements in the vector
+- ```paste()``` - makes each element in the vector a string
+
+**Particularly Interesting Functions**
+
+- ```sample()``` - randomly sample from the elements of a vector
+```{r eval=FALSE}
+sample(c(3,7,9,23,45), 3, replace = FALSE)
+#sample from vector, choosing n=3 without replacement
+```
+
+- ```table()``` - provide counts of the occurrence of each element
+```{r eval=FALSE}
+table(sample(1:6, 200, replace = TRUE))
+```
+
+- ```is.na()``` - gives a `TRUE`/`FALSE` vector as the output checking is an entry is `NA`
+
+
+
+## Lists
+```{r, eval=FALSE}
+x <- list(1, "a", c(1,2,3), data.frame(a = 1:3, b = 4:6))
+```
+
+- can have a list of any type of variable
+- can be good for hierarchical and tree structures, Nesting is permitted (i.e. lists can contain lists)
+- variables in the list can also be named
+
+```{r}
+x <- list(bob = 1, jill = "a", jack = c(1,2,3),
+          eve = data.frame(a = 1:3, b = 4:6))
+x$eve$a
+```
+
+### Accessing lists
+```{r eval=FALSE}
+x[] #accesses an element of a list (returns a list of one element)
+x[[]] #strips away one level of hierarchy, list structure is gone
+x$bob #equivalent to above when items in list are named
+```
+
+
+## Data Types
+- Numeric
+- Logical (`TRUE`/`FALSE`)
+- Categorical (called factors in R), could be ordered (e.g. credit rating) or could not be (e.g. eye colour)
+- Date/Time
+- Text or String
+- Others (e.g. image, spatial, audio, video)
+
+### Categorical Data (Factors)
+
+#### Making Data Frames Categorical
+R cannot tell the difference between factors and strings when importing data frames, so we must "tidy" them up after importing
+
+Cleaning up a data frame (all non-numeric by default get imported as strings) by **making all strings in one variable a factor**
+```{r eval=TRUE}
+eyesDF <- data.frame( name=c("anne","john","charlie","sarah","max","ellie","eve"),
+                      eyeColour=c("blue","green","brown","brown","blue","blue","brown"))
+
+#changes a variable to be categorical (a factor)
+eyesDF$eyeColour <- as.factor(eyesDF$eyeColour)
+
+summary(eyesDF$eyeColour)
+```
+
+**Treat data as a factor or a text?**
+
+- Treat as text not factor when every observation is unique (e.g. surname)
+- When some text is coming up very often it may be more appropriate as a factor
+
+#### Making Vectors Categorical
+
+We can create a vector with factors in by creating the entries as strings and then **applying the `factor()` function**
+
+For example,
+```{r}
+eye.colour <- factor(c("blue","brown","green","blue","blue","brown","green","blue","blue","green","blue","green","blue","blue","brown","green","brown","brown","green"))
+summary(eye.colour)
+```
+
+
+**Example Using Factors**
+The following data frame has a factor variable (feed)
+```{r}
+data("chickwts")
+head(chickwts)
+summary(chickwts)
+```
+
+We can filter out specific factors,
+```{r eval=FALSE}
+chickwts[chickwts$feed %in% c("sunflower","linseed"),]
+```
+
+**Number of levels** (different factors) and **names of levels**
+```{r}
+
+nlevels(chickwts$feed)
+
+levels(chickwts$feed)
+```
+
+
+```unclass()``` gives each entry a number corresponding to a factor
+
+```{r}
+unclass(chickwts$feed)
+```
+

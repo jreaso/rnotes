@@ -1,0 +1,237 @@
+# Plotting
+
+## Plotting in Base R
+
+(useful for exploration of data)
+
+### Core Plot Function
+
+Plots data ```x``` against data ```y```. (*if only ```x``` is supplied, the indices will be plotted against their values*)
+
+```{r, eval=FALSE}
+plot(x,y, ...)
+```
+
+**Optional Arguments**
+
+- ```col``` - colour of points (can use RGB or colour name as a string; can be vector for each point)
+- ```pch``` - plotting symbol (cross, circle etc), an integer
+  - [Plotting symbol reference](https://cpb-us-e1.wpmucdn.com/sites.ucsc.edu/dist/d/276/files/2015/10/symbols.jpg)
+- ```xlab``` and ```ylab``` - labels
+- ```xlim``` and ```ylim``` - limits in the form of a 2-vector (e.g. ```xlim = c(20,100)``` restricts x from 20 to 100)
+- ```main``` - Plot Title
+- ```type```
+  - ```"p"``` - points (default)
+  - ```"l"``` - line connecting observations
+  - ```"b"``` - both points and lines
+
+
+### Other Plot Functions
+
+- ```hist()``` - Histogram
+- ```boxplot()``` - Boxplot
+- ```barplot()``` - Categorical Bar Charts (use ```table``` to get summary)
+
+
+*Note: you can store plots inside of variables*
+```{r, eval=TRUE, fig.show='hide'}
+
+data("diamonds", package = "ggplot2")
+
+hgram <- hist(diamonds$price, freq = FALSE)
+
+str(hgram)
+```
+
+### Adding to Plots
+
+Each ```plot()``` function creates a new plot. To add to an existing plot use,
+
+- ```points()``` - adds a plot of points to an existing plot
+- ```lines()``` - shorthand for ```points(x, y, type="l")```
+- ```abline()``` - adds a $y=mx+c$ line directly
+
+#### Fitting Lines to Plots
+
+(see linear regression)
+
+- ```lm()``` - **fits a straight line**, pass inside of ```abline()```
+- ```lowess()``` - **fits a smooth line**, pass inside of ```lines()``` (```f``` argument controls smoothness)
+- ```density()``` - fits a smooth continuous version of a histogram
+
+**Example**
+```{r eval=TRUE}
+data("diamonds", package = "ggplot2")
+plot(diamonds$carat, diamonds$price, pch = 20)
+
+
+abline(lm(price ~ carat, diamonds),
+       col = "red")
+lines(lowess(diamonds$carat, diamonds$price, f = 0.05),
+      col = "green")
+
+
+hist(diamonds$price, freq = FALSE)
+lines(density(diamonds$price), col = "red")
+```
+
+
+### Multiple Plots
+(often better to just use ggplot2)
+
+To get a grid of all pairwise scatter plots, use ```pairs()```
+```{r eval=FALSE}
+pairs(mtcars)
+
+pairs(mtcars[,1:4])
+```
+
+You can also **manually set the grid size** (using ```par(mfrow = c(n,m))```) and then populate each grid slot one by one by calling slots
+```{r eval=FALSE}
+par(mfrow = c(2,1))
+plot(diamonds$carat, diamonds$price)
+boxplot(diamonds$carat)
+par(mfrow = c(1,1)) # <- need this to reset to a single plot!
+```
+
+## Plotting in ```ggplot2```
+
+(useful for presentation of data)
+
+Loading ```ggplot2```,
+```{r, eval=FALSE}
+# Either ...
+library("tidyverse")
+# for all tidyverse packages
+# OR, for just plotting
+library("ggplot2")
+```
+
+### Main Structure
+
+**Starting a plot**
+
+Every plot starts with the function ```ggplot()``` with the optional arguments:
+
+- data - to specify the data frame containing the variables we later reference
+- ```aes()``` - mapping to specify what variables map to the x axis, y axis, colour legend, etc
+
+For example,
+```{r echo=FALSE, message=FALSE}
+library("tidyverse")
+data("diamonds", package = "ggplot2")
+```
+```{r, out.width='40%', fig.align = 'center'}
+ggplot(diamonds, aes(x = carat, y = price))
+```
+
+Axis are labelled and scaled but nothing is plotted yet (as we have not called a "Geom").
+
+
+**Geoms**
+
+A ```geom_``` will add a layer to the plot. Examples of Geoms:
+
+- ```geom_point()``` - most basic, plots ```x``` against ```y``` as scatter plot
+- ```geom_line()```
+- ```geom_smooth()``` - smoothed curve (defaukt method is "gam", can also use "lm")
+- ```geom_bar()``` - barchart (1 variable and counts)
+- ```geom_col()``` - barchart (2 variables)
+- ```geom_boxplot()``` - boxplot
+
+More unusual ones,
+
+- ```geom_hex()```
+- ```geom_polygon()```
+
+**```aes()```**
+
+If you want to specify the ```x``` and ```y``` variables, colour by a property, group by a property, change the point size based on a property etc then you put that information into the ```aes()```.
+
+The ```aes(...)``` that goes into the original ```ggplot(aes())``` will be inherited by all plots unless overridden. The ```aes(...)``` that goes into a particular geom, ```geom_...(aes())``` only applies to that geom.
+
+**Labels**
+
+```xlab("X-axis Label")```, ```ylab("Y-axis Label")``` and ```ggtitle("Title")``` can also be added to the plot in the same way as Geoms.
+
+Alternativily, use ```+ labs(title="Title", x="X-axis", y="Y-axis")```
+
+
+### Updating a Plot (Plots in Variables)
+
+```{r, eval=FALSE}
+data("mtcars")
+p <- ggplot(mtcars, aes(x = hp, y = mpg)) +
+  geom_point()
+
+p + geom_smooth()
+
+p + geom_smooth(method = "lm")
+
+p + scale_y_log10() + scale_x_log10() +
+  geom_smooth(method = "lm")
+
+p + scale_y_log10() + scale_x_log10() +
+  geom_smooth(method = "lm") +
+  geom_vline(xintercept = 100)
+```
+
+Here, ```p``` stores the basic plot and each time, something different is added to it for a new plot, but without updating ```p```.
+
+### Faceting
+
+Faceting enables splitting your data into multiple plots according to a categorical variable.
+
+- ```facet_wrap()``` - a single variable split
+  - formula notation to indicate splitting variable ```~ var```
+  - optionally specify number of rows
+- ```facet_grid()``` - two variable split
+  - formula indicating both splitting variables rows_var ~ cols_var
+
+formula indicating both splitting variables rows_var ~ cols_var
+
+For example,
+
+```{r, echo=FALSE, message=FALSE}
+data("mtcars")
+```
+```{r, out.width='40%', fig.align = 'center'}
+ggplot(mtcars, aes(x = hp, y = mpg)) +
+  facet_wrap(~ gear) +
+  geom_point()
+
+ggplot(mtcars, aes(x = hp, y = mpg)) +
+  facet_grid(cyl ~ gear) +
+  geom_point()
+```
+
+### Examples
+
+```{r, message=FALSE, echo=FALSE}
+data("mpg", package = "ggplot2")
+```
+```{r, message=FALSE, out.width='40%', fig.align = 'center'}
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point(aes(colour = cut), size = 0.2) +
+  geom_smooth(aes(colour = cut)) +
+  xlab("Number of carats") + ylab("Price in $")
+
+ggplot(mpg, aes(x=displ, y=hwy)) +
+  geom_point(aes(colour = class))
+
+ggplot(mpg, aes(x=displ, y=hwy)) +
+  facet_wrap(~class) +
+  geom_point() +
+  geom_point(aes(y=cty), colour="red") + #aes() doesn't hold all information!!!
+  ylab("Fuel efficiency")
+
+
+ggplot(mpg, aes(x=displ, y=hwy)) +
+  geom_point(aes(colour=drv)) +
+  geom_smooth(colour="black") +
+  geom_smooth(aes(colour=drv))
+
+
+ggplot(mpg, aes(x=class)) +
+  geom_bar(aes(fill=drv))
+```

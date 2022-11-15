@@ -1,0 +1,197 @@
+# Data Frames
+
+A dataframe is a large "design matrix" as called in stats, and in general:
+
+- rows: contain observation
+- columns: contain variables
+
+**Structure and viewing data frames**
+
+To show a structure of a variable, dataframe, list etc, run ```str(x)```.
+
+```View(mydata)``` to see in spreadsheet view
+
+
+## Creating Data Frames
+**Manually**
+```{r}
+hw <- data.frame(Height = c(147, 150, 152),
+                Weight = c(52.2, 53.1, 54.4))
+```
+
+**Load from ```*.csv``` file**
+
+If in working directory,
+```{r}
+hw <- read.csv("hw.csv")
+```
+Can also use RStudio "Import Dataset" button in Environment tab (top left)
+
+**Built in Data Sets**
+Can use data frames built into R, for example:
+```{r, eval=FALSE}
+data("cars")
+```
+Run ```data()``` to see all data sets
+
+## Accessing Data Frames
+- Single column (alternative ways):
+  - will collapse Data Frame column into vector
+```{r, eval=FALSE}
+hw$Height
+hw[,1]
+```
+  - keeps data frame structure only keeping 1 column
+```{r, eval=FALSE}
+hw[,1, drop = FALSE]
+```
+- Single element: ```hw$Height[3]``` or ```hw[3,1]```
+- Single row: ```hw[3,]``` (similar to single column)
+
+**Full access**
+
+```df[ r , c ]```
+
+- r can be empty, integer between 1 and number of row, vector of integers or a vector of TRUE/FALSE of length num rows (must be exact length).
+- c can be empty, integer between 1 and number of row, vector of integers, a vector of TRUE/FALSE of length num rows (must be exact length) or vector of strings with column/variable names.
+
+**Examples** (first 3 equivalent)
+```{r, eval=FALSE}
+wq.red$ph
+wq.red[, 9]
+wq.red[, "pH"]
+
+wq.red[, c(9,11)]
+wq.red[, c("pH","alcohol")]
+```
+
+### Advanced Query - Accessing a Subset of a Data Frame
+
+**Examples**
+
+- Entire column "Weight" with values >50
+```{r, eval=FALSE}
+hw[hw$Weight>50,]
+```
+- Both columns, 4 **random** rows (using ```sample()```)
+```{r, eval=FALSE}
+hw[sample(1:nrow(hw), 4),]
+```
+-**Removing NA values**
+```{r, eval=FALSE}
+movies[!is.na(movies$budget),] #doesn't have any NA value
+```
+*Note: ```!``` is the logical NOT operator and ```is.na()``` is a function that acts on a vector giving a `TRUE`/`FALSE` vector as the output*
+
+- extra example
+```{r, eval=FALSE}
+wq.red[wq.red$pH>3 & wq.red$density<1, "alcohol"]
+#wq.red$pH>3 is a vector of TRUE/FALSE
+#wq.red$density<3 is a vector of TRUE/FALSE
+#& takes logical between two vectors
+```
+
+
+
+## Interrogating Data Frames
+
+**Data Frame Functions - information**
+
+- ```names()``` - column names
+- ```dim()``` - number of rows and columns
+- ```nrow()``` - number of rows
+- ```ncol()``` - number of columns
+- ```head()``` - **useful for large data**, just shows top rows (can add extra parameter to specify how many rows show up)
+- ```str()``` - shows details about type of data
+
+
+**Data Frame Functions - interesting data**
+
+- ```colMeans()```
+- ```rowMeans()```
+- ```colSums()```
+- ```rowSums()```
+- ```cov()``` - covariance matrix
+- ```cor()``` - correlation matrix
+- ```scale()``` - scales data to be centered at 0 and scaled (*both have optional arguments available*)
+- ```summary()``` - gives all major statistics for each variable (column)
+
+**Data Frame (column/row) Functions - sorting and ordering**
+
+(*optional ```decreasing = TRUE``` argument*)
+
+- ```sort(my.data$var)`` - sorts a variable but only outputs that column vector sorted
+- ```order(my.data$var)`` - outputs a list of indices sorted
+
+**Sorting a Data Frame by a Column**
+
+- ```my.data[order(my.data$var),]``` - sorts whole data frame according to ```var``` column
+
+
+## Manipulating Data Frames
+
+
+**Creating/Adding Variables to a Data Frame**
+
+Reference a variable that doesn't exist and just assign it to something. For example,
+```{r eval=FALSE}
+hw$BMI <- hw$Weight/(hw$Height/100)^2
+```
+
+
+### Merging Data Frames
+
+**```rbind(,)``` and ```cbind(,)```**
+
+**Note: can be very error prone and often better to use tidyverse** (unless with `rbind` variables are identical and in same order or with `cbind`, observations are in same order)
+
+- ```rbind()``` pastes rows together (above/below)
+- ```cbind()``` pastes columns together (left/right)
+
+For an example with ```rbind(,)```, if two data frames have **same column names**, ```rbind(,)``` will stack the rows to make one data frame. As an example,
+
+```{r}
+test1 <- data.frame(Col1 = c(1,5,9,2),
+                    Col2 = c(6,9,8,3))
+test2 <- data.frame(Col2 = c(5,9,0,1),
+                    Col1 = c(4,9,3,0))
+
+rbind(test1, test2)
+```
+(*notice how the columns were matched by name not order*)
+
+
+
+
+## Missing Data
+
+### Importing Data with Missing Values
+
+When using ```read.csv("mydata.csv")```, can add the additional argument ```na.strings=c(...)``` to set any strings in the vector to be replaced by ```<NA>```.
+
+As an example,
+```{r, eval=FALSE}
+read.csv("carsdata.csv", na.strings = c("", "na"))
+```
+
+would import the ```cardata.csv``` file as a data frame with all strings that are empty ```""``` or ```"na"``` with the approptiate ```<NA>``` tag.
+
+**Ignoring `NA` values - `na.rm = TRUE`**
+
+```na.rm = TRUE``` argument ignores all ```<NA>``` values when performing the function. As an example,
+
+```{r, eval=FALSE}
+mean(mydata$var, na.rm = TRUE)
+```
+which is equivalent to
+```{r, eval=FALSE}
+mean(na.omit(mydata$var))
+```
+
+### Remove Ovservations with ```<NA>``` Entry (```na.omit()```)
+
+Example,
+```{r, eval=FALSE}
+na.omit(chickwts$weight)
+```
+
