@@ -1,0 +1,953 @@
+
+# DSSC - Data Wrangling, Presentation and Applications
+
+
+## Data Wrangling with Tidyverse
+
+
+Loading ```tidyverse```,
+```{r, eval=FALSE}
+library("tidyverse")
+```
+
+
+
+### Tidy Form (```tidyr```)
+
+**What is tidy data?**
+
+- each variable is in a column
+- each observation is in a row
+- each type of observational unit forms a table
+
+#### Moving to and from tidy data {-}
+
+**Problems** (how data may violate tidy form)
+
+- Data is **too wide** - one variable spread over multiple columns (use ```pivot_longer()```)
+- Data is **too long** - one observation spread along multiple rows (use ```pivot_wider()```)
+
+
+**```pivot_longer()```**
+
+Makes Wide Data Longer
+
+The arguments are:
+
+- Data Frame
+- Columns to transform
+- Name of the column where previous column names should go
+- Name of the column where values from the column should go
+
+**Example**
+```{r, echo=FALSE, message=FALSE}
+library("tidyverse")
+who_wide <- data.frame(country = c("Afghanistan", "Brazil", "China"), y1999 = c(745, 37737, 212258), y2000 = c(2666, 80488, 213766))
+```
+```{r}
+who_wide
+
+pivot_longer(who_wide,
+             c(`y1999`, `y2000`),
+             names_to = "year",
+             values_to = "cases")
+```
+
+
+
+**```pivot_wider()```**
+
+Makes Long Data Wider
+
+The arguments are:
+
+- Data Frame
+- Columns to transform
+- Name of the column where column names should come from
+- Name of the column where values should come from
+
+**Example**
+```{r, echo=FALSE, message=FALSE}
+library("tidyverse")
+who_long <- data.frame(country = c("Afghanistan", "Afghanistan", "Afghanistan", "Afghanistan", "Brazil", "Brazil", "Brazil", "Brazil", "China", "China", "China", "China"), year = c(1999,1999,2000,2000,1999,1999,2000,2000,1999,1999,2000,2000), type=c("cases","population","cases","population","cases","population","cases","population","cases","population","cases","population"), count = c(745, 19987071, 2666, 20595360, 37737, 172006362, 80488, 174504898, 212258, 1272915272, 213766, 1280428583))
+```
+```{r}
+who_long
+
+pivot_wider(who_long,
+            names_from = "type",
+            values_from = "count")
+```
+
+
+
+**Additional Example - DSSC Lab 5.6**
+```{r, echo=FALSE, message=FALSE}
+library("tidyverse")
+
+pres.res <- data.frame(
+  Candidate = c("Clinton", "Trump", "Other"),
+  California = c("8753788/14181595", "4483810/14181595", "943997/14181595"),
+  Arkansas = c("380494/1130676", "684872/1130676", "65310/1130676")
+)
+```
+```{r}
+pres.res
+
+
+pres.res2 <- pivot_longer(pres.res,
+                          c("California", "Arkansas"),
+                          names_to = "State",
+                          values_to = "Proportion")
+pres.res2
+
+pres.res3 <- separate(pres.res2, "Proportion", c("Votes", "Total"))
+pres.res3
+
+pres.res4 <- mutate(pres.res3, Votes = as.numeric(Votes), Total = as.numeric(Total))
+str(pres.res4)
+
+pres.res5 <- pres.res4 |> 
+  group_by(Candidate) |> 
+  summarise(Percent = sum(Votes)/sum(Total)*100) |> 
+  arrange(desc(Percent))
+pres.res5
+```
+
+
+#### Other useful ```tidyr``` functions {-}
+
+- ```separate()``` -  splits one column of strings into multiple new columns
+- ```unite()``` -  combines many columns into one (as a string)
+- ```extract()``` - uses regular expressions to pull out specific information from a string column
+
+**Example**
+```{r, echo=FALSE, message=FALSE}
+fball <- data.frame(home=c("Man U", "Tottenham", "Chelsea"), away=c("Shef Wed", "Arsenal", "W Ham"), score=c("2-1","0-0","1-0"))
+```
+```{r}
+fball
+separate(fball, "score", c("home_goals", "away_goals"))
+```
+
+
+### Data Manipulation (```dplyr```)
+
+#### Main ```dplyr``` functions {-}
+
+(First argument is always the data frame)
+
+**```filter()```** - Focus on a subset of rows
+
+Other Arguments
+
+- condition to filter by
+
+For example, ```filter(who, year == 1999)```
+
+(*see above list of logical operators*)
+
+**```arrange()```** - Reorder the rows
+
+Other Arguments
+
+- Variable names to sort by, sub-sorting by later variables
+- Wrap variable name in ```desc()``` to sort descending (ascending by default)
+
+For example, ```arrange(who, year, desc(country))```
+
+**```select()```** - Focus on a subset of variables (columns)
+
+Other Arguments
+
+- Name of variables to retain
+
+For example, ```select(who, year, cases)```
+
+**```mutate()```** - Create new derived variables
+
+Other Arguments
+
+- Name of new variable and equation defining it
+
+For example, ```mutate(who, rate = cases/population)```
+
+**```group_by()```** - Splits a data frame up into groups according to one variable
+
+Other Arguments
+
+- Name of variable to group by
+
+For example, ```group_by(who, country)```
+
+
+**```summarise()```** - Create summary statistics (collapsing many rows) by groupings
+
+Other Arguments
+
+- Function to summarise by
+
+For example, ```summarise(who, total = sum(cases))```
+
+*Note: often want to summarise by group*
+
+For example,
+```{r, eval=FALSE}
+who2 <- group_by(who, country)
+summarise(who2, total = sum(cases), change = max(cases)-min(cases))
+```
+
+### Pipelines
+
+Chain functions (not limited to tidyverse functions) where result of first function is first entry in second function and so on.
+
+Example,
+```{r eval=FALSE}
+filter(x, ...) |> 
+  select(...) |> 
+  mutate(...) |> 
+  group_by(...) |> 
+  arrange(...)
+```
+
+
+**Pipeline Operator: CMD-SHIFT-M**
+
+### Joining Data Frames in Tidyverse
+
+Simplest case of joining data frames (more details in data frames section):
+
+- ```rbind()``` - paste rows together (above/below)
+- ```cbind()``` -  paste cols together (left/right)
+
+These methods can be very error prone (requires variables/observations in identical order etc)
+
+#### Advanced Data Frame Joins {-}
+
+- ```left_join(x, y)``` - add new variables from y to x, keeping all x obs
+- ```right_join(x, y)``` - add new variables from x to y, keeping all y obs
+- ```inner_join(x, y)``` - keep only matching rows
+- ```full_join(x, y)``` - keep all rows in both x and y
+
+```{r pressure, echo=FALSE,  out.width = '40%', fig.align = 'center'}
+knitr::include_graphics("https://www.louisaslett.com/Courses/DSSC/slides/06_ggplot2/i/joins.png")
+```
+
+**Example**
+
+```{r echo=FALSE, message=FALSE}
+library("tidyverse")
+
+data("band_members", package = "dplyr")
+data("band_instruments2", package = "dplyr")
+```
+```{r}
+band_members
+band_instruments2
+
+left_join(band_members, band_instruments2, by = c("name" = "artist"))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Dynamic Documents and Interactive Dashboards
+
+### RMD
+
+**Document Preamble**
+```{r, eval=FALSE}
+---
+title: "Example"
+author: "(optional) Jamie Reason"
+date: "(optional)"
+output:
+  html_document: default
+  pdf_document: default
+---
+```
+
+
+[Course Slides on RMD](https://www.louisaslett.com/Courses/DSSC/slides/07_rmarkdown/07_rmarkdown.html#8)
+
+For further formatting, refer to [RMD Cheat Sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf)
+
+### Shiny
+
+**Resource:** [Mastering Shiny Book](https://mastering-shiny.org/index.html)
+
+**Outline**
+
+- **UI**
+- **Server**
+
+R code can be added to any part of a shiny document but only the code in the server will be updated when needed.
+
+
+Starting a Shiny Dashboard (create a new shiny app in R studio):
+
+*```fluidpage()``` is just the most common but there are alternatives*
+
+```{r, eval = FALSE}
+library(shiny)
+
+#misc code
+
+ui <- fluidpage(
+  ...
+)
+
+server <- function(input, output, session){
+  #server code
+}
+
+shinyApp(ui, server)
+```
+
+#### UI
+
+[UI elements reference guide](https://shiny.rstudio.com/reference/shiny/1.7.0/)
+
+##### Pages
+
+**Examples**
+```{r, eval=FALSE}
+ui <- fluidPage(
+  "One",
+  "Two",
+  "Three"
+)
+shinyApp(ui, server = function(input, output, session) {})
+```
+
+```{r, eval=FALSE}
+ui <- navbarPage(
+  "Title of page",
+  tabPanel("My first tab", "Hello Alice"),
+  tabPanel("My second tab", "Hello Bob")
+)
+shinyApp(ui, server = function(input, output, session) {})
+```
+
+Other pages: ```fixedPage()```, ```fillPage()```, ...
+
+##### Layouts and Panels
+
+Goes inside of the page
+
+- ```titlePanel("My App")```
+- ```sidebarLayout()```
+  - first argument ```sidebarPanel()```
+  - second argument ```mainPanel()```
+- ```fluidrow()``` - creates a new row with columns in
+  - ```column() calls
+    - first a number 1 to 12 (all columns numbers must sum to 12) for width
+    -other arguments are outputs
+
+**Examples**
+
+```{r, eval=FALSE}
+ui <- fluidPage(
+  titlePanel("My App"),
+  sidebarLayout(
+    sidebarPanel("I'm in sidebar"),
+    mainPanel("I'm in main panel")
+  )
+)
+shinyApp(ui, server = function(input, output, session) {})
+```
+
+```{r, eval=FALSE}
+ui <- fluidPage(
+  fluidRow(
+    column(4, "Lorem ipsum dolor ..."),
+    column(8, "Lorem ipsum dolor ...")
+  ),
+  fluidRow(
+    column(6, "Lorem ipsum dolor ..."),
+    column(6, "Lorem ipsum dolor ...")
+  )
+)
+shinyApp(ui, server = function(input, output, session) {})
+```
+
+
+##### UI Inputs
+
+All inputs take same first argument - ```inputId```, the unique identifier of the input.
+
+This can be accessed by using ```input$name``` (in the server).
+
+The second argument is a label, or how it's name appears on the dashboard.
+
+**Text Inputs**
+
+- ```textInput()```
+- ```passwordInput()```
+- ```textAreaInput()```
+
+
+**Numeric Inputs**
+
+- ```numericInput()```
+- ```sliderInput()```
+
+
+**Categoric Inputs**
+
+- ```selectInput()```
+- ```radioButtons()```
+- ```checkboxGroupInput()```
+
+**Examples**
+
+
+```{r, eval=FALSE}
+ui <- fluidPage(
+  numericInput("num", "Number one", value = 0, min = 0, max = 100),
+  sliderInput("num2", "Number two", value = 50, min = 0, max = 100),
+  sliderInput("rng", "Range", value = c(10, 20), min = 0, max = 100)
+)
+shinyApp(ui, server = function(input, output, session) {})
+```
+
+```{r, eval=FALSE}
+animals <- c("dog", "cat", "mouse", "bird", "other", "I hate animals")
+ui <- fluidPage(
+  selectInput("state", "What's your favourite state?", state.name),
+  radioButtons("animal", "What's your favourite animal?", animals),
+  checkboxGroupInput("animal2", "What animals do you like?", animals)
+)
+shinyApp(ui, server = function(input, output, session) {})
+```
+
+
+#### Server and UI Outputs
+
+All outputs take same first argument, ```outputId``` and an output can be called by ```output$name```.
+
+##### UI Outputs
+
+**Text Outputs**
+
+- ```textOutput()```
+- ```renderText()```
+- ```verbatimTextOutput()```
+- ```renderPrint()```
+
+**Plot Outputs**
+
+- ```plotOutput()``` and ```renderPlot()```
+  - ```width``` argument
+  - ```res = 96``` argument closest to what you see inj RStudio
+
+
+
+
+**Examples**
+
+```{r, eval=FALSE}
+ui <- fluidPage(
+  textInput("name", "What's your name?"),
+  textOutput("greet")
+)
+server <- function(input, output, session) {
+  output$greet <- renderText({
+    if(nchar(input$name) > 0) {
+      return(paste0("Hello ", input$name))
+    } else {
+      return("Hello friend, tell me your name!")
+    }
+  })
+}
+shinyApp(ui, server)
+```
+
+```{r, eval=FALSE}
+ui <- fluidPage(
+  plotOutput("myplot", width = "400px")
+)
+server <- function(input, output, session) {
+  output$myplot <- renderPlot({
+    plot(iris$Sepal.Length, iris$Sepal.Width)
+  }, res = 96)
+}
+shinyApp(ui, server)
+```
+
+
+##### Variables outside outputs (reactive)
+
+Instead of making variables in the server (**which you can't do as they wouldn't be reactive**), you use the ```reactive({})``` call:
+
+Inside the server,
+```{r, eval=FALSE}
+name <- ...
+```
+becomes,
+```{r, eval=FALSE}
+name <- reactive({
+  ...
+})
+```
+And when ```name``` is used it should be called as ```name()```
+
+**Examples**
+
+```{r, eval=FALSE}
+server <- function(input, output, session) {
+  name <- reactive({
+    toupper(input$name)
+  })
+  output$greet <- renderText({
+    if(nchar(input$name) > 0) {
+      return(paste0("Hello ", name(), ", here is your plot ..."))
+    } else {
+      return("Hello friend, tell me your name!")
+    }
+  })
+  output$myplot <- renderPlot({
+    if(nchar(input$name) > 0) {
+      ggplot(iris, aes_string(x = input$xvar, y = input$yvar)) +
+        geom_point() +
+        labs(title = paste0(name(), "'s plot!"))
+    }
+  }, res = 96)
+}
+```
+
+#### Full Example
+
+From exercise 5.78 (Lab 8)
+
+```{r, eval= FALSE}
+library("shiny")
+library("ukpolice")
+library("tidyverse")
+library("leaflet")
+
+nbd <- ukc_neighbourhoods("durham")
+nbd2 <- nbd$id
+names(nbd2) <- nbd$name
+
+# Define UI for application
+ui <- fluidPage(
+  titlePanel("UK Police Data"),
+  sidebarLayout(
+    sidebarPanel(
+      selectInput("nbd", "Choose Durham Constabulary Neighborhood", nbd2),
+      textInput("date", "Enter the desired year and month in the format YYYY-MM", value = "2021-09")
+    ),
+
+    # Show a plot of the generated distribution
+    mainPanel(
+      plotOutput("barchart"),
+      leafletOutput("map")
+    )
+  )
+)
+
+# Define server logic
+server <- function(input, output) {
+  # Get boundaries for selected neighbourhood
+  # Wrapped in a reactive because we need this to trigger a
+  # change when the input neighborhood changes
+  bdy <- reactive({
+    bdy <- ukc_neighbourhood_boundary("durham", input$nbd)
+    bdy |>
+      mutate(latitude = as.numeric(latitude),
+             longitude = as.numeric(longitude))
+  })
+
+  # Get crimes for selected neighbourhood
+  # Also wrapped in a reactive because we need this to trigger a
+  # change when the boundary above, or date, changes
+  crimes <- reactive({
+    bdy2 <- bdy() |>
+      select(lat = latitude,
+             lng = longitude)
+
+    ukc_crime_poly(bdy2[round(seq(1, nrow(bdy2), length.out = 100)), ], input$date)
+  })
+
+  # First do plot
+  output$barchart <- renderPlot({
+    ggplot(crimes()) +
+      geom_bar(aes(y = category, fill = outcome_status_category)) +
+      labs(y = "Crime", fill = "Outcome Status")
+  }, res = 96)
+
+  # Then do map
+  output$map <- renderLeaflet({
+    leaflet() |>
+      addTiles() |>
+      addPolygons(lng = bdy()$longitude, lat = bdy()$latitude) |>
+      addCircles(lng = as.numeric(crimes()$longitude), lat = as.numeric(crimes()$latitude), label = crimes()$category, color = "red")
+  })
+}
+
+# Run the application
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Dates
+
+(see DSSC Lab 9)
+
+Use lubridates package
+
+```{r, results='hide'}
+library("lubridate")
+```
+
+[lubridate.tidyverse.org](https://lubridate.tidyverse.org)
+
+###Creating Dates {-}
+
+**Current date and time**
+```{r}
+today()
+now()
+
+str(today()) #these are dates not strings
+```
+
+**Constructing dates from strings and numbers**
+
+
+```{r}
+ymd("2021-12-02")
+mdy("December 2nd, 2021")
+ymd(20211202)
+ymd_hms("2021-12-02 12:33:59")
+```
+
+
+**Constructing dates and times from individual components**
+
+```{r}
+make_date(2021, 12, 2)
+make_date("2021", "12", "2")
+make_datetime(2021, 12, 2, 12)
+make_datetime(2021, 12, 2, 12, 33, 59)
+```
+
+### Time Zones
+
+Date creation functions take an argument ```tz = "America/New_York"```.
+```{r}
+now(tz = "America/New_York")
+```
+
+To see all avaliable zones call ```OlsonNames()```
+
+**Changing Time Zone**
+```{r}
+#forces change of time zone without changing date/time
+x <- ymd_hm("2019-12-02 15:10")
+force_tz(x, "America/New_York")
+
+#converts date/tine to a new time zone
+with_tz(x, "America/New_York")
+```
+
+### Extracting From Dates
+
+
+```{r}
+datetime <- today()
+year(datetime)
+yday(datetime)
+wday(datetime, week_start = 1) #by default, sunday is first day of week, use this to make it monday
+month(datetime, label = TRUE)
+```
+
+
+
+**Rounding Dates/Times**
+
+```{r}
+floor_date(datetime, unit = "minute")
+ceiling_date(datetime, unit = "week")
+ceiling_date(datetime, unit = "quarter")
+floor_date(datetime, unit = "week", week_start = 1)
+```
+
+### Misc
+
+**Updating Dates/Times**
+
+```{r}
+datetime <- ymd_hms("2021-12-02 12:33:59")
+datetime <- update(datetime, hour = 11, second = 33)
+datetime
+
+#Alternatively,
+datetime <- ymd_hms("2021-12-02 12:33:59")
+hour(datetime) <- 11
+second(datetime) <- 33
+datetime
+```
+
+
+**Durations**
+
+Can do arithmetic with dates and times
+```{r}
+einstein <- dmy("14th March 1879")
+age <- today() - months(42) - einstein #age 42 months ago
+age
+```
+
+
+Get a duration after arithmetic using ```as.duration()```
+
+```{r}
+as.duration(age)
+```
+
+
+
+## Strings and Regular Expressions
+
+### Strange characters
+
+When you want a string with strange characters, enclose it in ```r"(...)"``` instead of just ```"..."```.
+
+```{r}
+z <- r"(As Roosevelt said,
+"Believe you can and you're halfway there."
+)"
+cat(z)
+```
+
+```cat()``` is like a print command
+
+
+
+### ```stringr``` (part of tidyverse)
+
+Most ```stringr``` functions begin with ```str_``` so can use autocomplete for many string operations.
+
+#### Basics {-}
+
+**String Length**
+```{r}
+str_length(c("Data Science and Statistical Computing", "by", "Dr Louis Aslett"))
+```
+
+**Combining Strings**
+```{r}
+str_c("Data Science and Statistical Computing", "by", "Dr Louis Aslett")
+str_c("Data Science and Statistical Computing", "by", "Dr Louis Aslett", sep = " ")
+str_c(c("Data Science and Statistical Computing", "by", "Dr Louis Aslett"))
+str_c(c("Data Science and Statistical Computing", "by", "Dr Louis Aslett"), collapse = " ")
+```
+
+**Subsetting Strings**
+```{r}
+z <- c("Alice", "Bob", "Connie", "David")
+str_sub(z, 1, 4)
+
+str_sub(z, 1, 2) <- "Zo"
+z
+```
+
+**Trimming**
+```{r}
+str_trim("  String with  trailing,   middle, and    leading   white space\n\n")
+str_squish("  String with  trailing,   middle, and    leading   white space\n\n")
+```
+
+
+#### Regex's
+
+See all details in docs or [lecture slides](https://www.louisaslett.com/Courses/DSSC/slides/09_dates_strings/09_dates_strings.html#30)
+
+Regex's are used for finding patterns in strings
+
+##### ```str_view()``` {-}
+
+Identify a pattern in a string:
+
+**Exact matching**
+```{r}
+str_view("string to find pattern in", "pattern")
+```
+
+**Wildcard matching**
+```{r}
+x <- c("apple", "banana", "pear")
+str_view(x, ".a.")
+```
+
+How to match a ```.```? - ```str_view(c(".bc", "a.c", "be."), "a\\.c")``` (use ```\``` but make sure to escape it)
+
+**Anchoring**
+
+To start:
+```{r}
+str_view(x, "^a")
+```
+
+To end:
+```{r}
+str_view(x, "a$")
+```
+
+can also anchor to both.
+
+**Matching Set of Characters I**
+
+Find exactly first character that matches:
+```{r}
+str_view(x, "[pan]")
+```
+
+Find one or more instance consecutively:
+```{r}
+str_view(x, "[pan]+")
+```
+
+Find exact number of instances occurring consecutively:
+```{r}
+str_view(x, "[pan]{2}")
+```
+
+Find a range or instances occurring consecutively:
+```{r}
+str_view(x, "[pan]{1,3}")
+```
+
+
+**Matching Set of  Characters II**
+
+```{r}
+y <- c("There were 122 in total", "Overall about 390 found", "100 but no more")
+str_view(y, "[0-9]+")
+str_view(y, "[^A-Za-z ]+") #^ anchor inside so acts as a negation
+str_view(y, "^[0-9]+") #^ anchor on outside
+str_view(y, "[a-z ]+")
+```
+
+
+
+
+
+
+
+
+
+
+## Probability Distributions
+
+| Letter | Function      | Use                                                      |
+| :----- |:--------------| :--------------------------------------------------------|
+| "d"    | ```dnorm()``` | evaluates pdf $f(x)$                                     |
+| "p"    | ```pnorm()``` | evaluates cdf $F(x)$                                     |
+| "q"    | ```qnorm()``` | evaluates inverse cdf $F^{-1}(q)$ i.e. $P(X \leq x) = q$ |
+| "r"    | ```rnorm()``` | generates random numbers                                 |
+
+Parameters will vary, e.g.
+
+- Normal distribution: ```dnorm```, ```pnorm```, ```qnorm```, ```rnorm```. Parameters: ```mean``` ($\mu$) and ```sd``` ($\sigma$).
+- t distribution: ```dt```, ```pt```, ```qt```, ```rt```. Parameter: ```df```
+- $\chi^2$ distribution: ```dchisq```, ```pchisq```, ```qchisq```, ```rchisq```. Parameter: ```df```
+
+### DSSC Theory Applications
+
+#### Monte Carlo Hyothesis Test
+
+**Example 2.1**
+```{r, eval=FALSE}
+# Specify test statistic and null value
+x.bar <- 8.6
+n <- 6
+mu0 <- 9.2
+
+# Simulate lots of data assuming the null is true
+t <- rep(0, 50000)
+
+for(j in 0:50000) {
+  z <- rnorm(n, mu0, sqrt(0.4)) #random sample (of n=6) generated under H0
+  t[j] <- abs(mean(z)-mu0) #difference in mean of random sample and mean under H0 assumption
+}
+
+# Calculate empirical p-value
+sum(t > abs(x.bar-mu0)) / 50000 #number of random samplea that were at least as far from mu0 as observation
+
+```
+
+#### Boot Strap
+
+**Set-up**
+
+- Sample of size $n$ independent samples
+- There is a statistic $S( \cdot )$ we wish to estimate
+- We also want the standard error of this
+
+**General Method:**
+
+1. Draw $B$ new samples of size $n$ **with replacement** from $\mathbf{x} = (x_1, \ldots , x_n)$
+1. Call these samples $\textbf{x}^{\star 1}, \ldots , \textbf{x}^{\star B}$
+1. Calculate the estimate, $\bar{S}^{\star}=\frac{1}{B} \sum_{b=1}^{B} S\left(\mathbf{x}^{\star b}\right)$
+1. Calculate the variance, $\widehat{\operatorname{Var}}(S(\mathbf{x}))=\frac{1}{B-1} \sum_{b=1}^{B}\left(S\left(\mathbf{x}^{\star b}\right)-\bar{S}^{\star}\right)^{2}$
+
+
+**Example 3.1** (Also see 3.5)
+
+```{r, eval=FALSE}
+# Mouse data
+x <- c(94,197,16,38,99,141,23)
+
+# Number of bootstraps
+B <- 1000
+
+# Statistic
+S <- mean
+
+# Perform bootstrap
+S.star <- rep(0, B)
+for(b in 1:B) {
+  x.star <- sample(x, replace = TRUE)
+  S.star[b] <- S(x.star)
+}
+
+# Bootstrap estimate
+mean(S.star)
+
+# Standard error of estimate
+sd(S.star)
+```
+
+**Empirical CDF** - ```ecdf(x)```
+
+
+
+
+

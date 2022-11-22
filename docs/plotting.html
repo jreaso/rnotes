@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Plotting | R Notes</title>
-  <meta name="description" content="Chapter 3 Plotting | R Notes" />
+  <title>Chapter 2 Plotting | R Notes</title>
+  <meta name="description" content="Chapter 2 Plotting | R Notes" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Plotting | R Notes" />
+  <meta property="og:title" content="Chapter 2 Plotting | R Notes" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Plotting | R Notes" />
+  <meta name="twitter:title" content="Chapter 2 Plotting | R Notes" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-frames.html"/>
-<link rel="next" href="data-wrangling-using-tidyverse.html"/>
+<link rel="prev" href="r-basics.html"/>
+<link rel="next" href="regression.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -141,18 +141,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Resources</a></li>
 <li class="chapter" data-level="1" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>1</b> R Basics</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="r-basics.html"><a href="r-basics.html#misc."><i class="fa fa-check"></i><b>1.1</b> Misc.</a>
+<li class="chapter" data-level="1.1" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>1.1</b> Vectors</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="r-basics.html"><a href="r-basics.html#packages"><i class="fa fa-check"></i><b>1.1.1</b> Packages</a></li>
-<li class="chapter" data-level="1.1.2" data-path="r-basics.html"><a href="r-basics.html#loops"><i class="fa fa-check"></i><b>1.1.2</b> Loops</a></li>
-<li class="chapter" data-level="1.1.3" data-path="r-basics.html"><a href="r-basics.html#functions"><i class="fa fa-check"></i><b>1.1.3</b> Functions</a></li>
-<li class="chapter" data-level="1.1.4" data-path="r-basics.html"><a href="r-basics.html#logical-operators"><i class="fa fa-check"></i><b>1.1.4</b> Logical Operators</a></li>
+<li class="chapter" data-level="1.1.1" data-path="r-basics.html"><a href="r-basics.html#creating-vectors"><i class="fa fa-check"></i><b>1.1.1</b> Creating Vectors</a></li>
+<li class="chapter" data-level="1.1.2" data-path="r-basics.html"><a href="r-basics.html#accessing-vectors"><i class="fa fa-check"></i><b>1.1.2</b> Accessing Vectors</a></li>
+<li class="chapter" data-level="1.1.3" data-path="r-basics.html"><a href="r-basics.html#vector-functions"><i class="fa fa-check"></i><b>1.1.3</b> Vector Functions</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>1.2</b> Vectors</a>
+<li class="chapter" data-level="1.2" data-path="r-basics.html"><a href="r-basics.html#data-frames"><i class="fa fa-check"></i><b>1.2</b> Data Frames</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="r-basics.html"><a href="r-basics.html#creating-vectors"><i class="fa fa-check"></i><b>1.2.1</b> Creating Vectors</a></li>
-<li class="chapter" data-level="1.2.2" data-path="r-basics.html"><a href="r-basics.html#accessing-vectors"><i class="fa fa-check"></i><b>1.2.2</b> Accessing Vectors</a></li>
-<li class="chapter" data-level="1.2.3" data-path="r-basics.html"><a href="r-basics.html#vector-functions"><i class="fa fa-check"></i><b>1.2.3</b> Vector Functions</a></li>
+<li class="chapter" data-level="1.2.1" data-path="r-basics.html"><a href="r-basics.html#creating-data-frames"><i class="fa fa-check"></i><b>1.2.1</b> Creating Data Frames</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-basics.html"><a href="r-basics.html#accessing-data-frames"><i class="fa fa-check"></i><b>1.2.2</b> Accessing Data Frames</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-basics.html"><a href="r-basics.html#interrogating-data-frames"><i class="fa fa-check"></i><b>1.2.3</b> Interrogating Data Frames</a></li>
+<li class="chapter" data-level="1.2.4" data-path="r-basics.html"><a href="r-basics.html#manipulating-data-frames"><i class="fa fa-check"></i><b>1.2.4</b> Manipulating Data Frames</a></li>
+<li class="chapter" data-level="1.2.5" data-path="r-basics.html"><a href="r-basics.html#missing-data-in-data-frames"><i class="fa fa-check"></i><b>1.2.5</b> Missing Data in Data Frames</a></li>
 </ul></li>
 <li class="chapter" data-level="1.3" data-path="r-basics.html"><a href="r-basics.html#lists"><i class="fa fa-check"></i><b>1.3</b> Lists</a>
 <ul>
@@ -162,91 +163,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.4.1" data-path="r-basics.html"><a href="r-basics.html#categorical-data-factors"><i class="fa fa-check"></i><b>1.4.1</b> Categorical Data (Factors)</a></li>
 </ul></li>
+<li class="chapter" data-level="1.5" data-path="r-basics.html"><a href="r-basics.html#other"><i class="fa fa-check"></i><b>1.5</b> Other</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="data-frames.html"><a href="data-frames.html"><i class="fa fa-check"></i><b>2</b> Data Frames</a>
+<li class="chapter" data-level="2" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>2</b> Plotting</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="data-frames.html"><a href="data-frames.html#creating-data-frames"><i class="fa fa-check"></i><b>2.1</b> Creating Data Frames</a></li>
-<li class="chapter" data-level="2.2" data-path="data-frames.html"><a href="data-frames.html#accessing-data-frames"><i class="fa fa-check"></i><b>2.2</b> Accessing Data Frames</a>
+<li class="chapter" data-level="2.1" data-path="plotting.html"><a href="plotting.html#plotting-in-base-r"><i class="fa fa-check"></i><b>2.1</b> Plotting in Base R</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="data-frames.html"><a href="data-frames.html#advanced-query---accessing-a-subset-of-a-data-frame"><i class="fa fa-check"></i><b>2.2.1</b> Advanced Query - Accessing a Subset of a Data Frame</a></li>
+<li class="chapter" data-level="2.1.1" data-path="plotting.html"><a href="plotting.html#core-plot-function"><i class="fa fa-check"></i><b>2.1.1</b> Core Plot Function</a></li>
+<li class="chapter" data-level="2.1.2" data-path="plotting.html"><a href="plotting.html#other-plot-functions"><i class="fa fa-check"></i><b>2.1.2</b> Other Plot Functions</a></li>
+<li class="chapter" data-level="2.1.3" data-path="plotting.html"><a href="plotting.html#adding-to-plots"><i class="fa fa-check"></i><b>2.1.3</b> Adding to Plots</a></li>
+<li class="chapter" data-level="2.1.4" data-path="plotting.html"><a href="plotting.html#multiple-plots"><i class="fa fa-check"></i><b>2.1.4</b> Multiple Plots</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="data-frames.html"><a href="data-frames.html#interrogating-data-frames"><i class="fa fa-check"></i><b>2.3</b> Interrogating Data Frames</a></li>
-<li class="chapter" data-level="2.4" data-path="data-frames.html"><a href="data-frames.html#manipulating-data-frames"><i class="fa fa-check"></i><b>2.4</b> Manipulating Data Frames</a>
+<li class="chapter" data-level="2.2" data-path="plotting.html"><a href="plotting.html#plotting-in-ggplot2"><i class="fa fa-check"></i><b>2.2</b> Plotting in <code>ggplot2</code></a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="data-frames.html"><a href="data-frames.html#merging-data-frames"><i class="fa fa-check"></i><b>2.4.1</b> Merging Data Frames</a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="data-frames.html"><a href="data-frames.html#missing-data"><i class="fa fa-check"></i><b>2.5</b> Missing Data</a>
-<ul>
-<li class="chapter" data-level="2.5.1" data-path="data-frames.html"><a href="data-frames.html#importing-data-with-missing-values"><i class="fa fa-check"></i><b>2.5.1</b> Importing Data with Missing Values</a></li>
-<li class="chapter" data-level="2.5.2" data-path="data-frames.html"><a href="data-frames.html#remove-ovservations-with-na-entry-na.omit"><i class="fa fa-check"></i><b>2.5.2</b> Remove Ovservations with <code>&lt;NA&gt;</code> Entry (<code>na.omit()</code>)</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="3" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>3</b> Plotting</a>
-<ul>
-<li class="chapter" data-level="3.1" data-path="plotting.html"><a href="plotting.html#plotting-in-base-r"><i class="fa fa-check"></i><b>3.1</b> Plotting in Base R</a>
-<ul>
-<li class="chapter" data-level="3.1.1" data-path="plotting.html"><a href="plotting.html#core-plot-function"><i class="fa fa-check"></i><b>3.1.1</b> Core Plot Function</a></li>
-<li class="chapter" data-level="3.1.2" data-path="plotting.html"><a href="plotting.html#other-plot-functions"><i class="fa fa-check"></i><b>3.1.2</b> Other Plot Functions</a></li>
-<li class="chapter" data-level="3.1.3" data-path="plotting.html"><a href="plotting.html#adding-to-plots"><i class="fa fa-check"></i><b>3.1.3</b> Adding to Plots</a></li>
-<li class="chapter" data-level="3.1.4" data-path="plotting.html"><a href="plotting.html#multiple-plots"><i class="fa fa-check"></i><b>3.1.4</b> Multiple Plots</a></li>
-</ul></li>
-<li class="chapter" data-level="3.2" data-path="plotting.html"><a href="plotting.html#plotting-in-ggplot2"><i class="fa fa-check"></i><b>3.2</b> Plotting in <code>ggplot2</code></a>
-<ul>
-<li class="chapter" data-level="3.2.1" data-path="plotting.html"><a href="plotting.html#main-structure"><i class="fa fa-check"></i><b>3.2.1</b> Main Structure</a></li>
-<li class="chapter" data-level="3.2.2" data-path="plotting.html"><a href="plotting.html#updating-a-plot-plots-in-variables"><i class="fa fa-check"></i><b>3.2.2</b> Updating a Plot (Plots in Variables)</a></li>
-<li class="chapter" data-level="3.2.3" data-path="plotting.html"><a href="plotting.html#faceting"><i class="fa fa-check"></i><b>3.2.3</b> Faceting</a></li>
-<li class="chapter" data-level="3.2.4" data-path="plotting.html"><a href="plotting.html#examples"><i class="fa fa-check"></i><b>3.2.4</b> Examples</a></li>
+<li class="chapter" data-level="2.2.1" data-path="plotting.html"><a href="plotting.html#main-structure"><i class="fa fa-check"></i><b>2.2.1</b> Main Structure</a></li>
+<li class="chapter" data-level="2.2.2" data-path="plotting.html"><a href="plotting.html#updating-a-plot-plots-in-variables"><i class="fa fa-check"></i><b>2.2.2</b> Updating a Plot (Plots in Variables)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="plotting.html"><a href="plotting.html#faceting"><i class="fa fa-check"></i><b>2.2.3</b> Faceting</a></li>
+<li class="chapter" data-level="2.2.4" data-path="plotting.html"><a href="plotting.html#examples"><i class="fa fa-check"></i><b>2.2.4</b> Examples</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html"><i class="fa fa-check"></i><b>4</b> Data Wrangling (using tidyverse)</a>
+<li class="chapter" data-level="3" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>3</b> Regression</a></li>
+<li class="chapter" data-level="4" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html"><i class="fa fa-check"></i><b>4</b> DSSC - Data Wrangling, Presentation and Applications</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#tidy-form-tidyr"><i class="fa fa-check"></i><b>4.1</b> Tidy Form (<code>tidyr</code>)</a>
+<li class="chapter" data-level="4.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#data-wrangling-with-tidyverse"><i class="fa fa-check"></i><b>4.1</b> Data Wrangling with Tidyverse</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#moving-to-and-from-tidy-data"><i class="fa fa-check"></i><b>4.1.1</b> Moving to and from tidy data</a></li>
-<li class="chapter" data-level="4.1.2" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#other-useful-tidyr-functions"><i class="fa fa-check"></i><b>4.1.2</b> Other useful <code>tidyr</code> functions</a></li>
+<li class="chapter" data-level="4.1.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#tidy-form-tidyr"><i class="fa fa-check"></i><b>4.1.1</b> Tidy Form (<code>tidyr</code>)</a></li>
+<li class="chapter" data-level="4.1.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#data-manipulation-dplyr"><i class="fa fa-check"></i><b>4.1.2</b> Data Manipulation (<code>dplyr</code>)</a></li>
+<li class="chapter" data-level="4.1.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#pipelines"><i class="fa fa-check"></i><b>4.1.3</b> Pipelines</a></li>
+<li class="chapter" data-level="4.1.4" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#joining-data-frames-in-tidyverse"><i class="fa fa-check"></i><b>4.1.4</b> Joining Data Frames in Tidyverse</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#data-manipulation-dplyr"><i class="fa fa-check"></i><b>4.2</b> Data Manipulation (<code>dplyr</code>)</a></li>
-<li class="chapter" data-level="4.3" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#main-dplyr-functions"><i class="fa fa-check"></i><b>4.3</b> Main <code>dplyr</code> functions</a>
+<li class="chapter" data-level="4.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dynamic-documents-and-interactive-dashboards"><i class="fa fa-check"></i><b>4.2</b> Dynamic Documents and Interactive Dashboards</a>
 <ul>
-<li class="chapter" data-level="4.3.1" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#pipelines"><i class="fa fa-check"></i><b>4.3.1</b> Pipelines</a></li>
-<li class="chapter" data-level="4.3.2" data-path="data-wrangling-using-tidyverse.html"><a href="data-wrangling-using-tidyverse.html#joining-data-frames-in-tidyverse"><i class="fa fa-check"></i><b>4.3.2</b> Joining Data Frames (in tidyverse)</a></li>
+<li class="chapter" data-level="4.2.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#rmd"><i class="fa fa-check"></i><b>4.2.1</b> RMD</a></li>
+<li class="chapter" data-level="4.2.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#shiny"><i class="fa fa-check"></i><b>4.2.2</b> Shiny</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="dynamic-documents-and-interactive-dashboards.html"><a href="dynamic-documents-and-interactive-dashboards.html"><i class="fa fa-check"></i><b>5</b> Dynamic Documents and Interactive Dashboards</a>
+<li class="chapter" data-level="4.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dates"><i class="fa fa-check"></i><b>4.3</b> Dates</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="dynamic-documents-and-interactive-dashboards.html"><a href="dynamic-documents-and-interactive-dashboards.html#rmd"><i class="fa fa-check"></i><b>5.1</b> RMD</a></li>
-<li class="chapter" data-level="5.2" data-path="dynamic-documents-and-interactive-dashboards.html"><a href="dynamic-documents-and-interactive-dashboards.html#shiny"><i class="fa fa-check"></i><b>5.2</b> Shiny</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="dynamic-documents-and-interactive-dashboards.html"><a href="dynamic-documents-and-interactive-dashboards.html#ui"><i class="fa fa-check"></i><b>5.2.1</b> UI</a></li>
-<li class="chapter" data-level="5.2.2" data-path="dynamic-documents-and-interactive-dashboards.html"><a href="dynamic-documents-and-interactive-dashboards.html#server-and-ui-outputs"><i class="fa fa-check"></i><b>5.2.2</b> Server and UI Outputs</a></li>
-<li class="chapter" data-level="5.2.3" data-path="dynamic-documents-and-interactive-dashboards.html"><a href="dynamic-documents-and-interactive-dashboards.html#full-example"><i class="fa fa-check"></i><b>5.2.3</b> Full Example</a></li>
+<li class="chapter" data-level="4.3.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#time-zones"><i class="fa fa-check"></i><b>4.3.1</b> Time Zones</a></li>
+<li class="chapter" data-level="4.3.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#extracting-from-dates"><i class="fa fa-check"></i><b>4.3.2</b> Extracting From Dates</a></li>
+<li class="chapter" data-level="4.3.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#misc"><i class="fa fa-check"></i><b>4.3.3</b> Misc</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="miscellaneous.html"><a href="miscellaneous.html"><i class="fa fa-check"></i><b>6</b> Miscellaneous</a>
+<li class="chapter" data-level="4.4" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#strings-and-regular-expressions"><i class="fa fa-check"></i><b>4.4</b> Strings and Regular Expressions</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="miscellaneous.html"><a href="miscellaneous.html#dates"><i class="fa fa-check"></i><b>6.1</b> Dates</a>
-<ul>
-<li class="chapter" data-level="6.1.1" data-path="miscellaneous.html"><a href="miscellaneous.html#time-zones"><i class="fa fa-check"></i><b>6.1.1</b> Time Zones</a></li>
-<li class="chapter" data-level="6.1.2" data-path="miscellaneous.html"><a href="miscellaneous.html#extracting-from-dates"><i class="fa fa-check"></i><b>6.1.2</b> Extracting From Dates</a></li>
-<li class="chapter" data-level="6.1.3" data-path="miscellaneous.html"><a href="miscellaneous.html#misc"><i class="fa fa-check"></i><b>6.1.3</b> Misc</a></li>
+<li class="chapter" data-level="4.4.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#strange-characters"><i class="fa fa-check"></i><b>4.4.1</b> Strange characters</a></li>
+<li class="chapter" data-level="4.4.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#stringr-part-of-tidyverse"><i class="fa fa-check"></i><b>4.4.2</b> <code>stringr</code> (part of tidyverse)</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="miscellaneous.html"><a href="miscellaneous.html#strings-and-regular-expressions"><i class="fa fa-check"></i><b>6.2</b> Strings and Regular Expressions</a>
+<li class="chapter" data-level="4.5" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#probability-distributions"><i class="fa fa-check"></i><b>4.5</b> Probability Distributions</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="miscellaneous.html"><a href="miscellaneous.html#strange-characters"><i class="fa fa-check"></i><b>6.2.1</b> Strange characters</a></li>
-<li class="chapter" data-level="6.2.2" data-path="miscellaneous.html"><a href="miscellaneous.html#stringr-part-of-tidyverse"><i class="fa fa-check"></i><b>6.2.2</b> <code>stringr</code> (part of tidyverse)</a></li>
+<li class="chapter" data-level="4.5.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dssc-theory-applications"><i class="fa fa-check"></i><b>4.5.1</b> DSSC Theory Applications</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="dssc-applications.html"><a href="dssc-applications.html"><i class="fa fa-check"></i><b>7</b> DSSC Applications</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="dssc-applications.html"><a href="dssc-applications.html#probability-distributions"><i class="fa fa-check"></i><b>7.1</b> Probability Distributions</a></li>
-<li class="chapter" data-level="7.2" data-path="dssc-applications.html"><a href="dssc-applications.html#theory-applications"><i class="fa fa-check"></i><b>7.2</b> Theory Applications</a>
-<ul>
-<li class="chapter" data-level="7.2.1" data-path="dssc-applications.html"><a href="dssc-applications.html#monte-carlo-hyothesis-test"><i class="fa fa-check"></i><b>7.2.1</b> Monte Carlo Hyothesis Test</a></li>
-<li class="chapter" data-level="7.2.2" data-path="dssc-applications.html"><a href="dssc-applications.html#boot-strap"><i class="fa fa-check"></i><b>7.2.2</b> Boot Strap</a></li>
-<li class="chapter" data-level="7.2.3" data-path="dssc-applications.html"><a href="dssc-applications.html#monte-carlo-integration"><i class="fa fa-check"></i><b>7.2.3</b> Monte Carlo Integration</a></li>
-<li class="chapter" data-level="7.2.4" data-path="dssc-applications.html"><a href="dssc-applications.html#simulation"><i class="fa fa-check"></i><b>7.2.4</b> Simulation</a></li>
-</ul></li>
-<li class="chapter" data-level="7.3" data-path="dssc-applications.html"><a href="dssc-applications.html#statistical-tests"><i class="fa fa-check"></i><b>7.3</b> Statistical Tests</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -267,13 +232,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="plotting" class="section level1 hasAnchor" number="3">
-<h1><span class="header-section-number">Chapter 3</span> Plotting<a href="plotting.html#plotting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="plotting-in-base-r" class="section level2 hasAnchor" number="3.1">
-<h2><span class="header-section-number">3.1</span> Plotting in Base R<a href="plotting.html#plotting-in-base-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="plotting" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Plotting<a href="plotting.html#plotting" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="plotting-in-base-r" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Plotting in Base R<a href="plotting.html#plotting-in-base-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>(useful for exploration of data)</p>
-<div id="core-plot-function" class="section level3 hasAnchor" number="3.1.1">
-<h3><span class="header-section-number">3.1.1</span> Core Plot Function<a href="plotting.html#core-plot-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="core-plot-function" class="section level3 hasAnchor" number="2.1.1">
+<h3><span class="header-section-number">2.1.1</span> Core Plot Function<a href="plotting.html#core-plot-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Plots data <code>x</code> against data <code>y</code>. (<em>if only <code>x</code> is supplied, the indices will be plotted against their values</em>)</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="plotting.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y, ...)</span></code></pre></div>
 <p><strong>Optional Arguments</strong></p>
@@ -294,8 +259,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 </div>
-<div id="other-plot-functions" class="section level3 hasAnchor" number="3.1.2">
-<h3><span class="header-section-number">3.1.2</span> Other Plot Functions<a href="plotting.html#other-plot-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="other-plot-functions" class="section level3 hasAnchor" number="2.1.2">
+<h3><span class="header-section-number">2.1.2</span> Other Plot Functions<a href="plotting.html#other-plot-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><code>hist()</code> - Histogram</li>
 <li><code>boxplot()</code> - Boxplot</li>
@@ -315,16 +280,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  $ equidist: logi TRUE
 ##  - attr(*, &quot;class&quot;)= chr &quot;histogram&quot;</code></pre>
 </div>
-<div id="adding-to-plots" class="section level3 hasAnchor" number="3.1.3">
-<h3><span class="header-section-number">3.1.3</span> Adding to Plots<a href="plotting.html#adding-to-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="adding-to-plots" class="section level3 hasAnchor" number="2.1.3">
+<h3><span class="header-section-number">2.1.3</span> Adding to Plots<a href="plotting.html#adding-to-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Each <code>plot()</code> function creates a new plot. To add to an existing plot use,</p>
 <ul>
 <li><code>points()</code> - adds a plot of points to an existing plot</li>
 <li><code>lines()</code> - shorthand for <code>points(x, y, type="l")</code></li>
 <li><code>abline()</code> - adds a <span class="math inline">\(y=mx+c\)</span> line directly</li>
 </ul>
-<div id="fitting-lines-to-plots" class="section level4 hasAnchor" number="3.1.3.1">
-<h4><span class="header-section-number">3.1.3.1</span> Fitting Lines to Plots<a href="plotting.html#fitting-lines-to-plots" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="fitting-lines-to-plots" class="section level4 hasAnchor" number="2.1.3.1">
+<h4><span class="header-section-number">2.1.3.1</span> Fitting Lines to Plots<a href="plotting.html#fitting-lines-to-plots" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>(see linear regression)</p>
 <ul>
 <li><code>lm()</code> - <strong>fits a straight line</strong>, pass inside of <code>abline()</code></li>
@@ -346,8 +311,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-35-2.png" width="672" /></p>
 </div>
 </div>
-<div id="multiple-plots" class="section level3 hasAnchor" number="3.1.4">
-<h3><span class="header-section-number">3.1.4</span> Multiple Plots<a href="plotting.html#multiple-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="multiple-plots" class="section level3 hasAnchor" number="2.1.4">
+<h3><span class="header-section-number">2.1.4</span> Multiple Plots<a href="plotting.html#multiple-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>(often better to just use ggplot2)</p>
 <p>To get a grid of all pairwise scatter plots, use <code>pairs()</code></p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="plotting.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(mtcars)</span>
@@ -360,8 +325,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb51-4"><a href="plotting.html#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>)) <span class="co"># &lt;- need this to reset to a single plot!</span></span></code></pre></div>
 </div>
 </div>
-<div id="plotting-in-ggplot2" class="section level2 hasAnchor" number="3.2">
-<h2><span class="header-section-number">3.2</span> Plotting in <code>ggplot2</code><a href="plotting.html#plotting-in-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="plotting-in-ggplot2" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Plotting in <code>ggplot2</code><a href="plotting.html#plotting-in-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>(useful for presentation of data)</p>
 <p>Loading <code>ggplot2</code>,</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="plotting.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Either ...</span></span>
@@ -369,8 +334,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb52-3"><a href="plotting.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="co"># for all tidyverse packages</span></span>
 <span id="cb52-4"><a href="plotting.html#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co"># OR, for just plotting</span></span>
 <span id="cb52-5"><a href="plotting.html#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
-<div id="main-structure" class="section level3 hasAnchor" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> Main Structure<a href="plotting.html#main-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="main-structure" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Main Structure<a href="plotting.html#main-structure" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Starting a plot</strong></p>
 <p>Every plot starts with the function <code>ggplot()</code> with the optional arguments:</p>
 <ul>
@@ -403,8 +368,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>xlab("X-axis Label")</code>, <code>ylab("Y-axis Label")</code> and <code>ggtitle("Title")</code> can also be added to the plot in the same way as Geoms.</p>
 <p>Alternativily, use <code>+ labs(title="Title", x="X-axis", y="Y-axis")</code></p>
 </div>
-<div id="updating-a-plot-plots-in-variables" class="section level3 hasAnchor" number="3.2.2">
-<h3><span class="header-section-number">3.2.2</span> Updating a Plot (Plots in Variables)<a href="plotting.html#updating-a-plot-plots-in-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="updating-a-plot-plots-in-variables" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Updating a Plot (Plots in Variables)<a href="plotting.html#updating-a-plot-plots-in-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="plotting.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;mtcars&quot;</span>)</span>
 <span id="cb54-2"><a href="plotting.html#cb54-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mtcars, <span class="fu">aes</span>(<span class="at">x =</span> hp, <span class="at">y =</span> mpg)) <span class="sc">+</span></span>
 <span id="cb54-3"><a href="plotting.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
@@ -421,8 +386,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb54-14"><a href="plotting.html#cb54-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="dv">100</span>)</span></code></pre></div>
 <p>Here, <code>p</code> stores the basic plot and each time, something different is added to it for a new plot, but without updating <code>p</code>.</p>
 </div>
-<div id="faceting" class="section level3 hasAnchor" number="3.2.3">
-<h3><span class="header-section-number">3.2.3</span> Faceting<a href="plotting.html#faceting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="faceting" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Faceting<a href="plotting.html#faceting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Faceting enables splitting your data into multiple plots according to a categorical variable.</p>
 <ul>
 <li><code>facet_wrap()</code> - a single variable split
@@ -446,8 +411,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb56-3"><a href="plotting.html#cb56-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-43-2.png" width="40%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="examples" class="section level3 hasAnchor" number="3.2.4">
-<h3><span class="header-section-number">3.2.4</span> Examples<a href="plotting.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="examples" class="section level3 hasAnchor" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Examples<a href="plotting.html#examples" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="plotting.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diamonds, <span class="fu">aes</span>(<span class="at">x =</span> carat, <span class="at">y =</span> price)) <span class="sc">+</span></span>
 <span id="cb57-2"><a href="plotting.html#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cut), <span class="at">size =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
 <span id="cb57-3"><a href="plotting.html#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">colour =</span> cut)) <span class="sc">+</span></span>
@@ -479,8 +444,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="data-frames.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-wrangling-using-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -511,7 +476,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jreaso/rnotes/edit/master/03-plotting.rmd",
+"link": "https://github.com/jreaso/rnotes/edit/master/02-plotting.rmd",
 "text": "Edit"
 },
 "history": {
@@ -519,7 +484,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jreaso/rnotes/blob/master/03-plotting.rmd",
+"link": "https://github.com/jreaso/rnotes/blob/master/02-plotting.rmd",
 "text": null
 },
 "download": null,
