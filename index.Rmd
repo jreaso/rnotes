@@ -7,7 +7,14 @@ site: bookdown::bookdown_site
 
 # Resources {-}
 
-These are personal notes on R mainly for reference, written over the course of two modules, MLLN (Machine Learning and Neural Networks) (2022-23) and DSSC (Data Science and Statistical Computing) (2021-22). There may be mistakes and inaccuracies.
+These are personal notes on R mainly for reference, written over the course of two modules taken at university,
+
+- MLLN (Machine Learning and Neural Networks) (2022-23)
+- DSSC (Data Science and Statistical Computing) (2021-22)
+
+Although, this current version is more focused on the content for the MLLN module.
+
+These are heavily based off the notes of the respective courses (see links below) and I do not take credit. There may still be mistakes and inaccuracies from myself.
 
 - [**R Seek**](https://rseek.org) Search Engine
 - [**Cheat Sheets**](https://www.rstudio.com/resources/cheatsheets/)

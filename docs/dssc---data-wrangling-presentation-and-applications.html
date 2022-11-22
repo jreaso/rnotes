@@ -792,7 +792,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;2022-11-22&quot;</code></pre>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2022-11-22 18:05:36 GMT&quot;</code></pre>
+<pre><code>## [1] &quot;2022-11-22 18:29:13 GMT&quot;</code></pre>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">today</span>()) <span class="co">#these are dates not strings</span></span></code></pre></div>
 <pre><code>##  Date[1:1], format: &quot;2022-11-22&quot;</code></pre>
 <p><strong>Constructing dates from strings and numbers</strong></p>
@@ -817,7 +817,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.3.1</span> Time Zones<a href="dssc---data-wrangling-presentation-and-applications.html#time-zones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Date creation functions take an argument <code>tz = "America/New_York"</code>.</p>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>(<span class="at">tz =</span> <span class="st">&quot;America/New_York&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;2022-11-22 13:05:36 EST&quot;</code></pre>
+<pre><code>## [1] &quot;2022-11-22 13:29:13 EST&quot;</code></pre>
 <p>To see all avaliable zones call <code>OlsonNames()</code></p>
 <p><strong>Changing Time Zone</strong></p>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co">#forces change of time zone without changing date/time</span></span>
@@ -928,55 +928,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Identify a pattern in a string:</p>
 <p><strong>Exact matching</strong></p>
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(<span class="st">&quot;string to find pattern in&quot;</span>, <span class="st">&quot;pattern&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-eb3332230922fb257584" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-eb3332230922fb257584">{"x":{"html":"<ul>\n  <li>string to find <span class='match'>pattern<\/span> in<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9c8c37fc59bcbbcc902b" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9c8c37fc59bcbbcc902b">{"x":{"html":"<ul>\n  <li>string to find <span class='match'>pattern<\/span> in<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p><strong>Wildcard matching</strong></p>
 <div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb183-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
 <span id="cb183-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb183-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;.a.&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-c9cdef035f60d0c454c3" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-c9cdef035f60d0c454c3">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li><span class='match'>ban<\/span>ana<\/li>\n  <li>p<span class='match'>ear<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-79f8061ff70563a2b372" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-79f8061ff70563a2b372">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li><span class='match'>ban<\/span>ana<\/li>\n  <li>p<span class='match'>ear<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>How to match a <code>.</code>? - <code>str_view(c(".bc", "a.c", "be."), "a\\.c")</code> (use <code>\</code> but make sure to escape it)</p>
 <p><strong>Anchoring</strong></p>
 <p>To start:</p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;^a&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-fe1819f541d2f53e26ad" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fe1819f541d2f53e26ad">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li>banana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-0ceebfe4001702f981fc" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0ceebfe4001702f981fc">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li>banana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>To end:</p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;a$&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-82c72b780f01473ea2b8" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-82c72b780f01473ea2b8">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>banan<span class='match'>a<\/span><\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-150446397023308b4926" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-150446397023308b4926">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>banan<span class='match'>a<\/span><\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>can also anchor to both.</p>
 <p><strong>Matching Set of Characters I</strong></p>
 <p>Find exactly first character that matches:</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;[pan]&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-cc740ced7723c7cbaf14" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-cc740ced7723c7cbaf14">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li>b<span class='match'>a<\/span>nana<\/li>\n  <li><span class='match'>p<\/span>ear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-4f8fd4001106410180b9" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-4f8fd4001106410180b9">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li>b<span class='match'>a<\/span>nana<\/li>\n  <li><span class='match'>p<\/span>ear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Find one or more instance consecutively:</p>
 <div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;[pan]+&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-fda0cce8d213a3976d4c" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-fda0cce8d213a3976d4c">{"x":{"html":"<ul>\n  <li><span class='match'>app<\/span>le<\/li>\n  <li>b<span class='match'>anana<\/span><\/li>\n  <li><span class='match'>p<\/span>ear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b5e5db64655415612672" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b5e5db64655415612672">{"x":{"html":"<ul>\n  <li><span class='match'>app<\/span>le<\/li>\n  <li>b<span class='match'>anana<\/span><\/li>\n  <li><span class='match'>p<\/span>ear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Find exact number of instances occurring consecutively:</p>
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;[pan]{2}&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-e1fc10035b6716a52cd5" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e1fc10035b6716a52cd5">{"x":{"html":"<ul>\n  <li><span class='match'>ap<\/span>ple<\/li>\n  <li>b<span class='match'>an<\/span>ana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-781437d1aaa409b52fe3" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-781437d1aaa409b52fe3">{"x":{"html":"<ul>\n  <li><span class='match'>ap<\/span>ple<\/li>\n  <li>b<span class='match'>an<\/span>ana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Find a range or instances occurring consecutively:</p>
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;[pan]{1,3}&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-9cba18228b7b926d65fd" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-9cba18228b7b926d65fd">{"x":{"html":"<ul>\n  <li><span class='match'>app<\/span>le<\/li>\n  <li>b<span class='match'>ana<\/span>na<\/li>\n  <li><span class='match'>p<\/span>ear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-09dbbd9f46d76105157d" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-09dbbd9f46d76105157d">{"x":{"html":"<ul>\n  <li><span class='match'>app<\/span>le<\/li>\n  <li>b<span class='match'>ana<\/span>na<\/li>\n  <li><span class='match'>p<\/span>ear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p><strong>Matching Set of Characters II</strong></p>
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb190-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;There were 122 in total&quot;</span>, <span class="st">&quot;Overall about 390 found&quot;</span>, <span class="st">&quot;100 but no more&quot;</span>)</span>
 <span id="cb190-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(y, <span class="st">&quot;[0-9]+&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-4d4cf2cc22a348544fd5" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4d4cf2cc22a348544fd5">{"x":{"html":"<ul>\n  <li>There were <span class='match'>122<\/span> in total<\/li>\n  <li>Overall about <span class='match'>390<\/span> found<\/li>\n  <li><span class='match'>100<\/span> but no more<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-7ec28a5c55cb35dd7c03" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7ec28a5c55cb35dd7c03">{"x":{"html":"<ul>\n  <li>There were <span class='match'>122<\/span> in total<\/li>\n  <li>Overall about <span class='match'>390<\/span> found<\/li>\n  <li><span class='match'>100<\/span> but no more<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(y, <span class="st">&quot;[^A-Za-z ]+&quot;</span>) <span class="co">#^ anchor inside so acts as a negation</span></span></code></pre></div>
-<div id="htmlwidget-a6006a716df26a4348f8" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a6006a716df26a4348f8">{"x":{"html":"<ul>\n  <li>There were <span class='match'>122<\/span> in total<\/li>\n  <li>Overall about <span class='match'>390<\/span> found<\/li>\n  <li><span class='match'>100<\/span> but no more<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-daba247268a83531c2fe" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-daba247268a83531c2fe">{"x":{"html":"<ul>\n  <li>There were <span class='match'>122<\/span> in total<\/li>\n  <li>Overall about <span class='match'>390<\/span> found<\/li>\n  <li><span class='match'>100<\/span> but no more<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(y, <span class="st">&quot;^[0-9]+&quot;</span>) <span class="co">#^ anchor on outside</span></span></code></pre></div>
-<div id="htmlwidget-334967967179c81d7d1b" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-334967967179c81d7d1b">{"x":{"html":"<ul>\n  <li>There were 122 in total<\/li>\n  <li>Overall about 390 found<\/li>\n  <li><span class='match'>100<\/span> but no more<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-352d075df5080efea857" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-352d075df5080efea857">{"x":{"html":"<ul>\n  <li>There were 122 in total<\/li>\n  <li>Overall about 390 found<\/li>\n  <li><span class='match'>100<\/span> but no more<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(y, <span class="st">&quot;[a-z ]+&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-76b4012971d42dc1e52c" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-76b4012971d42dc1e52c">{"x":{"html":"<ul>\n  <li>T<span class='match'>here were <\/span>122 in total<\/li>\n  <li>O<span class='match'>verall about <\/span>390 found<\/li>\n  <li>100<span class='match'> but no more<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-27a2690e9868d97ab102" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-27a2690e9868d97ab102">{"x":{"html":"<ul>\n  <li>T<span class='match'>here were <\/span>122 in total<\/li>\n  <li>O<span class='match'>verall about <\/span>390 found<\/li>\n  <li>100<span class='match'> but no more<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
