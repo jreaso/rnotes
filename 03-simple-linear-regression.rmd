@@ -174,17 +174,51 @@ transformed_model <- lm(Y ~ I(X^2), data) # I() is a general wrapper
 Change the `formula` parameter in `geom_smooth`
 
 
-## Inference and Checking Assumptions
-Hypothesis Tests etc
-
-Practical 1 inference section
-
-Section 3.4
-
-
 ## Confidence and Prediction Intervals
 
-`confint()` and `predict()`
+### Confidence Intervals
+
+Easiest to use `confint()`
+
+** Example from [Notes](https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/linear-regression.html#regression-in-r-used-cars-example)**
+
+```{r}
+carSales<-data.frame(Price=c(85,103,70,82,89,98,66,95,169,70,48),
+                     Age=c(5,4,6,5,5,5,6,6,2,7,7))
+reg <- lm(Price ~ Age, carSales)
+confint(reg, level=0.95) #CI for parameters
+```
+
+**Practical 1 Example**
+
+```{r include=FALSE}
+data(faithful)
+w <- faithful$waiting
+d <- faithful$eruptions
+model <- lm(w ~ d)
+```
+
+Again, `model` is as from Practical 1
+
+```{r}
+beta1hat <-  coef(model)[2]
+se.beta1 <- summary(model)$coefficients[2,2]
+n <- length(w)
+  
+#The Confidence Interval is
+beta1hat + c(-1,1) * qt(0.975, n-2) * se.beta1
+
+# or
+confint(model, level=0.95)[2,]
+
+```
+
+
+
+### Prediction Intervals
+
+Easiest to use `predict()`
+
 
 Practical 1 confidence and prediction section
 
@@ -192,8 +226,9 @@ Section 3.5
 
 Practical 2
 
+### Plotting Confidence and Prediction Intervals
 
 
-## Misc {-}
+## Misc
 
 **Pearson Correlation Coefficient** ($r$) `cor(A, B)` measures linear relationship between `A` and `B` and $r = \sqrt{R^2}$
