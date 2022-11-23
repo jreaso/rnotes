@@ -1,3 +1,0 @@
-# Regression
-
-The Pearson Correlation Coefficient: `cor(a, b)`

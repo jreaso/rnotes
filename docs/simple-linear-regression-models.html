@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Simple Linear Regression Models | R Notes</title>
+  <meta name="description" content="Chapter 3 Simple Linear Regression Models | R Notes" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Simple Linear Regression Models | R Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Simple Linear Regression Models | R Notes" />
+  
+  
+  
+
+<meta name="author" content="Jamie Reason" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="plotting.html"/>
+<link rel="next" href="multiple-linear-regression.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.4.1/str_view.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">MLNN R Notes</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Resources</a></li>
+<li class="chapter" data-level="1" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>1</b> R Basics</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="r-basics.html"><a href="r-basics.html#vectors"><i class="fa fa-check"></i><b>1.1</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="r-basics.html"><a href="r-basics.html#creating-vectors"><i class="fa fa-check"></i><b>1.1.1</b> Creating Vectors</a></li>
+<li class="chapter" data-level="1.1.2" data-path="r-basics.html"><a href="r-basics.html#accessing-vectors"><i class="fa fa-check"></i><b>1.1.2</b> Accessing Vectors</a></li>
+<li class="chapter" data-level="1.1.3" data-path="r-basics.html"><a href="r-basics.html#vector-functions"><i class="fa fa-check"></i><b>1.1.3</b> Vector Functions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="r-basics.html"><a href="r-basics.html#data-frames"><i class="fa fa-check"></i><b>1.2</b> Data Frames</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="r-basics.html"><a href="r-basics.html#creating-data-frames"><i class="fa fa-check"></i><b>1.2.1</b> Creating Data Frames</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-basics.html"><a href="r-basics.html#accessing-data-frames"><i class="fa fa-check"></i><b>1.2.2</b> Accessing Data Frames</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-basics.html"><a href="r-basics.html#interrogating-data-frames"><i class="fa fa-check"></i><b>1.2.3</b> Interrogating Data Frames</a></li>
+<li class="chapter" data-level="1.2.4" data-path="r-basics.html"><a href="r-basics.html#manipulating-data-frames"><i class="fa fa-check"></i><b>1.2.4</b> Manipulating Data Frames</a></li>
+<li class="chapter" data-level="1.2.5" data-path="r-basics.html"><a href="r-basics.html#missing-data-in-data-frames"><i class="fa fa-check"></i><b>1.2.5</b> Missing Data in Data Frames</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="r-basics.html"><a href="r-basics.html#lists"><i class="fa fa-check"></i><b>1.3</b> Lists</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="r-basics.html"><a href="r-basics.html#accessing-lists"><i class="fa fa-check"></i><b>1.3.1</b> Accessing lists</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="r-basics.html"><a href="r-basics.html#data-types"><i class="fa fa-check"></i><b>1.4</b> Data Types</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="r-basics.html"><a href="r-basics.html#categorical-data-factors"><i class="fa fa-check"></i><b>1.4.1</b> Categorical Data (Factors)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="r-basics.html"><a href="r-basics.html#other"><i class="fa fa-check"></i><b>1.5</b> Other</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>2</b> Plotting</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="plotting.html"><a href="plotting.html#plotting-in-base-r"><i class="fa fa-check"></i><b>2.1</b> Plotting in Base R</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="plotting.html"><a href="plotting.html#core-plot-function"><i class="fa fa-check"></i><b>2.1.1</b> Core Plot Function</a></li>
+<li class="chapter" data-level="2.1.2" data-path="plotting.html"><a href="plotting.html#other-plot-functions"><i class="fa fa-check"></i><b>2.1.2</b> Other Plot Functions</a></li>
+<li class="chapter" data-level="2.1.3" data-path="plotting.html"><a href="plotting.html#adding-to-plots"><i class="fa fa-check"></i><b>2.1.3</b> Adding to Plots</a></li>
+<li class="chapter" data-level="2.1.4" data-path="plotting.html"><a href="plotting.html#multiple-plots"><i class="fa fa-check"></i><b>2.1.4</b> Multiple Plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="plotting.html"><a href="plotting.html#plotting-in-ggplot2"><i class="fa fa-check"></i><b>2.2</b> Plotting in <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="plotting.html"><a href="plotting.html#main-structure"><i class="fa fa-check"></i><b>2.2.1</b> Main Structure</a></li>
+<li class="chapter" data-level="2.2.2" data-path="plotting.html"><a href="plotting.html#updating-a-plot-plots-in-variables"><i class="fa fa-check"></i><b>2.2.2</b> Updating a Plot (Plots in Variables)</a></li>
+<li class="chapter" data-level="2.2.3" data-path="plotting.html"><a href="plotting.html#faceting"><i class="fa fa-check"></i><b>2.2.3</b> Faceting</a></li>
+<li class="chapter" data-level="2.2.4" data-path="plotting.html"><a href="plotting.html#examples"><i class="fa fa-check"></i><b>2.2.4</b> Examples</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html"><i class="fa fa-check"></i><b>3</b> Simple Linear Regression Models</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#building-an-slr-model"><i class="fa fa-check"></i><b>3.1</b> Building an SLR Model</a></li>
+<li class="chapter" data-level="3.2" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#plotting-an-slr-model"><i class="fa fa-check"></i><b>3.2</b> Plotting an SLR Model</a>
+<ul>
+<li class="chapter" data-level="" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#using-base-r"><i class="fa fa-check"></i>Using Base R</a></li>
+<li class="chapter" data-level="" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#using-ggplot"><i class="fa fa-check"></i>Using <code>ggplot</code></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#diagnostic-plots-and-residual-analysis"><i class="fa fa-check"></i><b>3.3</b> Diagnostic Plots and Residual Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#residual-plot"><i class="fa fa-check"></i>Residual Plot</a></li>
+<li class="chapter" data-level="" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#residual-q-q-plot-and-histogram"><i class="fa fa-check"></i>Residual Q-Q Plot and Histogram</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#transforming-regression-variables"><i class="fa fa-check"></i><b>3.4</b> Transforming Regression Variables</a></li>
+<li class="chapter" data-level="3.5" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#inference-and-checking-assumptions"><i class="fa fa-check"></i><b>3.5</b> Inference and Checking Assumptions</a></li>
+<li class="chapter" data-level="3.6" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#confidence-and-prediction-intervals"><i class="fa fa-check"></i><b>3.6</b> Confidence and Prediction Intervals</a></li>
+<li class="chapter" data-level="" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#misc"><i class="fa fa-check"></i>Misc</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>4</b> Multiple Linear Regression</a></li>
+<li class="chapter" data-level="5" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html"><i class="fa fa-check"></i><b>5</b> DSSC - Data Wrangling, Presentation and Applications</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#data-wrangling-with-tidyverse"><i class="fa fa-check"></i><b>5.1</b> Data Wrangling with Tidyverse</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#tidy-form-tidyr"><i class="fa fa-check"></i><b>5.1.1</b> Tidy Form (<code>tidyr</code>)</a></li>
+<li class="chapter" data-level="5.1.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#data-manipulation-dplyr"><i class="fa fa-check"></i><b>5.1.2</b> Data Manipulation (<code>dplyr</code>)</a></li>
+<li class="chapter" data-level="5.1.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#pipelines"><i class="fa fa-check"></i><b>5.1.3</b> Pipelines</a></li>
+<li class="chapter" data-level="5.1.4" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#joining-data-frames-in-tidyverse"><i class="fa fa-check"></i><b>5.1.4</b> Joining Data Frames in Tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dynamic-documents-and-interactive-dashboards"><i class="fa fa-check"></i><b>5.2</b> Dynamic Documents and Interactive Dashboards</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#rmd"><i class="fa fa-check"></i><b>5.2.1</b> RMD</a></li>
+<li class="chapter" data-level="5.2.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#shiny"><i class="fa fa-check"></i><b>5.2.2</b> Shiny</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dates"><i class="fa fa-check"></i><b>5.3</b> Dates</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#time-zones"><i class="fa fa-check"></i><b>5.3.1</b> Time Zones</a></li>
+<li class="chapter" data-level="5.3.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#extracting-from-dates"><i class="fa fa-check"></i><b>5.3.2</b> Extracting From Dates</a></li>
+<li class="chapter" data-level="5.3.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#misc-1"><i class="fa fa-check"></i><b>5.3.3</b> Misc</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#strings-and-regular-expressions"><i class="fa fa-check"></i><b>5.4</b> Strings and Regular Expressions</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#strange-characters"><i class="fa fa-check"></i><b>5.4.1</b> Strange characters</a></li>
+<li class="chapter" data-level="5.4.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#stringr-part-of-tidyverse"><i class="fa fa-check"></i><b>5.4.2</b> <code>stringr</code> (part of tidyverse)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#probability-distributions"><i class="fa fa-check"></i><b>5.5</b> Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dssc-theory-applications"><i class="fa fa-check"></i><b>5.5.1</b> DSSC Theory Applications</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="simple-linear-regression-models" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Simple Linear Regression Models<a href="simple-linear-regression-models.html#simple-linear-regression-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="building-an-slr-model" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Building an SLR Model<a href="simple-linear-regression-models.html#building-an-slr-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>lm</code> stands for Linear Model and is the function used for Linear Regression</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="simple-linear-regression-models.html#cb71-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X, data)</span></code></pre></div>
+<p><strong>Practical 1 Example</strong></p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="simple-linear-regression-models.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(faithful)</span>
+<span id="cb72-2"><a href="simple-linear-regression-models.html#cb72-2" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(waiting <span class="sc">~</span> eruptions, faithful)</span>
+<span id="cb72-3"><a href="simple-linear-regression-models.html#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = waiting ~ eruptions, data = faithful)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -12.0796  -4.4831   0.2122   3.9246  15.9719 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  33.4744     1.1549   28.98   &lt;2e-16 ***
+## eruptions    10.7296     0.3148   34.09   &lt;2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 5.914 on 270 degrees of freedom
+## Multiple R-squared:  0.8115, Adjusted R-squared:  0.8108 
+## F-statistic:  1162 on 1 and 270 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p><strong>Useful functions to extract data from model:</strong></p>
+<p><code>summ &lt;- summary(model)</code></p>
+<ul>
+<li><code>coef(model)</code> gives coefficients</li>
+<li><code>fitted(model)</code> returns the vector of the fitted values, <span class="math inline">\(\hat{y}_i = b_0 + b_1 x_i\)</span></li>
+<li><code>resid(model)</code> (or <code>summ$residuals</code>) returns vector of residuals, <span class="math inline">\(e_i = y_i - \hat{y}_i\)</span></li>
+<li><code>summ$coefficients</code> gives more information on coefficient estimates (standard error, t-statistic, corresponding two-sided p-value)</li>
+<li><code>summ$sigma</code> extracts regression standard error</li>
+<li><code>summ$r.squared</code> returns value of <span class="math inline">\(R^2\)</span></li>
+</ul>
+</div>
+<div id="plotting-an-slr-model" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Plotting an SLR Model<a href="simple-linear-regression-models.html#plotting-an-slr-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="using-base-r" class="section level3 unnumbered hasAnchor">
+<h3>Using Base R<a href="simple-linear-regression-models.html#using-base-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="simple-linear-regression-models.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(faithful<span class="sc">$</span>waiting <span class="sc">~</span> faithful<span class="sc">$</span>eruptions, <span class="at">xlab=</span><span class="st">&quot;Eruption Time (m)&quot;</span>,</span>
+<span id="cb74-2"><a href="simple-linear-regression-models.html#cb74-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Waiting Time Between Eruptions (m)&quot;</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">&quot;cornflowerblue&quot;</span>)</span>
+<span id="cb74-3"><a href="simple-linear-regression-models.html#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model, <span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+</div>
+<div id="using-ggplot" class="section level3 unnumbered hasAnchor">
+<h3>Using <code>ggplot</code><a href="simple-linear-regression-models.html#using-ggplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="simple-linear-regression-models.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(faithful, <span class="fu">aes</span>(<span class="at">x=</span>eruptions, <span class="at">y=</span>waiting)) <span class="sc">+</span></span>
+<span id="cb75-2"><a href="simple-linear-regression-models.html#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb75-3"><a href="simple-linear-regression-models.html#cb75-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">formula =</span> y<span class="sc">~</span>x, <span class="at">se=</span><span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p><a href="%22https://ggplot2.tidyverse.org/reference/geom_smooth.html%22"><code>geom_smooth</code> Documentaion</a></p>
+</div>
+</div>
+<div id="diagnostic-plots-and-residual-analysis" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Diagnostic Plots and Residual Analysis<a href="simple-linear-regression-models.html#diagnostic-plots-and-residual-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Infant Mortality and GDP Example from <a href="https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/linear-regression.html#example-infant-mortality-and-gdp">MLLN Notes Section 3.3</a></strong></p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="simple-linear-regression-models.html#cb76-1" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> fit<span class="ot">&lt;-</span> <span class="fu">lm</span>(infantMortality <span class="sc">~</span> ppgdp, <span class="at">data=</span>newUN)</span>
+<span id="cb76-2"><a href="simple-linear-regression-models.html#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(newUN<span class="sc">$</span>infantMortality <span class="sc">~</span> newUN<span class="sc">$</span>ppgdp, <span class="at">xlab=</span><span class="st">&quot;GDP per Capita&quot;</span>,</span>
+<span id="cb76-3"><a href="simple-linear-regression-models.html#cb76-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab=</span><span class="st">&quot;Infant mortality (per 1000 births)&quot;</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">&quot;cornflowerblue&quot;</span>,</span>
+<span id="cb76-4"><a href="simple-linear-regression-models.html#cb76-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Model 1&quot;</span>)</span>
+<span id="cb76-5"><a href="simple-linear-regression-models.html#cb76-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model1,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="simple-linear-regression-models.html#cb77-1" aria-hidden="true" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(infantMortality) <span class="sc">~</span> <span class="fu">log</span>(ppgdp), <span class="at">data=</span>newUN)</span>
+<span id="cb77-2"><a href="simple-linear-regression-models.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">log</span>(newUN<span class="sc">$</span>infantMortality) <span class="sc">~</span> <span class="fu">log</span>(newUN<span class="sc">$</span>ppgdp), <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">&quot;cornflowerblue&quot;</span>,</span>
+<span id="cb77-3"><a href="simple-linear-regression-models.html#cb77-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Model 2&quot;</span>)</span>
+<span id="cb77-4"><a href="simple-linear-regression-models.html#cb77-4" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(model2,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<ul>
+<li><code>model1</code> clearly doesn’t fit SLR, we can confirm this be looking at diagnostic plots</li>
+<li><code>model2</code> which is a transformation fits better and is an example of good diagnostic plots</li>
+</ul>
+<div id="residual-plot" class="section level3 unnumbered hasAnchor">
+<h3>Residual Plot<a href="simple-linear-regression-models.html#residual-plot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="simple-linear-regression-models.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">1</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">&quot;cornflowerblue&quot;</span>, <span class="at">main=</span><span class="st">&quot;Model 1 Residual Plot&quot;</span>)</span></code></pre></div>
+<p><strong>Comparison for Model 1 (poor fit) and Model 2 (good fit)</strong></p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="simple-linear-regression-models.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb79-2"><a href="simple-linear-regression-models.html#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">1</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">&quot;cornflowerblue&quot;</span>, <span class="at">main=</span><span class="st">&quot;Model 1 Residual Plot&quot;</span>)</span>
+<span id="cb79-3"><a href="simple-linear-regression-models.html#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model2,<span class="at">which=</span><span class="dv">1</span>,<span class="at">pch=</span><span class="dv">16</span>,<span class="at">col=</span><span class="st">&quot;cornflowerblue&quot;</span>, <span class="at">main=</span><span class="st">&quot;Model 2 Residual Plot&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<p><strong>Example Using Simpler Methods</strong> (From Practical 1)</p>
+<p><code>model</code> is as from Practical 1</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="simple-linear-regression-models.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb80-2"><a href="simple-linear-regression-models.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">y =</span> <span class="fu">resid</span>(model), <span class="at">x=</span><span class="fu">fitted</span>(model)) <span class="co">#residuals against fitted values</span></span>
+<span id="cb80-3"><a href="simple-linear-regression-models.html#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">y =</span> <span class="fu">resid</span>(model), <span class="at">x=</span>d) <span class="co">#residuals against raw values</span></span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+</div>
+<div id="residual-q-q-plot-and-histogram" class="section level3 unnumbered hasAnchor">
+<h3>Residual Q-Q Plot and Histogram<a href="simple-linear-regression-models.html#residual-q-q-plot-and-histogram" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Residual Q-Q Plot</strong></p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="simple-linear-regression-models.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which=</span><span class="dv">2</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">&quot;cornflowerblue&quot;</span>, <span class="at">main=</span><span class="st">&quot;Model 1 Q-Q Plot&quot;</span>)</span></code></pre></div>
+<p><strong>Residual Histogram</strong></p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="simple-linear-regression-models.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">resid</span>(model1), <span class="at">col=</span><span class="st">&quot;cornflowerblue&quot;</span>, <span class="at">main=</span><span class="st">&quot;Model 1 Residual Histogram&quot;</span>)</span></code></pre></div>
+<p><strong>Comparison for Model 1 (poor fit) and Model 2 (good fit)</strong></p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="simple-linear-regression-models.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb83-2"><a href="simple-linear-regression-models.html#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 1 (before transformation)</span></span>
+<span id="cb83-3"><a href="simple-linear-regression-models.html#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model1, <span class="at">which =</span> <span class="dv">2</span>,<span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">&quot;cornflowerblue&quot;</span>, <span class="at">main=</span><span class="st">&quot;Model 1 Q-Q&quot;</span>)</span>
+<span id="cb83-4"><a href="simple-linear-regression-models.html#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">resid</span>(model1),<span class="at">col=</span><span class="st">&quot;cornflowerblue&quot;</span>, <span class="at">main=</span><span class="st">&quot;Model 1 Resid Hist&quot;</span>)</span>
+<span id="cb83-5"><a href="simple-linear-regression-models.html#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Model 2 (after transformation)</span></span>
+<span id="cb83-6"><a href="simple-linear-regression-models.html#cb83-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model2, <span class="at">which =</span> <span class="dv">2</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">col=</span><span class="st">&quot;hotpink3&quot;</span>, <span class="at">main=</span><span class="st">&quot;Model 2 Q-Q&quot;</span>)  </span>
+<span id="cb83-7"><a href="simple-linear-regression-models.html#cb83-7" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">resid</span>(model2),<span class="at">col=</span><span class="st">&quot;hotpink3&quot;</span>, <span class="at">main=</span><span class="st">&quot;Model 2 Resid Hist&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-61-1.png" width="672" /></p>
+<p><strong>Example Using Simpler Methods</strong> (From Practical 1)</p>
+<p><code>model</code> is as from Practical 1</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="simple-linear-regression-models.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb84-2"><a href="simple-linear-regression-models.html#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">resid</span>(model))</span>
+<span id="cb84-3"><a href="simple-linear-regression-models.html#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(<span class="fu">resid</span>(model))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-62-1.png" width="672" /></p>
+</div>
+</div>
+<div id="transforming-regression-variables" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Transforming Regression Variables<a href="simple-linear-regression-models.html#transforming-regression-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When a linear regression model doesn’t look like a good fit, it may be appropriate to transform one or both of the variables.</p>
+<p><strong>Example Making Log transformation</strong> (for Y and X)</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="simple-linear-regression-models.html#cb85-1" aria-hidden="true" tabindex="-1"></a>transformed_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(<span class="fu">log</span>(Y) <span class="sc">~</span> <span class="fu">log</span>(X), data)</span></code></pre></div>
+<p><strong>Example Making Polynomial Transformation</strong></p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="simple-linear-regression-models.html#cb86-1" aria-hidden="true" tabindex="-1"></a>transformed_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> <span class="fu">I</span>(X<span class="sc">^</span><span class="dv">2</span>), data) <span class="co"># I() is a general wrapper</span></span></code></pre></div>
+<p><strong>Using <code>ggplot</code></strong></p>
+<p>Change the <code>formula</code> parameter in <code>geom_smooth</code></p>
+</div>
+<div id="inference-and-checking-assumptions" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Inference and Checking Assumptions<a href="simple-linear-regression-models.html#inference-and-checking-assumptions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Hypothesis Tests etc</p>
+<p>Practical 1 inference section</p>
+<p>Section 3.4</p>
+</div>
+<div id="confidence-and-prediction-intervals" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Confidence and Prediction Intervals<a href="simple-linear-regression-models.html#confidence-and-prediction-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>confint()</code> and <code>predict()</code></p>
+<p>Practical 1 confidence and prediction section</p>
+<p>Section 3.5</p>
+<p>Practical 2</p>
+</div>
+<div id="misc" class="section level2 unnumbered hasAnchor">
+<h2>Misc<a href="simple-linear-regression-models.html#misc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Pearson Correlation Coefficient</strong> (<span class="math inline">\(r\)</span>) <code>cor(A, B)</code> measures linear relationship between <code>A</code> and <code>B</code> and <span class="math inline">\(r = \sqrt{R^2}\)</span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="plotting.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="multiple-linear-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jreaso/rnotes/edit/master/03-simple-linear-regression.rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": "https://github.com/jreaso/rnotes/blob/master/03-simple-linear-regression.rmd",
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

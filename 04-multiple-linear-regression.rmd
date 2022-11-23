@@ -1,0 +1,9 @@
+# Multiple Linear Regression
+
+Section 3.6 Onward
+
+Practical 2
+
+Transformations and specific selections
+
+Practical 3

@@ -32,7 +32,14 @@ main-structure
 updating-a-plot-plots-in-variables
 faceting
 examples
-regression
+simple-linear-regression-models
+building-an-slr-model
+plotting-an-slr-model
+diagnostic-plots-and-residual-analysis
+transforming-regression-variables
+inference-and-checking-assumptions
+confidence-and-prediction-intervals
+multiple-linear-regression
 dssc---data-wrangling-presentation-and-applications
 data-wrangling-with-tidyverse
 tidy-form-tidyr
@@ -53,7 +60,7 @@ full-example
 dates
 time-zones
 extracting-from-dates
-misc
+misc-1
 strings-and-regular-expressions
 strange-characters
 stringr-part-of-tidyverse

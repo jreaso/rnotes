@@ -1,0 +1,199 @@
+# Simple Linear Regression Models
+
+## Building an SLR Model
+
+`lm` stands for Linear Model and is the function used for Linear Regression
+
+
+```{r, eval=FALSE}
+model <- lm(Y ~ X, data)
+```
+
+**Practical 1 Example**
+
+```{r}
+data(faithful)
+model <- lm(waiting ~ eruptions, faithful)
+summary(model)
+```
+
+**Useful functions to extract data from model:**
+
+`summ <- summary(model)`
+
+- `coef(model)` gives coefficients
+- `fitted(model)` returns the vector of the fitted values, $\hat{y}_i = b_0 + b_1 x_i$
+- `resid(model)` (or `summ$residuals`) returns vector of residuals, $e_i = y_i - \hat{y}_i$
+- `summ$coefficients` gives more information on coefficient estimates (standard error, t-statistic, corresponding two-sided p-value)
+- `summ$sigma` extracts regression standard error
+- `summ$r.squared` returns value of $R^2$
+
+
+## Plotting an SLR Model
+
+### Using Base R {-}
+
+```{r echo=TRUE, include=FALSE}
+data(faithful)
+```
+
+```{r}
+plot(faithful$waiting ~ faithful$eruptions, xlab="Eruption Time (m)",
+     ylab="Waiting Time Between Eruptions (m)", pch=16, col="cornflowerblue")
+abline(model, col="red")
+```
+
+
+### Using `ggplot` {-}
+
+```{r echo=TRUE, include=FALSE}
+library(ggplot2)
+```
+```{r}
+ggplot(faithful, aes(x=eruptions, y=waiting)) +
+  geom_point() +
+  geom_smooth(method=lm, formula = y~x, se=FALSE)
+```
+
+[`geom_smooth` Documentaion]("https://ggplot2.tidyverse.org/reference/geom_smooth.html")
+
+## Diagnostic Plots and Residual Analysis
+
+**Infant Mortality and GDP Example from [MLLN Notes Section 3.3](https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/linear-regression.html#example-infant-mortality-and-gdp)**
+
+```{r echo=TRUE, include=FALSE}
+library(carData)
+data(UN)
+newUN<-na.omit(UN)
+```
+
+```{r}
+model1 <- fit<- lm(infantMortality ~ ppgdp, data=newUN)
+plot(newUN$infantMortality ~ newUN$ppgdp, xlab="GDP per Capita",
+     ylab="Infant mortality (per 1000 births)", pch=16, col="cornflowerblue",
+     main="Model 1")
+abline(model1,col="red")
+```
+
+```{r}
+model2 <- lm(log(infantMortality) ~ log(ppgdp), data=newUN)
+plot(log(newUN$infantMortality) ~ log(newUN$ppgdp), pch=16, col="cornflowerblue",
+     main="Model 2")
+abline(model2,col="red")
+```
+
+- `model1` clearly doesn't fit SLR, we can confirm this be looking at diagnostic plots
+- `model2` which is a transformation fits better and is an example of good diagnostic plots
+
+
+
+### Residual Plot {-}
+
+```{r, eval=FALSE}
+plot(model1, which=1, pch=16, col="cornflowerblue", main="Model 1 Residual Plot")
+```
+
+**Comparison for Model 1 (poor fit) and Model 2 (good fit)**
+```{r}
+par(mfrow=c(1,2))
+plot(model1, which=1, pch=16, col="cornflowerblue", main="Model 1 Residual Plot")
+plot(model2,which=1,pch=16,col="cornflowerblue", main="Model 2 Residual Plot")
+```
+
+**Example Using Simpler Methods** (From Practical 1)
+
+`model` is as from Practical 1
+
+```{r include=FALSE}
+data(faithful)
+w <- faithful$waiting
+d <- faithful$eruptions
+model <- lm(w ~ d)
+```
+
+```{r}
+par(mfrow=c(1,2))
+plot(y = resid(model), x=fitted(model)) #residuals against fitted values
+plot(y = resid(model), x=d) #residuals against raw values
+```
+
+### Residual Q-Q Plot and Histogram {-}
+
+**Residual Q-Q Plot**
+```{r eval=FALSE}
+plot(model1, which=2, pch=16, col="cornflowerblue", main="Model 1 Q-Q Plot")
+```
+
+**Residual Histogram**
+```{r eval=FALSE}
+hist(resid(model1), col="cornflowerblue", main="Model 1 Residual Histogram")
+```
+
+**Comparison for Model 1 (poor fit) and Model 2 (good fit)**
+```{r}
+par(mfrow=c(2,2))
+# Model 1 (before transformation)
+plot(model1, which = 2,pch=16, col="cornflowerblue", main="Model 1 Q-Q")
+hist(resid(model1),col="cornflowerblue", main="Model 1 Resid Hist")
+# Model 2 (after transformation)
+plot(model2, which = 2, pch=16, col="hotpink3", main="Model 2 Q-Q")  
+hist(resid(model2),col="hotpink3", main="Model 2 Resid Hist")
+```
+
+
+**Example Using Simpler Methods** (From Practical 1)
+
+`model` is as from Practical 1
+
+```{r}
+par(mfrow=c(1,2))
+hist(resid(model))
+qqnorm(resid(model))
+```
+
+
+
+## Transforming Regression Variables
+
+When a linear regression model doesn't look like a good fit, it may be appropriate to transform one or both of the variables.
+
+**Example Making Log transformation** (for Y and X)
+
+```{r eval=FALSE}
+transformed_model <- lm(log(Y) ~ log(X), data)
+```
+
+**Example Making Polynomial Transformation**
+
+```{r eval=FALSE}
+transformed_model <- lm(Y ~ I(X^2), data) # I() is a general wrapper
+```
+
+**Using `ggplot`**
+
+Change the `formula` parameter in `geom_smooth`
+
+
+## Inference and Checking Assumptions
+Hypothesis Tests etc
+
+Practical 1 inference section
+
+Section 3.4
+
+
+## Confidence and Prediction Intervals
+
+`confint()` and `predict()`
+
+Practical 1 confidence and prediction section
+
+Section 3.5
+
+Practical 2
+
+
+
+## Misc {-}
+
+**Pearson Correlation Coefficient** ($r$) `cor(A, B)` measures linear relationship between `A` and `B` and $r = \sqrt{R^2}$
