@@ -202,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.2" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#prediction-intervals"><i class="fa fa-check"></i><b>3.5.2</b> Prediction Intervals</a></li>
 <li class="chapter" data-level="3.5.3" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#plotting-confidence-and-prediction-intervals"><i class="fa fa-check"></i><b>3.5.3</b> Plotting Confidence and Prediction Intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#misc"><i class="fa fa-check"></i>Misc</a></li>
+<li class="chapter" data-level="3.6" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#misc"><i class="fa fa-check"></i><b>3.6</b> Misc</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>4</b> Multiple Linear Regression</a></li>
 <li class="chapter" data-level="5" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html"><i class="fa fa-check"></i><b>5</b> DSSC - Data Wrangling, Presentation and Applications</a>
@@ -259,7 +259,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-wrangling-with-tidyverse" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Data Wrangling with Tidyverse<a href="dssc---data-wrangling-presentation-and-applications.html#data-wrangling-with-tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Loading <code>tidyverse</code>,</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <div id="tidy-form-tidyr" class="section level3 hasAnchor" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> Tidy Form (<code>tidyr</code>)<a href="dssc---data-wrangling-presentation-and-applications.html#tidy-form-tidyr" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>What is tidy data?</strong></p>
@@ -285,15 +285,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Name of the column where values from the column should go</li>
 </ul>
 <p><strong>Example</strong></p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb94-1" aria-hidden="true" tabindex="-1"></a>who_wide</span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb97-1" aria-hidden="true" tabindex="-1"></a>who_wide</span></code></pre></div>
 <pre><code>##       country  y1999  y2000
 ## 1 Afghanistan    745   2666
 ## 2      Brazil  37737  80488
 ## 3       China 212258 213766</code></pre>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_longer</span>(who_wide,</span>
-<span id="cb96-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb96-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">c</span>(<span class="st">`</span><span class="at">y1999</span><span class="st">`</span>, <span class="st">`</span><span class="at">y2000</span><span class="st">`</span>),</span>
-<span id="cb96-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb96-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">names_to =</span> <span class="st">&quot;year&quot;</span>,</span>
-<span id="cb96-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb96-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">values_to =</span> <span class="st">&quot;cases&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_longer</span>(who_wide,</span>
+<span id="cb99-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb99-2" aria-hidden="true" tabindex="-1"></a>             <span class="fu">c</span>(<span class="st">`</span><span class="at">y1999</span><span class="st">`</span>, <span class="st">`</span><span class="at">y2000</span><span class="st">`</span>),</span>
+<span id="cb99-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb99-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">names_to =</span> <span class="st">&quot;year&quot;</span>,</span>
+<span id="cb99-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb99-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">values_to =</span> <span class="st">&quot;cases&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   country     year   cases
 ##   &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;
@@ -313,7 +313,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Name of the column where values should come from</li>
 </ul>
 <p><strong>Example</strong></p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb98-1" aria-hidden="true" tabindex="-1"></a>who_long</span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb101-1" aria-hidden="true" tabindex="-1"></a>who_long</span></code></pre></div>
 <pre><code>##        country year       type      count
 ## 1  Afghanistan 1999      cases        745
 ## 2  Afghanistan 1999 population   19987071
@@ -327,9 +327,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10       China 1999 population 1272915272
 ## 11       China 2000      cases     213766
 ## 12       China 2000 population 1280428583</code></pre>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(who_long,</span>
-<span id="cb100-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb100-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_from =</span> <span class="st">&quot;type&quot;</span>,</span>
-<span id="cb100-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb100-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_from =</span> <span class="st">&quot;count&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(who_long,</span>
+<span id="cb103-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb103-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_from =</span> <span class="st">&quot;type&quot;</span>,</span>
+<span id="cb103-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb103-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_from =</span> <span class="st">&quot;count&quot;</span>)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ##   country      year  cases population
 ##   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;
@@ -340,16 +340,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 5 China        1999 212258 1272915272
 ## 6 China        2000 213766 1280428583</code></pre>
 <p><strong>Additional Example - DSSC Lab 5.6</strong></p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb102-1" aria-hidden="true" tabindex="-1"></a>pres.res</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb105-1" aria-hidden="true" tabindex="-1"></a>pres.res</span></code></pre></div>
 <pre><code>##   Candidate       California       Arkansas
 ## 1   Clinton 8753788/14181595 380494/1130676
 ## 2     Trump 4483810/14181595 684872/1130676
 ## 3     Other  943997/14181595  65310/1130676</code></pre>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb104-1" aria-hidden="true" tabindex="-1"></a>pres.res2 <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(pres.res,</span>
-<span id="cb104-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb104-2" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">c</span>(<span class="st">&quot;California&quot;</span>, <span class="st">&quot;Arkansas&quot;</span>),</span>
-<span id="cb104-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb104-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">names_to =</span> <span class="st">&quot;State&quot;</span>,</span>
-<span id="cb104-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb104-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values_to =</span> <span class="st">&quot;Proportion&quot;</span>)</span>
-<span id="cb104-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb104-5" aria-hidden="true" tabindex="-1"></a>pres.res2</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb107-1" aria-hidden="true" tabindex="-1"></a>pres.res2 <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(pres.res,</span>
+<span id="cb107-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb107-2" aria-hidden="true" tabindex="-1"></a>                          <span class="fu">c</span>(<span class="st">&quot;California&quot;</span>, <span class="st">&quot;Arkansas&quot;</span>),</span>
+<span id="cb107-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb107-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">names_to =</span> <span class="st">&quot;State&quot;</span>,</span>
+<span id="cb107-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb107-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values_to =</span> <span class="st">&quot;Proportion&quot;</span>)</span>
+<span id="cb107-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb107-5" aria-hidden="true" tabindex="-1"></a>pres.res2</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 3
 ##   Candidate State      Proportion      
 ##   &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;           
@@ -359,8 +359,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 Trump     Arkansas   684872/1130676  
 ## 5 Other     California 943997/14181595 
 ## 6 Other     Arkansas   65310/1130676</code></pre>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb106-1" aria-hidden="true" tabindex="-1"></a>pres.res3 <span class="ot">&lt;-</span> <span class="fu">separate</span>(pres.res2, <span class="st">&quot;Proportion&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;Votes&quot;</span>, <span class="st">&quot;Total&quot;</span>))</span>
-<span id="cb106-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb106-2" aria-hidden="true" tabindex="-1"></a>pres.res3</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb109-1" aria-hidden="true" tabindex="-1"></a>pres.res3 <span class="ot">&lt;-</span> <span class="fu">separate</span>(pres.res2, <span class="st">&quot;Proportion&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;Votes&quot;</span>, <span class="st">&quot;Total&quot;</span>))</span>
+<span id="cb109-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb109-2" aria-hidden="true" tabindex="-1"></a>pres.res3</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 4
 ##   Candidate State      Votes   Total   
 ##   &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;   
@@ -370,18 +370,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 Trump     Arkansas   684872  1130676 
 ## 5 Other     California 943997  14181595
 ## 6 Other     Arkansas   65310   1130676</code></pre>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb108-1" aria-hidden="true" tabindex="-1"></a>pres.res4 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(pres.res3, <span class="at">Votes =</span> <span class="fu">as.numeric</span>(Votes), <span class="at">Total =</span> <span class="fu">as.numeric</span>(Total))</span>
-<span id="cb108-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pres.res4)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb111-1" aria-hidden="true" tabindex="-1"></a>pres.res4 <span class="ot">&lt;-</span> <span class="fu">mutate</span>(pres.res3, <span class="at">Votes =</span> <span class="fu">as.numeric</span>(Votes), <span class="at">Total =</span> <span class="fu">as.numeric</span>(Total))</span>
+<span id="cb111-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pres.res4)</span></code></pre></div>
 <pre><code>## tibble [6 × 4] (S3: tbl_df/tbl/data.frame)
 ##  $ Candidate: chr [1:6] &quot;Clinton&quot; &quot;Clinton&quot; &quot;Trump&quot; &quot;Trump&quot; ...
 ##  $ State    : chr [1:6] &quot;California&quot; &quot;Arkansas&quot; &quot;California&quot; &quot;Arkansas&quot; ...
 ##  $ Votes    : num [1:6] 8753788 380494 4483810 684872 943997 ...
 ##  $ Total    : num [1:6] 14181595 1130676 14181595 1130676 14181595 ...</code></pre>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb110-1" aria-hidden="true" tabindex="-1"></a>pres.res5 <span class="ot">&lt;-</span> pres.res4 <span class="sc">|&gt;</span> </span>
-<span id="cb110-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb110-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Candidate) <span class="sc">|&gt;</span> </span>
-<span id="cb110-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb110-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Percent =</span> <span class="fu">sum</span>(Votes)<span class="sc">/</span><span class="fu">sum</span>(Total)<span class="sc">*</span><span class="dv">100</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb110-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb110-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Percent))</span>
-<span id="cb110-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb110-5" aria-hidden="true" tabindex="-1"></a>pres.res5</span></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb113-1" aria-hidden="true" tabindex="-1"></a>pres.res5 <span class="ot">&lt;-</span> pres.res4 <span class="sc">|&gt;</span> </span>
+<span id="cb113-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb113-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Candidate) <span class="sc">|&gt;</span> </span>
+<span id="cb113-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb113-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">Percent =</span> <span class="fu">sum</span>(Votes)<span class="sc">/</span><span class="fu">sum</span>(Total)<span class="sc">*</span><span class="dv">100</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb113-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb113-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Percent))</span>
+<span id="cb113-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb113-5" aria-hidden="true" tabindex="-1"></a>pres.res5</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   Candidate Percent
 ##   &lt;chr&gt;       &lt;dbl&gt;
@@ -397,12 +397,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>extract()</code> - uses regular expressions to pull out specific information from a string column</li>
 </ul>
 <p><strong>Example</strong></p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb112-1" aria-hidden="true" tabindex="-1"></a>fball</span></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb115-1" aria-hidden="true" tabindex="-1"></a>fball</span></code></pre></div>
 <pre><code>##        home     away score
 ## 1     Man U Shef Wed   2-1
 ## 2 Tottenham  Arsenal   0-0
 ## 3   Chelsea    W Ham   1-0</code></pre>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">separate</span>(fball, <span class="st">&quot;score&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;home_goals&quot;</span>, <span class="st">&quot;away_goals&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">separate</span>(fball, <span class="st">&quot;score&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;home_goals&quot;</span>, <span class="st">&quot;away_goals&quot;</span>))</span></code></pre></div>
 <pre><code>##        home     away home_goals away_goals
 ## 1     Man U Shef Wed          2          1
 ## 2 Tottenham  Arsenal          0          0
@@ -454,19 +454,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For example, <code>summarise(who, total = sum(cases))</code></p>
 <p><em>Note: often want to summarise by group</em></p>
 <p>For example,</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb116-1" aria-hidden="true" tabindex="-1"></a>who2 <span class="ot">&lt;-</span> <span class="fu">group_by</span>(who, country)</span>
-<span id="cb116-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(who2, <span class="at">total =</span> <span class="fu">sum</span>(cases), <span class="at">change =</span> <span class="fu">max</span>(cases)<span class="sc">-</span><span class="fu">min</span>(cases))</span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb119-1" aria-hidden="true" tabindex="-1"></a>who2 <span class="ot">&lt;-</span> <span class="fu">group_by</span>(who, country)</span>
+<span id="cb119-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(who2, <span class="at">total =</span> <span class="fu">sum</span>(cases), <span class="at">change =</span> <span class="fu">max</span>(cases)<span class="sc">-</span><span class="fu">min</span>(cases))</span></code></pre></div>
 </div>
 </div>
 <div id="pipelines" class="section level3 hasAnchor" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> Pipelines<a href="dssc---data-wrangling-presentation-and-applications.html#pipelines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Chain functions (not limited to tidyverse functions) where result of first function is first entry in second function and so on.</p>
 <p>Example,</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(x, ...) <span class="sc">|&gt;</span> </span>
-<span id="cb117-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb117-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(...) <span class="sc">|&gt;</span> </span>
-<span id="cb117-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb117-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(...) <span class="sc">|&gt;</span> </span>
-<span id="cb117-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb117-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(...) <span class="sc">|&gt;</span> </span>
-<span id="cb117-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb117-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(...)</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span>(x, ...) <span class="sc">|&gt;</span> </span>
+<span id="cb120-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb120-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(...) <span class="sc">|&gt;</span> </span>
+<span id="cb120-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb120-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(...) <span class="sc">|&gt;</span> </span>
+<span id="cb120-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb120-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(...) <span class="sc">|&gt;</span> </span>
+<span id="cb120-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb120-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(...)</span></code></pre></div>
 <p><strong>Pipeline Operator: CMD-SHIFT-M</strong></p>
 </div>
 <div id="joining-data-frames-in-tidyverse" class="section level3 hasAnchor" number="5.1.4">
@@ -487,21 +487,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p><img src="https://www.louisaslett.com/Courses/DSSC/slides/06_ggplot2/i/joins.png" width="40%" style="display: block; margin: auto;" /></p>
 <p><strong>Example</strong></p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb118-1" aria-hidden="true" tabindex="-1"></a>band_members</span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb121-1" aria-hidden="true" tabindex="-1"></a>band_members</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   name  band   
 ##   &lt;chr&gt; &lt;chr&gt;  
 ## 1 Mick  Stones 
 ## 2 John  Beatles
 ## 3 Paul  Beatles</code></pre>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb120-1" aria-hidden="true" tabindex="-1"></a>band_instruments2</span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb123-1" aria-hidden="true" tabindex="-1"></a>band_instruments2</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 2
 ##   artist plays 
 ##   &lt;chr&gt;  &lt;chr&gt; 
 ## 1 John   guitar
 ## 2 Paul   bass  
 ## 3 Keith  guitar</code></pre>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(band_members, band_instruments2, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;name&quot;</span> <span class="ot">=</span> <span class="st">&quot;artist&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(band_members, band_instruments2, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">&quot;name&quot;</span> <span class="ot">=</span> <span class="st">&quot;artist&quot;</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 3 × 3
 ##   name  band    plays 
 ##   &lt;chr&gt; &lt;chr&gt;   &lt;chr&gt; 
@@ -516,14 +516,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="rmd" class="section level3 hasAnchor" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> RMD<a href="dssc---data-wrangling-presentation-and-applications.html#rmd" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Document Preamble</strong></p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
-<span id="cb124-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb124-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Example&quot;</span></span>
-<span id="cb124-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb124-3" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;(optional) Jamie Reason&quot;</span></span>
-<span id="cb124-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb124-4" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;(optional)&quot;</span></span>
-<span id="cb124-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb124-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span></span>
-<span id="cb124-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb124-6" aria-hidden="true" tabindex="-1"></a>  html_document<span class="sc">:</span> default</span>
-<span id="cb124-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb124-7" aria-hidden="true" tabindex="-1"></a>  pdf_document<span class="sc">:</span> default</span>
-<span id="cb124-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb124-8" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span>
+<span id="cb127-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb127-2" aria-hidden="true" tabindex="-1"></a>title<span class="sc">:</span> <span class="st">&quot;Example&quot;</span></span>
+<span id="cb127-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb127-3" aria-hidden="true" tabindex="-1"></a>author<span class="sc">:</span> <span class="st">&quot;(optional) Jamie Reason&quot;</span></span>
+<span id="cb127-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb127-4" aria-hidden="true" tabindex="-1"></a>date<span class="sc">:</span> <span class="st">&quot;(optional)&quot;</span></span>
+<span id="cb127-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb127-5" aria-hidden="true" tabindex="-1"></a>output<span class="sc">:</span></span>
+<span id="cb127-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb127-6" aria-hidden="true" tabindex="-1"></a>  html_document<span class="sc">:</span> default</span>
+<span id="cb127-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb127-7" aria-hidden="true" tabindex="-1"></a>  pdf_document<span class="sc">:</span> default</span>
+<span id="cb127-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb127-8" aria-hidden="true" tabindex="-1"></a><span class="sc">---</span></span></code></pre></div>
 <p><a href="https://www.louisaslett.com/Courses/DSSC/slides/07_rmarkdown/07_rmarkdown.html#8">Course Slides on RMD</a></p>
 <p>For further formatting, refer to <a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">RMD Cheat Sheet</a></p>
 </div>
@@ -538,37 +538,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>R code can be added to any part of a shiny document but only the code in the server will be updated when needed.</p>
 <p>Starting a Shiny Dashboard (create a new shiny app in R studio):</p>
 <p><em><code>fluidpage()</code> is just the most common but there are alternatives</em></p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
-<span id="cb125-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb125-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb125-3" aria-hidden="true" tabindex="-1"></a><span class="co">#misc code</span></span>
-<span id="cb125-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb125-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb125-5" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidpage</span>(</span>
-<span id="cb125-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb125-6" aria-hidden="true" tabindex="-1"></a>  ...</span>
-<span id="cb125-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb125-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb125-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb125-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-9"><a href="dssc---data-wrangling-presentation-and-applications.html#cb125-9" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session){</span>
-<span id="cb125-10"><a href="dssc---data-wrangling-presentation-and-applications.html#cb125-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#server code</span></span>
-<span id="cb125-11"><a href="dssc---data-wrangling-presentation-and-applications.html#cb125-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb125-12"><a href="dssc---data-wrangling-presentation-and-applications.html#cb125-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb125-13"><a href="dssc---data-wrangling-presentation-and-applications.html#cb125-13" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb128-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="co">#misc code</span></span>
+<span id="cb128-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-5" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidpage</span>(</span>
+<span id="cb128-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-6" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb128-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb128-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-9"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-9" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session){</span>
+<span id="cb128-10"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-10" aria-hidden="true" tabindex="-1"></a>  <span class="co">#server code</span></span>
+<span id="cb128-11"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb128-12"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-13"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-13" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div>
 <div id="ui" class="section level4 hasAnchor" number="5.2.2.1">
 <h4><span class="header-section-number">5.2.2.1</span> UI<a href="dssc---data-wrangling-presentation-and-applications.html#ui" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><a href="https://shiny.rstudio.com/reference/shiny/1.7.0/">UI elements reference guide</a></p>
 <div id="pages" class="section level5 hasAnchor" number="5.2.2.1.1">
 <h5><span class="header-section-number">5.2.2.1.1</span> Pages<a href="dssc---data-wrangling-presentation-and-applications.html#pages" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p><strong>Examples</strong></p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb126-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb126-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb126-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;One&quot;</span>,</span>
-<span id="cb126-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb126-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Two&quot;</span>,</span>
-<span id="cb126-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb126-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Three&quot;</span></span>
-<span id="cb126-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb126-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb126-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb126-6" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb127-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">navbarPage</span>(</span>
-<span id="cb127-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb127-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Title of page&quot;</span>,</span>
-<span id="cb127-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb127-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabPanel</span>(<span class="st">&quot;My first tab&quot;</span>, <span class="st">&quot;Hello Alice&quot;</span>),</span>
-<span id="cb127-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb127-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabPanel</span>(<span class="st">&quot;My second tab&quot;</span>, <span class="st">&quot;Hello Bob&quot;</span>)</span>
-<span id="cb127-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb127-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb127-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb127-6" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb129-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;One&quot;</span>,</span>
+<span id="cb129-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Two&quot;</span>,</span>
+<span id="cb129-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Three&quot;</span></span>
+<span id="cb129-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb129-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-6" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb130-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">navbarPage</span>(</span>
+<span id="cb130-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb130-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Title of page&quot;</span>,</span>
+<span id="cb130-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb130-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabPanel</span>(<span class="st">&quot;My first tab&quot;</span>, <span class="st">&quot;Hello Alice&quot;</span>),</span>
+<span id="cb130-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb130-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tabPanel</span>(<span class="st">&quot;My second tab&quot;</span>, <span class="st">&quot;Hello Bob&quot;</span>)</span>
+<span id="cb130-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb130-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb130-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb130-6" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
 <p>Other pages: <code>fixedPage()</code>, <code>fillPage()</code>, …</p>
 </div>
 <div id="layouts-and-panels" class="section level5 hasAnchor" number="5.2.2.1.2">
@@ -591,25 +591,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p><strong>Examples</strong></p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb128-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;My App&quot;</span>),</span>
-<span id="cb128-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb128-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(<span class="st">&quot;I&#39;m in sidebar&quot;</span>),</span>
-<span id="cb128-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(<span class="st">&quot;I&#39;m in main panel&quot;</span>)</span>
-<span id="cb128-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-6" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb128-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb128-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb128-8" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb129-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidRow</span>(</span>
-<span id="cb129-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">4</span>, <span class="st">&quot;Lorem ipsum dolor ...&quot;</span>),</span>
-<span id="cb129-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">8</span>, <span class="st">&quot;Lorem ipsum dolor ...&quot;</span>)</span>
-<span id="cb129-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-5" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb129-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidRow</span>(</span>
-<span id="cb129-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">6</span>, <span class="st">&quot;Lorem ipsum dolor ...&quot;</span>),</span>
-<span id="cb129-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">6</span>, <span class="st">&quot;Lorem ipsum dolor ...&quot;</span>)</span>
-<span id="cb129-9"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb129-10"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb129-11"><a href="dssc---data-wrangling-presentation-and-applications.html#cb129-11" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb131-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb131-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb131-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;My App&quot;</span>),</span>
+<span id="cb131-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb131-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb131-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb131-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(<span class="st">&quot;I&#39;m in sidebar&quot;</span>),</span>
+<span id="cb131-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb131-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(<span class="st">&quot;I&#39;m in main panel&quot;</span>)</span>
+<span id="cb131-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb131-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb131-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb131-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb131-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb131-8" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb132-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidRow</span>(</span>
+<span id="cb132-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">4</span>, <span class="st">&quot;Lorem ipsum dolor ...&quot;</span>),</span>
+<span id="cb132-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">8</span>, <span class="st">&quot;Lorem ipsum dolor ...&quot;</span>)</span>
+<span id="cb132-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-5" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb132-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fluidRow</span>(</span>
+<span id="cb132-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">6</span>, <span class="st">&quot;Lorem ipsum dolor ...&quot;</span>),</span>
+<span id="cb132-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">column</span>(<span class="dv">6</span>, <span class="st">&quot;Lorem ipsum dolor ...&quot;</span>)</span>
+<span id="cb132-9"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb132-10"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb132-11"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-11" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
 </div>
 <div id="ui-inputs" class="section level5 hasAnchor" number="5.2.2.1.3">
 <h5><span class="header-section-number">5.2.2.1.3</span> UI Inputs<a href="dssc---data-wrangling-presentation-and-applications.html#ui-inputs" class="anchor-section" aria-label="Anchor link to header"></a></h5>
@@ -634,19 +634,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>checkboxGroupInput()</code></li>
 </ul>
 <p><strong>Examples</strong></p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb130-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb130-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb130-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">numericInput</span>(<span class="st">&quot;num&quot;</span>, <span class="st">&quot;Number one&quot;</span>, <span class="at">value =</span> <span class="dv">0</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>),</span>
-<span id="cb130-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb130-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sliderInput</span>(<span class="st">&quot;num2&quot;</span>, <span class="st">&quot;Number two&quot;</span>, <span class="at">value =</span> <span class="dv">50</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>),</span>
-<span id="cb130-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb130-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sliderInput</span>(<span class="st">&quot;rng&quot;</span>, <span class="st">&quot;Range&quot;</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>), <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span>
-<span id="cb130-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb130-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb130-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb130-6" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb131-1" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;bird&quot;</span>, <span class="st">&quot;other&quot;</span>, <span class="st">&quot;I hate animals&quot;</span>)</span>
-<span id="cb131-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb131-2" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb131-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb131-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">selectInput</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;What&#39;s your favourite state?&quot;</span>, state.name),</span>
-<span id="cb131-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb131-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">radioButtons</span>(<span class="st">&quot;animal&quot;</span>, <span class="st">&quot;What&#39;s your favourite animal?&quot;</span>, animals),</span>
-<span id="cb131-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb131-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">checkboxGroupInput</span>(<span class="st">&quot;animal2&quot;</span>, <span class="st">&quot;What animals do you like?&quot;</span>, animals)</span>
-<span id="cb131-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb131-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb131-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb131-7" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb133-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb133-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb133-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">numericInput</span>(<span class="st">&quot;num&quot;</span>, <span class="st">&quot;Number one&quot;</span>, <span class="at">value =</span> <span class="dv">0</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>),</span>
+<span id="cb133-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb133-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sliderInput</span>(<span class="st">&quot;num2&quot;</span>, <span class="st">&quot;Number two&quot;</span>, <span class="at">value =</span> <span class="dv">50</span>, <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>),</span>
+<span id="cb133-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb133-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sliderInput</span>(<span class="st">&quot;rng&quot;</span>, <span class="st">&quot;Range&quot;</span>, <span class="at">value =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">20</span>), <span class="at">min =</span> <span class="dv">0</span>, <span class="at">max =</span> <span class="dv">100</span>)</span>
+<span id="cb133-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb133-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb133-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb133-6" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb134-1" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;dog&quot;</span>, <span class="st">&quot;cat&quot;</span>, <span class="st">&quot;mouse&quot;</span>, <span class="st">&quot;bird&quot;</span>, <span class="st">&quot;other&quot;</span>, <span class="st">&quot;I hate animals&quot;</span>)</span>
+<span id="cb134-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb134-2" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb134-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb134-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">selectInput</span>(<span class="st">&quot;state&quot;</span>, <span class="st">&quot;What&#39;s your favourite state?&quot;</span>, state.name),</span>
+<span id="cb134-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb134-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">radioButtons</span>(<span class="st">&quot;animal&quot;</span>, <span class="st">&quot;What&#39;s your favourite animal?&quot;</span>, animals),</span>
+<span id="cb134-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb134-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">checkboxGroupInput</span>(<span class="st">&quot;animal2&quot;</span>, <span class="st">&quot;What animals do you like?&quot;</span>, animals)</span>
+<span id="cb134-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb134-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb134-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb134-7" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, <span class="at">server =</span> <span class="cf">function</span>(input, output, session) {})</span></code></pre></div>
 </div>
 </div>
 <div id="server-and-ui-outputs" class="section level4 hasAnchor" number="5.2.2.2">
@@ -670,131 +670,131 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul>
 <p><strong>Examples</strong></p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb132-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textInput</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;What&#39;s your name?&quot;</span>),</span>
-<span id="cb132-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textOutput</span>(<span class="st">&quot;greet&quot;</span>)</span>
-<span id="cb132-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb132-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-5" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb132-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-6" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>greet <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb132-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">nchar</span>(input<span class="sc">$</span>name) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb132-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="fu">paste0</span>(<span class="st">&quot;Hello &quot;</span>, input<span class="sc">$</span>name))</span>
-<span id="cb132-9"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-9" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb132-10"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">&quot;Hello friend, tell me your name!&quot;</span>)</span>
-<span id="cb132-11"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-11" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb132-12"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-12" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb132-13"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-13" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb132-14"><a href="dssc---data-wrangling-presentation-and-applications.html#cb132-14" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb133-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb133-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb133-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotOutput</span>(<span class="st">&quot;myplot&quot;</span>, <span class="at">width =</span> <span class="st">&quot;400px&quot;</span>)</span>
-<span id="cb133-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb133-3" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb133-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb133-4" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb133-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb133-5" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>myplot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb133-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb133-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(iris<span class="sc">$</span>Sepal.Length, iris<span class="sc">$</span>Sepal.Width)</span>
-<span id="cb133-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb133-7" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">res =</span> <span class="dv">96</span>)</span>
-<span id="cb133-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb133-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb133-9"><a href="dssc---data-wrangling-presentation-and-applications.html#cb133-9" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb135-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textInput</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;What&#39;s your name?&quot;</span>),</span>
+<span id="cb135-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">textOutput</span>(<span class="st">&quot;greet&quot;</span>)</span>
+<span id="cb135-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb135-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-5" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb135-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-6" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>greet <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb135-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">nchar</span>(input<span class="sc">$</span>name) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb135-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="fu">paste0</span>(<span class="st">&quot;Hello &quot;</span>, input<span class="sc">$</span>name))</span>
+<span id="cb135-9"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-9" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb135-10"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">&quot;Hello friend, tell me your name!&quot;</span>)</span>
+<span id="cb135-11"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-11" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb135-12"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-12" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb135-13"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb135-14"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-14" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-1" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb136-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plotOutput</span>(<span class="st">&quot;myplot&quot;</span>, <span class="at">width =</span> <span class="st">&quot;400px&quot;</span>)</span>
+<span id="cb136-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb136-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-4" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb136-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-5" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>myplot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb136-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">plot</span>(iris<span class="sc">$</span>Sepal.Length, iris<span class="sc">$</span>Sepal.Width)</span>
+<span id="cb136-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-7" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">res =</span> <span class="dv">96</span>)</span>
+<span id="cb136-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb136-9"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-9" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(ui, server)</span></code></pre></div>
 </div>
 <div id="variables-outside-outputs-reactive" class="section level5 hasAnchor" number="5.2.2.2.2">
 <h5><span class="header-section-number">5.2.2.2.2</span> Variables outside outputs (reactive)<a href="dssc---data-wrangling-presentation-and-applications.html#variables-outside-outputs-reactive" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Instead of making variables in the server (<strong>which you can’t do as they wouldn’t be reactive</strong>), you use the <code>reactive({})</code> call:</p>
 <p>Inside the server,</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb134-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> ...</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> ...</span></code></pre></div>
 <p>becomes,</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb135-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-2" aria-hidden="true" tabindex="-1"></a>  ...</span>
-<span id="cb135-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb135-3" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb138-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb138-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb138-2" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb138-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb138-3" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>And when <code>name</code> is used it should be called as <code>name()</code></p>
 <p><strong>Examples</strong></p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
-<span id="cb136-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-2" aria-hidden="true" tabindex="-1"></a>  name <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb136-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">toupper</span>(input<span class="sc">$</span>name)</span>
-<span id="cb136-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-4" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb136-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-5" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>greet <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
-<span id="cb136-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">nchar</span>(input<span class="sc">$</span>name) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb136-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="fu">paste0</span>(<span class="st">&quot;Hello &quot;</span>, <span class="fu">name</span>(), <span class="st">&quot;, here is your plot ...&quot;</span>))</span>
-<span id="cb136-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb136-9"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">&quot;Hello friend, tell me your name!&quot;</span>)</span>
-<span id="cb136-10"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-10" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb136-11"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-11" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb136-12"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-12" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>myplot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb136-13"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">nchar</span>(input<span class="sc">$</span>name) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb136-14"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>(iris, <span class="fu">aes_string</span>(<span class="at">x =</span> input<span class="sc">$</span>xvar, <span class="at">y =</span> input<span class="sc">$</span>yvar)) <span class="sc">+</span></span>
-<span id="cb136-15"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb136-16"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(<span class="fu">name</span>(), <span class="st">&quot;&#39;s plot!&quot;</span>))</span>
-<span id="cb136-17"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-17" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb136-18"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-18" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">res =</span> <span class="dv">96</span>)</span>
-<span id="cb136-19"><a href="dssc---data-wrangling-presentation-and-applications.html#cb136-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-1" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output, session) {</span>
+<span id="cb139-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-2" aria-hidden="true" tabindex="-1"></a>  name <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb139-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">toupper</span>(input<span class="sc">$</span>name)</span>
+<span id="cb139-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-4" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb139-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-5" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>greet <span class="ot">&lt;-</span> <span class="fu">renderText</span>({</span>
+<span id="cb139-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">nchar</span>(input<span class="sc">$</span>name) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb139-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="fu">paste0</span>(<span class="st">&quot;Hello &quot;</span>, <span class="fu">name</span>(), <span class="st">&quot;, here is your plot ...&quot;</span>))</span>
+<span id="cb139-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-8" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb139-9"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-9" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span>(<span class="st">&quot;Hello friend, tell me your name!&quot;</span>)</span>
+<span id="cb139-10"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-10" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb139-11"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-11" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb139-12"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-12" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>myplot <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb139-13"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(<span class="fu">nchar</span>(input<span class="sc">$</span>name) <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb139-14"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ggplot</span>(iris, <span class="fu">aes_string</span>(<span class="at">x =</span> input<span class="sc">$</span>xvar, <span class="at">y =</span> input<span class="sc">$</span>yvar)) <span class="sc">+</span></span>
+<span id="cb139-15"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-15" aria-hidden="true" tabindex="-1"></a>        <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb139-16"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-16" aria-hidden="true" tabindex="-1"></a>        <span class="fu">labs</span>(<span class="at">title =</span> <span class="fu">paste0</span>(<span class="fu">name</span>(), <span class="st">&quot;&#39;s plot!&quot;</span>))</span>
+<span id="cb139-17"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-17" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb139-18"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-18" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">res =</span> <span class="dv">96</span>)</span>
+<span id="cb139-19"><a href="dssc---data-wrangling-presentation-and-applications.html#cb139-19" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
 <div id="full-example" class="section level4 hasAnchor" number="5.2.2.3">
 <h4><span class="header-section-number">5.2.2.3</span> Full Example<a href="dssc---data-wrangling-presentation-and-applications.html#full-example" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>From exercise 5.78 (Lab 8)</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;shiny&quot;</span>)</span>
-<span id="cb137-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ukpolice&quot;</span>)</span>
-<span id="cb137-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
-<span id="cb137-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;leaflet&quot;</span>)</span>
-<span id="cb137-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb137-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-6" aria-hidden="true" tabindex="-1"></a>nbd <span class="ot">&lt;-</span> <span class="fu">ukc_neighbourhoods</span>(<span class="st">&quot;durham&quot;</span>)</span>
-<span id="cb137-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-7" aria-hidden="true" tabindex="-1"></a>nbd2 <span class="ot">&lt;-</span> nbd<span class="sc">$</span>id</span>
-<span id="cb137-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(nbd2) <span class="ot">&lt;-</span> nbd<span class="sc">$</span>name</span>
-<span id="cb137-9"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb137-10"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Define UI for application</span></span>
-<span id="cb137-11"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-11" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
-<span id="cb137-12"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;UK Police Data&quot;</span>),</span>
-<span id="cb137-13"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
-<span id="cb137-14"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
-<span id="cb137-15"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">selectInput</span>(<span class="st">&quot;nbd&quot;</span>, <span class="st">&quot;Choose Durham Constabulary Neighborhood&quot;</span>, nbd2),</span>
-<span id="cb137-16"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">textInput</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;Enter the desired year and month in the format YYYY-MM&quot;</span>, <span class="at">value =</span> <span class="st">&quot;2021-09&quot;</span>)</span>
-<span id="cb137-17"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-17" aria-hidden="true" tabindex="-1"></a>    ),</span>
-<span id="cb137-18"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb137-19"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Show a plot of the generated distribution</span></span>
-<span id="cb137-20"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
-<span id="cb137-21"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plotOutput</span>(<span class="st">&quot;barchart&quot;</span>),</span>
-<span id="cb137-22"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">leafletOutput</span>(<span class="st">&quot;map&quot;</span>)</span>
-<span id="cb137-23"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-23" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb137-24"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-24" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb137-25"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-25" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb137-26"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb137-27"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Define server logic</span></span>
-<span id="cb137-28"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-28" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
-<span id="cb137-29"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get boundaries for selected neighbourhood</span></span>
-<span id="cb137-30"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Wrapped in a reactive because we need this to trigger a</span></span>
-<span id="cb137-31"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># change when the input neighborhood changes</span></span>
-<span id="cb137-32"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-32" aria-hidden="true" tabindex="-1"></a>  bdy <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb137-33"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-33" aria-hidden="true" tabindex="-1"></a>    bdy <span class="ot">&lt;-</span> <span class="fu">ukc_neighbourhood_boundary</span>(<span class="st">&quot;durham&quot;</span>, input<span class="sc">$</span>nbd)</span>
-<span id="cb137-34"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-34" aria-hidden="true" tabindex="-1"></a>    bdy <span class="sc">|&gt;</span></span>
-<span id="cb137-35"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">latitude =</span> <span class="fu">as.numeric</span>(latitude),</span>
-<span id="cb137-36"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-36" aria-hidden="true" tabindex="-1"></a>             <span class="at">longitude =</span> <span class="fu">as.numeric</span>(longitude))</span>
-<span id="cb137-37"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-37" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb137-38"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb137-39"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get crimes for selected neighbourhood</span></span>
-<span id="cb137-40"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Also wrapped in a reactive because we need this to trigger a</span></span>
-<span id="cb137-41"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-41" aria-hidden="true" tabindex="-1"></a>  <span class="co"># change when the boundary above, or date, changes</span></span>
-<span id="cb137-42"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-42" aria-hidden="true" tabindex="-1"></a>  crimes <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
-<span id="cb137-43"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-43" aria-hidden="true" tabindex="-1"></a>    bdy2 <span class="ot">&lt;-</span> <span class="fu">bdy</span>() <span class="sc">|&gt;</span></span>
-<span id="cb137-44"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(<span class="at">lat =</span> latitude,</span>
-<span id="cb137-45"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-45" aria-hidden="true" tabindex="-1"></a>             <span class="at">lng =</span> longitude)</span>
-<span id="cb137-46"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb137-47"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ukc_crime_poly</span>(bdy2[<span class="fu">round</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(bdy2), <span class="at">length.out =</span> <span class="dv">100</span>)), ], input<span class="sc">$</span>date)</span>
-<span id="cb137-48"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-48" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb137-49"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb137-50"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-50" aria-hidden="true" tabindex="-1"></a>  <span class="co"># First do plot</span></span>
-<span id="cb137-51"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-51" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>barchart <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
-<span id="cb137-52"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">crimes</span>()) <span class="sc">+</span></span>
-<span id="cb137-53"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-53" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> category, <span class="at">fill =</span> outcome_status_category)) <span class="sc">+</span></span>
-<span id="cb137-54"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-54" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Crime&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Outcome Status&quot;</span>)</span>
-<span id="cb137-55"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-55" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">res =</span> <span class="dv">96</span>)</span>
-<span id="cb137-56"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb137-57"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-57" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Then do map</span></span>
-<span id="cb137-58"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-58" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>map <span class="ot">&lt;-</span> <span class="fu">renderLeaflet</span>({</span>
-<span id="cb137-59"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">leaflet</span>() <span class="sc">|&gt;</span></span>
-<span id="cb137-60"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-60" aria-hidden="true" tabindex="-1"></a>      <span class="fu">addTiles</span>() <span class="sc">|&gt;</span></span>
-<span id="cb137-61"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-61" aria-hidden="true" tabindex="-1"></a>      <span class="fu">addPolygons</span>(<span class="at">lng =</span> <span class="fu">bdy</span>()<span class="sc">$</span>longitude, <span class="at">lat =</span> <span class="fu">bdy</span>()<span class="sc">$</span>latitude) <span class="sc">|&gt;</span></span>
-<span id="cb137-62"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-62" aria-hidden="true" tabindex="-1"></a>      <span class="fu">addCircles</span>(<span class="at">lng =</span> <span class="fu">as.numeric</span>(<span class="fu">crimes</span>()<span class="sc">$</span>longitude), <span class="at">lat =</span> <span class="fu">as.numeric</span>(<span class="fu">crimes</span>()<span class="sc">$</span>latitude), <span class="at">label =</span> <span class="fu">crimes</span>()<span class="sc">$</span>category, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb137-63"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-63" aria-hidden="true" tabindex="-1"></a>  })</span>
-<span id="cb137-64"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-64" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb137-65"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb137-66"><a href="dssc---data-wrangling-presentation-and-applications.html#cb137-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the application</span></span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;shiny&quot;</span>)</span>
+<span id="cb140-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ukpolice&quot;</span>)</span>
+<span id="cb140-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tidyverse&quot;</span>)</span>
+<span id="cb140-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;leaflet&quot;</span>)</span>
+<span id="cb140-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-6" aria-hidden="true" tabindex="-1"></a>nbd <span class="ot">&lt;-</span> <span class="fu">ukc_neighbourhoods</span>(<span class="st">&quot;durham&quot;</span>)</span>
+<span id="cb140-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-7" aria-hidden="true" tabindex="-1"></a>nbd2 <span class="ot">&lt;-</span> nbd<span class="sc">$</span>id</span>
+<span id="cb140-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-8" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(nbd2) <span class="ot">&lt;-</span> nbd<span class="sc">$</span>name</span>
+<span id="cb140-9"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-10"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Define UI for application</span></span>
+<span id="cb140-11"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-11" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb140-12"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;UK Police Data&quot;</span>),</span>
+<span id="cb140-13"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb140-14"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="cb140-15"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">selectInput</span>(<span class="st">&quot;nbd&quot;</span>, <span class="st">&quot;Choose Durham Constabulary Neighborhood&quot;</span>, nbd2),</span>
+<span id="cb140-16"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">textInput</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;Enter the desired year and month in the format YYYY-MM&quot;</span>, <span class="at">value =</span> <span class="st">&quot;2021-09&quot;</span>)</span>
+<span id="cb140-17"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-17" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb140-18"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-19"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-19" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Show a plot of the generated distribution</span></span>
+<span id="cb140-20"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb140-21"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plotOutput</span>(<span class="st">&quot;barchart&quot;</span>),</span>
+<span id="cb140-22"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-22" aria-hidden="true" tabindex="-1"></a>      <span class="fu">leafletOutput</span>(<span class="st">&quot;map&quot;</span>)</span>
+<span id="cb140-23"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb140-24"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-24" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb140-25"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-25" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb140-26"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-27"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Define server logic</span></span>
+<span id="cb140-28"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-28" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb140-29"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get boundaries for selected neighbourhood</span></span>
+<span id="cb140-30"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Wrapped in a reactive because we need this to trigger a</span></span>
+<span id="cb140-31"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-31" aria-hidden="true" tabindex="-1"></a>  <span class="co"># change when the input neighborhood changes</span></span>
+<span id="cb140-32"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-32" aria-hidden="true" tabindex="-1"></a>  bdy <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb140-33"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-33" aria-hidden="true" tabindex="-1"></a>    bdy <span class="ot">&lt;-</span> <span class="fu">ukc_neighbourhood_boundary</span>(<span class="st">&quot;durham&quot;</span>, input<span class="sc">$</span>nbd)</span>
+<span id="cb140-34"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-34" aria-hidden="true" tabindex="-1"></a>    bdy <span class="sc">|&gt;</span></span>
+<span id="cb140-35"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">latitude =</span> <span class="fu">as.numeric</span>(latitude),</span>
+<span id="cb140-36"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-36" aria-hidden="true" tabindex="-1"></a>             <span class="at">longitude =</span> <span class="fu">as.numeric</span>(longitude))</span>
+<span id="cb140-37"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-37" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb140-38"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-39"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-39" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Get crimes for selected neighbourhood</span></span>
+<span id="cb140-40"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-40" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Also wrapped in a reactive because we need this to trigger a</span></span>
+<span id="cb140-41"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-41" aria-hidden="true" tabindex="-1"></a>  <span class="co"># change when the boundary above, or date, changes</span></span>
+<span id="cb140-42"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-42" aria-hidden="true" tabindex="-1"></a>  crimes <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb140-43"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-43" aria-hidden="true" tabindex="-1"></a>    bdy2 <span class="ot">&lt;-</span> <span class="fu">bdy</span>() <span class="sc">|&gt;</span></span>
+<span id="cb140-44"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">select</span>(<span class="at">lat =</span> latitude,</span>
+<span id="cb140-45"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-45" aria-hidden="true" tabindex="-1"></a>             <span class="at">lng =</span> longitude)</span>
+<span id="cb140-46"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-47"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ukc_crime_poly</span>(bdy2[<span class="fu">round</span>(<span class="fu">seq</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(bdy2), <span class="at">length.out =</span> <span class="dv">100</span>)), ], input<span class="sc">$</span>date)</span>
+<span id="cb140-48"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-48" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb140-49"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-50"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-50" aria-hidden="true" tabindex="-1"></a>  <span class="co"># First do plot</span></span>
+<span id="cb140-51"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-51" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>barchart <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb140-52"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">crimes</span>()) <span class="sc">+</span></span>
+<span id="cb140-53"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-53" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> category, <span class="at">fill =</span> outcome_status_category)) <span class="sc">+</span></span>
+<span id="cb140-54"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-54" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Crime&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Outcome Status&quot;</span>)</span>
+<span id="cb140-55"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-55" aria-hidden="true" tabindex="-1"></a>  }, <span class="at">res =</span> <span class="dv">96</span>)</span>
+<span id="cb140-56"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-57"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-57" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Then do map</span></span>
+<span id="cb140-58"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-58" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>map <span class="ot">&lt;-</span> <span class="fu">renderLeaflet</span>({</span>
+<span id="cb140-59"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">leaflet</span>() <span class="sc">|&gt;</span></span>
+<span id="cb140-60"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-60" aria-hidden="true" tabindex="-1"></a>      <span class="fu">addTiles</span>() <span class="sc">|&gt;</span></span>
+<span id="cb140-61"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-61" aria-hidden="true" tabindex="-1"></a>      <span class="fu">addPolygons</span>(<span class="at">lng =</span> <span class="fu">bdy</span>()<span class="sc">$</span>longitude, <span class="at">lat =</span> <span class="fu">bdy</span>()<span class="sc">$</span>latitude) <span class="sc">|&gt;</span></span>
+<span id="cb140-62"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-62" aria-hidden="true" tabindex="-1"></a>      <span class="fu">addCircles</span>(<span class="at">lng =</span> <span class="fu">as.numeric</span>(<span class="fu">crimes</span>()<span class="sc">$</span>longitude), <span class="at">lat =</span> <span class="fu">as.numeric</span>(<span class="fu">crimes</span>()<span class="sc">$</span>latitude), <span class="at">label =</span> <span class="fu">crimes</span>()<span class="sc">$</span>category, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb140-63"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-63" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb140-64"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-64" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb140-65"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-65" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb140-66"><a href="dssc---data-wrangling-presentation-and-applications.html#cb140-66" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the application</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -802,7 +802,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.3</span> Dates<a href="dssc---data-wrangling-presentation-and-applications.html#dates" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>(see DSSC Lab 9)</p>
 <p>Use lubridates package</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;lubridate&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;lubridate&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: package &#39;lubridate&#39; was built under R version 4.1.2</code></pre>
 <pre><code>## Loading required package: timechange</code></pre>
 <pre><code>## Warning: package &#39;timechange&#39; was built under R version 4.1.2</code></pre>
@@ -814,88 +814,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="https://lubridate.tidyverse.org">lubridate.tidyverse.org</a></p>
 <p>###Creating Dates {-}</p>
 <p><strong>Current date and time</strong></p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;2022-11-23&quot;</code></pre>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2022-11-23 14:16:25 GMT&quot;</code></pre>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">today</span>()) <span class="co">#these are dates not strings</span></span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;2022-11-23 15:35:45 GMT&quot;</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">today</span>()) <span class="co">#these are dates not strings</span></span></code></pre></div>
 <pre><code>##  Date[1:1], format: &quot;2022-11-23&quot;</code></pre>
 <p><strong>Constructing dates from strings and numbers</strong></p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">&quot;2021-12-02&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="st">&quot;2021-12-02&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2021-12-02&quot;</code></pre>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">&quot;December 2nd, 2021&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mdy</span>(<span class="st">&quot;December 2nd, 2021&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2021-12-02&quot;</code></pre>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="dv">20211202</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd</span>(<span class="dv">20211202</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2021-12-02&quot;</code></pre>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">&quot;2021-12-02 12:33:59&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ymd_hms</span>(<span class="st">&quot;2021-12-02 12:33:59&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2021-12-02 12:33:59 UTC&quot;</code></pre>
 <p><strong>Constructing dates and times from individual components</strong></p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_date</span>(<span class="dv">2021</span>, <span class="dv">12</span>, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_date</span>(<span class="dv">2021</span>, <span class="dv">12</span>, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2021-12-02&quot;</code></pre>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_date</span>(<span class="st">&quot;2021&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_date</span>(<span class="st">&quot;2021&quot;</span>, <span class="st">&quot;12&quot;</span>, <span class="st">&quot;2&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2021-12-02&quot;</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_datetime</span>(<span class="dv">2021</span>, <span class="dv">12</span>, <span class="dv">2</span>, <span class="dv">12</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_datetime</span>(<span class="dv">2021</span>, <span class="dv">12</span>, <span class="dv">2</span>, <span class="dv">12</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2021-12-02 12:00:00 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_datetime</span>(<span class="dv">2021</span>, <span class="dv">12</span>, <span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">33</span>, <span class="dv">59</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">make_datetime</span>(<span class="dv">2021</span>, <span class="dv">12</span>, <span class="dv">2</span>, <span class="dv">12</span>, <span class="dv">33</span>, <span class="dv">59</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2021-12-02 12:33:59 UTC&quot;</code></pre>
 <div id="time-zones" class="section level3 hasAnchor" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Time Zones<a href="dssc---data-wrangling-presentation-and-applications.html#time-zones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Date creation functions take an argument <code>tz = "America/New_York"</code>.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>(<span class="at">tz =</span> <span class="st">&quot;America/New_York&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;2022-11-23 09:16:25 EST&quot;</code></pre>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>(<span class="at">tz =</span> <span class="st">&quot;America/New_York&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;2022-11-23 10:35:45 EST&quot;</code></pre>
 <p>To see all avaliable zones call <code>OlsonNames()</code></p>
 <p><strong>Changing Time Zone</strong></p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co">#forces change of time zone without changing date/time</span></span>
-<span id="cb168-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb168-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">ymd_hm</span>(<span class="st">&quot;2019-12-02 15:10&quot;</span>)</span>
-<span id="cb168-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb168-3" aria-hidden="true" tabindex="-1"></a><span class="fu">force_tz</span>(x, <span class="st">&quot;America/New_York&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co">#forces change of time zone without changing date/time</span></span>
+<span id="cb171-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb171-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">ymd_hm</span>(<span class="st">&quot;2019-12-02 15:10&quot;</span>)</span>
+<span id="cb171-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb171-3" aria-hidden="true" tabindex="-1"></a><span class="fu">force_tz</span>(x, <span class="st">&quot;America/New_York&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2019-12-02 15:10:00 EST&quot;</code></pre>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="co">#converts date/tine to a new time zone</span></span>
-<span id="cb170-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="fu">with_tz</span>(x, <span class="st">&quot;America/New_York&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co">#converts date/tine to a new time zone</span></span>
+<span id="cb173-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="fu">with_tz</span>(x, <span class="st">&quot;America/New_York&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2019-12-02 10:10:00 EST&quot;</code></pre>
 </div>
 <div id="extracting-from-dates" class="section level3 hasAnchor" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> Extracting From Dates<a href="dssc---data-wrangling-presentation-and-applications.html#extracting-from-dates" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb172-1" aria-hidden="true" tabindex="-1"></a>datetime <span class="ot">&lt;-</span> <span class="fu">today</span>()</span>
-<span id="cb172-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb172-2" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(datetime)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb175-1" aria-hidden="true" tabindex="-1"></a>datetime <span class="ot">&lt;-</span> <span class="fu">today</span>()</span>
+<span id="cb175-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="fu">year</span>(datetime)</span></code></pre></div>
 <pre><code>## [1] 2022</code></pre>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">yday</span>(datetime)</span></code></pre></div>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="fu">yday</span>(datetime)</span></code></pre></div>
 <pre><code>## [1] 327</code></pre>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb176-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(datetime, <span class="at">week_start =</span> <span class="dv">1</span>) <span class="co">#by default, sunday is first day of week, use this to make it monday</span></span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wday</span>(datetime, <span class="at">week_start =</span> <span class="dv">1</span>) <span class="co">#by default, sunday is first day of week, use this to make it monday</span></span></code></pre></div>
 <pre><code>## [1] 3</code></pre>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb178-1" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(datetime, <span class="at">label =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">month</span>(datetime, <span class="at">label =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] Nov
 ## 12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</code></pre>
 <p><strong>Rounding Dates/Times</strong></p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">floor_date</span>(datetime, <span class="at">unit =</span> <span class="st">&quot;minute&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">floor_date</span>(datetime, <span class="at">unit =</span> <span class="st">&quot;minute&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2022-11-23 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling_date</span>(datetime, <span class="at">unit =</span> <span class="st">&quot;week&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling_date</span>(datetime, <span class="at">unit =</span> <span class="st">&quot;week&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2022-11-27&quot;</code></pre>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling_date</span>(datetime, <span class="at">unit =</span> <span class="st">&quot;quarter&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ceiling_date</span>(datetime, <span class="at">unit =</span> <span class="st">&quot;quarter&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2023-01-01&quot;</code></pre>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">floor_date</span>(datetime, <span class="at">unit =</span> <span class="st">&quot;week&quot;</span>, <span class="at">week_start =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb189-1" aria-hidden="true" tabindex="-1"></a><span class="fu">floor_date</span>(datetime, <span class="at">unit =</span> <span class="st">&quot;week&quot;</span>, <span class="at">week_start =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;2022-11-21&quot;</code></pre>
 </div>
 <div id="misc-1" class="section level3 hasAnchor" number="5.3.3">
 <h3><span class="header-section-number">5.3.3</span> Misc<a href="dssc---data-wrangling-presentation-and-applications.html#misc-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>Updating Dates/Times</strong></p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb188-1" aria-hidden="true" tabindex="-1"></a>datetime <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2021-12-02 12:33:59&quot;</span>)</span>
-<span id="cb188-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb188-2" aria-hidden="true" tabindex="-1"></a>datetime <span class="ot">&lt;-</span> <span class="fu">update</span>(datetime, <span class="at">hour =</span> <span class="dv">11</span>, <span class="at">second =</span> <span class="dv">33</span>)</span>
-<span id="cb188-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb188-3" aria-hidden="true" tabindex="-1"></a>datetime</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb191-1" aria-hidden="true" tabindex="-1"></a>datetime <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2021-12-02 12:33:59&quot;</span>)</span>
+<span id="cb191-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb191-2" aria-hidden="true" tabindex="-1"></a>datetime <span class="ot">&lt;-</span> <span class="fu">update</span>(datetime, <span class="at">hour =</span> <span class="dv">11</span>, <span class="at">second =</span> <span class="dv">33</span>)</span>
+<span id="cb191-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb191-3" aria-hidden="true" tabindex="-1"></a>datetime</span></code></pre></div>
 <pre><code>## [1] &quot;2021-12-02 11:33:33 UTC&quot;</code></pre>
-<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Alternatively,</span></span>
-<span id="cb190-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb190-2" aria-hidden="true" tabindex="-1"></a>datetime <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2021-12-02 12:33:59&quot;</span>)</span>
-<span id="cb190-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb190-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(datetime) <span class="ot">&lt;-</span> <span class="dv">11</span></span>
-<span id="cb190-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb190-4" aria-hidden="true" tabindex="-1"></a><span class="fu">second</span>(datetime) <span class="ot">&lt;-</span> <span class="dv">33</span></span>
-<span id="cb190-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb190-5" aria-hidden="true" tabindex="-1"></a>datetime</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Alternatively,</span></span>
+<span id="cb193-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb193-2" aria-hidden="true" tabindex="-1"></a>datetime <span class="ot">&lt;-</span> <span class="fu">ymd_hms</span>(<span class="st">&quot;2021-12-02 12:33:59&quot;</span>)</span>
+<span id="cb193-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb193-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hour</span>(datetime) <span class="ot">&lt;-</span> <span class="dv">11</span></span>
+<span id="cb193-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb193-4" aria-hidden="true" tabindex="-1"></a><span class="fu">second</span>(datetime) <span class="ot">&lt;-</span> <span class="dv">33</span></span>
+<span id="cb193-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb193-5" aria-hidden="true" tabindex="-1"></a>datetime</span></code></pre></div>
 <pre><code>## [1] &quot;2021-12-02 11:33:33 UTC&quot;</code></pre>
 <p><strong>Durations</strong></p>
 <p>Can do arithmetic with dates and times</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb192-1" aria-hidden="true" tabindex="-1"></a>einstein <span class="ot">&lt;-</span> <span class="fu">dmy</span>(<span class="st">&quot;14th March 1879&quot;</span>)</span>
-<span id="cb192-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb192-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">today</span>() <span class="sc">-</span> <span class="fu">months</span>(<span class="dv">42</span>) <span class="sc">-</span> einstein <span class="co">#age 42 months ago</span></span>
-<span id="cb192-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb192-3" aria-hidden="true" tabindex="-1"></a>age</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb195-1" aria-hidden="true" tabindex="-1"></a>einstein <span class="ot">&lt;-</span> <span class="fu">dmy</span>(<span class="st">&quot;14th March 1879&quot;</span>)</span>
+<span id="cb195-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb195-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="fu">today</span>() <span class="sc">-</span> <span class="fu">months</span>(<span class="dv">42</span>) <span class="sc">-</span> einstein <span class="co">#age 42 months ago</span></span>
+<span id="cb195-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb195-3" aria-hidden="true" tabindex="-1"></a>age</span></code></pre></div>
 <pre><code>## Time difference of 51204 days</code></pre>
 <p>Get a duration after arithmetic using <code>as.duration()</code></p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.duration</span>(age)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.duration</span>(age)</span></code></pre></div>
 <pre><code>## [1] &quot;4424025600s (~140.19 years)&quot;</code></pre>
 </div>
 </div>
@@ -904,10 +904,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="strange-characters" class="section level3 hasAnchor" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> Strange characters<a href="dssc---data-wrangling-presentation-and-applications.html#strange-characters" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When you want a string with strange characters, enclose it in <code>r"(...)"</code> instead of just <code>"..."</code>.</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb196-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> r<span class="st">&quot;(As Roosevelt said,</span></span>
-<span id="cb196-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span>Believe you can and you<span class="st">&#39;re halfway there.&quot;</span></span>
-<span id="cb196-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb196-3" aria-hidden="true" tabindex="-1"></a><span class="st">)&quot;</span></span>
-<span id="cb196-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb196-4" aria-hidden="true" tabindex="-1"></a><span class="st">cat(z)</span></span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb199-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> r<span class="st">&quot;(As Roosevelt said,</span></span>
+<span id="cb199-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span>Believe you can and you<span class="st">&#39;re halfway there.&quot;</span></span>
+<span id="cb199-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb199-3" aria-hidden="true" tabindex="-1"></a><span class="st">)&quot;</span></span>
+<span id="cb199-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb199-4" aria-hidden="true" tabindex="-1"></a><span class="st">cat(z)</span></span></code></pre></div>
 <pre><code>## As Roosevelt said,
 ## &quot;Believe you can and you&#39;re halfway there.&quot;</code></pre>
 <p><code>cat()</code> is like a print command</p>
@@ -918,30 +918,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="basics" class="section level4 unnumbered hasAnchor">
 <h4>Basics<a href="dssc---data-wrangling-presentation-and-applications.html#basics" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>String Length</strong></p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(<span class="fu">c</span>(<span class="st">&quot;Data Science and Statistical Computing&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;Dr Louis Aslett&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_length</span>(<span class="fu">c</span>(<span class="st">&quot;Data Science and Statistical Computing&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;Dr Louis Aslett&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] 38  2 15</code></pre>
 <p><strong>Combining Strings</strong></p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;Data Science and Statistical Computing&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;Dr Louis Aslett&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;Data Science and Statistical Computing&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;Dr Louis Aslett&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Data Science and Statistical ComputingbyDr Louis Aslett&quot;</code></pre>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;Data Science and Statistical Computing&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;Dr Louis Aslett&quot;</span>, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="st">&quot;Data Science and Statistical Computing&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;Dr Louis Aslett&quot;</span>, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Data Science and Statistical Computing by Dr Louis Aslett&quot;</code></pre>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="fu">c</span>(<span class="st">&quot;Data Science and Statistical Computing&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;Dr Louis Aslett&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="fu">c</span>(<span class="st">&quot;Data Science and Statistical Computing&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;Dr Louis Aslett&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;Data Science and Statistical Computing&quot;
 ## [2] &quot;by&quot;                                    
 ## [3] &quot;Dr Louis Aslett&quot;</code></pre>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="fu">c</span>(<span class="st">&quot;Data Science and Statistical Computing&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;Dr Louis Aslett&quot;</span>), <span class="at">collapse =</span> <span class="st">&quot; &quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_c</span>(<span class="fu">c</span>(<span class="st">&quot;Data Science and Statistical Computing&quot;</span>, <span class="st">&quot;by&quot;</span>, <span class="st">&quot;Dr Louis Aslett&quot;</span>), <span class="at">collapse =</span> <span class="st">&quot; &quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Data Science and Statistical Computing by Dr Louis Aslett&quot;</code></pre>
 <p><strong>Subsetting Strings</strong></p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb208-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Connie&quot;</span>, <span class="st">&quot;David&quot;</span>)</span>
-<span id="cb208-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb208-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(z, <span class="dv">1</span>, <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb211-1" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Bob&quot;</span>, <span class="st">&quot;Connie&quot;</span>, <span class="st">&quot;David&quot;</span>)</span>
+<span id="cb211-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(z, <span class="dv">1</span>, <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;Alic&quot; &quot;Bob&quot;  &quot;Conn&quot; &quot;Davi&quot;</code></pre>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(z, <span class="dv">1</span>, <span class="dv">2</span>) <span class="ot">&lt;-</span> <span class="st">&quot;Zo&quot;</span></span>
-<span id="cb210-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb210-2" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_sub</span>(z, <span class="dv">1</span>, <span class="dv">2</span>) <span class="ot">&lt;-</span> <span class="st">&quot;Zo&quot;</span></span>
+<span id="cb213-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb213-2" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div>
 <pre><code>## [1] &quot;Zoice&quot;  &quot;Zob&quot;    &quot;Zonnie&quot; &quot;Zovid&quot;</code></pre>
 <p><strong>Trimming</strong></p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_trim</span>(<span class="st">&quot;  String with  trailing,   middle, and    leading   white space</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_trim</span>(<span class="st">&quot;  String with  trailing,   middle, and    leading   white space</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;String with  trailing,   middle, and    leading   white space&quot;</code></pre>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_squish</span>(<span class="st">&quot;  String with  trailing,   middle, and    leading   white space</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_squish</span>(<span class="st">&quot;  String with  trailing,   middle, and    leading   white space</span><span class="sc">\n\n</span><span class="st">&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;String with trailing, middle, and leading white space&quot;</code></pre>
 </div>
 <div id="regexs" class="section level4 hasAnchor" number="5.4.2.1">
@@ -952,56 +952,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h5><code>str_view()</code><a href="dssc---data-wrangling-presentation-and-applications.html#str_view" class="anchor-section" aria-label="Anchor link to header"></a></h5>
 <p>Identify a pattern in a string:</p>
 <p><strong>Exact matching</strong></p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(<span class="st">&quot;string to find pattern in&quot;</span>, <span class="st">&quot;pattern&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-ec7873d8da6b0e1dcc9a" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ec7873d8da6b0e1dcc9a">{"x":{"html":"<ul>\n  <li>string to find <span class='match'>pattern<\/span> in<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(<span class="st">&quot;string to find pattern in&quot;</span>, <span class="st">&quot;pattern&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-aa5c280ff400fd8c0fc9" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-aa5c280ff400fd8c0fc9">{"x":{"html":"<ul>\n  <li>string to find <span class='match'>pattern<\/span> in<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p><strong>Wildcard matching</strong></p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb217-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
-<span id="cb217-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;.a.&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-6f66b7f41014a5f0f781" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6f66b7f41014a5f0f781">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li><span class='match'>ban<\/span>ana<\/li>\n  <li>p<span class='match'>ear<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb220-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;banana&quot;</span>, <span class="st">&quot;pear&quot;</span>)</span>
+<span id="cb220-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb220-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;.a.&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-90c36a41d9c6d3f18882" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-90c36a41d9c6d3f18882">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li><span class='match'>ban<\/span>ana<\/li>\n  <li>p<span class='match'>ear<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>How to match a <code>.</code>? - <code>str_view(c(".bc", "a.c", "be."), "a\\.c")</code> (use <code>\</code> but make sure to escape it)</p>
 <p><strong>Anchoring</strong></p>
 <p>To start:</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;^a&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-1b7ecb22939eee7db084" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1b7ecb22939eee7db084">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li>banana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;^a&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-bb8193c3e6340eea1197" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bb8193c3e6340eea1197">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li>banana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>To end:</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;a$&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-8fdb714c936ad61ce46a" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-8fdb714c936ad61ce46a">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>banan<span class='match'>a<\/span><\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;a$&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-72eb8eb26235236ff614" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-72eb8eb26235236ff614">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>banan<span class='match'>a<\/span><\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>can also anchor to both.</p>
 <p><strong>Matching Set of Characters I</strong></p>
 <p>Find exactly first character that matches:</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;[pan]&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-b77e8e533116728203ab" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b77e8e533116728203ab">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li>b<span class='match'>a<\/span>nana<\/li>\n  <li><span class='match'>p<\/span>ear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;[pan]&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-95c072038080bf101848" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-95c072038080bf101848">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li>b<span class='match'>a<\/span>nana<\/li>\n  <li><span class='match'>p<\/span>ear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Find one or more instance consecutively:</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;[pan]+&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-ad733af5990d40b26685" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ad733af5990d40b26685">{"x":{"html":"<ul>\n  <li><span class='match'>app<\/span>le<\/li>\n  <li>b<span class='match'>anana<\/span><\/li>\n  <li><span class='match'>p<\/span>ear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;[pan]+&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-65f599e4a742dbe7bb10" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-65f599e4a742dbe7bb10">{"x":{"html":"<ul>\n  <li><span class='match'>app<\/span>le<\/li>\n  <li>b<span class='match'>anana<\/span><\/li>\n  <li><span class='match'>p<\/span>ear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Find exact number of instances occurring consecutively:</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;[pan]{2}&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-0dacc812a2fd8afe0af2" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0dacc812a2fd8afe0af2">{"x":{"html":"<ul>\n  <li><span class='match'>ap<\/span>ple<\/li>\n  <li>b<span class='match'>an<\/span>ana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;[pan]{2}&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-7e4afada1b9c7af5a330" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-7e4afada1b9c7af5a330">{"x":{"html":"<ul>\n  <li><span class='match'>ap<\/span>ple<\/li>\n  <li>b<span class='match'>an<\/span>ana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p>Find a range or instances occurring consecutively:</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;[pan]{1,3}&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-bcebeb482660e3d187fc" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-bcebeb482660e3d187fc">{"x":{"html":"<ul>\n  <li><span class='match'>app<\/span>le<\/li>\n  <li>b<span class='match'>ana<\/span>na<\/li>\n  <li><span class='match'>p<\/span>ear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(x, <span class="st">&quot;[pan]{1,3}&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-bfbe9b452600b612a2db" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bfbe9b452600b612a2db">{"x":{"html":"<ul>\n  <li><span class='match'>app<\/span>le<\/li>\n  <li>b<span class='match'>ana<\/span>na<\/li>\n  <li><span class='match'>p<\/span>ear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <p><strong>Matching Set of Characters II</strong></p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb224-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;There were 122 in total&quot;</span>, <span class="st">&quot;Overall about 390 found&quot;</span>, <span class="st">&quot;100 but no more&quot;</span>)</span>
-<span id="cb224-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb224-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(y, <span class="st">&quot;[0-9]+&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-b6d280a74b7925359056" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b6d280a74b7925359056">{"x":{"html":"<ul>\n  <li>There were <span class='match'>122<\/span> in total<\/li>\n  <li>Overall about <span class='match'>390<\/span> found<\/li>\n  <li><span class='match'>100<\/span> but no more<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(y, <span class="st">&quot;[^A-Za-z ]+&quot;</span>) <span class="co">#^ anchor inside so acts as a negation</span></span></code></pre></div>
-<div id="htmlwidget-0647470e1fb92e85bc24" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0647470e1fb92e85bc24">{"x":{"html":"<ul>\n  <li>There were <span class='match'>122<\/span> in total<\/li>\n  <li>Overall about <span class='match'>390<\/span> found<\/li>\n  <li><span class='match'>100<\/span> but no more<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(y, <span class="st">&quot;^[0-9]+&quot;</span>) <span class="co">#^ anchor on outside</span></span></code></pre></div>
-<div id="htmlwidget-0871b5d3ef74f4751400" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-0871b5d3ef74f4751400">{"x":{"html":"<ul>\n  <li>There were 122 in total<\/li>\n  <li>Overall about 390 found<\/li>\n  <li><span class='match'>100<\/span> but no more<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(y, <span class="st">&quot;[a-z ]+&quot;</span>)</span></code></pre></div>
-<div id="htmlwidget-49828b27bef7b59ca02e" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-49828b27bef7b59ca02e">{"x":{"html":"<ul>\n  <li>T<span class='match'>here were <\/span>122 in total<\/li>\n  <li>O<span class='match'>verall about <\/span>390 found<\/li>\n  <li>100<span class='match'> but no more<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb227-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;There were 122 in total&quot;</span>, <span class="st">&quot;Overall about 390 found&quot;</span>, <span class="st">&quot;100 but no more&quot;</span>)</span>
+<span id="cb227-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb227-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(y, <span class="st">&quot;[0-9]+&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-1286f28718a9ddaefb25" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1286f28718a9ddaefb25">{"x":{"html":"<ul>\n  <li>There were <span class='match'>122<\/span> in total<\/li>\n  <li>Overall about <span class='match'>390<\/span> found<\/li>\n  <li><span class='match'>100<\/span> but no more<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(y, <span class="st">&quot;[^A-Za-z ]+&quot;</span>) <span class="co">#^ anchor inside so acts as a negation</span></span></code></pre></div>
+<div id="htmlwidget-e47eeed6f159a3496124" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e47eeed6f159a3496124">{"x":{"html":"<ul>\n  <li>There were <span class='match'>122<\/span> in total<\/li>\n  <li>Overall about <span class='match'>390<\/span> found<\/li>\n  <li><span class='match'>100<\/span> but no more<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(y, <span class="st">&quot;^[0-9]+&quot;</span>) <span class="co">#^ anchor on outside</span></span></code></pre></div>
+<div id="htmlwidget-df64aac5c3390b198c04" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-df64aac5c3390b198c04">{"x":{"html":"<ul>\n  <li>There were 122 in total<\/li>\n  <li>Overall about 390 found<\/li>\n  <li><span class='match'>100<\/span> but no more<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_view</span>(y, <span class="st">&quot;[a-z ]+&quot;</span>)</span></code></pre></div>
+<div id="htmlwidget-12c828c98668979f56d9" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-12c828c98668979f56d9">{"x":{"html":"<ul>\n  <li>T<span class='match'>here were <\/span>122 in total<\/li>\n  <li>O<span class='match'>verall about <\/span>390 found<\/li>\n  <li>100<span class='match'> but no more<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </div>
@@ -1050,21 +1050,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="monte-carlo-hyothesis-test" class="section level4 hasAnchor" number="5.5.1.1">
 <h4><span class="header-section-number">5.5.1.1</span> Monte Carlo Hyothesis Test<a href="dssc---data-wrangling-presentation-and-applications.html#monte-carlo-hyothesis-test" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Example 2.1</strong></p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify test statistic and null value</span></span>
-<span id="cb228-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb228-2" aria-hidden="true" tabindex="-1"></a>x.bar <span class="ot">&lt;-</span> <span class="fl">8.6</span></span>
-<span id="cb228-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb228-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb228-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb228-4" aria-hidden="true" tabindex="-1"></a>mu0 <span class="ot">&lt;-</span> <span class="fl">9.2</span></span>
-<span id="cb228-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb228-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb228-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb228-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate lots of data assuming the null is true</span></span>
-<span id="cb228-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb228-7" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">50000</span>)</span>
-<span id="cb228-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb228-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb228-9"><a href="dssc---data-wrangling-presentation-and-applications.html#cb228-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">50000</span>) {</span>
-<span id="cb228-10"><a href="dssc---data-wrangling-presentation-and-applications.html#cb228-10" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu0, <span class="fu">sqrt</span>(<span class="fl">0.4</span>)) <span class="co">#random sample (of n=6) generated under H0</span></span>
-<span id="cb228-11"><a href="dssc---data-wrangling-presentation-and-applications.html#cb228-11" aria-hidden="true" tabindex="-1"></a>  t[j] <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">mean</span>(z)<span class="sc">-</span>mu0) <span class="co">#difference in mean of random sample and mean under H0 assumption</span></span>
-<span id="cb228-12"><a href="dssc---data-wrangling-presentation-and-applications.html#cb228-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb228-13"><a href="dssc---data-wrangling-presentation-and-applications.html#cb228-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb228-14"><a href="dssc---data-wrangling-presentation-and-applications.html#cb228-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate empirical p-value</span></span>
-<span id="cb228-15"><a href="dssc---data-wrangling-presentation-and-applications.html#cb228-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(t <span class="sc">&gt;</span> <span class="fu">abs</span>(x.bar<span class="sc">-</span>mu0)) <span class="sc">/</span> <span class="dv">50000</span> <span class="co">#number of random samplea that were at least as far from mu0 as observation</span></span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify test statistic and null value</span></span>
+<span id="cb231-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb231-2" aria-hidden="true" tabindex="-1"></a>x.bar <span class="ot">&lt;-</span> <span class="fl">8.6</span></span>
+<span id="cb231-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb231-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb231-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb231-4" aria-hidden="true" tabindex="-1"></a>mu0 <span class="ot">&lt;-</span> <span class="fl">9.2</span></span>
+<span id="cb231-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb231-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb231-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb231-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulate lots of data assuming the null is true</span></span>
+<span id="cb231-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb231-7" aria-hidden="true" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">50000</span>)</span>
+<span id="cb231-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb231-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb231-9"><a href="dssc---data-wrangling-presentation-and-applications.html#cb231-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(j <span class="cf">in</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">50000</span>) {</span>
+<span id="cb231-10"><a href="dssc---data-wrangling-presentation-and-applications.html#cb231-10" aria-hidden="true" tabindex="-1"></a>  z <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n, mu0, <span class="fu">sqrt</span>(<span class="fl">0.4</span>)) <span class="co">#random sample (of n=6) generated under H0</span></span>
+<span id="cb231-11"><a href="dssc---data-wrangling-presentation-and-applications.html#cb231-11" aria-hidden="true" tabindex="-1"></a>  t[j] <span class="ot">&lt;-</span> <span class="fu">abs</span>(<span class="fu">mean</span>(z)<span class="sc">-</span>mu0) <span class="co">#difference in mean of random sample and mean under H0 assumption</span></span>
+<span id="cb231-12"><a href="dssc---data-wrangling-presentation-and-applications.html#cb231-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb231-13"><a href="dssc---data-wrangling-presentation-and-applications.html#cb231-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb231-14"><a href="dssc---data-wrangling-presentation-and-applications.html#cb231-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate empirical p-value</span></span>
+<span id="cb231-15"><a href="dssc---data-wrangling-presentation-and-applications.html#cb231-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(t <span class="sc">&gt;</span> <span class="fu">abs</span>(x.bar<span class="sc">-</span>mu0)) <span class="sc">/</span> <span class="dv">50000</span> <span class="co">#number of random samplea that were at least as far from mu0 as observation</span></span></code></pre></div>
 </div>
 <div id="boot-strap" class="section level4 hasAnchor" number="5.5.1.2">
 <h4><span class="header-section-number">5.5.1.2</span> Boot Strap<a href="dssc---data-wrangling-presentation-and-applications.html#boot-strap" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -1082,27 +1082,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Calculate the variance, <span class="math inline">\(\widehat{\operatorname{Var}}(S(\mathbf{x}))=\frac{1}{B-1} \sum_{b=1}^{B}\left(S\left(\mathbf{x}^{\star b}\right)-\bar{S}^{\star}\right)^{2}\)</span></li>
 </ol>
 <p><strong>Example 3.1</strong> (Also see 3.5)</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mouse data</span></span>
-<span id="cb229-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">94</span>,<span class="dv">197</span>,<span class="dv">16</span>,<span class="dv">38</span>,<span class="dv">99</span>,<span class="dv">141</span>,<span class="dv">23</span>)</span>
-<span id="cb229-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb229-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of bootstraps</span></span>
-<span id="cb229-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-5" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb229-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb229-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistic</span></span>
-<span id="cb229-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-8" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> mean</span>
-<span id="cb229-9"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb229-10"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform bootstrap</span></span>
-<span id="cb229-11"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-11" aria-hidden="true" tabindex="-1"></a>S.star <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, B)</span>
-<span id="cb229-12"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
-<span id="cb229-13"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-13" aria-hidden="true" tabindex="-1"></a>  x.star <span class="ot">&lt;-</span> <span class="fu">sample</span>(x, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb229-14"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-14" aria-hidden="true" tabindex="-1"></a>  S.star[b] <span class="ot">&lt;-</span> <span class="fu">S</span>(x.star)</span>
-<span id="cb229-15"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-15" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb229-16"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb229-17"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Bootstrap estimate</span></span>
-<span id="cb229-18"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-18" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(S.star)</span>
-<span id="cb229-19"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb229-20"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard error of estimate</span></span>
-<span id="cb229-21"><a href="dssc---data-wrangling-presentation-and-applications.html#cb229-21" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(S.star)</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mouse data</span></span>
+<span id="cb232-2"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">94</span>,<span class="dv">197</span>,<span class="dv">16</span>,<span class="dv">38</span>,<span class="dv">99</span>,<span class="dv">141</span>,<span class="dv">23</span>)</span>
+<span id="cb232-3"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-4"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of bootstraps</span></span>
+<span id="cb232-5"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-5" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb232-6"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-7"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistic</span></span>
+<span id="cb232-8"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-8" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> mean</span>
+<span id="cb232-9"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-10"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform bootstrap</span></span>
+<span id="cb232-11"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-11" aria-hidden="true" tabindex="-1"></a>S.star <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, B)</span>
+<span id="cb232-12"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(b <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
+<span id="cb232-13"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-13" aria-hidden="true" tabindex="-1"></a>  x.star <span class="ot">&lt;-</span> <span class="fu">sample</span>(x, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb232-14"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-14" aria-hidden="true" tabindex="-1"></a>  S.star[b] <span class="ot">&lt;-</span> <span class="fu">S</span>(x.star)</span>
+<span id="cb232-15"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb232-16"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-17"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Bootstrap estimate</span></span>
+<span id="cb232-18"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-18" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(S.star)</span>
+<span id="cb232-19"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb232-20"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Standard error of estimate</span></span>
+<span id="cb232-21"><a href="dssc---data-wrangling-presentation-and-applications.html#cb232-21" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(S.star)</span></code></pre></div>
 <p><strong>Empirical CDF</strong> - <code>ecdf(x)</code></p>
 
 </div>

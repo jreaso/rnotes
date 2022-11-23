@@ -202,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.2" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#prediction-intervals"><i class="fa fa-check"></i><b>3.5.2</b> Prediction Intervals</a></li>
 <li class="chapter" data-level="3.5.3" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#plotting-confidence-and-prediction-intervals"><i class="fa fa-check"></i><b>3.5.3</b> Plotting Confidence and Prediction Intervals</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#misc"><i class="fa fa-check"></i>Misc</a></li>
+<li class="chapter" data-level="3.6" data-path="simple-linear-regression-models.html"><a href="simple-linear-regression-models.html#misc"><i class="fa fa-check"></i><b>3.6</b> Misc</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html"><i class="fa fa-check"></i><b>4</b> Multiple Linear Regression</a></li>
 <li class="chapter" data-level="5" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html"><i class="fa fa-check"></i><b>5</b> DSSC - Data Wrangling, Presentation and Applications</a>
@@ -381,8 +381,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.5</span> Confidence and Prediction Intervals<a href="simple-linear-regression-models.html#confidence-and-prediction-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="confidence-intervals" class="section level3 hasAnchor" number="3.5.1">
 <h3><span class="header-section-number">3.5.1</span> Confidence Intervals<a href="simple-linear-regression-models.html#confidence-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Easiest to use <code>confint()</code></p>
-<p>** Example from <a href="https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/linear-regression.html#regression-in-r-used-cars-example">Notes</a>**</p>
+<p>Easiest to use <code>confint()</code>. <code>confint(model, level=...)</code> gives a confidence interval for each coefficient.</p>
+<p><strong>Example from <a href="https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/linear-regression.html#regression-in-r-used-cars-example">Notes</a></strong></p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="simple-linear-regression-models.html#cb87-1" aria-hidden="true" tabindex="-1"></a>carSales<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="at">Price=</span><span class="fu">c</span>(<span class="dv">85</span>,<span class="dv">103</span>,<span class="dv">70</span>,<span class="dv">82</span>,<span class="dv">89</span>,<span class="dv">98</span>,<span class="dv">66</span>,<span class="dv">95</span>,<span class="dv">169</span>,<span class="dv">70</span>,<span class="dv">48</span>),</span>
 <span id="cb87-2"><a href="simple-linear-regression-models.html#cb87-2" aria-hidden="true" tabindex="-1"></a>                     <span class="at">Age=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">6</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">7</span>))</span>
 <span id="cb87-3"><a href="simple-linear-regression-models.html#cb87-3" aria-hidden="true" tabindex="-1"></a>reg <span class="ot">&lt;-</span> <span class="fu">lm</span>(Price <span class="sc">~</span> Age, carSales)</span>
@@ -403,20 +403,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb91-2"><a href="simple-linear-regression-models.html#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(model, <span class="at">level=</span><span class="fl">0.95</span>)[<span class="dv">2</span>,]</span></code></pre></div>
 <pre><code>##    2.5 %   97.5 % 
 ## 10.10996 11.34932</code></pre>
+<p><strong>CI at a new point</strong>
+When <code>newpoints</code> is a data frame with same <code>x</code> column name and a new point you can calculate the model CI around that point using <code>predict()</code> with <code>interval = "confidence"</code>.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="simple-linear-regression-models.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, <span class="at">newdata =</span> newpoints, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 </div>
 <div id="prediction-intervals" class="section level3 hasAnchor" number="3.5.2">
 <h3><span class="header-section-number">3.5.2</span> Prediction Intervals<a href="simple-linear-regression-models.html#prediction-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Easiest to use <code>predict()</code></p>
-<p>Practical 1 confidence and prediction section</p>
-<p>Section 3.5</p>
-<p>Practical 2</p>
+<p>Easiest to use <code>predict()</code>. To get a prediciton interval around a new point, use <code>predict()</code> with <code>interval = "prediction"</code>.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="simple-linear-regression-models.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(model, <span class="at">newdata =</span> newpoints, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 </div>
 <div id="plotting-confidence-and-prediction-intervals" class="section level3 hasAnchor" number="3.5.3">
 <h3><span class="header-section-number">3.5.3</span> Plotting Confidence and Prediction Intervals<a href="simple-linear-regression-models.html#plotting-confidence-and-prediction-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Base R</strong></p>
+<p>To plot a CI or PI line, use <code>seq(a, b, by = ...)</code> and <code>predict()</code> with <code>newdata = data.frame(X = seq(a, b, by = ...))</code> and then plot the output using <code>abline()</code>. Using <code>interval = "confidence"</code> or <code>interval = "prediction"</code> depending on if you want a CI or a PI.</p>
+<p><strong><code>ggplot</code> Confidence Interval</strong></p>
+<p>Let <code>se = TRUE</code> in <code>geom_smooth</code>.</p>
+<p><strong><code>ggplot</code> Prediction Interval</strong>:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="simple-linear-regression-models.html#cb95-1" aria-hidden="true" tabindex="-1"></a>temp_var <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">interval=</span><span class="st">&quot;prediction&quot;</span>)</span>
+<span id="cb95-2"><a href="simple-linear-regression-models.html#cb95-2" aria-hidden="true" tabindex="-1"></a>new_df <span class="ot">&lt;-</span> <span class="fu">cbind</span>(data1, temp_var)</span>
+<span id="cb95-3"><a href="simple-linear-regression-models.html#cb95-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-4"><a href="simple-linear-regression-models.html#cb95-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(new_df, <span class="fu">aes</span>(<span class="at">x=</span>X, <span class="at">y=</span>Y))<span class="sc">+</span></span>
+<span id="cb95-5"><a href="simple-linear-regression-models.html#cb95-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb95-6"><a href="simple-linear-regression-models.html#cb95-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>lwr), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb95-7"><a href="simple-linear-regression-models.html#cb95-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">y=</span>upr), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)<span class="sc">+</span></span>
+<span id="cb95-8"><a href="simple-linear-regression-models.html#cb95-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm, <span class="at">se=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
 </div>
-<div id="misc" class="section level2 unnumbered hasAnchor">
-<h2>Misc<a href="simple-linear-regression-models.html#misc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="misc" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Misc<a href="simple-linear-regression-models.html#misc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Pearson Correlation Coefficient</strong> (<span class="math inline">\(r\)</span>) <code>cor(A, B)</code> measures linear relationship between <code>A</code> and <code>B</code> and <span class="math inline">\(r = \sqrt{R^2}\)</span></p>
 
 </div>

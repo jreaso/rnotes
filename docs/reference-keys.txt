@@ -41,6 +41,7 @@ confidence-and-prediction-intervals
 confidence-intervals
 prediction-intervals
 plotting-confidence-and-prediction-intervals
+misc
 multiple-linear-regression
 dssc---data-wrangling-presentation-and-applications
 data-wrangling-with-tidyverse

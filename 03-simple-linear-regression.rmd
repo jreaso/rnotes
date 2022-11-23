@@ -178,9 +178,9 @@ Change the `formula` parameter in `geom_smooth`
 
 ### Confidence Intervals
 
-Easiest to use `confint()`
+Easiest to use `confint()`. `confint(model, level=...)` gives a confidence interval for each coefficient.
 
-** Example from [Notes](https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/linear-regression.html#regression-in-r-used-cars-example)**
+**Example from [Notes](https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/linear-regression.html#regression-in-r-used-cars-example)**
 
 ```{r}
 carSales<-data.frame(Price=c(85,103,70,82,89,98,66,95,169,70,48),
@@ -213,20 +213,44 @@ confint(model, level=0.95)[2,]
 
 ```
 
-
+**CI at a new point**
+When `newpoints` is a data frame with same `x` column name and a new point you can calculate the model CI around that point using `predict()` with `interval = "confidence"`.
+```{r eval=FALSE}
+predict(model, newdata = newpoints, interval = "confidence", level = 0.95)
+```
 
 ### Prediction Intervals
 
-Easiest to use `predict()`
+Easiest to use `predict()`. To get a prediciton interval around a new point, use `predict()` with `interval = "prediction"`.
 
+```{r eval=FALSE}
+predict(model, newdata = newpoints, interval = "prediction", level = 0.95)
+```
 
-Practical 1 confidence and prediction section
-
-Section 3.5
-
-Practical 2
 
 ### Plotting Confidence and Prediction Intervals
+
+**Base R**
+
+To plot a CI or PI line, use `seq(a, b, by = ...)` and `predict()` with `newdata = data.frame(X = seq(a, b, by = ...))` and then plot the output using `abline()`. Using `interval = "confidence"` or `interval = "prediction"` depending on if you want a CI or a PI.
+
+**`ggplot` Confidence Interval**
+
+Let `se = TRUE` in `geom_smooth`.
+
+**`ggplot` Prediction Interval**: 
+```{r eval=FALSE}
+temp_var <- predict(model, interval="prediction")
+new_df <- cbind(data1, temp_var)
+
+ggplot(new_df, aes(x=X, y=Y))+
+    geom_point() +
+    geom_line(aes(y=lwr), color = "red", linetype = "dashed")+
+    geom_line(aes(y=upr), color = "red", linetype = "dashed")+
+    geom_smooth(method=lm, se=TRUE)
+```
+
+
 
 
 ## Misc
