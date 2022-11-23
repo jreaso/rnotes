@@ -1,9 +1,227 @@
 # Multiple Linear Regression
 
-Section 3.6 Onward
+## Exploring Data With Multiple Predictor Variables
 
-Practical 2
+### Pairs Plot (Scatterplot Matrix)
+To see how any pairs of variable in a data are related use `pairs(data)`. For an example with `carSales` data from [Section 3.6](https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/linear-regression.html#regression-in-r-1), 
 
-Transformations and specific selections
+```{r echo=TRUE, include=FALSE}
+carSales <- data.frame(Price = c(85, 103,  70,  82,  89,  98,  66,  95, 169,  70,  48),
+                     Age = c(5, 4, 6, 5, 5, 5, 6, 6, 2, 7, 7),
+                     Miles = c(57, 40, 77, 60, 49, 47, 58, 39, 8, 69, 89))
+```
 
-Practical 3
+```{r}
+#can make it symmetric on diagonal by leaving as `pairs(carSales)`
+pairs(carSales, lower.panel = NULL)
+```
+
+The upper panel here can be customised by making a new function
+
+**Example from Section 3.6**
+
+```{r}
+# Customize upper panel
+upper.panel <- function(x, y){
+  points(x,y, pch=19, col=4)
+  r <- round(cor(x, y), digits=3)
+  txt <- paste0("r = ", r)
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  text(0.5, 0.9, txt)
+}
+pairs(carSales, lower.panel = NULL, 
+      upper.panel = upper.panel)
+```
+
+**Example from Practical 2**
+
+```{r include=FALSE}
+library("faraway")
+fat1 <- fat[,-c(2,3,8)] 
+```
+
+```{r}
+panel.cor <- function(x, y){
+  usr <- par("usr"); on.exit(par(usr))
+  par(usr = c(0, 1, 0, 1))
+  r <- round(cor(x, y), digits=2)
+  txt <- paste0(" ", r)
+  text(0.5, 0.5, txt, cex = 0.8)
+}
+# Customize upper panel
+upper.panel<-function(x, y){
+  points(x,y, pch = 19)
+}
+# Create the plots
+pairs(fat1, 
+      lower.panel = panel.cor,
+      upper.panel = upper.panel)
+```
+
+### Using `corrplot` Package
+```{r message=FALSE}
+library(corrplot)
+```
+
+**Examples from Practical 2**
+
+```{r}
+corrplot(cor(fat1), method = "number", type = "upper", diag = FALSE)
+corrplot.mixed(cor(fat1), upper = "ellipse", lower = "number",number.cex = .7)
+```
+
+## Basics of Building an MLR Model (Including Transformations)
+
+**Build a Model With Specific Predictors**
+
+```{r eval=FALSE}
+model <- lm(Y ~ X1 + X2 + ... + Xn, data=data)
+```
+
+**Build a Model With All Predictors**
+
+```{r eval=FALSE}
+model <- lm(Y ~ ., data=data)
+```
+
+**Build a Model With Specific Predictors Removed**
+
+```{r eval=FALSE}
+model <- lm(Y ~ . - X1 - X2, data=data)
+```
+
+**Example Including Transformations**
+
+```{r eval=FALSE}
+model <- lm(Y ~ X1 + X2*X3 + log(X4) + I(X5^2), data=data)
+```
+
+Note that `X2*X3` includes the predictors `X2`, `X3` and their product `X2 x X3.`
+
+Inference is much the same as with SLR.
+
+
+## Multicollinearity Detection and VIF
+
+To calculate VIF value for each predictor in a model simply use `vif()` function from `car library`.
+
+```{r include=FALSE}
+reg <- lm(Price ~ Age + Miles, data=carSales)
+```
+
+```{r message=FALSE, warning=FALSE}
+library(car)
+vif(reg)
+```
+
+## Model Selection
+
+The following subsection follows closely to [Practical Demonstration 5.4](https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/model-search-methods.html#prac-model-search-methods). Most examples will be from there.
+
+```{r include=FALSE}
+library(ISLR)
+Hitters <- na.omit(Hitters)
+```
+
+### Best Subset and Forward/Backward Stepwise Selection (Using Selection Criteria)
+
+Best Subset Selection is done using `regsubsets()` function from `leaps` library.
+
+```{r message=FALSE, warning=FALSE}
+library(leaps)
+```
+
+```{r}
+#function for best subset selection
+best = regsubsets(Salary ~ ., Hitters, nvmax=19)
+results = summary(best)
+
+names(results) #gives the names of the predictors chosen by best subset selection
+```
+
+`nvmax=19` specifies that you want all 19 models and not just up to the best one.
+
+**Data you can extract from output of `regsubsets()`**
+
+```{r}
+RSS = results$rss
+r2 = results$rsq
+Cp = results$cp
+BIC = results$bic
+Adj_r2 = results$adjr2
+
+cbind(RSS, r2, Cp, BIC, Adj_r2)
+```
+
+#### Plotting To Understand Best Subset Selection {-}
+
+```{r}
+#Plots RSS and R-square as you add more predictors
+par(mfrow = c(1, 2))
+plot(RSS, xlab = "Number of Predictors", ylab = "RSS", 
+     type = "l", lwd = 2)
+plot(r2, xlab = "Number of Predictors", ylab = "R-square", 
+     type = "l", lwd = 2)
+```
+
+**Number of predictors in optimal model under different selection criteria**
+
+```{r}
+which.min(Cp)
+which.min(BIC)
+which.max(Adj_r2)
+```
+
+**Example Plot For How Selection Criteria Change**
+
+```{r}
+par(mfrow = c(1, 3))
+plot(Cp, xlab = "Number of Predictors", ylab = "Cp", 
+     type = 'l', lwd = 2)
+points(10, Cp[10], col = "red", cex = 2, pch = 8, lwd = 2)
+plot(BIC, xlab = "Number of Predictors", ylab = "BIC", 
+     type = 'l', lwd = 2)
+points(6, BIC[6], col = "red", cex = 2, pch = 8, lwd = 2)
+plot(Adj_r2, xlab = "Number of Predictors", ylab = "Adjusted RSq", 
+     type = "l", lwd = 2)
+points(11, Adj_r2[11],  col = "red", cex = 2, pch = 8, lwd = 2)
+```
+
+**Built-in Plot for Criteria**
+
+Top row is the best model under the criteria and worst is at bottom
+
+```{r}
+plot(best, scale = "Cp")
+```
+
+The oprions for `scale` are `"bic"`, `"Cp"`, `"adjr2"` and `"r2"`.
+
+**Extracting Coefficients for Best Model** (at a specific number of predictors)
+
+```{r}
+coef(best, 10) #Cp
+```
+
+The number here which is `k=10` corresponds to model `M_k`. We found this from `which.min(Cp)`.
+
+#### Forward and Backward Stepwise Selection {-}
+
+To use forward or backward stepwise selection instead change the `method` parameter is `regsubsets()` function.
+
+```{r}
+fwd = regsubsets(Salary~., data = Hitters, nvmax = 19, method = "forward")
+```
+
+### Best Subset Selection (Using Validation)
+
+Section 5.4
+
+### Best Subset Selection (Using Cross-Validation)
+
+Section 5.4
+
+
+
+

@@ -94,6 +94,8 @@ boxplot(diamonds$carat)
 par(mfrow = c(1,1)) # <- need this to reset to a single plot!
 ```
 
+To reset the plotting window to default use `dev.off()`.
+
 ## Plotting in ```ggplot2```
 
 (useful for presentation of data)
