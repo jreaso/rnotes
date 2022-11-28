@@ -196,7 +196,7 @@ Top row is the best model under the criteria and worst is at bottom
 plot(best, scale = "Cp")
 ```
 
-The oprions for `scale` are `"bic"`, `"Cp"`, `"adjr2"` and `"r2"`.
+The options for `scale` are `"bic"`, `"Cp"`, `"adjr2"` and `"r2"`.
 
 **Extracting Coefficients for Best Model** (at a specific number of predictors)
 
@@ -216,7 +216,66 @@ fwd = regsubsets(Salary~., data = Hitters, nvmax = 19, method = "forward")
 
 ### Best Subset Selection (Using Validation)
 
-Section 5.4
+'regsubsets()' does not have a built-in function to do best subsey selection using validation so we use a custom function (copy and paste).
+
+```{r}
+predict.regsubsets = function(object, newdata, id, ...){
+  form = as.formula(object$call[[2]])
+  mat = model.matrix(form, newdata)
+  coefi = coef(object, id = id)
+  xvars = names(coefi)
+  mat[, xvars]%*%coefi
+}
+```
+- `object` should be the result of a call to `regsubsets`
+- `newdata` should be data frame with data from validation set in
+- `id` specifies we want to use the model from `object` with `id` predictors
+
+#### Splitting Data into Training and Validation {-}
+
+As a rough guide, split the data approximately 2:1 for Training:Validation.
+
+```{r results='hide'}
+dim(Hitters)
+training.obs = sample(1:263, 175)
+Hitters.train = Hitters[training.obs,  ]
+Hitters.test = Hitters[-training.obs,  ]
+```
+
+#### Best Subset Validation {-}
+
+The `regsubsets` call:
+```{r}
+best.val = regsubsets(Salary ~ ., data = Hitters.train, nvmax = 19)
+```
+
+Iterate through every number of predictors and calculate the MSE between prediction and observed (from validation set).
+```{r}
+val.error <- c()
+for(i in 1:19){
+  pred = predict.regsubsets(best.val, Hitters.test, i)
+  val.error[i] = mean((Hitters.test$Salary - pred)^2) #MSE
+}
+
+val.error #stores 19 models validation MSE
+```
+
+Index with smallest MSE is best number of predictors
+
+```{r}
+which.min(val.error) 
+```
+
+#### Inference {-}
+
+After choosing optimal model with best subset selection using a validation set, **before inference, you must train the model in the entire data set**.
+
+```{r}
+coef(best.val, 10) # Check which variables to use in the lm.
+ls10 = lm(Salary ~ AtBat + Hits + Runs + Walks + CAtBat + CRuns + CRBI + CWalks + Division + PutOuts, data = Hitters)
+```
+
+Usual inference can follow.
 
 ### Best Subset Selection (Using Cross-Validation)
 
