@@ -1,0 +1,5 @@
+# Shrinkage Methods
+
+## Ridge Regression
+
+## Lasso regression

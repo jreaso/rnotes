@@ -81,3 +81,6 @@ probability-distributions
 dssc-theory-applications
 monte-carlo-hyothesis-test
 boot-strap
+shrinkage-methods
+ridge-regression
+lasso-regression

@@ -277,10 +277,91 @@ ls10 = lm(Salary ~ AtBat + Hits + Runs + Walks + CAtBat + CRuns + CRBI + CWalks 
 
 Usual inference can follow.
 
+Note: using a validation set means the choice of the best model is random, depending on how you selected which observations were used for training and which were used for validation.
+
 ### Best Subset Selection (Using Cross-Validation)
 
-Section 5.4
+Doing cross-validation is generally preferable to regular validation as it utilises entire data set for training and testing.
+
+Continuing with `Hitters` data from [Example 5.4](https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/model-search-methods.html#prac-cross-val),
+
+```{r}
+best = regsubsets(Salary ~ ., data = Hitters, nvmax = 19)
+```
+
+This method requires manually specifying the models you include in the cross-validation. So, for this example, we use cross-validation to compare the three models suggested by $C_p$, BIC and adjusted $R^2$. (Recall: could use `coef(best,10)` to find coefficients in $C_p$ model since $C_p$ found 10 predictors was best).
+
+#### Train Models on Entire Data Set {-}
+
+```{r}
+
+ls10 = lm(Salary ~ AtBat + Hits + Walks + CAtBat + CRuns + CRBI + CWalks +
+            Division + PutOuts + Assists, data = Hitters)
+ls6 = lm(Salary ~ AtBat + Hits + Walks + CRBI + Division + PutOuts, 
+         data = Hitters)
+ls11 = lm(Salary ~ AtBat + Hits + Walks + CAtBat + CRuns + CRBI + CWalks +
+            + League + Division + PutOuts + Assists, data = Hitters)
+```
+
+#### Creating The Folds {-}
+
+Using $k = 10$ folds,
+```{r}
+k = 10
+folds = cut(1:263, breaks=10, labels=FALSE)
+
+table(folds)
+```
+
+However, currently the folds are not random, the first fold is just the first 27 entries. We can randomly shuffle the folds using `sample`.
+
+```{r}
+set.seed(2)
+folds = sample(folds)
+folds
+```
 
 
+#### Calculating The CV Errors {-}
+
+We first create a matrix to store the CV errors,
+
+```{r}
+cv.errors = matrix(NA, nrow = k, ncol = 3, 
+                   dimnames = list(NULL, c("ls10", "ls6", "ls11")))
+cv.errors 
+```
 
 
+Then, iterating through each fold, we obtain the CV errors,
+
+```{r}
+for(i in 1:k){
+  #Trains models on all folds but i
+  ls10 = lm(Salary ~ AtBat + Hits + Walks + CAtBat + CRuns + CRBI + CWalks +
+              Division + PutOuts + Assists, data = Hitters[folds!=i, ] )
+  ls6 = lm(Salary ~ AtBat + Hits + Walks + CRBI + Division + PutOuts, 
+           data = Hitters[folds!=i, ])
+  ls11 = lm(Salary ~ AtBat + Hits + Walks + CAtBat + CRuns + CRBI + CWalks +
+              + League + Division + PutOuts + Assists, 
+            data = Hitters[folds!=i, ])
+  
+  #Predicts values in fold i
+  pred10 <- predict( ls10, newdata = Hitters[folds==i, ] )
+  pred6 <- predict( ls6, newdata = Hitters[folds==i, ] )
+  pred11 <- predict( ls11, newdata = Hitters[folds==i, ] )
+  
+  #Calculates CV errors
+  cv.errors[i,] = c( mean( (Hitters$Salary[folds==i]-pred10)^2), #calculate MSE for cv
+                     mean( (Hitters$Salary[folds==i]-pred6)^2), 
+                     mean( (Hitters$Salary[folds==i]-pred11)^2) )
+}
+cv.errors
+```
+
+Calculating the means gives a performance metric for each model.
+
+```{r}
+cv.mean.errors <- colMeans(cv.errors)
+cv.mean.errors
+```
