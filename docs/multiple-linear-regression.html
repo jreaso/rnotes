@@ -30,7 +30,7 @@
   
   
 <link rel="prev" href="simple-linear-regression-models.html"/>
-<link rel="next" href="dssc---data-wrangling-presentation-and-applications.html"/>
+<link rel="next" href="shrinkage-methods.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -51,6 +51,9 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
+<script src="libs/str_view-binding-1.4.1/str_view.js"></script>
 
 
 <style type="text/css">
@@ -146,11 +149,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="r-basics.html"><a href="r-basics.html#data-frames"><i class="fa fa-check"></i><b>1.2</b> Data Frames</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="r-basics.html"><a href="r-basics.html#interrogating-data-frames"><i class="fa fa-check"></i><b>1.2.1</b> Interrogating Data Frames</a></li>
-<li class="chapter" data-level="1.2.2" data-path="r-basics.html"><a href="r-basics.html#manipulating-data-frames"><i class="fa fa-check"></i><b>1.2.2</b> Manipulating Data Frames</a></li>
-<li class="chapter" data-level="1.2.3" data-path="r-basics.html"><a href="r-basics.html#missing-data-in-data-frames"><i class="fa fa-check"></i><b>1.2.3</b> Missing Data in Data Frames</a></li>
+<li class="chapter" data-level="1.2.1" data-path="r-basics.html"><a href="r-basics.html#creating-data-frames"><i class="fa fa-check"></i><b>1.2.1</b> Creating Data Frames</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-basics.html"><a href="r-basics.html#accessing-data-frames"><i class="fa fa-check"></i><b>1.2.2</b> Accessing Data Frames</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-basics.html"><a href="r-basics.html#interrogating-data-frames"><i class="fa fa-check"></i><b>1.2.3</b> Interrogating Data Frames</a></li>
+<li class="chapter" data-level="1.2.4" data-path="r-basics.html"><a href="r-basics.html#manipulating-data-frames"><i class="fa fa-check"></i><b>1.2.4</b> Manipulating Data Frames</a></li>
+<li class="chapter" data-level="1.2.5" data-path="r-basics.html"><a href="r-basics.html#missing-data-in-data-frames"><i class="fa fa-check"></i><b>1.2.5</b> Missing Data in Data Frames</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="r-basics.html"><a href="r-basics.html#other"><i class="fa fa-check"></i><b>1.3</b> Other</a></li>
+<li class="chapter" data-level="1.3" data-path="r-basics.html"><a href="r-basics.html#lists"><i class="fa fa-check"></i><b>1.3</b> Lists</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="r-basics.html"><a href="r-basics.html#accessing-lists"><i class="fa fa-check"></i><b>1.3.1</b> Accessing lists</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="r-basics.html"><a href="r-basics.html#data-types"><i class="fa fa-check"></i><b>1.4</b> Data Types</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="r-basics.html"><a href="r-basics.html#categorical-data-factors"><i class="fa fa-check"></i><b>1.4.1</b> Categorical Data (Factors)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="r-basics.html"><a href="r-basics.html#other"><i class="fa fa-check"></i><b>1.5</b> Other</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>2</b> Plotting</a>
 <ul>
@@ -207,34 +220,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4.3" data-path="multiple-linear-regression.html"><a href="multiple-linear-regression.html#best-subset-selection-using-cross-validation"><i class="fa fa-check"></i><b>4.4.3</b> Best Subset Selection (Using Cross-Validation)</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html"><i class="fa fa-check"></i><b>5</b> DSSC - Data Wrangling, Presentation and Applications</a>
+<li class="chapter" data-level="5" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html"><i class="fa fa-check"></i><b>5</b> Shrinkage Methods</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#data-wrangling-with-tidyverse"><i class="fa fa-check"></i><b>5.1</b> Data Wrangling with Tidyverse</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#tidy-form-tidyr"><i class="fa fa-check"></i><b>5.1.1</b> Tidy Form (<code>tidyr</code>)</a></li>
-<li class="chapter" data-level="5.1.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#data-manipulation-dplyr"><i class="fa fa-check"></i><b>5.1.2</b> Data Manipulation (<code>dplyr</code>)</a></li>
-<li class="chapter" data-level="5.1.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#pipelines"><i class="fa fa-check"></i><b>5.1.3</b> Pipelines</a></li>
-<li class="chapter" data-level="5.1.4" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#joining-data-frames-in-tidyverse"><i class="fa fa-check"></i><b>5.1.4</b> Joining Data Frames in Tidyverse</a></li>
+<li class="chapter" data-level="5.1" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#ridge-regression"><i class="fa fa-check"></i><b>5.1</b> Ridge Regression</a></li>
+<li class="chapter" data-level="5.2" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#lasso-regression"><i class="fa fa-check"></i><b>5.2</b> Lasso regression</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dynamic-documents-and-interactive-dashboards"><i class="fa fa-check"></i><b>5.2</b> Dynamic Documents and Interactive Dashboards</a>
+<li class="chapter" data-level="6" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html"><i class="fa fa-check"></i><b>6</b> DSSC - Data Wrangling, Presentation and Applications</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#rmd"><i class="fa fa-check"></i><b>5.2.1</b> RMD</a></li>
-<li class="chapter" data-level="5.2.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#shiny"><i class="fa fa-check"></i><b>5.2.2</b> Shiny</a></li>
+<li class="chapter" data-level="6.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#data-wrangling-with-tidyverse"><i class="fa fa-check"></i><b>6.1</b> Data Wrangling with Tidyverse</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#tidy-form-tidyr"><i class="fa fa-check"></i><b>6.1.1</b> Tidy Form (<code>tidyr</code>)</a></li>
+<li class="chapter" data-level="6.1.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#data-manipulation-dplyr"><i class="fa fa-check"></i><b>6.1.2</b> Data Manipulation (<code>dplyr</code>)</a></li>
+<li class="chapter" data-level="6.1.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#pipelines"><i class="fa fa-check"></i><b>6.1.3</b> Pipelines</a></li>
+<li class="chapter" data-level="6.1.4" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#joining-data-frames-in-tidyverse"><i class="fa fa-check"></i><b>6.1.4</b> Joining Data Frames in Tidyverse</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dates"><i class="fa fa-check"></i><b>5.3</b> Dates</a>
+<li class="chapter" data-level="6.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dynamic-documents-and-interactive-dashboards"><i class="fa fa-check"></i><b>6.2</b> Dynamic Documents and Interactive Dashboards</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#time-zones"><i class="fa fa-check"></i><b>5.3.1</b> Time Zones</a></li>
-<li class="chapter" data-level="5.3.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#extracting-from-dates"><i class="fa fa-check"></i><b>5.3.2</b> Extracting From Dates</a></li>
-<li class="chapter" data-level="5.3.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#misc-1"><i class="fa fa-check"></i><b>5.3.3</b> Misc</a></li>
+<li class="chapter" data-level="6.2.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#rmd"><i class="fa fa-check"></i><b>6.2.1</b> RMD</a></li>
+<li class="chapter" data-level="6.2.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#shiny"><i class="fa fa-check"></i><b>6.2.2</b> Shiny</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#strings-and-regular-expressions"><i class="fa fa-check"></i><b>5.4</b> Strings and Regular Expressions</a>
+<li class="chapter" data-level="6.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dates"><i class="fa fa-check"></i><b>6.3</b> Dates</a>
 <ul>
-<li class="chapter" data-level="5.4.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#strange-characters"><i class="fa fa-check"></i><b>5.4.1</b> Strange characters</a></li>
-<li class="chapter" data-level="5.4.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#stringr-part-of-tidyverse"><i class="fa fa-check"></i><b>5.4.2</b> <code>stringr</code> (part of tidyverse)</a></li>
+<li class="chapter" data-level="6.3.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#time-zones"><i class="fa fa-check"></i><b>6.3.1</b> Time Zones</a></li>
+<li class="chapter" data-level="6.3.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#extracting-from-dates"><i class="fa fa-check"></i><b>6.3.2</b> Extracting From Dates</a></li>
+<li class="chapter" data-level="6.3.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#misc-1"><i class="fa fa-check"></i><b>6.3.3</b> Misc</a></li>
 </ul></li>
-<li class="chapter" data-level="5.5" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#probability-distributions"><i class="fa fa-check"></i><b>5.5</b> Probability Distributions</a>
+<li class="chapter" data-level="6.4" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#strings-and-regular-expressions"><i class="fa fa-check"></i><b>6.4</b> Strings and Regular Expressions</a>
 <ul>
-<li class="chapter" data-level="5.5.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dssc-theory-applications"><i class="fa fa-check"></i><b>5.5.1</b> DSSC Theory Applications</a></li>
+<li class="chapter" data-level="6.4.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#strange-characters"><i class="fa fa-check"></i><b>6.4.1</b> Strange characters</a></li>
+<li class="chapter" data-level="6.4.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#stringr-part-of-tidyverse"><i class="fa fa-check"></i><b>6.4.2</b> <code>stringr</code> (part of tidyverse)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#probability-distributions"><i class="fa fa-check"></i><b>6.5</b> Probability Distributions</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dssc-theory-applications"><i class="fa fa-check"></i><b>6.5.1</b> DSSC Theory Applications</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -263,69 +281,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="pairs-plot-scatterplot-matrix" class="section level3 hasAnchor" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Pairs Plot (Scatterplot Matrix)<a href="multiple-linear-regression.html#pairs-plot-scatterplot-matrix" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To see how any pairs of variable in a data are related use <code>pairs(data)</code>. For an example with <code>carSales</code> data from <a href="https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/linear-regression.html#regression-in-r-1">Section 3.6</a>,</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="multiple-linear-regression.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#can make it symmetric on diagonal by leaving as `pairs(carSales)`</span></span>
-<span id="cb1-2"><a href="multiple-linear-regression.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(carSales, <span class="at">lower.panel =</span> <span class="cn">NULL</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="multiple-linear-regression.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co">#can make it symmetric on diagonal by leaving as `pairs(carSales)`</span></span>
+<span id="cb96-2"><a href="multiple-linear-regression.html#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(carSales, <span class="at">lower.panel =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-72-1.png" width="672" /></p>
 <p>The upper panel here can be customised by making a new function</p>
 <p><strong>Example from Section 3.6</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="multiple-linear-regression.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize upper panel</span></span>
-<span id="cb2-2"><a href="multiple-linear-regression.html#cb2-2" aria-hidden="true" tabindex="-1"></a>upper.panel <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
-<span id="cb2-3"><a href="multiple-linear-regression.html#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(x,y, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="dv">4</span>)</span>
-<span id="cb2-4"><a href="multiple-linear-regression.html#cb2-4" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(x, y), <span class="at">digits=</span><span class="dv">3</span>)</span>
-<span id="cb2-5"><a href="multiple-linear-regression.html#cb2-5" aria-hidden="true" tabindex="-1"></a>  txt <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;r = &quot;</span>, r)</span>
-<span id="cb2-6"><a href="multiple-linear-regression.html#cb2-6" aria-hidden="true" tabindex="-1"></a>  usr <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="st">&quot;usr&quot;</span>); <span class="fu">on.exit</span>(<span class="fu">par</span>(usr))</span>
-<span id="cb2-7"><a href="multiple-linear-regression.html#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">usr =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb2-8"><a href="multiple-linear-regression.html#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">text</span>(<span class="fl">0.5</span>, <span class="fl">0.9</span>, txt)</span>
-<span id="cb2-9"><a href="multiple-linear-regression.html#cb2-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-10"><a href="multiple-linear-regression.html#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(carSales, <span class="at">lower.panel =</span> <span class="cn">NULL</span>, </span>
-<span id="cb2-11"><a href="multiple-linear-regression.html#cb2-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">upper.panel =</span> upper.panel)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="multiple-linear-regression.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize upper panel</span></span>
+<span id="cb97-2"><a href="multiple-linear-regression.html#cb97-2" aria-hidden="true" tabindex="-1"></a>upper.panel <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
+<span id="cb97-3"><a href="multiple-linear-regression.html#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(x,y, <span class="at">pch=</span><span class="dv">19</span>, <span class="at">col=</span><span class="dv">4</span>)</span>
+<span id="cb97-4"><a href="multiple-linear-regression.html#cb97-4" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(x, y), <span class="at">digits=</span><span class="dv">3</span>)</span>
+<span id="cb97-5"><a href="multiple-linear-regression.html#cb97-5" aria-hidden="true" tabindex="-1"></a>  txt <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;r = &quot;</span>, r)</span>
+<span id="cb97-6"><a href="multiple-linear-regression.html#cb97-6" aria-hidden="true" tabindex="-1"></a>  usr <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="st">&quot;usr&quot;</span>); <span class="fu">on.exit</span>(<span class="fu">par</span>(usr))</span>
+<span id="cb97-7"><a href="multiple-linear-regression.html#cb97-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">usr =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb97-8"><a href="multiple-linear-regression.html#cb97-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">text</span>(<span class="fl">0.5</span>, <span class="fl">0.9</span>, txt)</span>
+<span id="cb97-9"><a href="multiple-linear-regression.html#cb97-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb97-10"><a href="multiple-linear-regression.html#cb97-10" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(carSales, <span class="at">lower.panel =</span> <span class="cn">NULL</span>, </span>
+<span id="cb97-11"><a href="multiple-linear-regression.html#cb97-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">upper.panel =</span> upper.panel)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-73-1.png" width="672" /></p>
 <p><strong>Example from Practical 2</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="multiple-linear-regression.html#cb3-1" aria-hidden="true" tabindex="-1"></a>panel.cor <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
-<span id="cb3-2"><a href="multiple-linear-regression.html#cb3-2" aria-hidden="true" tabindex="-1"></a>  usr <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="st">&quot;usr&quot;</span>); <span class="fu">on.exit</span>(<span class="fu">par</span>(usr))</span>
-<span id="cb3-3"><a href="multiple-linear-regression.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">usr =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb3-4"><a href="multiple-linear-regression.html#cb3-4" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(x, y), <span class="at">digits=</span><span class="dv">2</span>)</span>
-<span id="cb3-5"><a href="multiple-linear-regression.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  txt <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot; &quot;</span>, r)</span>
-<span id="cb3-6"><a href="multiple-linear-regression.html#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">text</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, txt, <span class="at">cex =</span> <span class="fl">0.8</span>)</span>
-<span id="cb3-7"><a href="multiple-linear-regression.html#cb3-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-8"><a href="multiple-linear-regression.html#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize upper panel</span></span>
-<span id="cb3-9"><a href="multiple-linear-regression.html#cb3-9" aria-hidden="true" tabindex="-1"></a>upper.panel<span class="ot">&lt;-</span><span class="cf">function</span>(x, y){</span>
-<span id="cb3-10"><a href="multiple-linear-regression.html#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(x,y, <span class="at">pch =</span> <span class="dv">19</span>)</span>
-<span id="cb3-11"><a href="multiple-linear-regression.html#cb3-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-12"><a href="multiple-linear-regression.html#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plots</span></span>
-<span id="cb3-13"><a href="multiple-linear-regression.html#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(fat1, </span>
-<span id="cb3-14"><a href="multiple-linear-regression.html#cb3-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">lower.panel =</span> panel.cor,</span>
-<span id="cb3-15"><a href="multiple-linear-regression.html#cb3-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">upper.panel =</span> upper.panel)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="multiple-linear-regression.html#cb98-1" aria-hidden="true" tabindex="-1"></a>panel.cor <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
+<span id="cb98-2"><a href="multiple-linear-regression.html#cb98-2" aria-hidden="true" tabindex="-1"></a>  usr <span class="ot">&lt;-</span> <span class="fu">par</span>(<span class="st">&quot;usr&quot;</span>); <span class="fu">on.exit</span>(<span class="fu">par</span>(usr))</span>
+<span id="cb98-3"><a href="multiple-linear-regression.html#cb98-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">par</span>(<span class="at">usr =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb98-4"><a href="multiple-linear-regression.html#cb98-4" aria-hidden="true" tabindex="-1"></a>  r <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(x, y), <span class="at">digits=</span><span class="dv">2</span>)</span>
+<span id="cb98-5"><a href="multiple-linear-regression.html#cb98-5" aria-hidden="true" tabindex="-1"></a>  txt <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot; &quot;</span>, r)</span>
+<span id="cb98-6"><a href="multiple-linear-regression.html#cb98-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">text</span>(<span class="fl">0.5</span>, <span class="fl">0.5</span>, txt, <span class="at">cex =</span> <span class="fl">0.8</span>)</span>
+<span id="cb98-7"><a href="multiple-linear-regression.html#cb98-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb98-8"><a href="multiple-linear-regression.html#cb98-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Customize upper panel</span></span>
+<span id="cb98-9"><a href="multiple-linear-regression.html#cb98-9" aria-hidden="true" tabindex="-1"></a>upper.panel<span class="ot">&lt;-</span><span class="cf">function</span>(x, y){</span>
+<span id="cb98-10"><a href="multiple-linear-regression.html#cb98-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">points</span>(x,y, <span class="at">pch =</span> <span class="dv">19</span>)</span>
+<span id="cb98-11"><a href="multiple-linear-regression.html#cb98-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb98-12"><a href="multiple-linear-regression.html#cb98-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plots</span></span>
+<span id="cb98-13"><a href="multiple-linear-regression.html#cb98-13" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(fat1, </span>
+<span id="cb98-14"><a href="multiple-linear-regression.html#cb98-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">lower.panel =</span> panel.cor,</span>
+<span id="cb98-15"><a href="multiple-linear-regression.html#cb98-15" aria-hidden="true" tabindex="-1"></a>      <span class="at">upper.panel =</span> upper.panel)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
 </div>
 <div id="using-corrplot-package" class="section level3 hasAnchor" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Using <code>corrplot</code> Package<a href="multiple-linear-regression.html#using-corrplot-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="multiple-linear-regression.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="multiple-linear-regression.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code></pre></div>
 <p><strong>Examples from Practical 2</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="multiple-linear-regression.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(<span class="fu">cor</span>(fat1), <span class="at">method =</span> <span class="st">&quot;number&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>, <span class="at">diag =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="multiple-linear-regression.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(<span class="fu">cor</span>(fat1), <span class="at">upper =</span> <span class="st">&quot;ellipse&quot;</span>, <span class="at">lower =</span> <span class="st">&quot;number&quot;</span>,<span class="at">number.cex =</span> .<span class="dv">7</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="multiple-linear-regression.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(<span class="fu">cor</span>(fat1), <span class="at">method =</span> <span class="st">&quot;number&quot;</span>, <span class="at">type =</span> <span class="st">&quot;upper&quot;</span>, <span class="at">diag =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="multiple-linear-regression.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot.mixed</span>(<span class="fu">cor</span>(fat1), <span class="at">upper =</span> <span class="st">&quot;ellipse&quot;</span>, <span class="at">lower =</span> <span class="st">&quot;number&quot;</span>,<span class="at">number.cex =</span> .<span class="dv">7</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-77-2.png" width="672" /></p>
 </div>
 </div>
 <div id="basics-of-building-an-mlr-model-including-transformations" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Basics of Building an MLR Model (Including Transformations)<a href="multiple-linear-regression.html#basics-of-building-an-mlr-model-including-transformations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Build a Model With Specific Predictors</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="multiple-linear-regression.html#cb7-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> ... <span class="sc">+</span> Xn, <span class="at">data=</span>data)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="multiple-linear-regression.html#cb102-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2 <span class="sc">+</span> ... <span class="sc">+</span> Xn, <span class="at">data=</span>data)</span></code></pre></div>
 <p><strong>Build a Model With All Predictors</strong></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="multiple-linear-regression.html#cb8-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> ., <span class="at">data=</span>data)</span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="multiple-linear-regression.html#cb103-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> ., <span class="at">data=</span>data)</span></code></pre></div>
 <p><strong>Build a Model With Specific Predictors Removed</strong></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="multiple-linear-regression.html#cb9-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> . <span class="sc">-</span> X1 <span class="sc">-</span> X2, <span class="at">data=</span>data)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="multiple-linear-regression.html#cb104-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> . <span class="sc">-</span> X1 <span class="sc">-</span> X2, <span class="at">data=</span>data)</span></code></pre></div>
 <p><strong>Example Including Transformations</strong></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="multiple-linear-regression.html#cb10-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2<span class="sc">*</span>X3 <span class="sc">+</span> <span class="fu">log</span>(X4) <span class="sc">+</span> <span class="fu">I</span>(X5<span class="sc">^</span><span class="dv">2</span>), <span class="at">data=</span>data)</span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="multiple-linear-regression.html#cb105-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X1 <span class="sc">+</span> X2<span class="sc">*</span>X3 <span class="sc">+</span> <span class="fu">log</span>(X4) <span class="sc">+</span> <span class="fu">I</span>(X5<span class="sc">^</span><span class="dv">2</span>), <span class="at">data=</span>data)</span></code></pre></div>
 <p>Note that <code>X2*X3</code> includes the predictors <code>X2</code>, <code>X3</code> and their product <code>X2 x X3.</code></p>
 <p>Inference is much the same as with SLR.</p>
 </div>
 <div id="multicollinearity-detection-and-vif" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Multicollinearity Detection and VIF<a href="multiple-linear-regression.html#multicollinearity-detection-and-vif" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To calculate VIF value for each predictor in a model simply use <code>vif()</code> function from <code>car library</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="multiple-linear-regression.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
-<span id="cb11-2"><a href="multiple-linear-regression.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(reg)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="multiple-linear-regression.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb106-2"><a href="multiple-linear-regression.html#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">vif</span>(reg)</span></code></pre></div>
 <pre><code>##      Age    Miles 
 ## 3.907129 3.907129</code></pre>
 </div>
@@ -335,22 +353,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="best-subset-and-forwardbackward-stepwise-selection-using-selection-criteria" class="section level3 hasAnchor" number="4.4.1">
 <h3><span class="header-section-number">4.4.1</span> Best Subset and Forward/Backward Stepwise Selection (Using Selection Criteria)<a href="multiple-linear-regression.html#best-subset-and-forwardbackward-stepwise-selection-using-selection-criteria" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Best Subset Selection is done using <code>regsubsets()</code> function from <code>leaps</code> library.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="multiple-linear-regression.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaps)</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="multiple-linear-regression.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#function for best subset selection</span></span>
-<span id="cb14-2"><a href="multiple-linear-regression.html#cb14-2" aria-hidden="true" tabindex="-1"></a>best <span class="ot">=</span> <span class="fu">regsubsets</span>(Salary <span class="sc">~</span> ., Hitters, <span class="at">nvmax=</span><span class="dv">19</span>)</span>
-<span id="cb14-3"><a href="multiple-linear-regression.html#cb14-3" aria-hidden="true" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">summary</span>(best)</span>
-<span id="cb14-4"><a href="multiple-linear-regression.html#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="multiple-linear-regression.html#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(results) <span class="co">#gives the names of the predictors chosen by best subset selection</span></span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="multiple-linear-regression.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leaps)</span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="multiple-linear-regression.html#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co">#function for best subset selection</span></span>
+<span id="cb109-2"><a href="multiple-linear-regression.html#cb109-2" aria-hidden="true" tabindex="-1"></a>best <span class="ot">=</span> <span class="fu">regsubsets</span>(Salary <span class="sc">~</span> ., Hitters, <span class="at">nvmax=</span><span class="dv">19</span>)</span>
+<span id="cb109-3"><a href="multiple-linear-regression.html#cb109-3" aria-hidden="true" tabindex="-1"></a>results <span class="ot">=</span> <span class="fu">summary</span>(best)</span>
+<span id="cb109-4"><a href="multiple-linear-regression.html#cb109-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-5"><a href="multiple-linear-regression.html#cb109-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(results) <span class="co">#gives the names of the predictors chosen by best subset selection</span></span></code></pre></div>
 <pre><code>## [1] &quot;which&quot;  &quot;rsq&quot;    &quot;rss&quot;    &quot;adjr2&quot;  &quot;cp&quot;     &quot;bic&quot;    &quot;outmat&quot; &quot;obj&quot;</code></pre>
 <p><code>nvmax=19</code> specifies that you want all 19 models and not just up to the best one.</p>
 <p><strong>Data you can extract from output of <code>regsubsets()</code></strong></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="multiple-linear-regression.html#cb16-1" aria-hidden="true" tabindex="-1"></a>RSS <span class="ot">=</span> results<span class="sc">$</span>rss</span>
-<span id="cb16-2"><a href="multiple-linear-regression.html#cb16-2" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">=</span> results<span class="sc">$</span>rsq</span>
-<span id="cb16-3"><a href="multiple-linear-regression.html#cb16-3" aria-hidden="true" tabindex="-1"></a>Cp <span class="ot">=</span> results<span class="sc">$</span>cp</span>
-<span id="cb16-4"><a href="multiple-linear-regression.html#cb16-4" aria-hidden="true" tabindex="-1"></a>BIC <span class="ot">=</span> results<span class="sc">$</span>bic</span>
-<span id="cb16-5"><a href="multiple-linear-regression.html#cb16-5" aria-hidden="true" tabindex="-1"></a>Adj_r2 <span class="ot">=</span> results<span class="sc">$</span>adjr2</span>
-<span id="cb16-6"><a href="multiple-linear-regression.html#cb16-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-7"><a href="multiple-linear-regression.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(RSS, r2, Cp, BIC, Adj_r2)</span></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="multiple-linear-regression.html#cb111-1" aria-hidden="true" tabindex="-1"></a>RSS <span class="ot">=</span> results<span class="sc">$</span>rss</span>
+<span id="cb111-2"><a href="multiple-linear-regression.html#cb111-2" aria-hidden="true" tabindex="-1"></a>r2 <span class="ot">=</span> results<span class="sc">$</span>rsq</span>
+<span id="cb111-3"><a href="multiple-linear-regression.html#cb111-3" aria-hidden="true" tabindex="-1"></a>Cp <span class="ot">=</span> results<span class="sc">$</span>cp</span>
+<span id="cb111-4"><a href="multiple-linear-regression.html#cb111-4" aria-hidden="true" tabindex="-1"></a>BIC <span class="ot">=</span> results<span class="sc">$</span>bic</span>
+<span id="cb111-5"><a href="multiple-linear-regression.html#cb111-5" aria-hidden="true" tabindex="-1"></a>Adj_r2 <span class="ot">=</span> results<span class="sc">$</span>adjr2</span>
+<span id="cb111-6"><a href="multiple-linear-regression.html#cb111-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb111-7"><a href="multiple-linear-regression.html#cb111-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(RSS, r2, Cp, BIC, Adj_r2)</span></code></pre></div>
 <pre><code>##            RSS        r2         Cp        BIC    Adj_r2
 ##  [1,] 36179679 0.3214501 104.281319  -90.84637 0.3188503
 ##  [2,] 30646560 0.4252237  50.723090 -128.92622 0.4208024
@@ -373,39 +391,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [19,] 24200700 0.5461159  20.000000  -96.30412 0.5106270</code></pre>
 <div id="plotting-to-understand-best-subset-selection" class="section level4 unnumbered hasAnchor">
 <h4>Plotting To Understand Best Subset Selection<a href="multiple-linear-regression.html#plotting-to-understand-best-subset-selection" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="multiple-linear-regression.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plots RSS and R-square as you add more predictors</span></span>
-<span id="cb18-2"><a href="multiple-linear-regression.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
-<span id="cb18-3"><a href="multiple-linear-regression.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(RSS, <span class="at">xlab =</span> <span class="st">&quot;Number of Predictors&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;RSS&quot;</span>, </span>
-<span id="cb18-4"><a href="multiple-linear-regression.html#cb18-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb18-5"><a href="multiple-linear-regression.html#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(r2, <span class="at">xlab =</span> <span class="st">&quot;Number of Predictors&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;R-square&quot;</span>, </span>
-<span id="cb18-6"><a href="multiple-linear-regression.html#cb18-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="multiple-linear-regression.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plots RSS and R-square as you add more predictors</span></span>
+<span id="cb113-2"><a href="multiple-linear-regression.html#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>))</span>
+<span id="cb113-3"><a href="multiple-linear-regression.html#cb113-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(RSS, <span class="at">xlab =</span> <span class="st">&quot;Number of Predictors&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;RSS&quot;</span>, </span>
+<span id="cb113-4"><a href="multiple-linear-regression.html#cb113-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb113-5"><a href="multiple-linear-regression.html#cb113-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(r2, <span class="at">xlab =</span> <span class="st">&quot;Number of Predictors&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;R-square&quot;</span>, </span>
+<span id="cb113-6"><a href="multiple-linear-regression.html#cb113-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
 <p><strong>Number of predictors in optimal model under different selection criteria</strong></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="multiple-linear-regression.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(Cp)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="multiple-linear-regression.html#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(Cp)</span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="multiple-linear-regression.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(BIC)</span></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="multiple-linear-regression.html#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(BIC)</span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="multiple-linear-regression.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(Adj_r2)</span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="multiple-linear-regression.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.max</span>(Adj_r2)</span></code></pre></div>
 <pre><code>## [1] 11</code></pre>
 <p><strong>Example Plot For How Selection Criteria Change</strong></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="multiple-linear-regression.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
-<span id="cb25-2"><a href="multiple-linear-regression.html#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Cp, <span class="at">xlab =</span> <span class="st">&quot;Number of Predictors&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Cp&quot;</span>, </span>
-<span id="cb25-3"><a href="multiple-linear-regression.html#cb25-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&#39;l&#39;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb25-4"><a href="multiple-linear-regression.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">10</span>, Cp[<span class="dv">10</span>], <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">8</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb25-5"><a href="multiple-linear-regression.html#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(BIC, <span class="at">xlab =</span> <span class="st">&quot;Number of Predictors&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;BIC&quot;</span>, </span>
-<span id="cb25-6"><a href="multiple-linear-regression.html#cb25-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&#39;l&#39;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb25-7"><a href="multiple-linear-regression.html#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">6</span>, BIC[<span class="dv">6</span>], <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">8</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb25-8"><a href="multiple-linear-regression.html#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Adj_r2, <span class="at">xlab =</span> <span class="st">&quot;Number of Predictors&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Adjusted RSq&quot;</span>, </span>
-<span id="cb25-9"><a href="multiple-linear-regression.html#cb25-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb25-10"><a href="multiple-linear-regression.html#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">11</span>, Adj_r2[<span class="dv">11</span>],  <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">8</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="multiple-linear-regression.html#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>))</span>
+<span id="cb120-2"><a href="multiple-linear-regression.html#cb120-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Cp, <span class="at">xlab =</span> <span class="st">&quot;Number of Predictors&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Cp&quot;</span>, </span>
+<span id="cb120-3"><a href="multiple-linear-regression.html#cb120-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&#39;l&#39;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb120-4"><a href="multiple-linear-regression.html#cb120-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">10</span>, Cp[<span class="dv">10</span>], <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">8</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb120-5"><a href="multiple-linear-regression.html#cb120-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(BIC, <span class="at">xlab =</span> <span class="st">&quot;Number of Predictors&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;BIC&quot;</span>, </span>
+<span id="cb120-6"><a href="multiple-linear-regression.html#cb120-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&#39;l&#39;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb120-7"><a href="multiple-linear-regression.html#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">6</span>, BIC[<span class="dv">6</span>], <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">8</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb120-8"><a href="multiple-linear-regression.html#cb120-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Adj_r2, <span class="at">xlab =</span> <span class="st">&quot;Number of Predictors&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Adjusted RSq&quot;</span>, </span>
+<span id="cb120-9"><a href="multiple-linear-regression.html#cb120-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb120-10"><a href="multiple-linear-regression.html#cb120-10" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="dv">11</span>, Adj_r2[<span class="dv">11</span>],  <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">cex =</span> <span class="dv">2</span>, <span class="at">pch =</span> <span class="dv">8</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
 <p><strong>Built-in Plot for Criteria</strong></p>
 <p>Top row is the best model under the criteria and worst is at bottom</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="multiple-linear-regression.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(best, <span class="at">scale =</span> <span class="st">&quot;Cp&quot;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="multiple-linear-regression.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(best, <span class="at">scale =</span> <span class="st">&quot;Cp&quot;</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
 <p>The options for <code>scale</code> are <code>"bic"</code>, <code>"Cp"</code>, <code>"adjr2"</code> and <code>"r2"</code>.</p>
 <p><strong>Extracting Coefficients for Best Model</strong> (at a specific number of predictors)</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="multiple-linear-regression.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(best, <span class="dv">10</span>) <span class="co">#Cp</span></span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="multiple-linear-regression.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(best, <span class="dv">10</span>) <span class="co">#Cp</span></span></code></pre></div>
 <pre><code>##  (Intercept)        AtBat         Hits        Walks       CAtBat        CRuns 
 ##  162.5354420   -2.1686501    6.9180175    5.7732246   -0.1300798    1.4082490 
 ##         CRBI       CWalks    DivisionW      PutOuts      Assists 
@@ -415,19 +433,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="forward-and-backward-stepwise-selection" class="section level4 unnumbered hasAnchor">
 <h4>Forward and Backward Stepwise Selection<a href="multiple-linear-regression.html#forward-and-backward-stepwise-selection" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To use forward or backward stepwise selection instead change the <code>method</code> parameter is <code>regsubsets()</code> function.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="multiple-linear-regression.html#cb29-1" aria-hidden="true" tabindex="-1"></a>fwd <span class="ot">=</span> <span class="fu">regsubsets</span>(Salary<span class="sc">~</span>., <span class="at">data =</span> Hitters, <span class="at">nvmax =</span> <span class="dv">19</span>, <span class="at">method =</span> <span class="st">&quot;forward&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="multiple-linear-regression.html#cb124-1" aria-hidden="true" tabindex="-1"></a>fwd <span class="ot">=</span> <span class="fu">regsubsets</span>(Salary<span class="sc">~</span>., <span class="at">data =</span> Hitters, <span class="at">nvmax =</span> <span class="dv">19</span>, <span class="at">method =</span> <span class="st">&quot;forward&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="best-subset-selection-using-validation" class="section level3 hasAnchor" number="4.4.2">
 <h3><span class="header-section-number">4.4.2</span> Best Subset Selection (Using Validation)<a href="multiple-linear-regression.html#best-subset-selection-using-validation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>‘regsubsets()’ does not have a built-in function to do best subsey selection using validation so we use a custom function (copy and paste).</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="multiple-linear-regression.html#cb30-1" aria-hidden="true" tabindex="-1"></a>predict.regsubsets <span class="ot">=</span> <span class="cf">function</span>(object, newdata, id, ...){</span>
-<span id="cb30-2"><a href="multiple-linear-regression.html#cb30-2" aria-hidden="true" tabindex="-1"></a>  form <span class="ot">=</span> <span class="fu">as.formula</span>(object<span class="sc">$</span>call[[<span class="dv">2</span>]])</span>
-<span id="cb30-3"><a href="multiple-linear-regression.html#cb30-3" aria-hidden="true" tabindex="-1"></a>  mat <span class="ot">=</span> <span class="fu">model.matrix</span>(form, newdata)</span>
-<span id="cb30-4"><a href="multiple-linear-regression.html#cb30-4" aria-hidden="true" tabindex="-1"></a>  coefi <span class="ot">=</span> <span class="fu">coef</span>(object, <span class="at">id =</span> id)</span>
-<span id="cb30-5"><a href="multiple-linear-regression.html#cb30-5" aria-hidden="true" tabindex="-1"></a>  xvars <span class="ot">=</span> <span class="fu">names</span>(coefi)</span>
-<span id="cb30-6"><a href="multiple-linear-regression.html#cb30-6" aria-hidden="true" tabindex="-1"></a>  mat[, xvars]<span class="sc">%*%</span>coefi</span>
-<span id="cb30-7"><a href="multiple-linear-regression.html#cb30-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="multiple-linear-regression.html#cb125-1" aria-hidden="true" tabindex="-1"></a>predict.regsubsets <span class="ot">=</span> <span class="cf">function</span>(object, newdata, id, ...){</span>
+<span id="cb125-2"><a href="multiple-linear-regression.html#cb125-2" aria-hidden="true" tabindex="-1"></a>  form <span class="ot">=</span> <span class="fu">as.formula</span>(object<span class="sc">$</span>call[[<span class="dv">2</span>]])</span>
+<span id="cb125-3"><a href="multiple-linear-regression.html#cb125-3" aria-hidden="true" tabindex="-1"></a>  mat <span class="ot">=</span> <span class="fu">model.matrix</span>(form, newdata)</span>
+<span id="cb125-4"><a href="multiple-linear-regression.html#cb125-4" aria-hidden="true" tabindex="-1"></a>  coefi <span class="ot">=</span> <span class="fu">coef</span>(object, <span class="at">id =</span> id)</span>
+<span id="cb125-5"><a href="multiple-linear-regression.html#cb125-5" aria-hidden="true" tabindex="-1"></a>  xvars <span class="ot">=</span> <span class="fu">names</span>(coefi)</span>
+<span id="cb125-6"><a href="multiple-linear-regression.html#cb125-6" aria-hidden="true" tabindex="-1"></a>  mat[, xvars]<span class="sc">%*%</span>coefi</span>
+<span id="cb125-7"><a href="multiple-linear-regression.html#cb125-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <ul>
 <li><code>object</code> should be the result of a call to <code>regsubsets</code></li>
 <li><code>newdata</code> should be data frame with data from validation set in</li>
@@ -436,41 +454,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="splitting-data-into-training-and-validation" class="section level4 unnumbered hasAnchor">
 <h4>Splitting Data into Training and Validation<a href="multiple-linear-regression.html#splitting-data-into-training-and-validation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>As a rough guide, split the data approximately 2:1 for Training:Validation.</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="multiple-linear-regression.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(Hitters)</span>
-<span id="cb31-2"><a href="multiple-linear-regression.html#cb31-2" aria-hidden="true" tabindex="-1"></a>training.obs <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">263</span>, <span class="dv">175</span>)</span>
-<span id="cb31-3"><a href="multiple-linear-regression.html#cb31-3" aria-hidden="true" tabindex="-1"></a>Hitters.train <span class="ot">=</span> Hitters[training.obs,  ]</span>
-<span id="cb31-4"><a href="multiple-linear-regression.html#cb31-4" aria-hidden="true" tabindex="-1"></a>Hitters.test <span class="ot">=</span> Hitters[<span class="sc">-</span>training.obs,  ]</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="multiple-linear-regression.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(Hitters)</span>
+<span id="cb126-2"><a href="multiple-linear-regression.html#cb126-2" aria-hidden="true" tabindex="-1"></a>training.obs <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">263</span>, <span class="dv">175</span>)</span>
+<span id="cb126-3"><a href="multiple-linear-regression.html#cb126-3" aria-hidden="true" tabindex="-1"></a>Hitters.train <span class="ot">=</span> Hitters[training.obs,  ]</span>
+<span id="cb126-4"><a href="multiple-linear-regression.html#cb126-4" aria-hidden="true" tabindex="-1"></a>Hitters.test <span class="ot">=</span> Hitters[<span class="sc">-</span>training.obs,  ]</span></code></pre></div>
 </div>
 <div id="best-subset-validation" class="section level4 unnumbered hasAnchor">
 <h4>Best Subset Validation<a href="multiple-linear-regression.html#best-subset-validation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <code>regsubsets</code> call:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="multiple-linear-regression.html#cb32-1" aria-hidden="true" tabindex="-1"></a>best.val <span class="ot">=</span> <span class="fu">regsubsets</span>(Salary <span class="sc">~</span> ., <span class="at">data =</span> Hitters.train, <span class="at">nvmax =</span> <span class="dv">19</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="multiple-linear-regression.html#cb127-1" aria-hidden="true" tabindex="-1"></a>best.val <span class="ot">=</span> <span class="fu">regsubsets</span>(Salary <span class="sc">~</span> ., <span class="at">data =</span> Hitters.train, <span class="at">nvmax =</span> <span class="dv">19</span>)</span></code></pre></div>
 <p>Iterate through every number of predictors and calculate the MSE between prediction and observed (from validation set).</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="multiple-linear-regression.html#cb33-1" aria-hidden="true" tabindex="-1"></a>val.error <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb33-2"><a href="multiple-linear-regression.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">19</span>){</span>
-<span id="cb33-3"><a href="multiple-linear-regression.html#cb33-3" aria-hidden="true" tabindex="-1"></a>  pred <span class="ot">=</span> <span class="fu">predict.regsubsets</span>(best.val, Hitters.test, i)</span>
-<span id="cb33-4"><a href="multiple-linear-regression.html#cb33-4" aria-hidden="true" tabindex="-1"></a>  val.error[i] <span class="ot">=</span> <span class="fu">mean</span>((Hitters.test<span class="sc">$</span>Salary <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>) <span class="co">#MSE</span></span>
-<span id="cb33-5"><a href="multiple-linear-regression.html#cb33-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb33-6"><a href="multiple-linear-regression.html#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-7"><a href="multiple-linear-regression.html#cb33-7" aria-hidden="true" tabindex="-1"></a>val.error <span class="co">#stores 19 models validation MSE</span></span></code></pre></div>
-<pre><code>##  [1] 116147.23  91580.65  92021.40  93425.26  92677.45  90150.28  90467.83
-##  [8]  91495.56  92205.48  87735.65  93326.43 100693.34 101797.33 103839.87
-## [15]  99230.04 101018.78 100908.22 101100.28 101685.24</code></pre>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="multiple-linear-regression.html#cb128-1" aria-hidden="true" tabindex="-1"></a>val.error <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb128-2"><a href="multiple-linear-regression.html#cb128-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">19</span>){</span>
+<span id="cb128-3"><a href="multiple-linear-regression.html#cb128-3" aria-hidden="true" tabindex="-1"></a>  pred <span class="ot">=</span> <span class="fu">predict.regsubsets</span>(best.val, Hitters.test, i)</span>
+<span id="cb128-4"><a href="multiple-linear-regression.html#cb128-4" aria-hidden="true" tabindex="-1"></a>  val.error[i] <span class="ot">=</span> <span class="fu">mean</span>((Hitters.test<span class="sc">$</span>Salary <span class="sc">-</span> pred)<span class="sc">^</span><span class="dv">2</span>) <span class="co">#MSE</span></span>
+<span id="cb128-5"><a href="multiple-linear-regression.html#cb128-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb128-6"><a href="multiple-linear-regression.html#cb128-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-7"><a href="multiple-linear-regression.html#cb128-7" aria-hidden="true" tabindex="-1"></a>val.error <span class="co">#stores 19 models validation MSE</span></span></code></pre></div>
+<pre><code>##  [1] 114138.59  92143.58  92750.65 100219.20  95253.19  88940.47  93733.37
+##  [8]  98180.22  90230.07  86038.80  90211.15  94745.90  93950.08  93953.64
+## [15]  92129.04  91778.28  91793.53  91653.73  91534.01</code></pre>
 <p>Index with smallest MSE is best number of predictors</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="multiple-linear-regression.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(val.error) </span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="multiple-linear-regression.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(val.error) </span></code></pre></div>
 <pre><code>## [1] 10</code></pre>
 </div>
 <div id="inference" class="section level4 unnumbered hasAnchor">
 <h4>Inference<a href="multiple-linear-regression.html#inference" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>After choosing optimal model with best subset selection using a validation set, <strong>before inference, you must train the model in the entire data set</strong>.</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="multiple-linear-regression.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(best.val, <span class="dv">10</span>) <span class="co"># Check which variables to use in the lm.</span></span></code></pre></div>
-<pre><code>##   (Intercept)         AtBat          Hits         Walks        CAtBat 
-##  286.68489144   -2.72690232    7.48463843    6.81293656   -0.08978983 
-##         CRuns          CRBI        CWalks     DivisionW       PutOuts 
-##    1.28921754    0.81376332   -1.07089757 -172.34749160    0.32890033 
-##       Assists 
-##    0.32373883</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="multiple-linear-regression.html#cb39-1" aria-hidden="true" tabindex="-1"></a>ls10 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Runs <span class="sc">+</span> Walks <span class="sc">+</span> CAtBat <span class="sc">+</span> CRuns <span class="sc">+</span> CRBI <span class="sc">+</span> CWalks <span class="sc">+</span> Division <span class="sc">+</span> PutOuts, <span class="at">data =</span> Hitters)</span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="multiple-linear-regression.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(best.val, <span class="dv">10</span>) <span class="co"># Check which variables to use in the lm.</span></span></code></pre></div>
+<pre><code>##  (Intercept)        AtBat         Hits         Runs        Walks        CHits 
+##  157.0161629   -2.2221298   10.1998113   -5.8238061    7.0677820   -0.7565938 
+##        CRuns         CRBI       CWalks    DivisionW      PutOuts 
+##    1.9277167    0.7898096   -0.8034239 -157.4602162    0.2690998</code></pre>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="multiple-linear-regression.html#cb134-1" aria-hidden="true" tabindex="-1"></a>ls10 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Runs <span class="sc">+</span> Walks <span class="sc">+</span> CAtBat <span class="sc">+</span> CRuns <span class="sc">+</span> CRBI <span class="sc">+</span> CWalks <span class="sc">+</span> Division <span class="sc">+</span> PutOuts, <span class="at">data =</span> Hitters)</span></code></pre></div>
 <p>Usual inference can follow.</p>
 <p>Note: using a validation set means the choice of the best model is random, depending on how you selected which observations were used for training and which were used for validation.</p>
 </div>
@@ -479,31 +495,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.4.3</span> Best Subset Selection (Using Cross-Validation)<a href="multiple-linear-regression.html#best-subset-selection-using-cross-validation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Doing cross-validation is generally preferable to regular validation as it utilises entire data set for training and testing.</p>
 <p>Continuing with <code>Hitters</code> data from <a href="https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/model-search-methods.html#prac-cross-val">Example 5.4</a>,</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="multiple-linear-regression.html#cb40-1" aria-hidden="true" tabindex="-1"></a>best <span class="ot">=</span> <span class="fu">regsubsets</span>(Salary <span class="sc">~</span> ., <span class="at">data =</span> Hitters, <span class="at">nvmax =</span> <span class="dv">19</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="multiple-linear-regression.html#cb135-1" aria-hidden="true" tabindex="-1"></a>best <span class="ot">=</span> <span class="fu">regsubsets</span>(Salary <span class="sc">~</span> ., <span class="at">data =</span> Hitters, <span class="at">nvmax =</span> <span class="dv">19</span>)</span></code></pre></div>
 <p>This method requires manually specifying the models you include in the cross-validation. So, for this example, we use cross-validation to compare the three models suggested by <span class="math inline">\(C_p\)</span>, BIC and adjusted <span class="math inline">\(R^2\)</span>. (Recall: could use <code>coef(best,10)</code> to find coefficients in <span class="math inline">\(C_p\)</span> model since <span class="math inline">\(C_p\)</span> found 10 predictors was best).</p>
 <div id="train-models-on-entire-data-set" class="section level4 unnumbered hasAnchor">
 <h4>Train Models on Entire Data Set<a href="multiple-linear-regression.html#train-models-on-entire-data-set" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="multiple-linear-regression.html#cb41-1" aria-hidden="true" tabindex="-1"></a>ls10 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Walks <span class="sc">+</span> CAtBat <span class="sc">+</span> CRuns <span class="sc">+</span> CRBI <span class="sc">+</span> CWalks <span class="sc">+</span></span>
-<span id="cb41-2"><a href="multiple-linear-regression.html#cb41-2" aria-hidden="true" tabindex="-1"></a>            Division <span class="sc">+</span> PutOuts <span class="sc">+</span> Assists, <span class="at">data =</span> Hitters)</span>
-<span id="cb41-3"><a href="multiple-linear-regression.html#cb41-3" aria-hidden="true" tabindex="-1"></a>ls6 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Walks <span class="sc">+</span> CRBI <span class="sc">+</span> Division <span class="sc">+</span> PutOuts, </span>
-<span id="cb41-4"><a href="multiple-linear-regression.html#cb41-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> Hitters)</span>
-<span id="cb41-5"><a href="multiple-linear-regression.html#cb41-5" aria-hidden="true" tabindex="-1"></a>ls11 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Walks <span class="sc">+</span> CAtBat <span class="sc">+</span> CRuns <span class="sc">+</span> CRBI <span class="sc">+</span> CWalks <span class="sc">+</span></span>
-<span id="cb41-6"><a href="multiple-linear-regression.html#cb41-6" aria-hidden="true" tabindex="-1"></a>            <span class="sc">+</span> League <span class="sc">+</span> Division <span class="sc">+</span> PutOuts <span class="sc">+</span> Assists, <span class="at">data =</span> Hitters)</span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="multiple-linear-regression.html#cb136-1" aria-hidden="true" tabindex="-1"></a>ls10 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Walks <span class="sc">+</span> CAtBat <span class="sc">+</span> CRuns <span class="sc">+</span> CRBI <span class="sc">+</span> CWalks <span class="sc">+</span></span>
+<span id="cb136-2"><a href="multiple-linear-regression.html#cb136-2" aria-hidden="true" tabindex="-1"></a>            Division <span class="sc">+</span> PutOuts <span class="sc">+</span> Assists, <span class="at">data =</span> Hitters)</span>
+<span id="cb136-3"><a href="multiple-linear-regression.html#cb136-3" aria-hidden="true" tabindex="-1"></a>ls6 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Walks <span class="sc">+</span> CRBI <span class="sc">+</span> Division <span class="sc">+</span> PutOuts, </span>
+<span id="cb136-4"><a href="multiple-linear-regression.html#cb136-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> Hitters)</span>
+<span id="cb136-5"><a href="multiple-linear-regression.html#cb136-5" aria-hidden="true" tabindex="-1"></a>ls11 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Walks <span class="sc">+</span> CAtBat <span class="sc">+</span> CRuns <span class="sc">+</span> CRBI <span class="sc">+</span> CWalks <span class="sc">+</span></span>
+<span id="cb136-6"><a href="multiple-linear-regression.html#cb136-6" aria-hidden="true" tabindex="-1"></a>            <span class="sc">+</span> League <span class="sc">+</span> Division <span class="sc">+</span> PutOuts <span class="sc">+</span> Assists, <span class="at">data =</span> Hitters)</span></code></pre></div>
 </div>
 <div id="creating-the-folds" class="section level4 unnumbered hasAnchor">
 <h4>Creating The Folds<a href="multiple-linear-regression.html#creating-the-folds" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Using <span class="math inline">\(k = 10\)</span> folds,</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="multiple-linear-regression.html#cb42-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">10</span></span>
-<span id="cb42-2"><a href="multiple-linear-regression.html#cb42-2" aria-hidden="true" tabindex="-1"></a>folds <span class="ot">=</span> <span class="fu">cut</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">263</span>, <span class="at">breaks=</span><span class="dv">10</span>, <span class="at">labels=</span><span class="cn">FALSE</span>)</span>
-<span id="cb42-3"><a href="multiple-linear-regression.html#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb42-4"><a href="multiple-linear-regression.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(folds)</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="multiple-linear-regression.html#cb137-1" aria-hidden="true" tabindex="-1"></a>k <span class="ot">=</span> <span class="dv">10</span></span>
+<span id="cb137-2"><a href="multiple-linear-regression.html#cb137-2" aria-hidden="true" tabindex="-1"></a>folds <span class="ot">=</span> <span class="fu">cut</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">263</span>, <span class="at">breaks=</span><span class="dv">10</span>, <span class="at">labels=</span><span class="cn">FALSE</span>)</span>
+<span id="cb137-3"><a href="multiple-linear-regression.html#cb137-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-4"><a href="multiple-linear-regression.html#cb137-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(folds)</span></code></pre></div>
 <pre><code>## folds
 ##  1  2  3  4  5  6  7  8  9 10 
 ## 27 26 26 26 27 26 26 26 26 27</code></pre>
 <p>However, currently the folds are not random, the first fold is just the first 27 entries. We can randomly shuffle the folds using <code>sample</code>.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="multiple-linear-regression.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
-<span id="cb44-2"><a href="multiple-linear-regression.html#cb44-2" aria-hidden="true" tabindex="-1"></a>folds <span class="ot">=</span> <span class="fu">sample</span>(folds)</span>
-<span id="cb44-3"><a href="multiple-linear-regression.html#cb44-3" aria-hidden="true" tabindex="-1"></a>folds</span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="multiple-linear-regression.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb139-2"><a href="multiple-linear-regression.html#cb139-2" aria-hidden="true" tabindex="-1"></a>folds <span class="ot">=</span> <span class="fu">sample</span>(folds)</span>
+<span id="cb139-3"><a href="multiple-linear-regression.html#cb139-3" aria-hidden="true" tabindex="-1"></a>folds</span></code></pre></div>
 <pre><code>##   [1]  8 10  8  7  3  5  3  6  9  2  3  4  5  9  7  2 10  5  7  6  2 10  8  6  4
 ##  [26]  1  5  8  7  5 10  4  5 10  8  8  1  5  9  2  2 10  8 10  1  1  7  9  2  6
 ##  [51]  5  8  3  4  8  2  1  6  8 10  5  7  2  3  7  7  1  1  7  3  9  8  4  3  6
@@ -519,9 +535,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="calculating-the-cv-errors" class="section level4 unnumbered hasAnchor">
 <h4>Calculating The CV Errors<a href="multiple-linear-regression.html#calculating-the-cv-errors" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We first create a matrix to store the CV errors,</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="multiple-linear-regression.html#cb46-1" aria-hidden="true" tabindex="-1"></a>cv.errors <span class="ot">=</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> k, <span class="at">ncol =</span> <span class="dv">3</span>, </span>
-<span id="cb46-2"><a href="multiple-linear-regression.html#cb46-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">c</span>(<span class="st">&quot;ls10&quot;</span>, <span class="st">&quot;ls6&quot;</span>, <span class="st">&quot;ls11&quot;</span>)))</span>
-<span id="cb46-3"><a href="multiple-linear-regression.html#cb46-3" aria-hidden="true" tabindex="-1"></a>cv.errors </span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="multiple-linear-regression.html#cb141-1" aria-hidden="true" tabindex="-1"></a>cv.errors <span class="ot">=</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> k, <span class="at">ncol =</span> <span class="dv">3</span>, </span>
+<span id="cb141-2"><a href="multiple-linear-regression.html#cb141-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">dimnames =</span> <span class="fu">list</span>(<span class="cn">NULL</span>, <span class="fu">c</span>(<span class="st">&quot;ls10&quot;</span>, <span class="st">&quot;ls6&quot;</span>, <span class="st">&quot;ls11&quot;</span>)))</span>
+<span id="cb141-3"><a href="multiple-linear-regression.html#cb141-3" aria-hidden="true" tabindex="-1"></a>cv.errors </span></code></pre></div>
 <pre><code>##       ls10 ls6 ls11
 ##  [1,]   NA  NA   NA
 ##  [2,]   NA  NA   NA
@@ -534,27 +550,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  [9,]   NA  NA   NA
 ## [10,]   NA  NA   NA</code></pre>
 <p>Then, iterating through each fold, we obtain the CV errors,</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="multiple-linear-regression.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>k){</span>
-<span id="cb48-2"><a href="multiple-linear-regression.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Trains models on all folds but i</span></span>
-<span id="cb48-3"><a href="multiple-linear-regression.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  ls10 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Walks <span class="sc">+</span> CAtBat <span class="sc">+</span> CRuns <span class="sc">+</span> CRBI <span class="sc">+</span> CWalks <span class="sc">+</span></span>
-<span id="cb48-4"><a href="multiple-linear-regression.html#cb48-4" aria-hidden="true" tabindex="-1"></a>              Division <span class="sc">+</span> PutOuts <span class="sc">+</span> Assists, <span class="at">data =</span> Hitters[folds<span class="sc">!=</span>i, ] )</span>
-<span id="cb48-5"><a href="multiple-linear-regression.html#cb48-5" aria-hidden="true" tabindex="-1"></a>  ls6 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Walks <span class="sc">+</span> CRBI <span class="sc">+</span> Division <span class="sc">+</span> PutOuts, </span>
-<span id="cb48-6"><a href="multiple-linear-regression.html#cb48-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> Hitters[folds<span class="sc">!=</span>i, ])</span>
-<span id="cb48-7"><a href="multiple-linear-regression.html#cb48-7" aria-hidden="true" tabindex="-1"></a>  ls11 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Walks <span class="sc">+</span> CAtBat <span class="sc">+</span> CRuns <span class="sc">+</span> CRBI <span class="sc">+</span> CWalks <span class="sc">+</span></span>
-<span id="cb48-8"><a href="multiple-linear-regression.html#cb48-8" aria-hidden="true" tabindex="-1"></a>              <span class="sc">+</span> League <span class="sc">+</span> Division <span class="sc">+</span> PutOuts <span class="sc">+</span> Assists, </span>
-<span id="cb48-9"><a href="multiple-linear-regression.html#cb48-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> Hitters[folds<span class="sc">!=</span>i, ])</span>
-<span id="cb48-10"><a href="multiple-linear-regression.html#cb48-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb48-11"><a href="multiple-linear-regression.html#cb48-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Predicts values in fold i</span></span>
-<span id="cb48-12"><a href="multiple-linear-regression.html#cb48-12" aria-hidden="true" tabindex="-1"></a>  pred10 <span class="ot">&lt;-</span> <span class="fu">predict</span>( ls10, <span class="at">newdata =</span> Hitters[folds<span class="sc">==</span>i, ] )</span>
-<span id="cb48-13"><a href="multiple-linear-regression.html#cb48-13" aria-hidden="true" tabindex="-1"></a>  pred6 <span class="ot">&lt;-</span> <span class="fu">predict</span>( ls6, <span class="at">newdata =</span> Hitters[folds<span class="sc">==</span>i, ] )</span>
-<span id="cb48-14"><a href="multiple-linear-regression.html#cb48-14" aria-hidden="true" tabindex="-1"></a>  pred11 <span class="ot">&lt;-</span> <span class="fu">predict</span>( ls11, <span class="at">newdata =</span> Hitters[folds<span class="sc">==</span>i, ] )</span>
-<span id="cb48-15"><a href="multiple-linear-regression.html#cb48-15" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb48-16"><a href="multiple-linear-regression.html#cb48-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Calculates CV errors</span></span>
-<span id="cb48-17"><a href="multiple-linear-regression.html#cb48-17" aria-hidden="true" tabindex="-1"></a>  cv.errors[i,] <span class="ot">=</span> <span class="fu">c</span>( <span class="fu">mean</span>( (Hitters<span class="sc">$</span>Salary[folds<span class="sc">==</span>i]<span class="sc">-</span>pred10)<span class="sc">^</span><span class="dv">2</span>), <span class="co">#calculate MSE for cv</span></span>
-<span id="cb48-18"><a href="multiple-linear-regression.html#cb48-18" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">mean</span>( (Hitters<span class="sc">$</span>Salary[folds<span class="sc">==</span>i]<span class="sc">-</span>pred6)<span class="sc">^</span><span class="dv">2</span>), </span>
-<span id="cb48-19"><a href="multiple-linear-regression.html#cb48-19" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">mean</span>( (Hitters<span class="sc">$</span>Salary[folds<span class="sc">==</span>i]<span class="sc">-</span>pred11)<span class="sc">^</span><span class="dv">2</span>) )</span>
-<span id="cb48-20"><a href="multiple-linear-regression.html#cb48-20" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb48-21"><a href="multiple-linear-regression.html#cb48-21" aria-hidden="true" tabindex="-1"></a>cv.errors</span></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="multiple-linear-regression.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>k){</span>
+<span id="cb143-2"><a href="multiple-linear-regression.html#cb143-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Trains models on all folds but i</span></span>
+<span id="cb143-3"><a href="multiple-linear-regression.html#cb143-3" aria-hidden="true" tabindex="-1"></a>  ls10 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Walks <span class="sc">+</span> CAtBat <span class="sc">+</span> CRuns <span class="sc">+</span> CRBI <span class="sc">+</span> CWalks <span class="sc">+</span></span>
+<span id="cb143-4"><a href="multiple-linear-regression.html#cb143-4" aria-hidden="true" tabindex="-1"></a>              Division <span class="sc">+</span> PutOuts <span class="sc">+</span> Assists, <span class="at">data =</span> Hitters[folds<span class="sc">!=</span>i, ] )</span>
+<span id="cb143-5"><a href="multiple-linear-regression.html#cb143-5" aria-hidden="true" tabindex="-1"></a>  ls6 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Walks <span class="sc">+</span> CRBI <span class="sc">+</span> Division <span class="sc">+</span> PutOuts, </span>
+<span id="cb143-6"><a href="multiple-linear-regression.html#cb143-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> Hitters[folds<span class="sc">!=</span>i, ])</span>
+<span id="cb143-7"><a href="multiple-linear-regression.html#cb143-7" aria-hidden="true" tabindex="-1"></a>  ls11 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Walks <span class="sc">+</span> CAtBat <span class="sc">+</span> CRuns <span class="sc">+</span> CRBI <span class="sc">+</span> CWalks <span class="sc">+</span></span>
+<span id="cb143-8"><a href="multiple-linear-regression.html#cb143-8" aria-hidden="true" tabindex="-1"></a>              <span class="sc">+</span> League <span class="sc">+</span> Division <span class="sc">+</span> PutOuts <span class="sc">+</span> Assists, </span>
+<span id="cb143-9"><a href="multiple-linear-regression.html#cb143-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> Hitters[folds<span class="sc">!=</span>i, ])</span>
+<span id="cb143-10"><a href="multiple-linear-regression.html#cb143-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb143-11"><a href="multiple-linear-regression.html#cb143-11" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Predicts values in fold i</span></span>
+<span id="cb143-12"><a href="multiple-linear-regression.html#cb143-12" aria-hidden="true" tabindex="-1"></a>  pred10 <span class="ot">&lt;-</span> <span class="fu">predict</span>( ls10, <span class="at">newdata =</span> Hitters[folds<span class="sc">==</span>i, ] )</span>
+<span id="cb143-13"><a href="multiple-linear-regression.html#cb143-13" aria-hidden="true" tabindex="-1"></a>  pred6 <span class="ot">&lt;-</span> <span class="fu">predict</span>( ls6, <span class="at">newdata =</span> Hitters[folds<span class="sc">==</span>i, ] )</span>
+<span id="cb143-14"><a href="multiple-linear-regression.html#cb143-14" aria-hidden="true" tabindex="-1"></a>  pred11 <span class="ot">&lt;-</span> <span class="fu">predict</span>( ls11, <span class="at">newdata =</span> Hitters[folds<span class="sc">==</span>i, ] )</span>
+<span id="cb143-15"><a href="multiple-linear-regression.html#cb143-15" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb143-16"><a href="multiple-linear-regression.html#cb143-16" aria-hidden="true" tabindex="-1"></a>  <span class="co">#Calculates CV errors</span></span>
+<span id="cb143-17"><a href="multiple-linear-regression.html#cb143-17" aria-hidden="true" tabindex="-1"></a>  cv.errors[i,] <span class="ot">=</span> <span class="fu">c</span>( <span class="fu">mean</span>( (Hitters<span class="sc">$</span>Salary[folds<span class="sc">==</span>i]<span class="sc">-</span>pred10)<span class="sc">^</span><span class="dv">2</span>), <span class="co">#calculate MSE for cv</span></span>
+<span id="cb143-18"><a href="multiple-linear-regression.html#cb143-18" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">mean</span>( (Hitters<span class="sc">$</span>Salary[folds<span class="sc">==</span>i]<span class="sc">-</span>pred6)<span class="sc">^</span><span class="dv">2</span>), </span>
+<span id="cb143-19"><a href="multiple-linear-regression.html#cb143-19" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">mean</span>( (Hitters<span class="sc">$</span>Salary[folds<span class="sc">==</span>i]<span class="sc">-</span>pred11)<span class="sc">^</span><span class="dv">2</span>) )</span>
+<span id="cb143-20"><a href="multiple-linear-regression.html#cb143-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb143-21"><a href="multiple-linear-regression.html#cb143-21" aria-hidden="true" tabindex="-1"></a>cv.errors</span></code></pre></div>
 <pre><code>##            ls10       ls6      ls11
 ##  [1,] 132495.25 127446.51 130581.86
 ##  [2,] 111992.83 110608.25 109426.81
@@ -567,8 +583,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  [9,]  97701.55  97551.93 104063.92
 ## [10,]  48005.26  63602.55  46157.69</code></pre>
 <p>Calculating the means gives a performance metric for each model.</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="multiple-linear-regression.html#cb50-1" aria-hidden="true" tabindex="-1"></a>cv.mean.errors <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(cv.errors)</span>
-<span id="cb50-2"><a href="multiple-linear-regression.html#cb50-2" aria-hidden="true" tabindex="-1"></a>cv.mean.errors</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="multiple-linear-regression.html#cb145-1" aria-hidden="true" tabindex="-1"></a>cv.mean.errors <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(cv.errors)</span>
+<span id="cb145-2"><a href="multiple-linear-regression.html#cb145-2" aria-hidden="true" tabindex="-1"></a>cv.mean.errors</span></code></pre></div>
 <pre><code>##     ls10      ls6     ls11 
 ## 109082.7 107657.0 109269.8</code></pre>
 
@@ -582,7 +598,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="simple-linear-regression-models.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dssc---data-wrangling-presentation-and-applications.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="shrinkage-methods.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
