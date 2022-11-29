@@ -2,7 +2,7 @@
 
 ## Exploring Data With Multiple Predictor Variables
 
-### Pairs Plot (Scatterplot Matrix)
+### Pairs Plot (Scatterplot Matrix) {-}
 To see how any pairs of variable in a data are related use `pairs(data)`. For an example with `carSales` data from [Section 3.6](https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/linear-regression.html#regression-in-r-1), 
 
 ```{r echo=TRUE, include=FALSE}
@@ -59,7 +59,7 @@ pairs(fat1,
       upper.panel = upper.panel)
 ```
 
-### Using `corrplot` Package
+### Using `corrplot` Package {-}
 ```{r message=FALSE}
 library(corrplot)
 ```
@@ -70,6 +70,12 @@ library(corrplot)
 corrplot(cor(fat1), method = "number", type = "upper", diag = FALSE)
 corrplot.mixed(cor(fat1), upper = "ellipse", lower = "number",number.cex = .7)
 ```
+
+
+### Plots To Show Isses Due To Multicollinearity and $p$ close to $n$ {-}
+
+To see how to plot how ridge regression lowers variance when we have the problem of **[multicollinearity](https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/shrinkage-methods.html#demonstration-in-multicollinearity-issue)** and **[$p$ close to $n$](https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/shrinkage-methods.html#demonstration-in-p-is-close-to-n-issue)** see notes section 6.2 in notes.
+
 
 ## Basics of Building an MLR Model (Including Transformations)
 
@@ -124,7 +130,7 @@ library(ISLR)
 Hitters <- na.omit(Hitters)
 ```
 
-### Best Subset and Forward/Backward Stepwise Selection (Using Selection Criteria)
+### Best Subset and Forward/Backward Stepwise Selection (Using Selection Criteria) {-}
 
 Best Subset Selection is done using `regsubsets()` function from `leaps` library.
 
@@ -214,7 +220,7 @@ To use forward or backward stepwise selection instead change the `method` parame
 fwd = regsubsets(Salary~., data = Hitters, nvmax = 19, method = "forward")
 ```
 
-### Best Subset Selection (Using Validation)
+### Best Subset Selection (Using Validation) {-}
 
 'regsubsets()' does not have a built-in function to do best subsey selection using validation so we use a custom function (copy and paste).
 
@@ -279,7 +285,7 @@ Usual inference can follow.
 
 Note: using a validation set means the choice of the best model is random, depending on how you selected which observations were used for training and which were used for validation.
 
-### Best Subset Selection (Using Cross-Validation)
+### Best Subset Selection (Using Cross-Validation) {-}
 
 Doing cross-validation is generally preferable to regular validation as it utilises entire data set for training and testing.
 
