@@ -82,3 +82,8 @@ probability-distributions
 dssc-theory-applications
 monte-carlo-hyothesis-test
 boot-strap
+non-linear-models
+polynomial-regression
+step-functions
+splines
+gams
