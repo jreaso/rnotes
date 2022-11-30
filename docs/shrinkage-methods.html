@@ -227,10 +227,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#performing-ridge-regression"><i class="fa fa-check"></i>Performing Ridge Regression</a></li>
 <li class="chapter" data-level="5.1.1" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#performing-lasso-regression"><i class="fa fa-check"></i><b>5.1.1</b> Performing Lasso regression</a></li>
-<li class="chapter" data-level="" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#plotting-lambda-against-coefficient-values"><i class="fa fa-check"></i>Plotting <span class="math inline">\(\lambda\)</span> against coefficient values</a></li>
+<li class="chapter" data-level="" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#plotting-regularisation-paths"><i class="fa fa-check"></i>Plotting Regularisation Paths</a></li>
 <li class="chapter" data-level="" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#cross-validation"><i class="fa fa-check"></i>Cross-Validation</a></li>
 <li class="chapter" data-level="5.1.2" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#comparing-predictive-performance-for-different-lambdas"><i class="fa fa-check"></i><b>5.1.2</b> Comparing Predictive Performance For Different <span class="math inline">\(\lambda\)</span>s</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#principal-component-analysis"><i class="fa fa-check"></i><b>5.2</b> Principal Component Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#principal-component-regression"><i class="fa fa-check"></i>Principal Component Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#comparing-predictive-performances"><i class="fa fa-check"></i><b>5.3</b> Comparing Predictive Performances</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html"><i class="fa fa-check"></i><b>6</b> DSSC - Data Wrangling, Presentation and Applications</a>
 <ul>
@@ -315,27 +320,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb152-2"><a href="shrinkage-methods.html#cb152-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">model.matrix</span>(Salary<span class="sc">~</span>., Hitters)[,<span class="sc">-</span><span class="dv">1</span>]</span></code></pre></div>
 <div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="shrinkage-methods.html#cb153-1" aria-hidden="true" tabindex="-1"></a>lasso <span class="ot">=</span> <span class="fu">glmnet</span>(x, y)</span></code></pre></div>
 </div>
-<div id="plotting-lambda-against-coefficient-values" class="section level3 unnumbered hasAnchor">
-<h3>Plotting <span class="math inline">\(\lambda\)</span> against coefficient values<a href="shrinkage-methods.html#plotting-lambda-against-coefficient-values" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="plotting-regularisation-paths" class="section level3 unnumbered hasAnchor">
+<h3>Plotting Regularisation Paths<a href="shrinkage-methods.html#plotting-regularisation-paths" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>xvar = 'lambda'</code> specifies to plot coefficient values against Log <span class="math inline">\(\lambda\)</span>, otherwise the default <code>xvar</code> is the <span class="math inline">\(L_1\)</span> Norm. Below are two examples, it is the exact same method for ridge and lasso</p>
 <p><strong>Ridge Coefficients Against Log <span class="math inline">\(\lambda\)</span></strong></p>
 <div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="shrinkage-methods.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ridge, <span class="at">xvar =</span> <span class="st">&#39;lambda&#39;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-114-1.png" width="672" /></p>
-<p><strong>Ridge Coefficients Against <span class="math inline">\(L_1\)</span> Norm</strong></p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="shrinkage-methods.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ridge)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
-<p><strong>Lasso Coefficients Against Log <span class="math inline">\(\lambda\)</span></strong></p>
-<p>The top numbers indicate the number of predictors.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="shrinkage-methods.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lasso, <span class="at">xvar =</span> <span class="st">&#39;lambda&#39;</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
 <p><strong>Lasso Coefficients Against <span class="math inline">\(L_1\)</span> Norm</strong></p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="shrinkage-methods.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lasso)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="shrinkage-methods.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lasso)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
 </div>
 <div id="cross-validation" class="section level3 unnumbered hasAnchor">
 <h3>Cross-Validation<a href="shrinkage-methods.html#cross-validation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To find best <span class="math inline">\(\lambda\)</span> with cross-validation, use <code>cv.glmnet()</code> instead.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="shrinkage-methods.html#cb158-1" aria-hidden="true" tabindex="-1"></a>ridge.cv <span class="ot">=</span> <span class="fu">cv.glmnet</span>(x, y, <span class="at">alpha=</span><span class="dv">0</span>)</span>
-<span id="cb158-2"><a href="shrinkage-methods.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ridge.cv)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="shrinkage-methods.html#cb156-1" aria-hidden="true" tabindex="-1"></a>ridge.cv <span class="ot">=</span> <span class="fu">cv.glmnet</span>(x, y, <span class="at">alpha=</span><span class="dv">0</span>)</span>
+<span id="cb156-2"><a href="shrinkage-methods.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(ridge.cv)</span></code></pre></div>
 <pre><code>##  [1] &quot;lambda&quot;     &quot;cvm&quot;        &quot;cvsd&quot;       &quot;cvup&quot;       &quot;cvlo&quot;      
 ##  [6] &quot;nzero&quot;      &quot;call&quot;       &quot;name&quot;       &quot;glmnet.fit&quot; &quot;lambda.min&quot;
 ## [11] &quot;lambda.1se&quot; &quot;index&quot;</code></pre>
@@ -346,49 +345,263 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="plotting-1" class="section level4 unnumbered hasAnchor">
 <h4>Plotting<a href="shrinkage-methods.html#plotting-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>In the plot below, the left dotted line highlights value of <code>lambda.min</code> and the right dotted line hightlights value of <code>lambda.1se</code>.</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="shrinkage-methods.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ridge.cv)</span>
-<span id="cb160-2"><a href="shrinkage-methods.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>( <span class="at">h =</span> ridge.cv<span class="sc">$</span>cvup[ridge.cv<span class="sc">$</span>index[<span class="dv">1</span>]], <span class="at">lty =</span> <span class="dv">4</span> )</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="shrinkage-methods.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ridge.cv)</span>
+<span id="cb158-2"><a href="shrinkage-methods.html#cb158-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>( <span class="at">h =</span> ridge.cv<span class="sc">$</span>cvup[ridge.cv<span class="sc">$</span>index[<span class="dv">1</span>]], <span class="at">lty =</span> <span class="dv">4</span> )</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
 <p>To add these to the plots of coefficients against Log <span class="math inline">\(\lambda\)</span>,</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="shrinkage-methods.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ridge, <span class="at">xvar =</span> <span class="st">&#39;lambda&#39;</span>)</span>
-<span id="cb161-2"><a href="shrinkage-methods.html#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">log</span>(ridge.cv<span class="sc">$</span>lambda.min), <span class="at">lty =</span> <span class="dv">3</span>) <span class="co"># careful to use the log here and below</span></span>
-<span id="cb161-3"><a href="shrinkage-methods.html#cb161-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">log</span>(ridge.cv<span class="sc">$</span>lambda<span class="fl">.1</span>se), <span class="at">lty =</span> <span class="dv">3</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-120-1.png" width="672" /></p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="shrinkage-methods.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ridge, <span class="at">xvar =</span> <span class="st">&#39;lambda&#39;</span>)</span>
+<span id="cb159-2"><a href="shrinkage-methods.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">log</span>(ridge.cv<span class="sc">$</span>lambda.min), <span class="at">lty =</span> <span class="dv">3</span>) <span class="co"># careful to use the log here and below</span></span>
+<span id="cb159-3"><a href="shrinkage-methods.html#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">log</span>(ridge.cv<span class="sc">$</span>lambda<span class="fl">.1</span>se), <span class="at">lty =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
 </div>
 </div>
 <div id="comparing-predictive-performance-for-different-lambdas" class="section level3 hasAnchor" number="5.1.2">
 <h3><span class="header-section-number">5.1.2</span> Comparing Predictive Performance For Different <span class="math inline">\(\lambda\)</span>s<a href="shrinkage-methods.html#comparing-predictive-performance-for-different-lambdas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="shrinkage-methods.html#cb162-1" aria-hidden="true" tabindex="-1"></a>repetitions <span class="ot">=</span> <span class="dv">50</span></span>
-<span id="cb162-2"><a href="shrinkage-methods.html#cb162-2" aria-hidden="true" tabindex="-1"></a>mse<span class="fl">.1</span> <span class="ot">=</span> <span class="fu">c</span>()</span>
-<span id="cb162-3"><a href="shrinkage-methods.html#cb162-3" aria-hidden="true" tabindex="-1"></a>mse<span class="fl">.2</span> <span class="ot">=</span> <span class="fu">c</span>()</span>
-<span id="cb162-4"><a href="shrinkage-methods.html#cb162-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-5"><a href="shrinkage-methods.html#cb162-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)                </span>
-<span id="cb162-6"><a href="shrinkage-methods.html#cb162-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>repetitions){</span>
-<span id="cb162-7"><a href="shrinkage-methods.html#cb162-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb162-8"><a href="shrinkage-methods.html#cb162-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step (i) random data splitting</span></span>
-<span id="cb162-9"><a href="shrinkage-methods.html#cb162-9" aria-hidden="true" tabindex="-1"></a>  training.obs <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">263</span>,  <span class="dv">175</span>)</span>
-<span id="cb162-10"><a href="shrinkage-methods.html#cb162-10" aria-hidden="true" tabindex="-1"></a>  y.train <span class="ot">=</span> Hitters<span class="sc">$</span>Salary[training.obs]</span>
-<span id="cb162-11"><a href="shrinkage-methods.html#cb162-11" aria-hidden="true" tabindex="-1"></a>  x.train <span class="ot">=</span> <span class="fu">model.matrix</span>(Salary<span class="sc">~</span>., Hitters[training.obs, ])[,<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb162-12"><a href="shrinkage-methods.html#cb162-12" aria-hidden="true" tabindex="-1"></a>  y.test <span class="ot">=</span> Hitters<span class="sc">$</span>Salary[<span class="sc">-</span>training.obs]</span>
-<span id="cb162-13"><a href="shrinkage-methods.html#cb162-13" aria-hidden="true" tabindex="-1"></a>  x.test <span class="ot">=</span> <span class="fu">model.matrix</span>(Salary<span class="sc">~</span>., Hitters[<span class="sc">-</span>training.obs, ])[,<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb162-14"><a href="shrinkage-methods.html#cb162-14" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb162-15"><a href="shrinkage-methods.html#cb162-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step (ii) training phase</span></span>
-<span id="cb162-16"><a href="shrinkage-methods.html#cb162-16" aria-hidden="true" tabindex="-1"></a>  lasso.train <span class="ot">=</span> <span class="fu">cv.glmnet</span>(x.train, y.train)</span>
-<span id="cb162-17"><a href="shrinkage-methods.html#cb162-17" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb162-18"><a href="shrinkage-methods.html#cb162-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step (iii) generating predictions</span></span>
-<span id="cb162-19"><a href="shrinkage-methods.html#cb162-19" aria-hidden="true" tabindex="-1"></a>  predict<span class="fl">.1</span> <span class="ot">=</span> <span class="fu">predict</span>(lasso.train, x.test, <span class="at">s =</span> <span class="st">&#39;lambda.min&#39;</span>)</span>
-<span id="cb162-20"><a href="shrinkage-methods.html#cb162-20" aria-hidden="true" tabindex="-1"></a>  predict<span class="fl">.2</span> <span class="ot">=</span> <span class="fu">predict</span>(lasso.train, x.test, <span class="at">s =</span> <span class="st">&#39;lambda.1se&#39;</span>)</span>
-<span id="cb162-21"><a href="shrinkage-methods.html#cb162-21" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb162-22"><a href="shrinkage-methods.html#cb162-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step (iv) evaluating predictive performance</span></span>
-<span id="cb162-23"><a href="shrinkage-methods.html#cb162-23" aria-hidden="true" tabindex="-1"></a>  mse<span class="fl">.1</span>[i] <span class="ot">=</span> <span class="fu">mean</span>((y.test<span class="sc">-</span>predict<span class="fl">.1</span>)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb162-24"><a href="shrinkage-methods.html#cb162-24" aria-hidden="true" tabindex="-1"></a>  mse<span class="fl">.2</span>[i] <span class="ot">=</span> <span class="fu">mean</span>((y.test<span class="sc">-</span>predict<span class="fl">.2</span>)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb162-25"><a href="shrinkage-methods.html#cb162-25" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb162-26"><a href="shrinkage-methods.html#cb162-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-27"><a href="shrinkage-methods.html#cb162-27" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(mse<span class="fl">.1</span>, mse<span class="fl">.2</span>, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&#39;min-CV lasso&#39;</span>,<span class="st">&#39;1-se lasso&#39;</span>), </span>
-<span id="cb162-28"><a href="shrinkage-methods.html#cb162-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&#39;Test MSE&#39;</span>, <span class="at">col =</span> <span class="dv">7</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-121-1.png" width="672" /></p>
-
+<p>See another example of this method applied to BSS, Ridge, Lasso and PCR at end of this chapter.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="shrinkage-methods.html#cb160-1" aria-hidden="true" tabindex="-1"></a>repetitions <span class="ot">=</span> <span class="dv">50</span></span>
+<span id="cb160-2"><a href="shrinkage-methods.html#cb160-2" aria-hidden="true" tabindex="-1"></a>mse<span class="fl">.1</span> <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb160-3"><a href="shrinkage-methods.html#cb160-3" aria-hidden="true" tabindex="-1"></a>mse<span class="fl">.2</span> <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb160-4"><a href="shrinkage-methods.html#cb160-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-5"><a href="shrinkage-methods.html#cb160-5" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)                </span>
+<span id="cb160-6"><a href="shrinkage-methods.html#cb160-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>repetitions){</span>
+<span id="cb160-7"><a href="shrinkage-methods.html#cb160-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb160-8"><a href="shrinkage-methods.html#cb160-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step (i) random data splitting</span></span>
+<span id="cb160-9"><a href="shrinkage-methods.html#cb160-9" aria-hidden="true" tabindex="-1"></a>  training.obs <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">263</span>,  <span class="dv">175</span>)</span>
+<span id="cb160-10"><a href="shrinkage-methods.html#cb160-10" aria-hidden="true" tabindex="-1"></a>  y.train <span class="ot">=</span> Hitters<span class="sc">$</span>Salary[training.obs]</span>
+<span id="cb160-11"><a href="shrinkage-methods.html#cb160-11" aria-hidden="true" tabindex="-1"></a>  x.train <span class="ot">=</span> <span class="fu">model.matrix</span>(Salary<span class="sc">~</span>., Hitters[training.obs, ])[,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb160-12"><a href="shrinkage-methods.html#cb160-12" aria-hidden="true" tabindex="-1"></a>  y.test <span class="ot">=</span> Hitters<span class="sc">$</span>Salary[<span class="sc">-</span>training.obs]</span>
+<span id="cb160-13"><a href="shrinkage-methods.html#cb160-13" aria-hidden="true" tabindex="-1"></a>  x.test <span class="ot">=</span> <span class="fu">model.matrix</span>(Salary<span class="sc">~</span>., Hitters[<span class="sc">-</span>training.obs, ])[,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb160-14"><a href="shrinkage-methods.html#cb160-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb160-15"><a href="shrinkage-methods.html#cb160-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step (ii) training phase</span></span>
+<span id="cb160-16"><a href="shrinkage-methods.html#cb160-16" aria-hidden="true" tabindex="-1"></a>  lasso.train <span class="ot">=</span> <span class="fu">cv.glmnet</span>(x.train, y.train)</span>
+<span id="cb160-17"><a href="shrinkage-methods.html#cb160-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb160-18"><a href="shrinkage-methods.html#cb160-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step (iii) generating predictions</span></span>
+<span id="cb160-19"><a href="shrinkage-methods.html#cb160-19" aria-hidden="true" tabindex="-1"></a>  predict<span class="fl">.1</span> <span class="ot">=</span> <span class="fu">predict</span>(lasso.train, x.test, <span class="at">s =</span> <span class="st">&#39;lambda.min&#39;</span>)</span>
+<span id="cb160-20"><a href="shrinkage-methods.html#cb160-20" aria-hidden="true" tabindex="-1"></a>  predict<span class="fl">.2</span> <span class="ot">=</span> <span class="fu">predict</span>(lasso.train, x.test, <span class="at">s =</span> <span class="st">&#39;lambda.1se&#39;</span>)</span>
+<span id="cb160-21"><a href="shrinkage-methods.html#cb160-21" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb160-22"><a href="shrinkage-methods.html#cb160-22" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step (iv) evaluating predictive performance</span></span>
+<span id="cb160-23"><a href="shrinkage-methods.html#cb160-23" aria-hidden="true" tabindex="-1"></a>  mse<span class="fl">.1</span>[i] <span class="ot">=</span> <span class="fu">mean</span>((y.test<span class="sc">-</span>predict<span class="fl">.1</span>)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb160-24"><a href="shrinkage-methods.html#cb160-24" aria-hidden="true" tabindex="-1"></a>  mse<span class="fl">.2</span>[i] <span class="ot">=</span> <span class="fu">mean</span>((y.test<span class="sc">-</span>predict<span class="fl">.2</span>)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb160-25"><a href="shrinkage-methods.html#cb160-25" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb160-26"><a href="shrinkage-methods.html#cb160-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-27"><a href="shrinkage-methods.html#cb160-27" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(mse<span class="fl">.1</span>, mse<span class="fl">.2</span>, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&#39;min-CV lasso&#39;</span>,<span class="st">&#39;1-se lasso&#39;</span>), </span>
+<span id="cb160-28"><a href="shrinkage-methods.html#cb160-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&#39;Test MSE&#39;</span>, <span class="at">col =</span> <span class="dv">7</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
 </div>
+</div>
+<div id="principal-component-analysis" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Principal Component Analysis<a href="shrinkage-methods.html#principal-component-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This section contains many examples from practical 3. We use <code>seatpos</code> (38x9 dimension and no missing values) data from <code>faraway</code> package.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="shrinkage-methods.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(faraway)</span></code></pre></div>
+<p>To perform principal component analysis without cross-validation, use <code>prcomp()</code> function.</p>
+<p>Seperate out response and prediction variables into <code>x</code> and <code>y</code></p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="shrinkage-methods.html#cb162-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> seatpos<span class="sc">$</span>hipcenter</span>
+<span id="cb162-2"><a href="shrinkage-methods.html#cb162-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">model.matrix</span>(hipcenter <span class="sc">~</span> ., seatpos)[,<span class="sc">-</span><span class="dv">1</span>]</span></code></pre></div>
+<p>Note that <code>model.matrix(hipcenter ~ ., seatpos)[,-1]</code> is equivalent to <code>seatpos[,-9]</code>.</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="shrinkage-methods.html#cb163-1" aria-hidden="true" tabindex="-1"></a>seatpos.pr <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(x, <span class="at">scale=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><strong>Scaling</strong>
+- <code>scale = TRUE</code> scales each variable by it’s standard error which is needed for meaningful inference. However, this can also be done manually,
+- To manually scale before running <code>prcomp</code>, divide by column standard errors,</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="shrinkage-methods.html#cb164-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">apply</span>(x, <span class="dv">2</span>, sd)         <span class="co"># calculates the column SDs</span></span>
+<span id="cb164-2"><a href="shrinkage-methods.html#cb164-2" aria-hidden="true" tabindex="-1"></a>x.s  <span class="ot">&lt;-</span> <span class="fu">sweep</span>(x, <span class="dv">2</span>, s, <span class="st">&quot;/&quot;</span>)  <span class="co"># divides all columns by their SDs</span></span></code></pre></div>
+<p><strong>Extracting Data</strong></p>
+<ul>
+<li><strong>Variance:</strong> <code>seatpos.pr$sdev</code> gives the standard deviation of each component (<code>seatpos.pr$sdev^2</code> for variance)</li>
+<li><strong>Eigenvectors:</strong> <code>seatpos.pr$rotation</code> gives the eigenvectors of each component</li>
+</ul>
+<p>These two are equivalent to calling <code>...$values</code> and <code>...$vectors</code> on <code>eigen(var(seatpos.s))</code> where <code>seatpos.s</code> is <code>seatpos</code> manually scaled (alternatively, don’t scale when calling <code>prcom()</code>).</p>
+<p><strong>Scree Plots and Proportion of Variance Explained</strong></p>
+<p>To manually calculate the proportion of variance each PC explains use,</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="shrinkage-methods.html#cb165-1" aria-hidden="true" tabindex="-1"></a>seatpos.pr<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="fu">sum</span>(seatpos.pr<span class="sc">$</span>sdev<span class="sc">^</span><span class="dv">2</span> )</span></code></pre></div>
+<pre><code>## [1] 0.7091482088 0.1545982512 0.0579679303 0.0301197935 0.0242774455
+## [6] 0.0173967750 0.0062930659 0.0001985298</code></pre>
+<p>Or can directly read off the <code>summary</code> (including cumulative proportions),</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="shrinkage-methods.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(seatpos.pr)</span></code></pre></div>
+<pre><code>## Importance of components:
+##                           PC1    PC2     PC3     PC4     PC5    PC6     PC7
+## Standard deviation     2.3818 1.1121 0.68099 0.49088 0.44070 0.3731 0.22438
+## Proportion of Variance 0.7091 0.1546 0.05797 0.03012 0.02428 0.0174 0.00629
+## Cumulative Proportion  0.7091 0.8638 0.92171 0.95183 0.97611 0.9935 0.99980
+##                            PC8
+## Standard deviation     0.03985
+## Proportion of Variance 0.00020
+## Cumulative Proportion  1.00000</code></pre>
+<p>This is the information a Scree Plot shows which can be plotted straight from the call to <code>prcomp()</code>,</p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="shrinkage-methods.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(seatpos.pr)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-126-1.png" width="672" /></p>
+<div id="data-compression-projection" class="section level4 unnumbered hasAnchor">
+<h4>Data Compression (Projection)<a href="shrinkage-methods.html#data-compression-projection" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Scale data beforehand using <em>manual scaling</em> (see above),</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="shrinkage-methods.html#cb170-1" aria-hidden="true" tabindex="-1"></a>x.s <span class="ot">&lt;-</span> <span class="fu">sweep</span>(x, <span class="dv">2</span>, <span class="fu">apply</span>(x, <span class="dv">2</span>, sd) , <span class="st">&quot;/&quot;</span>) <span class="co">#scaled data</span></span>
+<span id="cb170-2"><a href="shrinkage-methods.html#cb170-2" aria-hidden="true" tabindex="-1"></a>seatpos.pr <span class="ot">&lt;-</span> <span class="fu">prcomp</span>(x.s)</span></code></pre></div>
+<p>Compress data to <span class="math inline">\(k\)</span> PCs, calculate their means and then reconstruct the data (with error),</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="shrinkage-methods.html#cb171-1" aria-hidden="true" tabindex="-1"></a>T <span class="ot">&lt;-</span> <span class="fu">t</span>(seatpos.pr<span class="sc">$</span>x[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>)]) <span class="co"># Compressed using 4 PCs</span></span>
+<span id="cb171-2"><a href="shrinkage-methods.html#cb171-2" aria-hidden="true" tabindex="-1"></a>ms <span class="ot">&lt;-</span> <span class="fu">colMeans</span>(x.s) <span class="co"># calculates means of scaled data set</span></span>
+<span id="cb171-3"><a href="shrinkage-methods.html#cb171-3" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">t</span>(ms <span class="sc">+</span> seatpos.pr<span class="sc">$</span>rot[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>)]<span class="sc">%*%</span> T) <span class="co"># reconstruction</span></span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="shrinkage-methods.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">rbind</span>(x.s[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], R[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]), <span class="at">col=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">4</span>,<span class="dv">38</span>),<span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">38</span>)))</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-129-1.png" width="672" /></p>
+<p>Original data is blue, reconstructions are red</p>
+<p><em>Note: The above only plots two variables, we can plot all pairs using</em></p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="shrinkage-methods.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="fu">rbind</span>(x.s, R), <span class="at">col=</span><span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">4</span>,<span class="dv">38</span>),<span class="fu">rep</span>(<span class="dv">2</span>,<span class="dv">38</span>))) </span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-130-1.png" width="672" /></p>
+</div>
+<div id="principal-component-regression" class="section level3 unnumbered hasAnchor">
+<h3>Principal Component Regression<a href="shrinkage-methods.html#principal-component-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>To perform principal component regression we use <code>pls</code> package.</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="shrinkage-methods.html#cb174-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pls)</span></code></pre></div>
+<p>PCR is done with the <code>pcr(function)</code>. We continue with <code>Hitters</code> data,</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="shrinkage-methods.html#cb175-1" aria-hidden="true" tabindex="-1"></a>pcr.fit <span class="ot">=</span> <span class="fu">pcr</span>( Salary <span class="sc">~</span> ., <span class="at">data =</span> Hitters, <span class="at">scale =</span> <span class="cn">TRUE</span>, <span class="at">validation =</span> <span class="st">&quot;CV&quot;</span> )</span>
+<span id="cb175-2"><a href="shrinkage-methods.html#cb175-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(pcr.fit)</span></code></pre></div>
+<pre><code>## Data:    X dimension: 263 19 
+##  Y dimension: 263 1
+## Fit method: svdpc
+## Number of components considered: 19
+## 
+## VALIDATION: RMSEP
+## Cross-validated using 10 random segments.
+##        (Intercept)  1 comps  2 comps  3 comps  4 comps  5 comps  6 comps
+## CV             452    352.5    351.6    352.3    350.7    346.1    345.5
+## adjCV          452    352.1    351.2    351.8    350.1    345.5    344.6
+##        7 comps  8 comps  9 comps  10 comps  11 comps  12 comps  13 comps
+## CV       345.4    348.5    350.4     353.2     354.5     357.5     360.3
+## adjCV    344.5    347.5    349.3     351.8     353.0     355.8     358.5
+##        14 comps  15 comps  16 comps  17 comps  18 comps  19 comps
+## CV        352.4     354.3     345.6     346.7     346.6     349.4
+## adjCV     350.2     352.3     343.6     344.5     344.3     346.9
+## 
+## TRAINING: % variance explained
+##         1 comps  2 comps  3 comps  4 comps  5 comps  6 comps  7 comps  8 comps
+## X         38.31    60.16    70.84    79.03    84.29    88.63    92.26    94.96
+## Salary    40.63    41.58    42.17    43.22    44.90    46.48    46.69    46.75
+##         9 comps  10 comps  11 comps  12 comps  13 comps  14 comps  15 comps
+## X         96.28     97.26     97.98     98.65     99.15     99.47     99.75
+## Salary    46.86     47.76     47.82     47.85     48.10     50.40     50.55
+##         16 comps  17 comps  18 comps  19 comps
+## X          99.89     99.97     99.99    100.00
+## Salary     53.01     53.85     54.61     54.61</code></pre>
+<p><strong>Optimal Number of PCs</strong></p>
+<p>This is not built in so can be read off from summary above or copy and paste this code,</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="shrinkage-methods.html#cb177-1" aria-hidden="true" tabindex="-1"></a>min.pcr <span class="ot">=</span> <span class="fu">which.min</span>( <span class="fu">MSEP</span>( pcr.fit )<span class="sc">$</span>val[<span class="dv">1</span>,<span class="dv">1</span>, ] ) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb177-2"><a href="shrinkage-methods.html#cb177-2" aria-hidden="true" tabindex="-1"></a>min.pcr</span></code></pre></div>
+<pre><code>## 7 comps 
+##       7</code></pre>
+<p><strong>MSE Validation Plot</strong></p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="shrinkage-methods.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">validationplot</span>( pcr.fit, <span class="at">val.type =</span> <span class="st">&#39;MSEP&#39;</span> )</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-135-1.png" width="672" /></p>
+<p><strong>Coefficients of Optimal Number of PCs</strong></p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="shrinkage-methods.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(pcr.fit, <span class="at">ncomp =</span> min.pcr)</span></code></pre></div>
+<pre><code>## , , 7 comps
+## 
+##                Salary
+## AtBat       27.005477
+## Hits        28.531195
+## HmRun        4.031036
+## Runs        29.464202
+## RBI         18.974255
+## Walks       47.658639
+## Years       24.125975
+## CAtBat      30.831690
+## CHits       32.111585
+## CHmRun      21.811584
+## CRuns       34.054133
+## CRBI        28.901388
+## CWalks      37.990794
+## LeagueN      9.021954
+## DivisionW  -66.069150
+## PutOuts     74.483241
+## Assists     -3.654576
+## Errors      -6.004836
+## NewLeagueN  11.401041</code></pre>
+<p>Similarly, familiar functions like <code>predict</code> can also be used on <code>pcr.fit</code> and has an <code>ncomp</code> parameter.</p>
+<p><strong>Regularisation Path Plots</strong></p>
+<p>Full explanation of code is at the end of section <a href="https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/pcr.html#practical-demonstration-3">7.6</a>.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="shrinkage-methods.html#cb182-1" aria-hidden="true" tabindex="-1"></a>coef.mat <span class="ot">=</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="dv">19</span>, <span class="dv">19</span>)</span>
+<span id="cb182-2"><a href="shrinkage-methods.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">19</span>){</span>
+<span id="cb182-3"><a href="shrinkage-methods.html#cb182-3" aria-hidden="true" tabindex="-1"></a>  coef.mat[,i] <span class="ot">=</span> pcr.fit<span class="sc">$</span>coefficients[,,i]</span>
+<span id="cb182-4"><a href="shrinkage-methods.html#cb182-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb182-5"><a href="shrinkage-methods.html#cb182-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-6"><a href="shrinkage-methods.html#cb182-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(coef.mat[<span class="dv">1</span>,], <span class="at">type =</span> <span class="st">&#39;l&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;Coefficients&#39;</span>, </span>
+<span id="cb182-7"><a href="shrinkage-methods.html#cb182-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&#39;Number of components&#39;</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="fu">min</span>(coef.mat), <span class="fu">max</span>(coef.mat)))</span>
+<span id="cb182-8"><a href="shrinkage-methods.html#cb182-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">19</span>){</span>
+<span id="cb182-9"><a href="shrinkage-methods.html#cb182-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">lines</span>(coef.mat[i,], <span class="at">col =</span> i)</span>
+<span id="cb182-10"><a href="shrinkage-methods.html#cb182-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb182-11"><a href="shrinkage-methods.html#cb182-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-12"><a href="shrinkage-methods.html#cb182-12" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> min.pcr, <span class="at">lty =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
+<p><strong>Scree Plots with PCR (manually)</strong></p>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="shrinkage-methods.html#cb183-1" aria-hidden="true" tabindex="-1"></a>PVE <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>,<span class="dv">19</span>)</span>
+<span id="cb183-2"><a href="shrinkage-methods.html#cb183-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">19</span>){ PVE[i]<span class="ot">&lt;-</span> <span class="fu">sum</span>(pcr.fit<span class="sc">$</span>Xvar[<span class="dv">1</span><span class="sc">:</span>i])<span class="sc">/</span>pcr.fit<span class="sc">$</span>Xtotvar }</span>
+<span id="cb183-3"><a href="shrinkage-methods.html#cb183-3" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>( PVE, <span class="at">names.arg =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">19</span>, <span class="at">main =</span> <span class="st">&quot;scree plot&quot;</span>, </span>
+<span id="cb183-4"><a href="shrinkage-methods.html#cb183-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">xlab =</span> <span class="st">&quot;number of PCs&quot;</span>, </span>
+<span id="cb183-5"><a href="shrinkage-methods.html#cb183-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;proportion of variance explained&quot;</span> )</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
+</div>
+</div>
+<div id="comparing-predictive-performances" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Comparing Predictive Performances<a href="shrinkage-methods.html#comparing-predictive-performances" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Example for practical 3. Uses <code>leaps</code>, <code>pls</code> and <code>glmnet</code> packages and we’re give we want to split data training:test as 28:10.</p>
+<p>We also need to include <code>predict.regsubsets</code> from chapter 4.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="shrinkage-methods.html#cb184-1" aria-hidden="true" tabindex="-1"></a>predict.regsubsets <span class="ot">=</span> <span class="cf">function</span>(object, newdata, id, ...){</span>
+<span id="cb184-2"><a href="shrinkage-methods.html#cb184-2" aria-hidden="true" tabindex="-1"></a>  form <span class="ot">=</span> <span class="fu">as.formula</span>(object<span class="sc">$</span>call[[<span class="dv">2</span>]])</span>
+<span id="cb184-3"><a href="shrinkage-methods.html#cb184-3" aria-hidden="true" tabindex="-1"></a>  mat <span class="ot">=</span> <span class="fu">model.matrix</span>(form, newdata)</span>
+<span id="cb184-4"><a href="shrinkage-methods.html#cb184-4" aria-hidden="true" tabindex="-1"></a>  coefi <span class="ot">=</span> <span class="fu">coef</span>(object, <span class="at">id =</span> id)</span>
+<span id="cb184-5"><a href="shrinkage-methods.html#cb184-5" aria-hidden="true" tabindex="-1"></a>  xvars <span class="ot">=</span> <span class="fu">names</span>(coefi)</span>
+<span id="cb184-6"><a href="shrinkage-methods.html#cb184-6" aria-hidden="true" tabindex="-1"></a>  mat[, xvars]<span class="sc">%*%</span>coefi</span>
+<span id="cb184-7"><a href="shrinkage-methods.html#cb184-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>We want to calculate the correlation and MSE for the four models BSS (<span class="math inline">\(C_p\)</span>), Ridge (5 folds CV), Lasso (5 fold CV) and PCR over 50 repetitions.</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="shrinkage-methods.html#cb185-1" aria-hidden="true" tabindex="-1"></a>cor.bss <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb185-2"><a href="shrinkage-methods.html#cb185-2" aria-hidden="true" tabindex="-1"></a>cor.ridge <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb185-3"><a href="shrinkage-methods.html#cb185-3" aria-hidden="true" tabindex="-1"></a>cor.lasso <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb185-4"><a href="shrinkage-methods.html#cb185-4" aria-hidden="true" tabindex="-1"></a>cor.pcr <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb185-5"><a href="shrinkage-methods.html#cb185-5" aria-hidden="true" tabindex="-1"></a>mse.bss <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb185-6"><a href="shrinkage-methods.html#cb185-6" aria-hidden="true" tabindex="-1"></a>mse.ridge <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb185-7"><a href="shrinkage-methods.html#cb185-7" aria-hidden="true" tabindex="-1"></a>mse.lasso <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb185-8"><a href="shrinkage-methods.html#cb185-8" aria-hidden="true" tabindex="-1"></a>mse.pcr <span class="ot">=</span> <span class="fu">c</span>()</span>
+<span id="cb185-9"><a href="shrinkage-methods.html#cb185-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb185-10"><a href="shrinkage-methods.html#cb185-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>repetitions){</span>
+<span id="cb185-11"><a href="shrinkage-methods.html#cb185-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step (i) data splitting</span></span>
+<span id="cb185-12"><a href="shrinkage-methods.html#cb185-12" aria-hidden="true" tabindex="-1"></a>  training.obs <span class="ot">=</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">38</span>,  <span class="dv">28</span>)</span>
+<span id="cb185-13"><a href="shrinkage-methods.html#cb185-13" aria-hidden="true" tabindex="-1"></a>  y.train <span class="ot">=</span> seatpos<span class="sc">$</span>hipcenter[training.obs]</span>
+<span id="cb185-14"><a href="shrinkage-methods.html#cb185-14" aria-hidden="true" tabindex="-1"></a>  x.train <span class="ot">=</span> <span class="fu">model.matrix</span>(hipcenter <span class="sc">~</span> ., seatpos[training.obs, ])[,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb185-15"><a href="shrinkage-methods.html#cb185-15" aria-hidden="true" tabindex="-1"></a>  y.test <span class="ot">=</span> seatpos<span class="sc">$</span>hipcenter[<span class="sc">-</span>training.obs]</span>
+<span id="cb185-16"><a href="shrinkage-methods.html#cb185-16" aria-hidden="true" tabindex="-1"></a>  x.test <span class="ot">=</span> <span class="fu">model.matrix</span>(hipcenter <span class="sc">~</span> ., seatpos[<span class="sc">-</span>training.obs, ])[,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb185-17"><a href="shrinkage-methods.html#cb185-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb185-18"><a href="shrinkage-methods.html#cb185-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step (ii) training phase</span></span>
+<span id="cb185-19"><a href="shrinkage-methods.html#cb185-19" aria-hidden="true" tabindex="-1"></a>  bss.train <span class="ot">=</span> <span class="fu">regsubsets</span>(hipcenter <span class="sc">~</span> ., seatpos, <span class="at">nvmax =</span> <span class="dv">8</span>)</span>
+<span id="cb185-20"><a href="shrinkage-methods.html#cb185-20" aria-hidden="true" tabindex="-1"></a>  min.cp <span class="ot">=</span> <span class="fu">which.min</span>(<span class="fu">summary</span>(bss.train)<span class="sc">$</span>cp)</span>
+<span id="cb185-21"><a href="shrinkage-methods.html#cb185-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb185-22"><a href="shrinkage-methods.html#cb185-22" aria-hidden="true" tabindex="-1"></a>  ridge.train <span class="ot">=</span> <span class="fu">cv.glmnet</span>(x.train, y.train, <span class="at">alpha =</span> <span class="dv">0</span>, <span class="at">nfold=</span><span class="dv">5</span>)</span>
+<span id="cb185-23"><a href="shrinkage-methods.html#cb185-23" aria-hidden="true" tabindex="-1"></a>  lasso.train <span class="ot">=</span> <span class="fu">cv.glmnet</span>(x.train, y.train, <span class="at">nfold=</span><span class="dv">5</span>)</span>
+<span id="cb185-24"><a href="shrinkage-methods.html#cb185-24" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb185-25"><a href="shrinkage-methods.html#cb185-25" aria-hidden="true" tabindex="-1"></a>  pcr.train <span class="ot">=</span> <span class="fu">pcr</span>(hipcenter <span class="sc">~</span> ., <span class="at">data =</span> seatpos[training.obs,],</span>
+<span id="cb185-26"><a href="shrinkage-methods.html#cb185-26" aria-hidden="true" tabindex="-1"></a>                  <span class="at">scale =</span> <span class="cn">TRUE</span>, <span class="at">validation =</span> <span class="st">&quot;CV&quot;</span> )</span>
+<span id="cb185-27"><a href="shrinkage-methods.html#cb185-27" aria-hidden="true" tabindex="-1"></a>  min.pcr <span class="ot">=</span> <span class="fu">which.min</span>(<span class="fu">MSEP</span>(pcr.train)<span class="sc">$</span>val[<span class="dv">1</span>,<span class="dv">1</span>, ] ) <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb185-28"><a href="shrinkage-methods.html#cb185-28" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb185-29"><a href="shrinkage-methods.html#cb185-29" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step (iii) generating predictions</span></span>
+<span id="cb185-30"><a href="shrinkage-methods.html#cb185-30" aria-hidden="true" tabindex="-1"></a>  predict.bss <span class="ot">=</span> <span class="fu">predict.regsubsets</span>(bss.train, seatpos[<span class="sc">-</span>training.obs, ], min.cp)</span>
+<span id="cb185-31"><a href="shrinkage-methods.html#cb185-31" aria-hidden="true" tabindex="-1"></a>  predict.ridge <span class="ot">=</span> <span class="fu">predict</span>(ridge.train, x.test, <span class="at">s =</span> <span class="st">&#39;lambda.min&#39;</span>)</span>
+<span id="cb185-32"><a href="shrinkage-methods.html#cb185-32" aria-hidden="true" tabindex="-1"></a>  predict.lasso <span class="ot">=</span> <span class="fu">predict</span>(lasso.train, x.test, <span class="at">s =</span> <span class="st">&#39;lambda.min&#39;</span>)</span>
+<span id="cb185-33"><a href="shrinkage-methods.html#cb185-33" aria-hidden="true" tabindex="-1"></a>  predict.pcr <span class="ot">=</span> <span class="fu">predict</span>(pcr.train, seatpos[<span class="sc">-</span>training.obs, ], <span class="at">ncomp =</span> min.pcr )</span>
+<span id="cb185-34"><a href="shrinkage-methods.html#cb185-34" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb185-35"><a href="shrinkage-methods.html#cb185-35" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Step (iv) evaluating predictive performance</span></span>
+<span id="cb185-36"><a href="shrinkage-methods.html#cb185-36" aria-hidden="true" tabindex="-1"></a>  mse.bss[i] <span class="ot">=</span> <span class="fu">mean</span>((y.test<span class="sc">-</span>predict.bss)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb185-37"><a href="shrinkage-methods.html#cb185-37" aria-hidden="true" tabindex="-1"></a>  mse.ridge[i] <span class="ot">=</span> <span class="fu">mean</span>((y.test<span class="sc">-</span>predict.ridge)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb185-38"><a href="shrinkage-methods.html#cb185-38" aria-hidden="true" tabindex="-1"></a>  mse.lasso[i] <span class="ot">=</span> <span class="fu">mean</span>((y.test<span class="sc">-</span>predict.lasso)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb185-39"><a href="shrinkage-methods.html#cb185-39" aria-hidden="true" tabindex="-1"></a>  mse.pcr[i] <span class="ot">=</span> <span class="fu">mean</span>((y.test<span class="sc">-</span>predict.pcr)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb185-40"><a href="shrinkage-methods.html#cb185-40" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb185-41"><a href="shrinkage-methods.html#cb185-41" aria-hidden="true" tabindex="-1"></a>  cor.bss[i] <span class="ot">=</span> <span class="fu">cor</span>(y.test, predict.bss)</span>
+<span id="cb185-42"><a href="shrinkage-methods.html#cb185-42" aria-hidden="true" tabindex="-1"></a>  cor.ridge[i] <span class="ot">=</span> <span class="fu">cor</span>(y.test, predict.ridge)</span>
+<span id="cb185-43"><a href="shrinkage-methods.html#cb185-43" aria-hidden="true" tabindex="-1"></a>  cor.lasso[i] <span class="ot">=</span> <span class="fu">cor</span>(y.test, predict.lasso)</span>
+<span id="cb185-44"><a href="shrinkage-methods.html#cb185-44" aria-hidden="true" tabindex="-1"></a>  cor.pcr[i] <span class="ot">=</span> <span class="fu">cor</span>(y.test, predict.pcr)</span>
+<span id="cb185-45"><a href="shrinkage-methods.html#cb185-45" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>We can then compare with boxplots</p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="shrinkage-methods.html#cb186-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(mse.bss, mse.ridge, mse.lasso, mse.pcr, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&#39;BSS&#39;</span>,<span class="st">&#39;Ridge&#39;</span>,<span class="st">&#39;Lasso&#39;</span>,<span class="st">&#39;PCR&#39;</span>), </span>
+<span id="cb186-2"><a href="shrinkage-methods.html#cb186-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&#39;Test MSE&#39;</span>, <span class="at">col =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="shrinkage-methods.html#cb187-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(cor.bss, cor.ridge, cor.lasso, cor.pcr, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&#39;BSS&#39;</span>,<span class="st">&#39;Ridge&#39;</span>,<span class="st">&#39;Lasso&#39;</span>,<span class="st">&#39;PCR&#39;</span>), </span>
+<span id="cb187-2"><a href="shrinkage-methods.html#cb187-2" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&#39;Test Correlation&#39;</span>, <span class="at">col =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-142-2.png" width="672" /></p>
+
 </div>
 </div>
             </section>

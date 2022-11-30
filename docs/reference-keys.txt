@@ -51,6 +51,8 @@ shrinkage-methods
 ridge-and-lasso-regression
 performing-lasso-regression
 comparing-predictive-performance-for-different-lambdas
+principal-component-analysis
+comparing-predictive-performances
 dssc---data-wrangling-presentation-and-applications
 data-wrangling-with-tidyverse
 tidy-form-tidyr

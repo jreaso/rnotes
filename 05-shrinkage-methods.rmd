@@ -59,26 +59,14 @@ lasso = glmnet(x, y)
 ```
 
 
-### Plotting $\lambda$ against coefficient values {-}
+### Plotting Regularisation Paths {-}
+
+`xvar = 'lambda'` specifies to plot coefficient values against Log $\lambda$, otherwise the default `xvar` is the $L_1$ Norm. Below are two examples, it is the exact same method for ridge and lasso
 
 **Ridge Coefficients Against Log $\lambda$**
 
 ```{r}
 plot(ridge, xvar = 'lambda')
-```
-
-**Ridge Coefficients Against $L_1$ Norm**
-
-```{r}
-plot(ridge)
-```
-
-**Lasso Coefficients Against Log $\lambda$**
-
-The top numbers indicate the number of predictors.
-
-```{r}
-plot(lasso, xvar = 'lambda')
 ```
 
 **Lasso Coefficients Against $L_1$ Norm**
@@ -119,6 +107,8 @@ abline(v = log(ridge.cv$lambda.1se), lty = 3)
 
 ### Comparing Predictive Performance For Different $\lambda$s
 
+See another example of this method applied to BSS, Ridge, Lasso and PCR at end of this chapter.
+
 ```{r}
 repetitions = 50
 mse.1 = c()
@@ -148,4 +138,248 @@ for(i in 1:repetitions){
 
 boxplot(mse.1, mse.2, names = c('min-CV lasso','1-se lasso'), 
         ylab = 'Test MSE', col = 7)
+```
+
+
+## Principal Component Analysis
+
+This section contains many examples from practical 3. We use `seatpos` (38x9 dimension and no missing values) data from `faraway` package.
+
+```{r warning=FALSE, message=FALSE}
+library(faraway)
+```
+
+To perform principal component analysis without cross-validation, use `prcomp()` function.
+
+Seperate out response and prediction variables into `x` and `y`
+
+```{r}
+y <- seatpos$hipcenter
+x <- model.matrix(hipcenter ~ ., seatpos)[,-1]
+```
+
+Note that `model.matrix(hipcenter ~ ., seatpos)[,-1]` is equivalent to `seatpos[,-9]`.
+
+```{r}
+seatpos.pr <- prcomp(x, scale=TRUE)
+```
+
+**Scaling**
+- `scale = TRUE` scales each variable by it's standard error which is needed for meaningful inference. However, this can also be done manually,
+- To manually scale before running `prcomp`, divide by column standard errors,
+```{r}
+s <- apply(x, 2, sd)         # calculates the column SDs
+x.s  <- sweep(x, 2, s, "/")  # divides all columns by their SDs
+```
+
+**Extracting Data**
+
+- **Variance:** `seatpos.pr$sdev` gives the standard deviation of each component (`seatpos.pr$sdev^2` for variance)
+- **Eigenvectors:** `seatpos.pr$rotation` gives the eigenvectors of each component 
+
+These two are equivalent to calling `...$values` and `...$vectors` on `eigen(var(seatpos.s))` where `seatpos.s` is `seatpos` manually scaled (alternatively, don't scale when calling `prcom()`).
+
+**Scree Plots and Proportion of Variance Explained**
+
+To manually calculate the proportion of variance each PC explains use,
+
+```{r}
+seatpos.pr$sdev^2 / sum(seatpos.pr$sdev^2 )
+```
+
+Or can directly read off the `summary` (including cumulative proportions),
+
+```{r}
+summary(seatpos.pr)
+```
+
+This is the information a Scree Plot shows which can be plotted straight from the call to `prcomp()`,
+
+```{r}
+plot(seatpos.pr)
+```
+
+
+#### Data Compression (Projection) {-}
+
+Scale data beforehand using *manual scaling* (see above),
+
+```{r}
+x.s <- sweep(x, 2, apply(x, 2, sd) , "/") #scaled data
+seatpos.pr <- prcomp(x.s)
+```
+
+
+Compress data to $k$ PCs, calculate their means and then reconstruct the data (with error),
+
+```{r}
+T <- t(seatpos.pr$x[,c(1,2,3,4)]) # Compressed using 4 PCs
+ms <- colMeans(x.s) # calculates means of scaled data set
+R <- t(ms + seatpos.pr$rot[,c(1,2,3,3)]%*% T) # reconstruction
+```
+
+```{r}
+plot(rbind(x.s[,1:2], R[,1:2]), col=c(rep(4,38),rep(2,38)))
+```
+
+Original data is blue, reconstructions are red
+
+*Note: The above only plots two variables, we can plot all pairs using*
+
+```{r}
+pairs(rbind(x.s, R), col=c(rep(4,38),rep(2,38))) 
+```
+
+### Principal Component Regression {-}
+
+To perform principal component regression we use `pls` package.
+
+```{r warning=FALSE, message=FALSE}
+library(pls)
+```
+
+PCR is done with the `pcr(function)`. We continue with `Hitters` data,
+
+```{r include=FALSE}
+library(ISLR) # for Hitters dataset
+set.seed(1)
+```
+
+```{r}
+pcr.fit = pcr( Salary ~ ., data = Hitters, scale = TRUE, validation = "CV" )
+summary(pcr.fit)
+```
+
+**Optimal Number of PCs**
+
+This is not built in so can be read off from summary above or copy and paste this code,
+
+```{r}
+min.pcr = which.min( MSEP( pcr.fit )$val[1,1, ] ) - 1
+min.pcr
+```
+
+**MSE Validation Plot**
+
+```{r}
+validationplot( pcr.fit, val.type = 'MSEP' )
+```
+
+**Coefficients of Optimal Number of PCs**
+
+```{r}
+coef(pcr.fit, ncomp = min.pcr)
+```
+
+Similarly, familiar functions like `predict` can also be used on `pcr.fit` and has an `ncomp` parameter.
+
+**Regularisation Path Plots**
+
+Full explanation of code is at the end of section [7.6](https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/pcr.html#practical-demonstration-3).
+
+```{r}
+coef.mat = matrix(NA, 19, 19)
+for(i in 1:19){
+  coef.mat[,i] = pcr.fit$coefficients[,,i]
+}
+
+plot(coef.mat[1,], type = 'l', ylab = 'Coefficients', 
+     xlab = 'Number of components', ylim = c(min(coef.mat), max(coef.mat)))
+for(i in 2:19){
+  lines(coef.mat[i,], col = i)
+}
+
+abline(v = min.pcr, lty = 3)
+```
+
+**Scree Plots with PCR (manually)**
+
+```{r}
+PVE <- rep(NA,19)
+for(i in 1:19){ PVE[i]<- sum(pcr.fit$Xvar[1:i])/pcr.fit$Xtotvar }
+barplot( PVE, names.arg = 1:19, main = "scree plot", 
+         xlab = "number of PCs", 
+         ylab = "proportion of variance explained" )
+
+```
+
+## Comparing Predictive Performances
+
+Example for practical 3. Uses `leaps`, `pls` and `glmnet` packages and we're give we want to split data training:test as 28:10.
+
+```{r include=FALSE, warning=FALSE, message=FALSE}
+library(leaps)
+library(pls)
+library(glmnet)
+```
+
+We also need to include `predict.regsubsets` from chapter 4.
+
+```{r}
+predict.regsubsets = function(object, newdata, id, ...){
+  form = as.formula(object$call[[2]])
+  mat = model.matrix(form, newdata)
+  coefi = coef(object, id = id)
+  xvars = names(coefi)
+  mat[, xvars]%*%coefi
+}
+```
+
+We want to calculate the correlation and MSE for the four models BSS ($C_p$), Ridge (5 folds CV), Lasso (5 fold CV) and PCR over 50 repetitions.
+
+```{r}
+cor.bss = c()
+cor.ridge = c()
+cor.lasso = c()
+cor.pcr = c()
+mse.bss = c()
+mse.ridge = c()
+mse.lasso = c()
+mse.pcr = c()
+
+for(i in 1:repetitions){
+  # Step (i) data splitting
+  training.obs = sample(1:38,  28)
+  y.train = seatpos$hipcenter[training.obs]
+  x.train = model.matrix(hipcenter ~ ., seatpos[training.obs, ])[,-1]
+  y.test = seatpos$hipcenter[-training.obs]
+  x.test = model.matrix(hipcenter ~ ., seatpos[-training.obs, ])[,-1]
+  
+  # Step (ii) training phase
+  bss.train = regsubsets(hipcenter ~ ., seatpos, nvmax = 8)
+  min.cp = which.min(summary(bss.train)$cp)
+
+  ridge.train = cv.glmnet(x.train, y.train, alpha = 0, nfold=5)
+  lasso.train = cv.glmnet(x.train, y.train, nfold=5)
+  
+  pcr.train = pcr(hipcenter ~ ., data = seatpos[training.obs,],
+                  scale = TRUE, validation = "CV" )
+  min.pcr = which.min(MSEP(pcr.train)$val[1,1, ] ) - 1
+  
+  # Step (iii) generating predictions
+  predict.bss = predict.regsubsets(bss.train, seatpos[-training.obs, ], min.cp)
+  predict.ridge = predict(ridge.train, x.test, s = 'lambda.min')
+  predict.lasso = predict(lasso.train, x.test, s = 'lambda.min')
+  predict.pcr = predict(pcr.train, seatpos[-training.obs, ], ncomp = min.pcr )
+  
+  # Step (iv) evaluating predictive performance
+  mse.bss[i] = mean((y.test-predict.bss)^2)
+  mse.ridge[i] = mean((y.test-predict.ridge)^2)
+  mse.lasso[i] = mean((y.test-predict.lasso)^2)
+  mse.pcr[i] = mean((y.test-predict.pcr)^2)
+  
+  cor.bss[i] = cor(y.test, predict.bss)
+  cor.ridge[i] = cor(y.test, predict.ridge)
+  cor.lasso[i] = cor(y.test, predict.lasso)
+  cor.pcr[i] = cor(y.test, predict.pcr)
+}
+```
+
+We can then compare with boxplots
+
+```{r}
+boxplot(mse.bss, mse.ridge, mse.lasso, mse.pcr, names = c('BSS','Ridge','Lasso','PCR'), 
+        ylab = 'Test MSE', col = 2:5)
+boxplot(cor.bss, cor.ridge, cor.lasso, cor.pcr, names = c('BSS','Ridge','Lasso','PCR'), 
+        ylab = 'Test Correlation', col = 2:5)
 ```

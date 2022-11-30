@@ -227,10 +227,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#performing-ridge-regression"><i class="fa fa-check"></i>Performing Ridge Regression</a></li>
 <li class="chapter" data-level="5.1.1" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#performing-lasso-regression"><i class="fa fa-check"></i><b>5.1.1</b> Performing Lasso regression</a></li>
-<li class="chapter" data-level="" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#plotting-lambda-against-coefficient-values"><i class="fa fa-check"></i>Plotting <span class="math inline">\(\lambda\)</span> against coefficient values</a></li>
+<li class="chapter" data-level="" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#plotting-regularisation-paths"><i class="fa fa-check"></i>Plotting Regularisation Paths</a></li>
 <li class="chapter" data-level="" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#cross-validation"><i class="fa fa-check"></i>Cross-Validation</a></li>
 <li class="chapter" data-level="5.1.2" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#comparing-predictive-performance-for-different-lambdas"><i class="fa fa-check"></i><b>5.1.2</b> Comparing Predictive Performance For Different <span class="math inline">\(\lambda\)</span>s</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#principal-component-analysis"><i class="fa fa-check"></i><b>5.2</b> Principal Component Analysis</a>
+<ul>
+<li class="chapter" data-level="" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#principal-component-regression"><i class="fa fa-check"></i>Principal Component Regression</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="shrinkage-methods.html"><a href="shrinkage-methods.html#comparing-predictive-performances"><i class="fa fa-check"></i><b>5.3</b> Comparing Predictive Performances</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html"><i class="fa fa-check"></i><b>6</b> DSSC - Data Wrangling, Presentation and Applications</a>
 <ul>
@@ -482,21 +487,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb128-5"><a href="multiple-linear-regression.html#cb128-5" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb128-6"><a href="multiple-linear-regression.html#cb128-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb128-7"><a href="multiple-linear-regression.html#cb128-7" aria-hidden="true" tabindex="-1"></a>val.error <span class="co">#stores 19 models validation MSE</span></span></code></pre></div>
-<pre><code>##  [1] 209107.2 199208.2 187947.2 181501.9 182300.2 194296.1 181320.1 174228.1
-##  [9] 180525.0 182878.2 184034.7 184324.9 184036.6 184213.7 184133.0 186229.3
-## [17] 186491.8 186249.7 186376.5</code></pre>
+<pre><code>##  [1] 200345.9 204823.8 200490.2 184080.3 177679.6 172506.8 166856.4 165837.3
+##  [9] 165322.5 164210.5 167691.1 165712.3 164811.1 164664.9 163718.3 163600.4
+## [17] 163655.3 163562.8 163481.7</code></pre>
 <p>Index with smallest MSE is best number of predictors</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="multiple-linear-regression.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(val.error) </span></code></pre></div>
-<pre><code>## [1] 8</code></pre>
+<pre><code>## [1] 19</code></pre>
 </div>
 <div id="inference" class="section level4 unnumbered hasAnchor">
 <h4>Inference<a href="multiple-linear-regression.html#inference" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>After choosing optimal model with best subset selection using a validation set, <strong>before inference, you must train the model in the entire data set</strong>.</p>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="multiple-linear-regression.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(best.val, <span class="dv">10</span>) <span class="co"># Check which variables to use in the lm.</span></span></code></pre></div>
-<pre><code>## (Intercept)       AtBat        Hits        Runs       Walks       CHits 
-## -14.2964331  -1.3686472   7.0455219  -2.5219404   5.5410380   0.6749255 
-##      CHmRun        CRBI      CWalks   DivisionW     PutOuts 
-##   2.9589435  -0.7975057  -0.9184076 -56.1344486   0.2132442</code></pre>
+<pre><code>## (Intercept)       AtBat        Hits       HmRun       Walks       CRuns 
+## -19.0722154  -1.9528953   7.6740001   4.1472727   4.9404809   1.0104098 
+##      CWalks     LeagueN   DivisionW     PutOuts     Assists 
+##  -0.5999614  24.9829011 -79.4592498   0.1973255   0.1584418</code></pre>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="multiple-linear-regression.html#cb134-1" aria-hidden="true" tabindex="-1"></a>ls10 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Runs <span class="sc">+</span> Walks <span class="sc">+</span> CAtBat <span class="sc">+</span> CRuns <span class="sc">+</span> CRBI <span class="sc">+</span> CWalks <span class="sc">+</span> Division <span class="sc">+</span> PutOuts, <span class="at">data =</span> Hitters)</span></code></pre></div>
 <p>Usual inference can follow.</p>
 <p>Note: using a validation set means the choice of the best model is random, depending on how you selected which observations were used for training and which were used for validation.</p>
