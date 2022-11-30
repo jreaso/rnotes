@@ -7,3 +7,5 @@
 ## Splines
 
 ## GAMs
+
+## Logistic Regression
