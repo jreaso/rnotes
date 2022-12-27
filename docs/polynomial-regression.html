@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>R Notes</title>
-  <meta name="description" content="R Notes" />
+  <title>Chapter 6 Polynomial Regression | R Notes</title>
+  <meta name="description" content="Chapter 6 Polynomial Regression | R Notes" />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="R Notes" />
+  <meta property="og:title" content="Chapter 6 Polynomial Regression | R Notes" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="R Notes" />
+  <meta name="twitter:title" content="Chapter 6 Polynomial Regression | R Notes" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="r-basics.html"/>
+<link rel="prev" href="shrinkage-methods.html"/>
+<link rel="next" href="step-functions.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -303,35 +303,130 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">R Notes</h1>
-<p class="author"><em>Jamie Reason</em></p>
-<p class="date"><em>2022-23</em></p>
+<div id="polynomial-regression" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Polynomial Regression<a href="polynomial-regression.html#polynomial-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Simplest example of a non-linear model.</p>
+<div id="polynomial-regression-model-example-degree-2" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Polynomial Regression Model Example (Degree 2)<a href="polynomial-regression.html#polynomial-regression-model-example-degree-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Following <a href="https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/polynomial-regression.html#prac-poly">practical demonstration 8.3</a> we build a model for <code>Boston</code> dataset in <code>library(MASS)</code> which has no missing data. To just see an example see Polynomial Regression (Higher Degrees).</p>
+<pre><code>## 
+## Attaching package: &#39;MASS&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     select</code></pre>
+<p>For convenience, we can rename the response and predictor variable <code>y</code> and <code>x</code> respectively, and label axes for plotting. Below is then a basic plot of response against predictor.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="polynomial-regression.html#cb190-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> Boston<span class="sc">$</span>medv</span>
+<span id="cb190-2"><a href="polynomial-regression.html#cb190-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> Boston<span class="sc">$</span>lstat</span>
+<span id="cb190-3"><a href="polynomial-regression.html#cb190-3" aria-hidden="true" tabindex="-1"></a>y.lab <span class="ot">=</span> <span class="st">&#39;Median Property Value&#39;</span></span>
+<span id="cb190-4"><a href="polynomial-regression.html#cb190-4" aria-hidden="true" tabindex="-1"></a>x.lab <span class="ot">=</span> <span class="st">&#39;Lower Status (%)&#39;</span></span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="polynomial-regression.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>( x, y, <span class="at">cex.lab =</span> <span class="fl">1.1</span>, <span class="at">col=</span><span class="st">&quot;darkgrey&quot;</span>, <span class="at">xlab =</span> x.lab, <span class="at">ylab =</span> y.lab, </span>
+<span id="cb191-2"><a href="polynomial-regression.html#cb191-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">main =</span> <span class="st">&quot;&quot;</span>, <span class="at">bty =</span> <span class="st">&#39;l&#39;</span> )</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
+<div id="polynomial-regression-function" class="section level3 unnumbered hasAnchor">
+<h3>Polynomial Regression Function<a href="polynomial-regression.html#polynomial-regression-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Polynomial regression can be called by writing out the predictors directly (<code>poly2 = lm( y ~ x + I(x^2) )</code>), or using the <code>poly()</code> command.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="polynomial-regression.html#cb192-1" aria-hidden="true" tabindex="-1"></a>poly2 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x,  <span class="dv">2</span>,  <span class="at">raw =</span> <span class="cn">TRUE</span>)) <span class="co">#2 is the degree</span></span>
+<span id="cb192-2"><a href="polynomial-regression.html#cb192-2" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(poly2)</span></span></code></pre></div>
+<p>Here, <code>raw = TRUE</code> calculates the polynomial regression as usual. Leaving this out so default is <code>raw = FALSE</code> would lead to an orthogonal basis being chosen to perform the regression on.</p>
 </div>
-<div id="resources" class="section level1 unnumbered hasAnchor">
-<h1>Resources<a href="index.html#resources" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>These are personal notes on R mainly for reference, written over the course of two modules taken at university,</p>
-<ul>
-<li>MLLN (Machine Learning and Neural Networks) (2022-23)</li>
-<li>DSSC (Data Science and Statistical Computing) (2021-22)</li>
-</ul>
-<p>Although, this current version is more focused on the content for the MLLN module.</p>
-<p>These are heavily based off the notes of the respective courses (see links below) and I do not take credit. There may still be mistakes and inaccuracies from myself.</p>
-<ul>
-<li><a href="https://rseek.org"><strong>R Seek</strong></a> Search Engine</li>
-<li><a href="https://www.rstudio.com/resources/cheatsheets/"><strong>Cheat Sheets</strong></a></li>
-<li><a href="https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/"><strong>MLNN Course Notes</strong></a></li>
-<li><a href="https://www.louisaslett.com/Courses/DSSC/notes/"><strong>DSSC Course Notes</strong></a></li>
-</ul>
+<div id="plotting-simple-polynomial-regression" class="section level3 unnumbered hasAnchor">
+<h3>Plotting Simple Polynomial Regression<a href="polynomial-regression.html#plotting-simple-polynomial-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>First, we mus sort the <span class="math inline">\(x\)</span> values for the plot to work. We use each initial <span class="math inline">\(x\)</span> data point as a point we connect between to draw the polynomial.</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="polynomial-regression.html#cb193-1" aria-hidden="true" tabindex="-1"></a>sort.x <span class="ot">=</span> <span class="fu">sort</span>(x)</span>
+<span id="cb193-2"><a href="polynomial-regression.html#cb193-2" aria-hidden="true" tabindex="-1"></a>pred2 <span class="ot">=</span> <span class="fu">predict</span>(poly2, <span class="at">newdata =</span> <span class="fu">list</span>(<span class="at">x =</span> sort.x), <span class="at">se =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb193-3"><a href="polynomial-regression.html#cb193-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pred2)</span></code></pre></div>
+<pre><code>## [1] &quot;fit&quot;            &quot;se.fit&quot;         &quot;df&quot;             &quot;residual.scale&quot;</code></pre>
+<p><code>pred2</code> contains <code>fit</code> which are the fitted values and <code>se.fit</code> which are the standard errors at each fitted point.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="polynomial-regression.html#cb195-1" aria-hidden="true" tabindex="-1"></a>se.bands2 <span class="ot">=</span> <span class="fu">cbind</span>( pred2<span class="sc">$</span>fit <span class="sc">-</span> <span class="dv">2</span> <span class="sc">*</span> pred2<span class="sc">$</span>se.fit, </span>
+<span id="cb195-2"><a href="polynomial-regression.html#cb195-2" aria-hidden="true" tabindex="-1"></a>                   pred2<span class="sc">$</span>fit <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> pred2<span class="sc">$</span>se.fit )</span></code></pre></div>
+<p><strong>Final Plot</strong></p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="polynomial-regression.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">cex.lab =</span> <span class="fl">1.1</span>, <span class="at">col=</span><span class="st">&quot;darkgrey&quot;</span>, <span class="at">xlab =</span> x.lab, <span class="at">ylab =</span> y.lab,</span>
+<span id="cb196-2"><a href="polynomial-regression.html#cb196-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Degree-2 polynomial&quot;</span>, <span class="at">bty =</span> <span class="st">&#39;l&#39;</span>)</span>
+<span id="cb196-3"><a href="polynomial-regression.html#cb196-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(sort.x, pred2<span class="sc">$</span>fit, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb196-4"><a href="polynomial-regression.html#cb196-4" aria-hidden="true" tabindex="-1"></a><span class="fu">matlines</span>(sort.x, se.bands2, <span class="at">lwd =</span> <span class="fl">1.4</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-149-1.png" width="672" /></p>
+</div>
+</div>
+<div id="polynomial-regression-higher-degrees" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Polynomial Regression (Higher Degrees)<a href="polynomial-regression.html#polynomial-regression-higher-degrees" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="polynomial-regression.html#cb197-1" aria-hidden="true" tabindex="-1"></a>poly3 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x,  <span class="dv">3</span>))</span>
+<span id="cb197-2"><a href="polynomial-regression.html#cb197-2" aria-hidden="true" tabindex="-1"></a>poly4 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x,  <span class="dv">4</span>))</span>
+<span id="cb197-3"><a href="polynomial-regression.html#cb197-3" aria-hidden="true" tabindex="-1"></a>poly5 <span class="ot">=</span> <span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">poly</span>(x, <span class="dv">5</span>))</span>
+<span id="cb197-4"><a href="polynomial-regression.html#cb197-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb197-5"><a href="polynomial-regression.html#cb197-5" aria-hidden="true" tabindex="-1"></a>pred3 <span class="ot">=</span> <span class="fu">predict</span>(poly3, <span class="at">newdata =</span> <span class="fu">list</span>(<span class="at">x =</span> sort.x), <span class="at">se =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb197-6"><a href="polynomial-regression.html#cb197-6" aria-hidden="true" tabindex="-1"></a>pred4 <span class="ot">=</span> <span class="fu">predict</span>(poly4, <span class="at">newdata =</span> <span class="fu">list</span>(<span class="at">x =</span> sort.x), <span class="at">se =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb197-7"><a href="polynomial-regression.html#cb197-7" aria-hidden="true" tabindex="-1"></a>pred5 <span class="ot">=</span> <span class="fu">predict</span>(poly5, <span class="at">newdata =</span> <span class="fu">list</span>(<span class="at">x =</span> sort.x), <span class="at">se =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb197-8"><a href="polynomial-regression.html#cb197-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb197-9"><a href="polynomial-regression.html#cb197-9" aria-hidden="true" tabindex="-1"></a>se.bands3 <span class="ot">=</span> <span class="fu">cbind</span>(pred3<span class="sc">$</span>fit <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>pred3<span class="sc">$</span>se.fit, pred3<span class="sc">$</span>fit<span class="dv">-2</span><span class="sc">*</span>pred3<span class="sc">$</span>se.fit)</span>
+<span id="cb197-10"><a href="polynomial-regression.html#cb197-10" aria-hidden="true" tabindex="-1"></a>se.bands4 <span class="ot">=</span> <span class="fu">cbind</span>(pred4<span class="sc">$</span>fit <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>pred4<span class="sc">$</span>se.fit, pred4<span class="sc">$</span>fit<span class="dv">-2</span><span class="sc">*</span>pred4<span class="sc">$</span>se.fit)</span>
+<span id="cb197-11"><a href="polynomial-regression.html#cb197-11" aria-hidden="true" tabindex="-1"></a>se.bands5 <span class="ot">=</span> <span class="fu">cbind</span>(pred5<span class="sc">$</span>fit <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>pred5<span class="sc">$</span>se.fit, pred5<span class="sc">$</span>fit<span class="dv">-2</span><span class="sc">*</span>pred5<span class="sc">$</span>se.fit)</span>
+<span id="cb197-12"><a href="polynomial-regression.html#cb197-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb197-13"><a href="polynomial-regression.html#cb197-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb197-14"><a href="polynomial-regression.html#cb197-14" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb197-15"><a href="polynomial-regression.html#cb197-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Degree-2</span></span>
+<span id="cb197-16"><a href="polynomial-regression.html#cb197-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">cex.lab =</span> <span class="fl">1.1</span>, <span class="at">col=</span><span class="st">&quot;darkgrey&quot;</span>, <span class="at">xlab =</span> x.lab, <span class="at">ylab =</span> y.lab,</span>
+<span id="cb197-17"><a href="polynomial-regression.html#cb197-17" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Degree-2 polynomial&quot;</span>, <span class="at">bty =</span> <span class="st">&#39;l&#39;</span>)</span>
+<span id="cb197-18"><a href="polynomial-regression.html#cb197-18" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(sort.x, pred2<span class="sc">$</span>fit, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb197-19"><a href="polynomial-regression.html#cb197-19" aria-hidden="true" tabindex="-1"></a><span class="fu">matlines</span>(sort.x, se.bands2, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb197-20"><a href="polynomial-regression.html#cb197-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb197-21"><a href="polynomial-regression.html#cb197-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Degree-3</span></span>
+<span id="cb197-22"><a href="polynomial-regression.html#cb197-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">cex.lab =</span> <span class="fl">1.1</span>, <span class="at">col=</span><span class="st">&quot;darkgrey&quot;</span>, <span class="at">xlab =</span> x.lab, <span class="at">ylab =</span> y.lab,</span>
+<span id="cb197-23"><a href="polynomial-regression.html#cb197-23" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Degree-3 polynomial&quot;</span>, <span class="at">bty =</span> <span class="st">&#39;l&#39;</span>)</span>
+<span id="cb197-24"><a href="polynomial-regression.html#cb197-24" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(sort.x, pred3<span class="sc">$</span>fit, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;darkviolet&quot;</span>)</span>
+<span id="cb197-25"><a href="polynomial-regression.html#cb197-25" aria-hidden="true" tabindex="-1"></a><span class="fu">matlines</span>(sort.x, se.bands3, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;darkviolet&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb197-26"><a href="polynomial-regression.html#cb197-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb197-27"><a href="polynomial-regression.html#cb197-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Degree-4</span></span>
+<span id="cb197-28"><a href="polynomial-regression.html#cb197-28" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">cex.lab =</span> <span class="fl">1.1</span>, <span class="at">col=</span><span class="st">&quot;darkgrey&quot;</span>, <span class="at">xlab =</span> x.lab, <span class="at">ylab =</span> y.lab,</span>
+<span id="cb197-29"><a href="polynomial-regression.html#cb197-29" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Degree-4 polynomial&quot;</span>, <span class="at">bty =</span> <span class="st">&#39;l&#39;</span>)</span>
+<span id="cb197-30"><a href="polynomial-regression.html#cb197-30" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(sort.x, pred4<span class="sc">$</span>fit, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb197-31"><a href="polynomial-regression.html#cb197-31" aria-hidden="true" tabindex="-1"></a><span class="fu">matlines</span>(sort.x, se.bands4, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb197-32"><a href="polynomial-regression.html#cb197-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb197-33"><a href="polynomial-regression.html#cb197-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Degree-5</span></span>
+<span id="cb197-34"><a href="polynomial-regression.html#cb197-34" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">cex.lab =</span> <span class="fl">1.1</span>, <span class="at">col=</span><span class="st">&quot;darkgrey&quot;</span>, <span class="at">xlab =</span> x.lab, <span class="at">ylab =</span> y.lab,</span>
+<span id="cb197-35"><a href="polynomial-regression.html#cb197-35" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Degree-5 polynomial&quot;</span>, <span class="at">bty =</span> <span class="st">&#39;l&#39;</span>)</span>
+<span id="cb197-36"><a href="polynomial-regression.html#cb197-36" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(sort.x, pred5<span class="sc">$</span>fit, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb197-37"><a href="polynomial-regression.html#cb197-37" aria-hidden="true" tabindex="-1"></a><span class="fu">matlines</span>(sort.x, se.bands5, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">lty =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
+</div>
+<div id="choosing-a-degree-anova" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Choosing a Degree (ANOVA)<a href="polynomial-regression.html#choosing-a-degree-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This can be done by F-test comparison (analysis of variance - ANOVA) or Cross-Validation. With all the polynomial models trained, we can compare them with the function <code>anova()</code>.</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="polynomial-regression.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(poly1, poly2, poly3, poly4, poly5, poly6)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: y ~ x
+## Model 2: y ~ poly(x, 2, raw = TRUE)
+## Model 3: y ~ poly(x, 3)
+## Model 4: y ~ poly(x, 4)
+## Model 5: y ~ poly(x, 5)
+## Model 6: y ~ poly(x, 6)
+##   Res.Df   RSS Df Sum of Sq        F    Pr(&gt;F)    
+## 1    504 19472                                    
+## 2    503 15347  1    4125.1 151.8623 &lt; 2.2e-16 ***
+## 3    502 14616  1     731.8  26.9390 3.061e-07 ***
+## 4    501 13968  1     647.8  23.8477 1.406e-06 ***
+## 5    500 13597  1     370.7  13.6453 0.0002452 ***
+## 6    499 13555  1      42.4   1.5596 0.2123125    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Looking at the column <code>Pr(&gt;F)</code>, reading down the column, if it is less than a significance level (say 0.05) then accept adding a higher degree and if it isn’t stop on whatever degree model you have. So we would end up with a degree 5 polynomial model in this example.</p>
+</div>
+<div id="polynomial-regression-with-multiple-predictors" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Polynomial Regression with Multiple Predictors<a href="polynomial-regression.html#polynomial-regression-with-multiple-predictors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="polynomial-regression.html#cb200-1" aria-hidden="true" tabindex="-1"></a>x1<span class="ot">=</span>Boston<span class="sc">$</span>lstat</span>
+<span id="cb200-2"><a href="polynomial-regression.html#cb200-2" aria-hidden="true" tabindex="-1"></a>x2<span class="ot">=</span>Boston<span class="sc">$</span>rm</span></code></pre></div>
+<p>With multiple predictor variables, we can either manually add their interaction variables (<code>polym1 &lt;- lm(y ~ poly(x1, 2) + poly(x2 , 2) + x1:x2)</code>) or use <code>polym()</code> command,</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="polynomial-regression.html#cb201-1" aria-hidden="true" tabindex="-1"></a>polym2<span class="ot">=</span><span class="fu">lm</span>(y <span class="sc">~</span> <span class="fu">polym</span>(x1, x2, <span class="at">degree=</span><span class="dv">2</span>) )</span></code></pre></div>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="r-basics.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="shrinkage-methods.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="step-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -362,7 +457,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jreaso/rnotes/edit/master/index.Rmd",
+"link": "https://github.com/jreaso/rnotes/edit/master/06-polynomial-regression.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -370,7 +465,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jreaso/rnotes/blob/master/index.Rmd",
+"link": "https://github.com/jreaso/rnotes/blob/master/06-polynomial-regression.Rmd",
 "text": null
 },
 "download": null,

@@ -53,6 +53,15 @@ performing-lasso-regression
 comparing-predictive-performance-for-different-lambdas
 principal-component-analysis
 comparing-predictive-performances
+polynomial-regression
+polynomial-regression-model-example-degree-2
+polynomial-regression-higher-degrees
+choosing-a-degree-anova
+polynomial-regression-with-multiple-predictors
+step-functions
+splines
+gams
+logistic-regression
 dssc---data-wrangling-presentation-and-applications
 data-wrangling-with-tidyverse
 tidy-form-tidyr
@@ -82,8 +91,3 @@ probability-distributions
 dssc-theory-applications
 monte-carlo-hyothesis-test
 boot-strap
-non-linear-models
-polynomial-regression
-step-functions
-splines
-gams
