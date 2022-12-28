@@ -1,0 +1,73 @@
+# Step Functions
+
+With `Boston` data, following on from polynomial regression section.
+
+```{r echo=FALSE, warning=FALSE}
+library("MASS")
+y = Boston$medv
+x = Boston$lstat
+y.lab = 'Median Property Value'
+x.lab = 'Lower Status (%)'
+```
+
+To use a step function model, use `cut(x, n)` function which automatically assigns break points. Note that `n` specifies the number of intervals, **not the number of break points (cuts)**.
+
+```{r}
+step3 = lm(y ~ cut(x, 3))
+```
+
+```{r echo=FALSE}
+step2 = lm(y ~ cut(x, 2))
+#step3 = lm(y ~ cut(x, 3))
+step4 = lm(y ~ cut(x, 4))
+step5 = lm(y ~ cut(x, 5))
+```
+
+Then following generic analysis for plotting:
+
+```{r eval=FALSE}
+pred3 = predict(step3, newdata = list(x = sort(x)), se = TRUE)
+
+se.bands3 = cbind(pred3$fit + 2*pred3$se.fit, pred3$fit-2*pred3$se.fit)
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab,
+     main = "2 cutpoints", bty = 'l')
+lines(sort(x), pred3$fit, lwd = 2, col = "darkviolet")
+matlines(sort(x), se.bands3, lwd = 1.4, col = "darkviolet", lty = 3)
+```
+
+We plot below as if we did it for 2,3,4 and 5 intervals:
+
+```{r echo=FALSE}
+pred2 = predict(step2, newdata = list(x = sort(x)), se = TRUE)
+pred3 = predict(step3, newdata = list(x = sort(x)), se = TRUE)
+pred4 = predict(step4, newdata = list(x = sort(x)), se = TRUE)
+pred5 = predict(step5, newdata = list(x = sort(x)), se = TRUE)
+
+se.bands2 = cbind(pred2$fit + 2*pred2$se.fit, pred2$fit-2*pred2$se.fit)
+se.bands3 = cbind(pred3$fit + 2*pred3$se.fit, pred3$fit-2*pred3$se.fit)
+se.bands4 = cbind(pred4$fit + 2*pred4$se.fit, pred4$fit-2*pred4$se.fit)
+se.bands5 = cbind(pred5$fit + 2*pred5$se.fit, pred5$fit-2*pred5$se.fit)
+
+par(mfrow = c(2,2))
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab,
+     main = "1 cutpoint", bty = 'l')
+lines(sort(x), pred2$fit, lwd = 2, col = "red")
+matlines(sort(x), se.bands2, lwd = 1.4, col = "red", lty = 3)
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab,
+     main = "2 cutpoints", bty = 'l')
+lines(sort(x), pred3$fit, lwd = 2, col = "darkviolet")
+matlines(sort(x), se.bands3, lwd = 1.4, col = "darkviolet", lty = 3)
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab,
+     main = "3 cutpoints", bty = 'l')
+lines(sort(x), pred4$fit, lwd = 2, col = "blue")
+matlines(sort(x), se.bands4, lwd = 1.4, col = "blue", lty = 3)
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab,
+     main = "4 cutpoints", bty = 'l')
+lines(sort(x), pred5$fit, lwd = 2, col = "black")
+matlines(sort(x), se.bands5, lwd = 1.4, col = "black", lty = 3)
+```
