@@ -58,8 +58,11 @@ polynomial-regression-model-example-degree-2
 polynomial-regression-higher-degrees
 choosing-a-degree-anova
 polynomial-regression-with-multiple-predictors
-step-functions
 splines
+step-functions
+regression-splines
+natural-splines
+smoothing-splines
 gams
 logistic-regression
 dssc---data-wrangling-presentation-and-applications

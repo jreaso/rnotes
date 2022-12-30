@@ -1,0 +1,324 @@
+# Splines
+
+See final subsection on comparing splines for best way to plot this kind of data.
+
+## Step Functions
+
+With `Boston` data, following on from polynomial regression section.
+
+```{r echo=FALSE, warning=FALSE}
+library("MASS")
+y = Boston$medv
+x = Boston$lstat
+y.lab = 'Median Property Value'
+x.lab = 'Lower Status (%)'
+```
+
+To use a step function model, use `cut(x, n)` function which automatically assigns break points. Note that `n` specifies the number of intervals, **not the number of break points (cuts)**.
+
+```{r}
+step3 = lm(y ~ cut(x, 3))
+```
+
+```{r echo=FALSE}
+step2 = lm(y ~ cut(x, 2))
+#step3 = lm(y ~ cut(x, 3))
+step4 = lm(y ~ cut(x, 4))
+step5 = lm(y ~ cut(x, 5))
+```
+
+Then following generic analysis for plotting:
+
+```{r eval=FALSE}
+pred3 = predict(step3, newdata = list(x = sort(x)), se = TRUE)
+
+se.bands3 = cbind(pred3$fit + 2*pred3$se.fit, pred3$fit-2*pred3$se.fit)
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab,
+     main = "2 cutpoints", bty = 'l')
+lines(sort(x), pred3$fit, lwd = 2, col = "darkviolet")
+matlines(sort(x), se.bands3, lwd = 1.4, col = "darkviolet", lty = 3)
+```
+
+We plot below as if we did it for 2,3,4 and 5 intervals:
+
+```{r echo=FALSE}
+pred2 = predict(step2, newdata = list(x = sort(x)), se = TRUE)
+pred3 = predict(step3, newdata = list(x = sort(x)), se = TRUE)
+pred4 = predict(step4, newdata = list(x = sort(x)), se = TRUE)
+pred5 = predict(step5, newdata = list(x = sort(x)), se = TRUE)
+
+se.bands2 = cbind(pred2$fit + 2*pred2$se.fit, pred2$fit-2*pred2$se.fit)
+se.bands3 = cbind(pred3$fit + 2*pred3$se.fit, pred3$fit-2*pred3$se.fit)
+se.bands4 = cbind(pred4$fit + 2*pred4$se.fit, pred4$fit-2*pred4$se.fit)
+se.bands5 = cbind(pred5$fit + 2*pred5$se.fit, pred5$fit-2*pred5$se.fit)
+
+par(mfrow = c(2,2))
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab,
+     main = "1 cutpoint", bty = 'l')
+lines(sort(x), pred2$fit, lwd = 2, col = "red")
+matlines(sort(x), se.bands2, lwd = 1.4, col = "red", lty = 3)
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab,
+     main = "2 cutpoints", bty = 'l')
+lines(sort(x), pred3$fit, lwd = 2, col = "darkviolet")
+matlines(sort(x), se.bands3, lwd = 1.4, col = "darkviolet", lty = 3)
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab,
+     main = "3 cutpoints", bty = 'l')
+lines(sort(x), pred4$fit, lwd = 2, col = "blue")
+matlines(sort(x), se.bands4, lwd = 1.4, col = "blue", lty = 3)
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab,
+     main = "4 cutpoints", bty = 'l')
+lines(sort(x), pred5$fit, lwd = 2, col = "black")
+matlines(sort(x), se.bands5, lwd = 1.4, col = "black", lty = 3)
+```
+
+
+
+## Regression Splines
+
+Using `Boston` data again with `x` and `y` defined as variables for convenience with labels `y.lab` and `x.lab` done as well.
+
+```{r echo=FALSE}
+library(MASS)
+y = Boston$medv
+x = Boston$lstat
+y.lab = 'Median Property Value'
+x.lab = 'Lower Status (%)'
+```
+
+For regression splines, we use the `splines` package.
+
+```{r warning=FALSE, error=FALSE}
+library(splines)
+```
+
+Cuts for regression splines can be specified or done automatically. One option is to specify them using quartiles: `cuts = summary(x)[c(2, 3, 5)]`.
+
+
+Since we use data points $x$ values as points to plot the splines, we must also sort them: `sort.x = sort(x)`.
+
+```{r echo=FALSE}
+cuts = summary(x)[c(2, 3, 5)] 
+sort.x = sort(x)
+```
+
+**Regression Spline Model and SE Bands**
+
+We use `bs()` function from `splines` and can either specify the knots or specify the degrees of freedom:
+
+```{r}
+spline1 = lm(y ~ bs(x, degree = 1, knots = cuts))
+pred1 = predict(spline1, newdata = list(x = sort.x), se = TRUE)
+se.bands1 = cbind(pred1$fit + 2 * pred1$se.fit, pred1$fit - 2 * pred1$se.fit)
+```
+
+```{r}
+spline1df = lm(y ~ bs(x, degree = 1, df = 5))
+pred1df = predict(spline1df, newdata = list(x = sort.x), se = TRUE)
+se.bands1df = cbind( pred1df$fit + 2 * pred1df$se.fit, 
+                     pred1df$fit - 2 * pred1df$se.fit )
+```
+
+**Plot**
+
+```{r}
+par(mfrow = c(1, 2))
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab, 
+     main = "Linear Spline (with knots)", bty = 'l')
+lines(sort.x, pred1$fit, lwd = 2, col = "red")
+matlines(sort.x, se.bands1, lwd = 2, col = "red", lty = 3)
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab, 
+     main = "Linear Spline (with df)", bty = 'l')
+lines(sort.x, pred1df$fit, lwd = 2, col = "darkred")
+matlines(sort.x, se.bands1df, lwd = 2, col = "red", lty = 3)
+```
+
+**For Higher Degrees**
+
+```{r}
+spline2 = lm(y ~ bs(x, degree = 2, df = 6))
+pred2 = predict(spline2, newdata = list(x = sort.x), se = TRUE)
+se.bands2 = cbind(pred2$fit + 2 * pred2$se.fit, pred2$fit - 2 * pred2$se.fit)
+
+spline3 = lm(y ~ bs(x, degree = 3, df = 7))
+pred3 = predict(spline3, newdata = list(x = sort.x), se = TRUE)
+se.bands3 = cbind(pred3$fit + 2 * pred3$se.fit, pred3$fit - 2 * pred3$se.fit)
+
+par(mfrow = c(1,3))
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab, 
+     main = "Linear Spline", bty = 'l')
+lines(sort.x, pred1$fit, lwd = 2, col = "darkred")
+matlines(sort.x, se.bands1, lwd = 2, col = "darkred", lty = 3)
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab, 
+     main = "Quadratic Spline", bty = 'l')
+lines(sort.x, pred2$fit, lwd = 2, col = "darkgreen")
+matlines(sort.x, se.bands2, lwd = 2, col = "darkgreen", lty = 3)
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab, 
+     main = "Cubic Spline", bty = 'l')
+lines(sort.x, pred3$fit, lwd = 2, col = "darkblue")
+matlines(sort.x, se.bands3, lwd = 2, col = "darkblue", lty = 3)
+```
+
+
+
+## Natural Splines
+
+Adds the extra constraints of continuity in first $d-1$ derivatives. We use the `ns()` function. Again, we use `library("splines")` package.
+
+```{r eval=FALSE}
+spline.ns3 = lm(y ~ ns(x, df = 3))
+pred.ns3 = predict(spline.ns3, newdata = list(x = sort.x), se = TRUE)
+se.bands.ns3 = cbind(pred.ns3$fit + 2 * pred.ns3$se.fit, 
+                     pred.ns3$fit - 2 * pred.ns3$se.fit)
+```
+
+```{r echo=FALSE}
+spline.ns1 = lm(y ~ ns(x, df = 1))
+pred.ns1 = predict(spline.ns1, newdata = list(x = sort.x), se = TRUE)
+se.bands.ns1 = cbind(pred.ns1$fit + 2 * pred.ns1$se.fit, 
+                     pred.ns1$fit - 2 * pred.ns1$se.fit)
+
+spline.ns2 = lm(y ~ ns(x, df = 2))
+pred.ns2 = predict(spline.ns2, newdata = list(x = sort.x), se = TRUE)
+se.bands.ns2 = cbind(pred.ns2$fit + 2 * pred.ns2$se.fit, 
+                     pred.ns2$fit - 2 * pred.ns2$se.fit)
+
+spline.ns3 = lm(y ~ ns(x, df = 3))
+pred.ns3 = predict(spline.ns3, newdata = list(x = sort.x), se = TRUE)
+se.bands.ns3 = cbind(pred.ns3$fit + 2 * pred.ns3$se.fit, 
+                     pred.ns3$fit - 2 * pred.ns3$se.fit)
+
+spline.ns4 = lm(y ~ ns(x, df = 4))
+pred.ns4 = predict(spline.ns4, newdata = list(x = sort.x), se = TRUE)
+se.bands.ns4 = cbind(pred.ns4$fit + 2 * pred.ns4$se.fit, 
+                     pred.ns4$fit - 2 * pred.ns4$se.fit)
+```
+
+
+**Plotting**
+
+Assuming we have made similarly `spline.ns1`, `spline.ns2`, `spline.ns3` and `spline.ns4`.
+
+```{r}
+par(mfrow = c(2, 2))
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab, 
+     main = "Natural Spline (1 df)", bty = 'l')
+lines(sort.x, pred.ns1$fit, lwd = 2, col = "darkred")
+matlines(sort.x, se.bands.ns1, lwd = 2, col = "darkred", lty = 3)
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab, 
+     main = "Natural Spline (2 df)", bty = 'l')
+lines(sort.x, pred.ns2$fit, lwd = 2, col = "darkgreen")
+matlines(sort.x, se.bands.ns2, lwd = 2, col = "darkgreen", lty = 3)
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab, 
+     main = "Natural Spline (3 df)", bty = 'l')
+lines(sort.x, pred.ns3$fit, lwd = 2, col = "darkblue")
+matlines(sort.x, se.bands.ns3, lwd = 2, col = "darkblue", lty = 3)
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab, 
+     main = "Natural Spline (4 df)", bty = 'l')
+lines(sort.x, pred.ns4$fit, lwd = 2, col = "brown")
+matlines(sort.x, se.bands.ns4, lwd = 2, col = "brown", lty = 3)
+```
+
+
+
+
+## Smoothing Splines
+
+
+For smoothing splines we use `smoothing.splines()` instead of `lm()`. Use the `df` parameter to specify effective degrees of freedom or the `cv = TRUE` parameter to use cross validation instead (to choose a $\lambda$). Can also directly specify `lambda` or `spar` (a smoothing parameter).
+
+```{r}
+smooth1 = smooth.spline(x, y, df = 3) #choose lambda using effective degrees of freedom
+smooth2 = smooth.spline(x, y, cv = TRUE) #choose lambda via cross validation
+
+par(mfrow = c(1,2))
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab, 
+     main = "Smoothing Spline (3 df)", bty = 'l')
+lines(smooth1, lwd = 2, col = "brown")
+
+plot(x, y, cex.lab = 1.1, col="darkgrey", xlab = x.lab, ylab = y.lab, 
+     main = "Smoothing Spline (CV)", bty = 'l')
+lines(smooth2, lwd = 2, col = "darkorange")
+```
+
+
+
+## Comparing Splines {-}
+
+Below compares different splines on wage data. We load packages `library("ISLR")` for data and `library("splines")` to use regression and natural splines.
+
+```{r echo=FALSE}
+library("ISLR") # Package for data
+library("splines") # Required for regression and natural splines.
+```
+
+**Setup for plotting curves**
+```{r}
+agelims = range(Wage$age)
+age.grid=seq(from=agelims[1],to=agelims[2])
+```
+
+**Taking a sample of data of size $n$**
+```{r}
+set.seed(1)
+# Number of data points - change this to investigate small (50), 
+# medium (200) and large (1000) samples.
+n <- 200
+
+ind = sample(1:3000, n)
+Wage1 = Wage[ind,]  # Label subset of data as Wage1.
+```
+
+**Cubic Spline**
+```{r warning=FALSE}
+fitbs = lm(wage~bs(age, degree = 3, knots = c(30,40,60)), data = Wage1)
+predbs = predict(fitbs, newdata = list(age = age.grid), se = T)
+```
+
+**Natural Spline**
+```{r}
+fitns = lm(wage~ns(age, knots = c(30,40,60)), data = Wage1)
+predns = predict(fitns, newdata = list(age = age.grid), se = T)
+```
+
+**Smoothing Spline**
+```{r warning=FALSE}
+fitss = smooth.spline(Wage1$age, Wage1$wage, cv = TRUE) 
+```
+
+**Generate the Plots**
+```{r}
+par(mfrow=c(1,3))
+
+# Cubic Spline
+plot(Wage1$age, Wage1$wage, col = "darkgray", pch = 19, 
+     main = 'Cubic spline', bty = 'l', 
+     xlab = 'age', ylab = 'wage', cex.lab = 1.4)
+lines(age.grid, predbs$fit, lwd = 2, col = 'darkgreen')
+abline(v = c(30,40,60), lty = 'dashed')
+
+# Natural Spline
+plot(Wage1$age, Wage1$wage, col = "darkgray", pch = 19, 
+     main = 'Natural cubic spline', bty = 'l', 
+     xlab = 'age', ylab = 'wage', cex.lab = 1.4)
+lines(age.grid, predns$fit, lwd = 2, col = 'darkviolet')
+abline(v = c(30,40,60), lty = 'dashed')
+
+# Smoothing Spline
+plot(Wage1$age, Wage1$wage, col = "darkgray", pch = 19, 
+     main = 'Smoothing spline', bty = 'l', 
+     xlab = 'age', ylab = 'wage', cex.lab = 1.4)
+lines(fitss, lwd = 2, col = 'brown')
+```
