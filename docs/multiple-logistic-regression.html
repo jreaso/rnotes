@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Logistic Regression | R Notes</title>
-  <meta name="description" content="Chapter 9 Logistic Regression | R Notes" />
+  <title>Chapter 10 Multiple Logistic Regression | R Notes</title>
+  <meta name="description" content="Chapter 10 Multiple Logistic Regression | R Notes" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Logistic Regression | R Notes" />
+  <meta property="og:title" content="Chapter 10 Multiple Logistic Regression | R Notes" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Logistic Regression | R Notes" />
+  <meta name="twitter:title" content="Chapter 10 Multiple Logistic Regression | R Notes" />
   
   
   
@@ -29,7 +29,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="gams.html"/>
+<link rel="prev" href="logistic-regression.html"/>
 <link rel="next" href="dssc---data-wrangling-presentation-and-applications.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -247,36 +247,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic Regression</a>
 <ul>
 <li class="chapter" data-level="9.1" data-path="logistic-regression.html"><a href="logistic-regression.html#simple-logistic-regression"><i class="fa fa-check"></i><b>9.1</b> Simple Logistic Regression</a></li>
-<li class="chapter" data-level="9.2" data-path="logistic-regression.html"><a href="logistic-regression.html#multiple-logistic-regression"><i class="fa fa-check"></i><b>9.2</b> Multiple Logistic Regression</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html"><i class="fa fa-check"></i><b>10</b> DSSC - Data Wrangling, Presentation and Applications</a>
+<li class="chapter" data-level="10" data-path="multiple-logistic-regression.html"><a href="multiple-logistic-regression.html"><i class="fa fa-check"></i><b>10</b> Multiple Logistic Regression</a></li>
+<li class="chapter" data-level="11" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html"><i class="fa fa-check"></i><b>11</b> DSSC - Data Wrangling, Presentation and Applications</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#data-wrangling-with-tidyverse"><i class="fa fa-check"></i><b>10.1</b> Data Wrangling with Tidyverse</a>
+<li class="chapter" data-level="11.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#data-wrangling-with-tidyverse"><i class="fa fa-check"></i><b>11.1</b> Data Wrangling with Tidyverse</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#tidy-form-tidyr"><i class="fa fa-check"></i><b>10.1.1</b> Tidy Form (<code>tidyr</code>)</a></li>
-<li class="chapter" data-level="10.1.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#data-manipulation-dplyr"><i class="fa fa-check"></i><b>10.1.2</b> Data Manipulation (<code>dplyr</code>)</a></li>
-<li class="chapter" data-level="10.1.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#pipelines"><i class="fa fa-check"></i><b>10.1.3</b> Pipelines</a></li>
-<li class="chapter" data-level="10.1.4" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#joining-data-frames-in-tidyverse"><i class="fa fa-check"></i><b>10.1.4</b> Joining Data Frames in Tidyverse</a></li>
+<li class="chapter" data-level="11.1.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#tidy-form-tidyr"><i class="fa fa-check"></i><b>11.1.1</b> Tidy Form (<code>tidyr</code>)</a></li>
+<li class="chapter" data-level="11.1.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#data-manipulation-dplyr"><i class="fa fa-check"></i><b>11.1.2</b> Data Manipulation (<code>dplyr</code>)</a></li>
+<li class="chapter" data-level="11.1.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#pipelines"><i class="fa fa-check"></i><b>11.1.3</b> Pipelines</a></li>
+<li class="chapter" data-level="11.1.4" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#joining-data-frames-in-tidyverse"><i class="fa fa-check"></i><b>11.1.4</b> Joining Data Frames in Tidyverse</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dynamic-documents-and-interactive-dashboards"><i class="fa fa-check"></i><b>10.2</b> Dynamic Documents and Interactive Dashboards</a>
+<li class="chapter" data-level="11.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dynamic-documents-and-interactive-dashboards"><i class="fa fa-check"></i><b>11.2</b> Dynamic Documents and Interactive Dashboards</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#rmd"><i class="fa fa-check"></i><b>10.2.1</b> RMD</a></li>
-<li class="chapter" data-level="10.2.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#shiny"><i class="fa fa-check"></i><b>10.2.2</b> Shiny</a></li>
+<li class="chapter" data-level="11.2.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#rmd"><i class="fa fa-check"></i><b>11.2.1</b> RMD</a></li>
+<li class="chapter" data-level="11.2.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#shiny"><i class="fa fa-check"></i><b>11.2.2</b> Shiny</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dates"><i class="fa fa-check"></i><b>10.3</b> Dates</a>
+<li class="chapter" data-level="11.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dates"><i class="fa fa-check"></i><b>11.3</b> Dates</a>
 <ul>
-<li class="chapter" data-level="10.3.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#time-zones"><i class="fa fa-check"></i><b>10.3.1</b> Time Zones</a></li>
-<li class="chapter" data-level="10.3.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#extracting-from-dates"><i class="fa fa-check"></i><b>10.3.2</b> Extracting From Dates</a></li>
-<li class="chapter" data-level="10.3.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#misc-1"><i class="fa fa-check"></i><b>10.3.3</b> Misc</a></li>
+<li class="chapter" data-level="11.3.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#time-zones"><i class="fa fa-check"></i><b>11.3.1</b> Time Zones</a></li>
+<li class="chapter" data-level="11.3.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#extracting-from-dates"><i class="fa fa-check"></i><b>11.3.2</b> Extracting From Dates</a></li>
+<li class="chapter" data-level="11.3.3" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#misc-1"><i class="fa fa-check"></i><b>11.3.3</b> Misc</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#strings-and-regular-expressions"><i class="fa fa-check"></i><b>10.4</b> Strings and Regular Expressions</a>
+<li class="chapter" data-level="11.4" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#strings-and-regular-expressions"><i class="fa fa-check"></i><b>11.4</b> Strings and Regular Expressions</a>
 <ul>
-<li class="chapter" data-level="10.4.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#strange-characters"><i class="fa fa-check"></i><b>10.4.1</b> Strange characters</a></li>
-<li class="chapter" data-level="10.4.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#stringr-part-of-tidyverse"><i class="fa fa-check"></i><b>10.4.2</b> <code>stringr</code> (part of tidyverse)</a></li>
+<li class="chapter" data-level="11.4.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#strange-characters"><i class="fa fa-check"></i><b>11.4.1</b> Strange characters</a></li>
+<li class="chapter" data-level="11.4.2" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#stringr-part-of-tidyverse"><i class="fa fa-check"></i><b>11.4.2</b> <code>stringr</code> (part of tidyverse)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#probability-distributions"><i class="fa fa-check"></i><b>10.5</b> Probability Distributions</a>
+<li class="chapter" data-level="11.5" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#probability-distributions"><i class="fa fa-check"></i><b>11.5</b> Probability Distributions</a>
 <ul>
-<li class="chapter" data-level="10.5.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dssc-theory-applications"><i class="fa fa-check"></i><b>10.5.1</b> DSSC Theory Applications</a></li>
+<li class="chapter" data-level="11.5.1" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html#dssc-theory-applications"><i class="fa fa-check"></i><b>11.5.1</b> DSSC Theory Applications</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -298,73 +298,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="logistic-regression" class="section level1 hasAnchor" number="9">
-<h1><span class="header-section-number">Chapter 9</span> Logistic Regression<a href="logistic-regression.html#logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>For estimating probability of a qualitative variable. See MLLN Notes for exploratory plots and motivation.</p>
-<div id="simple-logistic-regression" class="section level2 hasAnchor" number="9.1">
-<h2><span class="header-section-number">9.1</span> Simple Logistic Regression<a href="logistic-regression.html#simple-logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>We use the <code>Default</code> data from <code>library("ISLR2")</code> package. We also load <code>library(scales)</code> package for transparency with colours.</p>
-<pre><code>## Warning: package &#39;scales&#39; was built under R version 4.1.2</code></pre>
-<pre><code>## Warning: package &#39;ISLR2&#39; was built under R version 4.1.2</code></pre>
-<p>We use the generalised linear model function <code>glm()</code> with <code>family = "binomial"</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="logistic-regression.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(Default)</span>
-<span id="cb3-2"><a href="logistic-regression.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="logistic-regression.html#cb3-3" aria-hidden="true" tabindex="-1"></a>glm.fit <span class="ot">=</span> <span class="fu">glm</span>( <span class="fu">as.numeric</span>(Default<span class="sc">$</span>default<span class="sc">==</span><span class="st">&quot;Yes&quot;</span>) <span class="sc">~</span> balance, <span class="at">data =</span> Default, <span class="at">family =</span> <span class="st">&quot;binomial&quot;</span>)</span>
-<span id="cb3-4"><a href="logistic-regression.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm.fit)</span></code></pre></div>
-<pre><code>## 
-## Call:
-## glm(formula = as.numeric(Default$default == &quot;Yes&quot;) ~ balance, 
-##     family = &quot;binomial&quot;, data = Default)
-## 
-## Deviance Residuals: 
-##     Min       1Q   Median       3Q      Max  
-## -2.2697  -0.1465  -0.0589  -0.0221   3.7589  
-## 
-## Coefficients:
-##               Estimate Std. Error z value Pr(&gt;|z|)    
-## (Intercept) -1.065e+01  3.612e-01  -29.49   &lt;2e-16 ***
-## balance      5.499e-03  2.204e-04   24.95   &lt;2e-16 ***
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## (Dispersion parameter for binomial family taken to be 1)
-## 
-##     Null deviance: 2920.6  on 9999  degrees of freedom
-## Residual deviance: 1596.5  on 9998  degrees of freedom
-## AIC: 1600.5
-## 
-## Number of Fisher Scoring iterations: 8</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="logistic-regression.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(glm.fit<span class="sc">$</span>fitted.values)</span></code></pre></div>
-<pre><code>##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-## 0.0000237 0.0003346 0.0021888 0.0333000 0.0142324 0.9810081</code></pre>
-<p><strong>Plot</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="logistic-regression.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Raw Data </span></span>
-<span id="cb7-2"><a href="logistic-regression.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Default<span class="sc">$</span>balance, <span class="fu">as.numeric</span>(Default<span class="sc">$</span>default<span class="sc">==</span><span class="st">&quot;Yes&quot;</span>),<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;balance&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;default&quot;</span>)</span>
-<span id="cb7-3"><a href="logistic-regression.html#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="logistic-regression.html#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Fitted Values</span></span>
-<span id="cb7-5"><a href="logistic-regression.html#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(glm.fit<span class="sc">$</span>data<span class="sc">$</span>balance,glm.fit<span class="sc">$</span>fitted.values, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>, <span class="at">pch =</span> <span class="dv">4</span>)</span>
-<span id="cb7-6"><a href="logistic-regression.html#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="logistic-regression.html#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Model Curve</span></span>
-<span id="cb7-8"><a href="logistic-regression.html#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">predict</span>(glm.fit,<span class="fu">data.frame</span>(<span class="at">balance =</span> x),<span class="at">type=</span><span class="st">&quot;resp&quot;</span>),<span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">lwd=</span><span class="dv">2</span>,<span class="at">add=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<p><strong>Predicting <span class="math inline">\(\hat{p}(X)\)</span></strong></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="logistic-regression.html#cb8-1" aria-hidden="true" tabindex="-1"></a>X <span class="ot">=</span> <span class="dv">1300</span></span>
-<span id="cb8-2"><a href="logistic-regression.html#cb8-2" aria-hidden="true" tabindex="-1"></a>phat <span class="ot">=</span> <span class="fu">exp</span>(<span class="fu">sum</span>(glm.fit<span class="sc">$</span>coefficients<span class="sc">*</span><span class="fu">c</span>(<span class="dv">1</span>,X)))<span class="sc">/</span>(<span class="dv">1</span><span class="sc">+</span><span class="fu">exp</span>(<span class="fu">sum</span>(glm.fit<span class="sc">$</span>coefficients<span class="sc">*</span><span class="fu">c</span>(<span class="dv">1</span>,X))))</span>
-<span id="cb8-3"><a href="logistic-regression.html#cb8-3" aria-hidden="true" tabindex="-1"></a>phat</span></code></pre></div>
-<pre><code>## [1] 0.02923441</code></pre>
-</div>
-<div id="multiple-logistic-regression" class="section level2 hasAnchor" number="9.2">
-<h2><span class="header-section-number">9.2</span> Multiple Logistic Regression<a href="logistic-regression.html#multiple-logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="multiple-logistic-regression" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Multiple Logistic Regression<a href="multiple-logistic-regression.html#multiple-logistic-regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>…</p>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="gams.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="logistic-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="dssc---data-wrangling-presentation-and-applications.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

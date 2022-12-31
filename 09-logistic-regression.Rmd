@@ -1,2 +1,48 @@
 # Logistic Regression
 
+For estimating probability of a qualitative variable. See MLLN Notes for exploratory plots and motivation.
+
+## Simple Logistic Regression
+
+We use the `Default` data from `library("ISLR2")` package. We also load `library(scales)` package for transparency with colours.
+
+```{r echo=FALSE}
+library(scales)
+library("ISLR2")
+```
+
+We use the generalised linear model function `glm()` with `family = "binomial"`.
+
+```{r}
+data(Default)
+
+glm.fit = glm( as.numeric(Default$default=="Yes") ~ balance, data = Default, family = "binomial")
+summary(glm.fit)
+summary(glm.fit$fitted.values)
+```
+
+**Plot**
+
+```{r}
+#Raw Data 
+plot(Default$balance, as.numeric(Default$default=="Yes"),col="red",xlab="balance",ylab="default")
+
+#Fitted Values
+points(glm.fit$data$balance,glm.fit$fitted.values, col = "black", pch = 4)
+
+#Model Curve
+curve(predict(glm.fit,data.frame(balance = x),type="resp"),col="blue",lwd=2,add=TRUE)
+```
+
+
+**Predicting $\hat{p}(X)$**
+
+```{r}
+X = 1300
+phat = exp(sum(glm.fit$coefficients*c(1,X)))/(1+exp(sum(glm.fit$coefficients*c(1,X))))
+phat
+```
+
+## Multiple Logistic Regression
+
+...

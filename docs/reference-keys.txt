@@ -95,3 +95,5 @@ probability-distributions
 dssc-theory-applications
 monte-carlo-hyothesis-test
 boot-strap
+simple-logistic-regression
+multiple-logistic-regression

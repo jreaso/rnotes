@@ -1,6 +1,12 @@
 
 # DSSC - Data Wrangling, Presentation and Applications
 
+To check for missing data use,
+
+```{r eval=FALSE}
+print(paste("Missing data:", sum(is.na(df$var)), sep=" ", collapse=""))
+```
+
 
 ## Data Wrangling with Tidyverse
 
