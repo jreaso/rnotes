@@ -63,6 +63,7 @@ step-functions
 regression-splines
 natural-splines
 smoothing-splines
+comparing-splines
 gams
 logistic-regression
 dssc---data-wrangling-presentation-and-applications

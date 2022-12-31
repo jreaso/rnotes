@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 7 Splines | R Notes</title>
   <meta name="description" content="Chapter 7 Splines | R Notes" />
-  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 7 Splines | R Notes" />
   <meta property="og:type" content="book" />
@@ -51,9 +51,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
-<script src="libs/str_view-binding-1.4.1/str_view.js"></script>
 
 
 <style type="text/css">
@@ -254,7 +251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2" data-path="splines.html"><a href="splines.html#regression-splines"><i class="fa fa-check"></i><b>7.2</b> Regression Splines</a></li>
 <li class="chapter" data-level="7.3" data-path="splines.html"><a href="splines.html#natural-splines"><i class="fa fa-check"></i><b>7.3</b> Natural Splines</a></li>
 <li class="chapter" data-level="7.4" data-path="splines.html"><a href="splines.html#smoothing-splines"><i class="fa fa-check"></i><b>7.4</b> Smoothing Splines</a></li>
-<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#comparing-splines"><i class="fa fa-check"></i>Comparing Splines</a></li>
+<li class="chapter" data-level="7.5" data-path="splines.html"><a href="splines.html#comparing-splines"><i class="fa fa-check"></i><b>7.5</b> Comparing Splines</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="gams.html"><a href="gams.html"><i class="fa fa-check"></i><b>8</b> GAMs</a></li>
 <li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic Regression</a></li>
@@ -431,12 +428,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb213-8"><a href="splines.html#cb213-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(smooth2, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;darkorange&quot;</span>)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-170-1.png" width="672" /></p>
 </div>
-<div id="comparing-splines" class="section level2 unnumbered hasAnchor">
-<h2>Comparing Splines<a href="splines.html#comparing-splines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="comparing-splines" class="section level2 hasAnchor" number="7.5">
+<h2><span class="header-section-number">7.5</span> Comparing Splines<a href="splines.html#comparing-splines" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Below compares different splines on wage data. We load packages <code>library("ISLR")</code> for data and <code>library("splines")</code> to use regression and natural splines.</p>
 <p><strong>Setup for plotting curves</strong></p>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="splines.html#cb214-1" aria-hidden="true" tabindex="-1"></a>agelims <span class="ot">=</span> <span class="fu">range</span>(Wage<span class="sc">$</span>age)</span>
-<span id="cb214-2"><a href="splines.html#cb214-2" aria-hidden="true" tabindex="-1"></a>age.grid<span class="ot">=</span><span class="fu">seq</span>(<span class="at">from=</span>agelims[<span class="dv">1</span>],<span class="at">to=</span>agelims[<span class="dv">2</span>])</span></code></pre></div>
+<span id="cb214-2"><a href="splines.html#cb214-2" aria-hidden="true" tabindex="-1"></a>age.grid <span class="ot">=</span> <span class="fu">seq</span>(<span class="at">from=</span>agelims[<span class="dv">1</span>], <span class="at">to=</span>agelims[<span class="dv">2</span>])</span></code></pre></div>
 <p><strong>Taking a sample of data of size <span class="math inline">\(n\)</span></strong></p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="splines.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
 <span id="cb215-2"><a href="splines.html#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of data points - change this to investigate small (50), </span></span>

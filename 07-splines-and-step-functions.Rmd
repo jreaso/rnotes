@@ -255,7 +255,7 @@ lines(smooth2, lwd = 2, col = "darkorange")
 
 
 
-## Comparing Splines {-}
+## Comparing Splines
 
 Below compares different splines on wage data. We load packages `library("ISLR")` for data and `library("splines")` to use regression and natural splines.
 
@@ -267,7 +267,7 @@ library("splines") # Required for regression and natural splines.
 **Setup for plotting curves**
 ```{r}
 agelims = range(Wage$age)
-age.grid=seq(from=agelims[1],to=agelims[2])
+age.grid = seq(from=agelims[1], to=agelims[2])
 ```
 
 **Taking a sample of data of size $n$**

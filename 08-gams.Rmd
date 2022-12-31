@@ -1,1 +1,54 @@
 # GAMs
+
+We use the `library(gam)` package. Below is an example using the `Boston` data again.
+
+```{r echo=FALSE, warning=FALSE}
+library(MASS)
+y = Boston$medv
+x = Boston$lstat
+y.lab = 'Median Property Value'
+x.lab = 'Lower Status (%)'
+```
+
+```{r warning=FALSE, message=FALSE}
+library(gam)
+
+names(Boston)
+```
+
+In this example we build a GAM using a cubic spline with 3 degrees of freedom for `lstat`, a smoothing spline with 3 degrees of freedom for `indus` and a simple linear model for variable `chas`. But first we make `chas` a categorical variable.
+
+```{r}
+Boston1 = Boston
+Boston1$chas = factor(Boston1$chas)
+```
+
+**GAM Function**
+
+We use the `gam()` function which has the syntax `gam( response ~ predictors + ..., data = data)`. The way to specify what the model of each predictor is is similar to `lm()`.
+
+- `bs()` is used for a regression spline
+- `ns()` is used for natural splines
+- `s()` is used for smoothing splines (this is different from `lm` and how smoothing splines are done normally).
+
+```{r}
+gam = gam( medv ~ bs(lstat, degree = 3, df = 5) + s(indus, df = 5) + chas, data = Boston1 )
+```
+
+**Plotting**
+
+We have the option to include standard error error bars or not.
+
+```{r}
+par( mfrow = c(1,3) )
+plot( gam,  se = TRUE, col = "blue" )
+```
+
+**Prediction**
+
+Prediction works the same as with `lm()` for multiple linear regression models.
+
+```{r}
+preds <- predict( gam, newdata = data.frame( chas = "0", indus = 3, lstat = 5 )  )
+preds
+```

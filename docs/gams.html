@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 8 GAMs | R Notes</title>
   <meta name="description" content="Chapter 8 GAMs | R Notes" />
-  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 8 GAMs | R Notes" />
   <meta property="og:type" content="book" />
@@ -51,9 +51,6 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
-<script src="libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
-<link href="libs/str_view-0.1.0/str_view.css" rel="stylesheet" />
-<script src="libs/str_view-binding-1.4.1/str_view.js"></script>
 
 
 <style type="text/css">
@@ -254,7 +251,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.2" data-path="splines.html"><a href="splines.html#regression-splines"><i class="fa fa-check"></i><b>7.2</b> Regression Splines</a></li>
 <li class="chapter" data-level="7.3" data-path="splines.html"><a href="splines.html#natural-splines"><i class="fa fa-check"></i><b>7.3</b> Natural Splines</a></li>
 <li class="chapter" data-level="7.4" data-path="splines.html"><a href="splines.html#smoothing-splines"><i class="fa fa-check"></i><b>7.4</b> Smoothing Splines</a></li>
-<li class="chapter" data-level="" data-path="splines.html"><a href="splines.html#comparing-splines"><i class="fa fa-check"></i>Comparing Splines</a></li>
+<li class="chapter" data-level="7.5" data-path="splines.html"><a href="splines.html#comparing-splines"><i class="fa fa-check"></i><b>7.5</b> Comparing Splines</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="gams.html"><a href="gams.html"><i class="fa fa-check"></i><b>8</b> GAMs</a></li>
 <li class="chapter" data-level="9" data-path="logistic-regression.html"><a href="logistic-regression.html"><i class="fa fa-check"></i><b>9</b> Logistic Regression</a></li>
@@ -309,6 +306,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="gams" class="section level1 hasAnchor" number="8">
 <h1><span class="header-section-number">Chapter 8</span> GAMs<a href="gams.html#gams" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>We use the <code>library(gam)</code> package. Below is an example using the <code>Boston</code> data again.</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="gams.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gam)</span>
+<span id="cb221-2"><a href="gams.html#cb221-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-3"><a href="gams.html#cb221-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(Boston)</span></code></pre></div>
+<pre><code>##  [1] &quot;crim&quot;    &quot;zn&quot;      &quot;indus&quot;   &quot;chas&quot;    &quot;nox&quot;     &quot;rm&quot;      &quot;age&quot;    
+##  [8] &quot;dis&quot;     &quot;rad&quot;     &quot;tax&quot;     &quot;ptratio&quot; &quot;black&quot;   &quot;lstat&quot;   &quot;medv&quot;</code></pre>
+<p>In this example we build a GAM using a cubic spline with 3 degrees of freedom for <code>lstat</code>, a smoothing spline with 3 degrees of freedom for <code>indus</code> and a simple linear model for variable <code>chas</code>. But first we make <code>chas</code> a categorical variable.</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="gams.html#cb223-1" aria-hidden="true" tabindex="-1"></a>Boston1 <span class="ot">=</span> Boston</span>
+<span id="cb223-2"><a href="gams.html#cb223-2" aria-hidden="true" tabindex="-1"></a>Boston1<span class="sc">$</span>chas <span class="ot">=</span> <span class="fu">factor</span>(Boston1<span class="sc">$</span>chas)</span></code></pre></div>
+<p><strong>GAM Function</strong></p>
+<p>We use the <code>gam()</code> function which has the syntax <code>gam( response ~ predictors + ..., data = data)</code>. The way to specify what the model of each predictor is is similar to <code>lm()</code>.</p>
+<ul>
+<li><code>bs()</code> is used for a regression spline</li>
+<li><code>ns()</code> is used for natural splines</li>
+<li><code>s()</code> is used for smoothing splines (this is different from <code>lm</code> and how smoothing splines are done normally).</li>
+</ul>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="gams.html#cb224-1" aria-hidden="true" tabindex="-1"></a>gam <span class="ot">=</span> <span class="fu">gam</span>( medv <span class="sc">~</span> <span class="fu">bs</span>(lstat, <span class="at">degree =</span> <span class="dv">3</span>, <span class="at">df =</span> <span class="dv">5</span>) <span class="sc">+</span> <span class="fu">s</span>(indus, <span class="at">df =</span> <span class="dv">5</span>) <span class="sc">+</span> chas, <span class="at">data =</span> Boston1 )</span></code></pre></div>
+<p><strong>Plotting</strong></p>
+<p>We have the option to include standard error error bars or not.</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="gams.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>( <span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>) )</span>
+<span id="cb225-2"><a href="gams.html#cb225-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>( gam,  <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span> )</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
+<p><strong>Prediction</strong></p>
+<p>Prediction works the same as with <code>lm()</code> for multiple linear regression models.</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="gams.html#cb226-1" aria-hidden="true" tabindex="-1"></a>preds <span class="ot">&lt;-</span> <span class="fu">predict</span>( gam, <span class="at">newdata =</span> <span class="fu">data.frame</span>( <span class="at">chas =</span> <span class="st">&quot;0&quot;</span>, <span class="at">indus =</span> <span class="dv">3</span>, <span class="at">lstat =</span> <span class="dv">5</span> )  )</span>
+<span id="cb226-2"><a href="gams.html#cb226-2" aria-hidden="true" tabindex="-1"></a>preds</span></code></pre></div>
+<pre><code>##        1 
+## 32.10065</code></pre>
 
 </div>
             </section>
