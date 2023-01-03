@@ -1,0 +1,22 @@
+# Misc Exam Notes
+
+## Plotting
+
+**Basic Plot**
+```{r echo=FALSE, warning=FALSE}
+library("faraway")
+data("seatpos")
+y = seatpos$hipcenter
+x = seatpos$Ht
+```
+
+```{r}
+plot(x, y, col = "darkgrey", xlab = "X Label", ylab = "Y Label", main = "Title", bty = 'l', pch = 16)
+```
+
+**Plotting with a `grid`**
+
+Use instead of `sort(x)`
+```{r}
+grid = seq(min(x), max(x), length.out = 250) 
+```

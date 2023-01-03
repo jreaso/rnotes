@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>R Notes</title>
-  <meta name="description" content="R Notes" />
+  <title>Chapter 10 Misc Exam Notes | R Notes</title>
+  <meta name="description" content="Chapter 10 Misc Exam Notes | R Notes" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="R Notes" />
+  <meta property="og:title" content="Chapter 10 Misc Exam Notes | R Notes" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="R Notes" />
+  <meta name="twitter:title" content="Chapter 10 Misc Exam Notes | R Notes" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="r-basics.html"/>
+<link rel="prev" href="logistic-regression.html"/>
+<link rel="next" href="dssc---data-wrangling-presentation-and-applications.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -318,35 +318,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">R Notes</h1>
-<p class="author"><em>Jamie Reason</em></p>
-<p class="date"><em>2022-23</em></p>
-</div>
-<div id="resources" class="section level1 unnumbered hasAnchor">
-<h1>Resources<a href="index.html#resources" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>These are personal notes on R mainly for reference, written over the course of two modules taken at university,</p>
-<ul>
-<li>MLLN (Machine Learning and Neural Networks) (2022-23)</li>
-<li>DSSC (Data Science and Statistical Computing) (2021-22)</li>
-</ul>
-<p>Although, this current version is more focused on the content for the MLLN module.</p>
-<p>These are heavily based off the notes of the respective courses (see links below) and I do not take credit. There may still be mistakes and inaccuracies from myself.</p>
-<ul>
-<li><a href="https://rseek.org"><strong>R Seek</strong></a> Search Engine</li>
-<li><a href="https://www.rstudio.com/resources/cheatsheets/"><strong>Cheat Sheets</strong></a></li>
-<li><a href="https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/"><strong>MLNN Course Notes</strong></a></li>
-<li><a href="https://www.louisaslett.com/Courses/DSSC/notes/"><strong>DSSC Course Notes</strong></a></li>
-</ul>
+<div id="misc-exam-notes" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Misc Exam Notes<a href="misc-exam-notes.html#misc-exam-notes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="plotting-3" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Plotting<a href="misc-exam-notes.html#plotting-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Basic Plot</strong></p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="misc-exam-notes.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">col =</span> <span class="st">&quot;darkgrey&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;X Label&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Y Label&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Title&quot;</span>, <span class="at">bty =</span> <span class="st">&#39;l&#39;</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
+<p><strong>Plotting with a <code>grid</code></strong></p>
+<p>Use instead of <code>sort(x)</code></p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="misc-exam-notes.html#cb262-1" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">=</span> <span class="fu">seq</span>(<span class="fu">min</span>(x), <span class="fu">max</span>(x), <span class="at">length.out =</span> <span class="dv">250</span>) </span></code></pre></div>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="r-basics.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="logistic-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dssc---data-wrangling-presentation-and-applications.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -377,7 +368,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jreaso/rnotes/edit/master/index.Rmd",
+"link": "https://github.com/jreaso/rnotes/edit/master/10-misc.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -385,7 +376,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jreaso/rnotes/blob/master/index.Rmd",
+"link": "https://github.com/jreaso/rnotes/blob/master/10-misc.Rmd",
 "text": null
 },
 "download": null,

@@ -231,15 +231,24 @@ lines(sort.x, pred.ns4$fit, lwd = 2, col = "brown")
 matlines(sort.x, se.bands.ns4, lwd = 2, col = "brown", lty = 3)
 ```
 
+**Practical 4 Example (Using Knots)**
 
+```{r eval=FALSE}
+ns = lm(y ~ ns(x, knots = cuts))
+pred.ns = predict(ns, newdata = list(x = grid), se = TRUE)
+se.bands.ns = cbind(pred.ns$fit + 2 * pred.ns$se.fit, 
+                     pred.ns$fit - 2 * pred.ns$se.fit)
+```
 
 
 ## Smoothing Splines
 
 
-For smoothing splines we use `smoothing.splines()` instead of `lm()`. Use the `df` parameter to specify effective degrees of freedom or the `cv = TRUE` parameter to use cross validation instead (to choose a $\lambda$). Can also directly specify `lambda` or `spar` (a smoothing parameter).
+For smoothing splines we use `smoothing.splines()` instead of `lm()`. Use the `df` parameter to specify effective degrees of freedom or the `cv = TRUE` parameter to use (ordinary leave-one-out) cross validation instead (to choose a $\lambda$). Can also directly specify `lambda` or `spar` (a smoothing parameter).
 
-```{r}
+**Notes:** Specifying $\lambda$ with effective degrees of freedom (`df = ...`) still uses cross-validation.
+
+```{r warning=FALSE}
 smooth1 = smooth.spline(x, y, df = 3) #choose lambda using effective degrees of freedom
 smooth2 = smooth.spline(x, y, cv = TRUE) #choose lambda via cross validation
 
@@ -321,4 +330,90 @@ plot(Wage1$age, Wage1$wage, col = "darkgray", pch = 19,
      main = 'Smoothing spline', bty = 'l', 
      xlab = 'age', ylab = 'wage', cex.lab = 1.4)
 lines(fitss, lwd = 2, col = 'brown')
+```
+
+
+
+
+**Practical 4 Example**
+
+Modelling `medv ~ indus` using natural and smoothing splines.
+
+Basic Setup:
+```{r}
+library("MASS")
+library(splines)
+
+data("Boston")
+
+y = Boston$medv
+x = Boston$indus
+y.lab = "Median House Value ($1000s)"
+x.lab = "Proportion of non-retail business acres per town"
+```
+
+```{r}
+cuts <- summary(x)[c(2,3,5)] #For knots
+grid = seq(min(x), max(x), length.out = 500) #For plotting curves
+```
+
+Cubic Spline:
+```{r}
+bs = lm(y ~ bs(x, knots = cuts))
+pred.bs = predict(bs, newdata = list(x = grid), se = TRUE)
+se.bands.bs = cbind(pred.bs$fit + 2 * pred.bs$se.fit, 
+                    pred.bs$fit - 2 * pred.bs$se.fit)
+```
+
+Natural Cubic Spline (Knots):
+```{r}
+nsk = lm(y ~ ns(x, knots = cuts))
+pred.nsk = predict(nsk, newdata = list(x = grid), se = TRUE)
+se.bands.nsk = cbind(pred.nsk$fit + 2 * pred.nsk$se.fit, 
+                     pred.nsk$fit - 2 * pred.nsk$se.fit)
+```
+
+Natural Cubic Spline (2 df):
+```{r}
+ns2 = lm(y ~ ns(x, df = 2))
+pred.ns2 = predict(ns2, newdata = list(x = grid), se = TRUE)
+se.bands.ns2 = cbind(pred.ns2$fit + 2 * pred.ns2$se.fit, 
+                     pred.ns2$fit - 2 * pred.ns2$se.fit)
+```
+
+Natural Cubic Spline (3 df):
+```{r}
+ns3 = lm(y ~ ns(x, df = 3))
+pred.ns3 = predict(ns3, newdata = list(x = grid), se = TRUE)
+se.bands.ns3 = cbind(pred.ns3$fit + 2 * pred.ns3$se.fit, 
+                     pred.ns3$fit - 2 * pred.ns3$se.fit)
+```
+
+Smoothing Spline (3 effective df):
+```{r}
+smooth = smooth.spline(x, y, df = 3)
+```
+
+Plot:
+```{r}
+par(mfrow = c(2,3))
+
+plot(x, y, col="darkgrey", xlab = x.lab, ylab = y.lab, main = "Cubic Spline", bty = 'l', pch = 16)
+lines(grid, pred.bs$fit, lwd = 2, col = 1)
+matlines(grid, se.bands.bs, lwd = 2, col = 1, lty = 3)
+
+plot(x, y, col="darkgrey", xlab = x.lab, ylab = y.lab, main = "Natural Cubic Spline", bty = 'l', pch = 16)
+lines(grid, pred.nsk$fit, lwd = 2, col = 2)
+matlines(grid, se.bands.nsk, lwd = 2, col = 2, lty = 3)
+
+plot(x, y, col="darkgrey", xlab = x.lab, ylab = y.lab, main = "Natural Spline (2 df)", bty = 'l', pch = 16)
+lines(grid, pred.ns2$fit, lwd = 2, col = 3)
+matlines(grid, se.bands.ns2, lwd = 2, col = 3, lty = 3)
+
+plot(x, y, col="darkgrey", xlab = x.lab, ylab = y.lab, main = "Natural Spline (3 df)", bty = 'l', pch = 16)
+lines(grid, pred.ns3$fit, lwd = 2, col = 4)
+matlines(grid, se.bands.ns3, lwd = 2, col = 4, lty = 3)
+
+plot(x, y, col="darkgrey", xlab = x.lab, ylab = y.lab, main = "Smoothing Spline (3 Effective df)", bty = 'l', pch = 16)
+lines(smooth, lwd = 2, col = 6)
 ```

@@ -6,7 +6,7 @@ For estimating probability of a qualitative variable. See MLLN Notes for explora
 
 We use the `Default` data from `library("ISLR2")` package. We also load `library(scales)` package for transparency with colours.
 
-```{r echo=FALSE}
+```{r echo=FALSE, warning=FALSE}
 library(scales)
 library("ISLR2")
 ```
@@ -39,10 +39,68 @@ curve(predict(glm.fit,data.frame(balance = x),type="resp"),col="blue",lwd=2,add=
 
 ```{r}
 X = 1300
-phat = exp(sum(glm.fit$coefficients*c(1,X)))/(1+exp(sum(glm.fit$coefficients*c(1,X))))
-phat
+p.hat = exp(sum(glm.fit$coefficients*c(1,X)))/(1+exp(sum(glm.fit$coefficients*c(1,X))))
+p.hat
 ```
 
 ## Multiple Logistic Regression
 
-...
+**Pairs Plot (Factor Variable Coloured)**
+
+```{r echo=FALSE}
+admit <- read.csv("https://www.maths.dur.ac.uk/users/hailiang.du/data/admit.csv")
+```
+
+```{r}
+pairs(admit[,2:4], col=admit[,1]+2, pch=16)
+```
+
+**Making a Variable a Factor**
+```{r}
+admit$rank = factor(admit$rank)
+```
+
+**Practical 4 Example**
+
+```{r}
+glm.fit = glm( admit ~ ., data = admit, family = "binomial")
+summary(glm.fit)
+```
+
+
+
+## Inference
+
+**Calculating Probability**
+
+Use `predict()` function with `type = "response"` or `type = "resp"`. Do not include any data to calculate predictions for training data (used to plot the curve)
+
+```{r}
+glm.probs = predict(glm.fit, type = "response")
+```
+
+**Single Prediction/Multiple New Prediction**
+
+```{r}
+#Data For Prediction
+testdata = data.frame(gre = 380, gpa = 3.61, rank = 3)
+testdata$rank = factor(testdata$rank)
+
+#Single Prediction
+predict(glm.fit, testdata, type="resp")
+```
+
+**Predictions**
+
+Round probability to get a prediction.
+
+```{r}
+#Prediction
+glm.pred = round(glm.probs)
+
+#Confusion Table
+table(glm.pred, admit$admit)
+
+#Ratio of correct predictions on test data
+mean(glm.pred == admit$admit)
+```

@@ -23,7 +23,22 @@ Boston1 = Boston
 Boston1$chas = factor(Boston1$chas)
 ```
 
-**GAM Function**
+**Practical 4 Example**
+
+```{r warning=FALSE}
+library(faraway)
+data("seatpos")
+
+gam = gam(hipcenter ~ ns(Age, df = 5) + s(Thigh, df = 3) + Ht, data = seatpos)
+
+par( mfrow = c(2,3) )
+plot( gam,  se = TRUE, col = "blue" )
+plot( seatpos$Age, seatpos$hipcenter, pch = 16, col = 2, ylab = y.lab, xlab = "Age (years)" )
+plot( seatpos$Thigh, seatpos$hipcenter, pch = 16, col = 2, ylab = y.lab, xlab = "Thigh length (cm)" )
+plot( seatpos$Ht, seatpos$hipcenter, pch = 16, col = 2, ylab = y.lab, xlab = "Ht (bare foot) (cm)" )
+```
+
+## GAM Function
 
 We use the `gam()` function which has the syntax `gam( response ~ predictors + ..., data = data)`. The way to specify what the model of each predictor is is similar to `lm()`.
 
@@ -35,7 +50,7 @@ We use the `gam()` function which has the syntax `gam( response ~ predictors + .
 gam = gam( medv ~ bs(lstat, degree = 3, df = 5) + s(indus, df = 5) + chas, data = Boston1 )
 ```
 
-**Plotting**
+## Plotting
 
 We have the option to include standard error error bars or not.
 
@@ -44,7 +59,7 @@ par( mfrow = c(1,3) )
 plot( gam,  se = TRUE, col = "blue" )
 ```
 
-**Prediction**
+## Prediction
 
 Prediction works the same as with `lm()` for multiple linear regression models.
 
@@ -52,3 +67,4 @@ Prediction works the same as with `lm()` for multiple linear regression models.
 preds <- predict( gam, newdata = data.frame( chas = "0", indus = 3, lstat = 5 )  )
 preds
 ```
+
