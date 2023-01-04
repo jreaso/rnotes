@@ -1,0 +1,86 @@
+# Tree Models
+
+```{r echo=FALSE}
+#Synthetic Surrogate Data
+set.seed(212)
+data_surrogate <- data.frame(x = c(runif(200, 0, 0.4), runif(400, 0.4, 0.65), runif(300, 0.65, 1)),
+                             y = c(rnorm(200, 1.5), rnorm(400, 0), rnorm(300, 2)))
+```
+
+## Building Tree Models
+
+```{r warning=FALSE}
+library("tree")
+```
+
+Use `tree()` function from `library("tree")`.
+
+```{r}
+tree_fit = tree(y ~ x, data_surrogate)
+#summary(tree_fit)
+#tree_fit
+```
+
+### Plotting Trees {-}
+
+If `pretty = 0` then the level names of a factor split attributes are used unchanged.
+
+```{r}
+plot(tree_fit)
+text(tree_fit, pretty=0)
+```
+
+
+### Predictions {-}
+
+Example from practical demonstration with synthetic surrogate data.
+
+```{r}
+set.seed(347)
+data_surrogate_test <- data.frame(x = c(runif(200, 0, 0.4), runif(400, 0.4, 0.65), runif(300, 0.65, 1)),
+                                  y = c(rnorm(200, 1.5),    rnorm(400, 0),         rnorm(300, 2)))
+```
+
+Use `predict()` function. The tree model gives the mean in that terminal node group as a prediction.
+
+```{r}
+tree_pred = predict(tree_fit, data_surrogate_test)
+```
+
+**Plotting Predictions**
+```{r}
+plot(x = data_surrogate_test$x[1:200], y = data_surrogate_test$y[1:200],
+     col = 'blue', xlab = "X", ylab = "Y", pch = 19, xlim = c(0,1), ylim = c(-2,4))
+points(x = data_surrogate_test$x[201:600], y = data_surrogate_test$y[201:600], col = 'red', pch = 19)
+points(x = data_surrogate_test$x[601:900], y = data_surrogate_test$y[601:900], col = 'green', pch = 19)
+
+points(x=data_surrogate_test$x,y=tree_pred,col='black',pch=15)
+```
+
+**MSE**
+```{r}
+pred_mse=mean((data_surrogate_test$y-tree_pred)^2)
+pred_mse
+```
+
+
+
+### Pruning Trees {-}
+
+```{r echo=FALSE}
+set.seed(739)
+data_surrogate_s <- data.frame(x = c(runif(20, 0, 0.4), runif(40, 0.4, 0.65), runif(30, 0.65, 1)),
+                               y = c(rnorm(20, 1.5),    rnorm(40, 0),         rnorm(30, 2)))
+tree_fit_s = tree(y~x,data_surrogate_s)
+tree_pred_s = predict(tree_fit_s,data_surrogate_test)
+pred_mse=mean((data_surrogate_test$y-tree_pred_s)^2)
+```
+
+
+Prune tree with `prune.tree()` command, but can first plot the `deviance` for different size trees using `cv.tree()` with parameter `FUN = prune.tree`.
+
+```{r}
+tree_cv_prune = cv.tree(tree_fit_s, FUN = prune.tree)
+#tree_cv_prune
+plot(tree_cv_prune)
+```

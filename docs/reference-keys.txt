@@ -72,8 +72,11 @@ logistic-regression
 simple-logistic-regression
 multiple-logistic-regression
 inference-1
+tree-models
+building-tree-models
 misc-exam-notes
 plotting-3
+generating-synthetic-data
 dssc---data-wrangling-presentation-and-applications
 data-wrangling-with-tidyverse
 tidy-form-tidyr

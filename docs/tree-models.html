@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>R Notes</title>
-  <meta name="description" content="R Notes" />
+  <title>Chapter 10 Tree Models | R Notes</title>
+  <meta name="description" content="Chapter 10 Tree Models | R Notes" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="R Notes" />
+  <meta property="og:title" content="Chapter 10 Tree Models | R Notes" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="R Notes" />
+  <meta name="twitter:title" content="Chapter 10 Tree Models | R Notes" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-
-<link rel="next" href="r-basics.html"/>
+<link rel="prev" href="logistic-regression.html"/>
+<link rel="next" href="misc-exam-notes.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -328,35 +328,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">R Notes</h1>
-<p class="author"><em>Jamie Reason</em></p>
-<p class="date"><em>2022-23</em></p>
+<div id="tree-models" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Tree Models<a href="tree-models.html#tree-models" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="building-tree-models" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Building Tree Models<a href="tree-models.html#building-tree-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="tree-models.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;tree&quot;</span>)</span></code></pre></div>
+<p>Use <code>tree()</code> function from <code>library("tree")</code>.</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="tree-models.html#cb262-1" aria-hidden="true" tabindex="-1"></a>tree_fit <span class="ot">=</span> <span class="fu">tree</span>(y <span class="sc">~</span> x, data_surrogate)</span>
+<span id="cb262-2"><a href="tree-models.html#cb262-2" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(tree_fit)</span></span>
+<span id="cb262-3"><a href="tree-models.html#cb262-3" aria-hidden="true" tabindex="-1"></a><span class="co">#tree_fit</span></span></code></pre></div>
+<div id="plotting-trees" class="section level3 unnumbered hasAnchor">
+<h3>Plotting Trees<a href="tree-models.html#plotting-trees" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If <code>pretty = 0</code> then the level names of a factor split attributes are used unchanged.</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="tree-models.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tree_fit)</span>
+<span id="cb263-2"><a href="tree-models.html#cb263-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(tree_fit, <span class="at">pretty=</span><span class="dv">0</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-208-1.png" width="672" /></p>
 </div>
-<div id="resources" class="section level1 unnumbered hasAnchor">
-<h1>Resources<a href="index.html#resources" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>These are personal notes on R mainly for reference, written over the course of two modules taken at university,</p>
-<ul>
-<li>MLLN (Machine Learning and Neural Networks) (2022-23)</li>
-<li>DSSC (Data Science and Statistical Computing) (2021-22)</li>
-</ul>
-<p>Although, this current version is more focused on the content for the MLLN module.</p>
-<p>These are heavily based off the notes of the respective courses (see links below) and I do not take credit. There may still be mistakes and inaccuracies from myself.</p>
-<ul>
-<li><a href="https://rseek.org"><strong>R Seek</strong></a> Search Engine</li>
-<li><a href="https://www.rstudio.com/resources/cheatsheets/"><strong>Cheat Sheets</strong></a></li>
-<li><a href="https://bookdown.org/hailiangdu80/Machine_Learning_and_Neural_Networks/"><strong>MLNN Course Notes</strong></a></li>
-<li><a href="https://www.louisaslett.com/Courses/DSSC/notes/"><strong>DSSC Course Notes</strong></a></li>
-</ul>
+<div id="predictions" class="section level3 unnumbered hasAnchor">
+<h3>Predictions<a href="tree-models.html#predictions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Example from practical demonstration with synthetic surrogate data.</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="tree-models.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">347</span>)</span>
+<span id="cb264-2"><a href="tree-models.html#cb264-2" aria-hidden="true" tabindex="-1"></a>data_surrogate_test <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">runif</span>(<span class="dv">200</span>, <span class="dv">0</span>, <span class="fl">0.4</span>), <span class="fu">runif</span>(<span class="dv">400</span>, <span class="fl">0.4</span>, <span class="fl">0.65</span>), <span class="fu">runif</span>(<span class="dv">300</span>, <span class="fl">0.65</span>, <span class="dv">1</span>)),</span>
+<span id="cb264-3"><a href="tree-models.html#cb264-3" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">y =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="fl">1.5</span>),    <span class="fu">rnorm</span>(<span class="dv">400</span>, <span class="dv">0</span>),         <span class="fu">rnorm</span>(<span class="dv">300</span>, <span class="dv">2</span>)))</span></code></pre></div>
+<p>Use <code>predict()</code> function. The tree model gives the mean in that terminal node group as a prediction.</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="tree-models.html#cb265-1" aria-hidden="true" tabindex="-1"></a>tree_pred <span class="ot">=</span> <span class="fu">predict</span>(tree_fit, data_surrogate_test)</span></code></pre></div>
+<p><strong>Plotting Predictions</strong></p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="tree-models.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> data_surrogate_test<span class="sc">$</span>x[<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>], <span class="at">y =</span> data_surrogate_test<span class="sc">$</span>y[<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>],</span>
+<span id="cb266-2"><a href="tree-models.html#cb266-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&#39;blue&#39;</span>, <span class="at">xlab =</span> <span class="st">&quot;X&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Y&quot;</span>, <span class="at">pch =</span> <span class="dv">19</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">4</span>))</span>
+<span id="cb266-3"><a href="tree-models.html#cb266-3" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x =</span> data_surrogate_test<span class="sc">$</span>x[<span class="dv">201</span><span class="sc">:</span><span class="dv">600</span>], <span class="at">y =</span> data_surrogate_test<span class="sc">$</span>y[<span class="dv">201</span><span class="sc">:</span><span class="dv">600</span>], <span class="at">col =</span> <span class="st">&#39;red&#39;</span>, <span class="at">pch =</span> <span class="dv">19</span>)</span>
+<span id="cb266-4"><a href="tree-models.html#cb266-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x =</span> data_surrogate_test<span class="sc">$</span>x[<span class="dv">601</span><span class="sc">:</span><span class="dv">900</span>], <span class="at">y =</span> data_surrogate_test<span class="sc">$</span>y[<span class="dv">601</span><span class="sc">:</span><span class="dv">900</span>], <span class="at">col =</span> <span class="st">&#39;green&#39;</span>, <span class="at">pch =</span> <span class="dv">19</span>)</span>
+<span id="cb266-5"><a href="tree-models.html#cb266-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb266-6"><a href="tree-models.html#cb266-6" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x=</span>data_surrogate_test<span class="sc">$</span>x,<span class="at">y=</span>tree_pred,<span class="at">col=</span><span class="st">&#39;black&#39;</span>,<span class="at">pch=</span><span class="dv">15</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-211-1.png" width="672" /></p>
+<p><strong>MSE</strong></p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="tree-models.html#cb267-1" aria-hidden="true" tabindex="-1"></a>pred_mse<span class="ot">=</span><span class="fu">mean</span>((data_surrogate_test<span class="sc">$</span>y<span class="sc">-</span>tree_pred)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb267-2"><a href="tree-models.html#cb267-2" aria-hidden="true" tabindex="-1"></a>pred_mse</span></code></pre></div>
+<pre><code>## [1] 1.005645</code></pre>
+</div>
+<div id="pruning-trees" class="section level3 unnumbered hasAnchor">
+<h3>Pruning Trees<a href="tree-models.html#pruning-trees" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Prune tree with <code>prune.tree()</code> command, but can first plot the <code>deviance</code> for different size trees using <code>cv.tree()</code> with parameter <code>FUN = prune.tree</code>.</p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="tree-models.html#cb269-1" aria-hidden="true" tabindex="-1"></a>tree_cv_prune <span class="ot">=</span> <span class="fu">cv.tree</span>(tree_fit_s, <span class="at">FUN =</span> prune.tree)</span>
+<span id="cb269-2"><a href="tree-models.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="co">#tree_cv_prune</span></span>
+<span id="cb269-3"><a href="tree-models.html#cb269-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tree_cv_prune)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="r-basics.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="logistic-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="misc-exam-notes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -387,7 +413,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/jreaso/rnotes/edit/master/index.Rmd",
+"link": "https://github.com/jreaso/rnotes/edit/master/10-trees.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -395,7 +421,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/jreaso/rnotes/blob/master/index.Rmd",
+"link": "https://github.com/jreaso/rnotes/blob/master/10-trees.Rmd",
 "text": null
 },
 "download": null,
