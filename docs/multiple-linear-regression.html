@@ -273,6 +273,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="tree-models.html"><a href="tree-models.html#predictions"><i class="fa fa-check"></i>Predictions</a></li>
 <li class="chapter" data-level="" data-path="tree-models.html"><a href="tree-models.html#pruning-trees"><i class="fa fa-check"></i>Pruning Trees</a></li>
 </ul></li>
+<li class="chapter" data-level="10.2" data-path="tree-models.html"><a href="tree-models.html#bagging-and-random-forests"><i class="fa fa-check"></i><b>10.2</b> Bagging and Random Forests</a>
+<ul>
+<li class="chapter" data-level="" data-path="tree-models.html"><a href="tree-models.html#bagging-model"><i class="fa fa-check"></i>Bagging Model</a></li>
+<li class="chapter" data-level="" data-path="tree-models.html"><a href="tree-models.html#random-forests"><i class="fa fa-check"></i>Random Forests</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="tree-models.html"><a href="tree-models.html#boosting"><i class="fa fa-check"></i><b>10.3</b> Boosting</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="misc-exam-notes.html"><a href="misc-exam-notes.html"><i class="fa fa-check"></i><b>11</b> Misc Exam Notes</a>
 <ul>
@@ -529,21 +535,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb128-5"><a href="multiple-linear-regression.html#cb128-5" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb128-6"><a href="multiple-linear-regression.html#cb128-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb128-7"><a href="multiple-linear-regression.html#cb128-7" aria-hidden="true" tabindex="-1"></a>val.error <span class="co">#stores 19 models validation MSE</span></span></code></pre></div>
-<pre><code>##  [1] 184681.2 156480.0 149494.1 151313.5 143359.5 135568.3 130244.2 132420.8
-##  [9] 123067.6 120899.4 121341.9 121782.1 122432.5 121790.2 123035.7 126641.5
-## [17] 127907.9 128072.5 128076.9</code></pre>
+<pre><code>##  [1] 151582.1 161038.3 157865.6 148420.1 148059.5 139724.6 140910.7 136201.2
+##  [9] 137252.1 138768.9 138516.7 139014.0 138026.2 140615.3 141701.8 142136.5
+## [17] 142970.9 142813.1 142998.0</code></pre>
 <p>Index with smallest MSE is best number of predictors</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="multiple-linear-regression.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(val.error) </span></code></pre></div>
-<pre><code>## [1] 10</code></pre>
+<pre><code>## [1] 8</code></pre>
 </div>
 <div id="inference" class="section level4 unnumbered hasAnchor">
 <h4>Inference<a href="multiple-linear-regression.html#inference" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>After choosing optimal model with best subset selection using a validation set, <strong>before inference, you must train the model in the entire data set</strong>.</p>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="multiple-linear-regression.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(best.val, <span class="dv">10</span>) <span class="co"># Check which variables to use in the lm.</span></span></code></pre></div>
-<pre><code>## (Intercept)       AtBat        Hits       Walks      CAtBat       CRuns 
-## 192.7302290  -1.4186186   5.0886854   3.6054574  -0.2270754   1.8464411 
-##        CRBI      CWalks   DivisionW     PutOuts     Assists 
-##   0.9312329  -0.7122134 -92.5577224   0.1669808   0.1748587</code></pre>
+<pre><code>##  (Intercept)        AtBat         Hits        Walks       CHmRun        CRuns 
+##   13.9966063   -2.2622740    8.6558865    6.4093820    1.3957008    0.9680297 
+##       CWalks      LeagueN    DivisionW      PutOuts   NewLeagueN 
+##   -0.9134563  152.9904703 -130.3145660    0.2320350  -95.9102264</code></pre>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="multiple-linear-regression.html#cb134-1" aria-hidden="true" tabindex="-1"></a>ls10 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Runs <span class="sc">+</span> Walks <span class="sc">+</span> CAtBat <span class="sc">+</span> CRuns <span class="sc">+</span> CRBI <span class="sc">+</span> CWalks <span class="sc">+</span> Division <span class="sc">+</span> PutOuts, <span class="at">data =</span> Hitters)</span></code></pre></div>
 <p>Usual inference can follow.</p>
 <p>Note: using a validation set means the choice of the best model is random, depending on how you selected which observations were used for training and which were used for validation.</p>

@@ -273,6 +273,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="tree-models.html"><a href="tree-models.html#predictions"><i class="fa fa-check"></i>Predictions</a></li>
 <li class="chapter" data-level="" data-path="tree-models.html"><a href="tree-models.html#pruning-trees"><i class="fa fa-check"></i>Pruning Trees</a></li>
 </ul></li>
+<li class="chapter" data-level="10.2" data-path="tree-models.html"><a href="tree-models.html#bagging-and-random-forests"><i class="fa fa-check"></i><b>10.2</b> Bagging and Random Forests</a>
+<ul>
+<li class="chapter" data-level="" data-path="tree-models.html"><a href="tree-models.html#bagging-model"><i class="fa fa-check"></i>Bagging Model</a></li>
+<li class="chapter" data-level="" data-path="tree-models.html"><a href="tree-models.html#random-forests"><i class="fa fa-check"></i>Random Forests</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="tree-models.html"><a href="tree-models.html#boosting"><i class="fa fa-check"></i><b>10.3</b> Boosting</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="misc-exam-notes.html"><a href="misc-exam-notes.html"><i class="fa fa-check"></i><b>11</b> Misc Exam Notes</a>
 <ul>
@@ -372,8 +378,144 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb269-2"><a href="tree-models.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="co">#tree_cv_prune</span></span>
 <span id="cb269-3"><a href="tree-models.html#cb269-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tree_cv_prune)</span></code></pre></div>
 <p><img src="bookdownproj_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
-
+<p><strong>Fitting Pruned Model</strong></p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="tree-models.html#cb270-1" aria-hidden="true" tabindex="-1"></a>tree_fit_prune <span class="ot">=</span> <span class="fu">prune.tree</span>(tree_fit_s, <span class="at">best =</span> <span class="dv">3</span>)</span>
+<span id="cb270-2"><a href="tree-models.html#cb270-2" aria-hidden="true" tabindex="-1"></a>tree_fit_prune</span></code></pre></div>
+<pre><code>## node), split, n, deviance, yval
+##       * denotes terminal node
+## 
+## 1) root 90 131.60 1.0660  
+##   2) x &lt; 0.653469 60  90.67 0.7376  
+##     4) x &lt; 0.427732 26  29.65 1.4510 *
+##     5) x &gt; 0.427732 34  37.64 0.1917 *
+##   3) x &gt; 0.653469 30  21.48 1.7240 *</code></pre>
+<p>You may also prune the tree by specifying the cost-complexity parameter <code>k</code>, for example <code>tree_fit_prune=prune.tree(tree_fit_s, k=5)</code>.</p>
+<p>Pruned Tree:</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="tree-models.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tree_fit_prune)</span>
+<span id="cb272-2"><a href="tree-models.html#cb272-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(tree_fit_prune,<span class="at">pretty=</span><span class="dv">0</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-216-1.png" width="672" /></p>
+<p>Pruning has decreased the MSE:</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="tree-models.html#cb273-1" aria-hidden="true" tabindex="-1"></a>tree_pred_prune<span class="ot">=</span><span class="fu">predict</span>(tree_fit_prune,data_surrogate_test)</span>
+<span id="cb273-2"><a href="tree-models.html#cb273-2" aria-hidden="true" tabindex="-1"></a>pred_mse_prune <span class="ot">=</span> <span class="fu">mean</span>((data_surrogate_test<span class="sc">$</span>y<span class="sc">-</span>tree_pred_prune)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb273-3"><a href="tree-models.html#cb273-3" aria-hidden="true" tabindex="-1"></a>pred_mse <span class="sc">-</span> pred_mse_prune</span></code></pre></div>
+<pre><code>## [1] 0.1765653</code></pre>
+<p>The following function shows this is a general result and holds on average:</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="tree-models.html#cb275-1" aria-hidden="true" tabindex="-1"></a>prune_improvement <span class="ot">&lt;-</span> <span class="cf">function</span>(k) {</span>
+<span id="cb275-2"><a href="tree-models.html#cb275-2" aria-hidden="true" tabindex="-1"></a>  data_surrogate_s <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">runif</span>(<span class="dv">20</span>, <span class="dv">0</span>, <span class="fl">0.4</span>), <span class="fu">runif</span>(<span class="dv">40</span>, <span class="fl">0.4</span>, <span class="fl">0.65</span>), <span class="fu">runif</span>(<span class="dv">30</span>, <span class="fl">0.65</span>, <span class="dv">1</span>)),</span>
+<span id="cb275-3"><a href="tree-models.html#cb275-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">y =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">20</span>, <span class="fl">1.5</span>),    <span class="fu">rnorm</span>(<span class="dv">40</span>, <span class="dv">0</span>),         <span class="fu">rnorm</span>(<span class="dv">30</span>, <span class="dv">2</span>)))</span>
+<span id="cb275-4"><a href="tree-models.html#cb275-4" aria-hidden="true" tabindex="-1"></a>  tree_fit_s <span class="ot">=</span> <span class="fu">tree</span>(y<span class="sc">~</span>x,data_surrogate_s)</span>
+<span id="cb275-5"><a href="tree-models.html#cb275-5" aria-hidden="true" tabindex="-1"></a>  tree_pred_s <span class="ot">=</span> <span class="fu">predict</span>(tree_fit_s,data_surrogate_test)</span>
+<span id="cb275-6"><a href="tree-models.html#cb275-6" aria-hidden="true" tabindex="-1"></a>  pred_mse_s <span class="ot">=</span> <span class="fu">mean</span>((data_surrogate_test<span class="sc">$</span>y<span class="sc">-</span>tree_pred_s)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb275-7"><a href="tree-models.html#cb275-7" aria-hidden="true" tabindex="-1"></a>  tree_fit_prune <span class="ot">=</span> <span class="fu">prune.tree</span>(tree_fit_s,<span class="at">k=</span><span class="dv">5</span>)</span>
+<span id="cb275-8"><a href="tree-models.html#cb275-8" aria-hidden="true" tabindex="-1"></a>  tree_pred_prune <span class="ot">=</span> <span class="fu">predict</span>(tree_fit_prune,data_surrogate_test)</span>
+<span id="cb275-9"><a href="tree-models.html#cb275-9" aria-hidden="true" tabindex="-1"></a>  pred_mse_prune <span class="ot">=</span> <span class="fu">mean</span>((data_surrogate_test<span class="sc">$</span>y<span class="sc">-</span>tree_pred_prune)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb275-10"><a href="tree-models.html#cb275-10" aria-hidden="true" tabindex="-1"></a>  dif_t <span class="ot">=</span> pred_mse_s<span class="sc">-</span>pred_mse_prune</span>
+<span id="cb275-11"><a href="tree-models.html#cb275-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(dif_t)  </span>
+<span id="cb275-12"><a href="tree-models.html#cb275-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb275-13"><a href="tree-models.html#cb275-13" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">1024</span>, <span class="at">FUN=</span><span class="cf">function</span>(i){<span class="fu">prune_improvement</span>(<span class="dv">5</span>)}))</span></code></pre></div>
+<pre><code>## [1] 0.09926117</code></pre>
 </div>
+</div>
+<div id="bagging-and-random-forests" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Bagging and Random Forests<a href="tree-models.html#bagging-and-random-forests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Follows an example which uses <code>library(ISLR)</code> and <code>library(MASS)</code> for bagging, random forests and boosted trees. We have <code>data_train</code> and <code>data_test</code> from the <code>Boston</code> dataset.</p>
+<p>Tree Model and Pruned Tree Model Trained:</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="tree-models.html#cb277-1" aria-hidden="true" tabindex="-1"></a>tree.boston <span class="ot">=</span> <span class="fu">tree</span>(medv <span class="sc">~</span> ., data_train)</span>
+<span id="cb277-2"><a href="tree-models.html#cb277-2" aria-hidden="true" tabindex="-1"></a>prune.boston <span class="ot">=</span> <span class="fu">prune.tree</span>(tree.boston, <span class="at">best =</span> <span class="dv">6</span>)</span></code></pre></div>
+<div id="bagging-model" class="section level3 unnumbered hasAnchor">
+<h3>Bagging Model<a href="tree-models.html#bagging-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For bagging, we use the <code>library(randomForest)</code> package but with <code>mrty = 13</code> (<span class="math inline">\(m = p\)</span> so using all predictors).</p>
+<p><strong>Bagging Model (10 Trees):</strong></p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="tree-models.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span> (<span class="dv">472</span>)</span>
+<span id="cb278-2"><a href="tree-models.html#cb278-2" aria-hidden="true" tabindex="-1"></a>bag.boston <span class="ot">=</span> <span class="fu">randomForest</span>(medv <span class="sc">~</span> ., <span class="at">data =</span> data_train, <span class="at">mtry=</span><span class="dv">13</span>, <span class="at">ntree=</span><span class="dv">10</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><strong>Prediction Accuracy:</strong></p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="tree-models.html#cb279-1" aria-hidden="true" tabindex="-1"></a>pred.bag <span class="ot">=</span> <span class="fu">predict</span>(bag.boston, <span class="at">newdata =</span> data_test)</span>
+<span id="cb279-2"><a href="tree-models.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pred.bag, data_test<span class="sc">$</span>medv, <span class="at">bty =</span> <span class="st">&#39;l&#39;</span>)</span>
+<span id="cb279-3"><a href="tree-models.html#cb279-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="dv">0</span>,<span class="dv">1</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-223-1.png" width="672" /></p>
+<p><strong>MSE:</strong></p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="tree-models.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>((pred.bag <span class="sc">-</span> data_test<span class="sc">$</span>medv)<span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 23.98799</code></pre>
+<p><strong>Same for 100 and 1000 trees:</strong></p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="tree-models.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="co">#100 trees</span></span>
+<span id="cb282-2"><a href="tree-models.html#cb282-2" aria-hidden="true" tabindex="-1"></a>bag.boston <span class="ot">=</span> <span class="fu">randomForest</span>(medv <span class="sc">~</span> ., <span class="at">data =</span> data_train, <span class="at">mtry =</span> <span class="dv">13</span>, <span class="at">ntree =</span> <span class="dv">100</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb282-3"><a href="tree-models.html#cb282-3" aria-hidden="true" tabindex="-1"></a>pred.bag <span class="ot">=</span> <span class="fu">predict</span>(bag.boston, <span class="at">newdata =</span> data_test)</span>
+<span id="cb282-4"><a href="tree-models.html#cb282-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>((pred.bag <span class="sc">-</span> data_test<span class="sc">$</span>medv)<span class="sc">^</span><span class="dv">2</span>) <span class="co">#MSE</span></span></code></pre></div>
+<pre><code>## [1] 24.04128</code></pre>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="tree-models.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="co">#1000 trees</span></span>
+<span id="cb284-2"><a href="tree-models.html#cb284-2" aria-hidden="true" tabindex="-1"></a>bag.boston <span class="ot">=</span> <span class="fu">randomForest</span>(medv <span class="sc">~</span> ., <span class="at">data =</span> data_train, <span class="at">mtry =</span> <span class="dv">13</span>, <span class="at">ntree =</span> <span class="dv">1000</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb284-3"><a href="tree-models.html#cb284-3" aria-hidden="true" tabindex="-1"></a>pred.bag <span class="ot">=</span> <span class="fu">predict</span>(bag.boston, <span class="at">newdata =</span> data_test)</span>
+<span id="cb284-4"><a href="tree-models.html#cb284-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>((pred.bag <span class="sc">-</span> data_test<span class="sc">$</span>medv)<span class="sc">^</span><span class="dv">2</span>) <span class="co">#MSE</span></span></code></pre></div>
+<pre><code>## [1] 23.46335</code></pre>
+</div>
+<div id="random-forests" class="section level3 unnumbered hasAnchor">
+<h3>Random Forests<a href="tree-models.html#random-forests" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Use <code>mtry</code> as something else for random forests. By default this will be <span class="math inline">\(p/3\)</span> but can also try <span class="math inline">\(\sqrt{p}\)</span>. Very similar method to bagging.</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="tree-models.html#cb286-1" aria-hidden="true" tabindex="-1"></a>rf.boston <span class="ot">=</span> <span class="fu">randomForest</span>(medv <span class="sc">~</span> ., <span class="at">data =</span> data_train, <span class="at">mtry =</span> <span class="dv">4</span>, <span class="at">ntree =</span> <span class="dv">100</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>) <span class="co">#uses 4 variables</span></span>
+<span id="cb286-2"><a href="tree-models.html#cb286-2" aria-hidden="true" tabindex="-1"></a>pred.rf <span class="ot">=</span> <span class="fu">predict</span>(rf.boston, <span class="at">newdata =</span> data_test)</span>
+<span id="cb286-3"><a href="tree-models.html#cb286-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>((pred.rf <span class="sc">-</span>data_test<span class="sc">$</span>medv)<span class="sc">^</span><span class="dv">2</span>) <span class="co">#MSE</span></span></code></pre></div>
+<pre><code>## [1] 19.23722</code></pre>
+<p><strong>Importance Plot</strong></p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="tree-models.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">importance</span>(rf.boston)</span></code></pre></div>
+<pre><code>##           %IncMSE IncNodePurity
+## crim     5.141187    1206.45846
+## zn       1.862903     216.91995
+## indus    3.527213     657.55620
+## chas     1.109467      43.61585
+## nox      5.448503    1105.66023
+## rm      15.393403    6888.75872
+## age      5.439751     735.33618
+## dis      5.249046     855.71969
+## rad      2.117459     163.24660
+## tax      4.123422     684.25752
+## ptratio  2.589235     963.42017
+## black    4.557716     370.96316
+## lstat   10.676720    5155.26867</code></pre>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="tree-models.html#cb290-1" aria-hidden="true" tabindex="-1"></a>?importance</span>
+<span id="cb290-2"><a href="tree-models.html#cb290-2" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(rf.boston)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
+<p><strong>Plotting test error (MSE) for all different <code>mtry()</code></strong></p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="tree-models.html#cb291-1" aria-hidden="true" tabindex="-1"></a>test.err <span class="ot">=</span> <span class="fu">double</span>(<span class="dv">13</span>) <span class="co">#sequence of all zeros length 13</span></span>
+<span id="cb291-2"><a href="tree-models.html#cb291-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb291-3"><a href="tree-models.html#cb291-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(mtry_t <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">13</span>){</span>
+<span id="cb291-4"><a href="tree-models.html#cb291-4" aria-hidden="true" tabindex="-1"></a>  fit <span class="ot">=</span> <span class="fu">randomForest</span>(medv <span class="sc">~</span> ., <span class="at">data =</span> data_train, <span class="at">mtry =</span> mtry_t, <span class="at">ntree =</span> <span class="dv">100</span>)</span>
+<span id="cb291-5"><a href="tree-models.html#cb291-5" aria-hidden="true" tabindex="-1"></a>  pred <span class="ot">=</span> <span class="fu">predict</span>(fit, data_test)</span>
+<span id="cb291-6"><a href="tree-models.html#cb291-6" aria-hidden="true" tabindex="-1"></a>  test.err[mtry_t] <span class="ot">=</span> <span class="fu">mean</span>((pred <span class="sc">-</span> data_test<span class="sc">$</span>medv)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb291-7"><a href="tree-models.html#cb291-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb291-8"><a href="tree-models.html#cb291-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb291-9"><a href="tree-models.html#cb291-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(test.err, <span class="at">pch =</span> <span class="dv">20</span>)</span>
+<span id="cb291-10"><a href="tree-models.html#cb291-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(test.err)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
+</div>
+</div>
+<div id="boosting" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> Boosting<a href="tree-models.html#boosting" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Use the Generalized Boosted Regression Modelling (GBM) Package <code>library(gbm)</code>.</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="tree-models.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gbm)</span></code></pre></div>
+<p>For boosted regression trees, use <code>distribution = "gaussian"</code> but for binary classification problems, use <code>distribution = “bernoulli”</code>.</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="tree-models.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">517</span>)</span>
+<span id="cb293-2"><a href="tree-models.html#cb293-2" aria-hidden="true" tabindex="-1"></a>boost.boston <span class="ot">=</span> <span class="fu">gbm</span>(medv <span class="sc">~</span> ., <span class="at">data =</span> data_train, <span class="at">distribution=</span><span class="st">&quot;gaussian&quot;</span>, <span class="at">n.trees =</span> <span class="dv">1000</span>, <span class="at">interaction.depth =</span> <span class="dv">2</span>)</span>
+<span id="cb293-3"><a href="tree-models.html#cb293-3" aria-hidden="true" tabindex="-1"></a><span class="co">#interaction depth is d in lecture notes</span></span>
+<span id="cb293-4"><a href="tree-models.html#cb293-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(boost.boston) <span class="co">#makes a plot too</span></span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-230-1.png" width="672" /></p>
+<pre><code>##             var    rel.inf
+## rm           rm 42.6691313
+## lstat     lstat 31.2820748
+## crim       crim  5.0703499
+## dis         dis  4.5616872
+## nox         nox  3.2604137
+## age         age  3.1196043
+## black     black  2.9887370
+## ptratio ptratio  2.6983302
+## tax         tax  1.9729225
+## indus     indus  1.1820825
+## rad         rad  0.8957232
+## chas       chas  0.1816023
+## zn           zn  0.1173412</code></pre>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="tree-models.html#cb295-1" aria-hidden="true" tabindex="-1"></a>pred.boost <span class="ot">=</span> <span class="fu">predict</span>(boost.boston, <span class="at">newdata =</span> data_test, <span class="at">n.trees =</span> <span class="dv">1000</span>)</span>
+<span id="cb295-2"><a href="tree-models.html#cb295-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>((pred.boost<span class="sc">-</span>data_test<span class="sc">$</span>medv)<span class="sc">^</span><span class="dv">2</span>) <span class="co">#MSE - improvement on random forests</span></span></code></pre></div>
+<pre><code>## [1] 16.98637</code></pre>
+
 </div>
 </div>
             </section>

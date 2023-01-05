@@ -84,3 +84,165 @@ tree_cv_prune = cv.tree(tree_fit_s, FUN = prune.tree)
 #tree_cv_prune
 plot(tree_cv_prune)
 ```
+
+**Fitting Pruned Model**
+
+```{r}
+tree_fit_prune = prune.tree(tree_fit_s, best = 3)
+tree_fit_prune
+```
+
+You may also prune the tree by specifying the cost-complexity parameter `k`, for example `tree_fit_prune=prune.tree(tree_fit_s, k=5)`.
+
+Pruned Tree:
+```{r}
+plot(tree_fit_prune)
+text(tree_fit_prune,pretty=0)
+```
+
+Pruning has decreased the MSE:
+
+```{r}
+tree_pred_prune=predict(tree_fit_prune,data_surrogate_test)
+pred_mse_prune = mean((data_surrogate_test$y-tree_pred_prune)^2)
+pred_mse - pred_mse_prune
+```
+
+The following function shows this is a general result and holds on average:
+
+```{r}
+prune_improvement <- function(k) {
+  data_surrogate_s <- data.frame(x = c(runif(20, 0, 0.4), runif(40, 0.4, 0.65), runif(30, 0.65, 1)),
+                                 y = c(rnorm(20, 1.5),    rnorm(40, 0),         rnorm(30, 2)))
+  tree_fit_s = tree(y~x,data_surrogate_s)
+  tree_pred_s = predict(tree_fit_s,data_surrogate_test)
+  pred_mse_s = mean((data_surrogate_test$y-tree_pred_s)^2)
+  tree_fit_prune = prune.tree(tree_fit_s,k=5)
+  tree_pred_prune = predict(tree_fit_prune,data_surrogate_test)
+  pred_mse_prune = mean((data_surrogate_test$y-tree_pred_prune)^2)
+  dif_t = pred_mse_s-pred_mse_prune
+  return(dif_t)  
+}
+mean(sapply(1:1024, FUN=function(i){prune_improvement(5)}))
+```
+
+
+## Bagging and Random Forests
+
+Follows an example which uses `library(ISLR)` and `library(MASS)` for bagging, random forests and boosted trees. We have `data_train` and `data_test` from the `Boston` dataset.
+
+```{r echo=FALSE, warning=FALSE}
+library(MASS)
+
+set.seed (1)
+train = sample (1: nrow(Boston ), nrow(Boston)/2)
+data_train = Boston[train,]
+data_test = Boston[-train,]
+```
+
+Tree Model and Pruned Tree Model Trained:
+```{r}
+tree.boston = tree(medv ~ ., data_train)
+prune.boston = prune.tree(tree.boston, best = 6)
+```
+
+### Bagging Model {-}
+
+For bagging, we use the `library(randomForest)` package but with `mrty = 13` ($m = p$ so using all predictors).
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(randomForest)
+```
+
+**Bagging Model (10 Trees):**
+
+```{r}
+set.seed (472)
+bag.boston = randomForest(medv ~ ., data = data_train, mtry=13, ntree=10, importance = TRUE)
+```
+
+**Prediction Accuracy:**
+```{r}
+pred.bag = predict(bag.boston, newdata = data_test)
+plot(pred.bag, data_test$medv, bty = 'l')
+abline(0,1)
+```
+
+**MSE:**
+```{r}
+mean((pred.bag - data_test$medv)^2)
+```
+
+
+**Same for 100 and 1000 trees:**
+```{r}
+#100 trees
+bag.boston = randomForest(medv ~ ., data = data_train, mtry = 13, ntree = 100, importance = TRUE)
+pred.bag = predict(bag.boston, newdata = data_test)
+mean((pred.bag - data_test$medv)^2) #MSE
+
+#1000 trees
+bag.boston = randomForest(medv ~ ., data = data_train, mtry = 13, ntree = 1000, importance = TRUE)
+pred.bag = predict(bag.boston, newdata = data_test)
+mean((pred.bag - data_test$medv)^2) #MSE
+```
+
+### Random Forests {-}
+
+Use `mtry` as something else for random forests. By default this will be $p/3$ but can also try $\sqrt{p}$. Very similar method to bagging.
+
+```{r}
+rf.boston = randomForest(medv ~ ., data = data_train, mtry = 4, ntree = 100, importance = TRUE) #uses 4 variables
+pred.rf = predict(rf.boston, newdata = data_test)
+mean((pred.rf -data_test$medv)^2) #MSE
+```
+
+**Importance Plot**
+
+```{r}
+importance(rf.boston)
+?importance
+varImpPlot(rf.boston)
+```
+
+**Plotting test error (MSE) for all different `mtry()`**
+
+```{r}
+test.err = double(13) #sequence of all zeros length 13
+
+for(mtry_t in 1:13){
+  fit = randomForest(medv ~ ., data = data_train, mtry = mtry_t, ntree = 100)
+  pred = predict(fit, data_test)
+  test.err[mtry_t] = mean((pred - data_test$medv)^2)
+}
+
+plot(test.err, pch = 20)
+lines(test.err)
+```
+
+
+## Boosting
+
+Use the Generalized Boosted Regression Modelling (GBM) Package `library(gbm)`.
+
+```{r warning=FALSE, message=FALSE}
+library(gbm)
+```
+
+For boosted regression trees, use `distribution = "gaussian"` but for binary classification problems, use `distribution = “bernoulli”`.
+
+```{r}
+set.seed(517)
+boost.boston = gbm(medv ~ ., data = data_train, distribution="gaussian", n.trees = 1000, interaction.depth = 2)
+#interaction depth is d in lecture notes
+summary(boost.boston) #makes a plot too
+
+pred.boost = predict(boost.boston, newdata = data_test, n.trees = 1000)
+mean((pred.boost-data_test$medv)^2) #MSE - improvement on random forests
+```
+
+
+
+
+
+

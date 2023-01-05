@@ -74,6 +74,8 @@ multiple-logistic-regression
 inference-1
 tree-models
 building-tree-models
+bagging-and-random-forests
+boosting
 misc-exam-notes
 plotting-3
 generating-synthetic-data
