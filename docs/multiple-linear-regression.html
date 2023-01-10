@@ -537,21 +537,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb128-5"><a href="multiple-linear-regression.html#cb128-5" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb128-6"><a href="multiple-linear-regression.html#cb128-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb128-7"><a href="multiple-linear-regression.html#cb128-7" aria-hidden="true" tabindex="-1"></a>val.error <span class="co">#stores 19 models validation MSE</span></span></code></pre></div>
-<pre><code>##  [1] 153462.14 126622.11 125308.86 120377.84 114535.34 108426.03 104512.69
-##  [8]  98069.79 107455.06  96600.38  96295.90  99940.01 106396.70 110433.43
-## [15] 110482.29 108577.12 107764.84 107869.77 108122.59</code></pre>
+<pre><code>##  [1] 149256.9 127021.6 119911.4 128150.0 120768.6 114227.5 113001.6 107496.9
+##  [9] 104495.6 106767.7 104388.1 103914.8 105468.7 106783.7 105924.4 106020.4
+## [17] 106078.9 105698.6 105616.7</code></pre>
 <p>Index with smallest MSE is best number of predictors</p>
 <div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="multiple-linear-regression.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which.min</span>(val.error) </span></code></pre></div>
-<pre><code>## [1] 11</code></pre>
+<pre><code>## [1] 12</code></pre>
 </div>
 <div id="inference" class="section level4 unnumbered hasAnchor">
 <h4>Inference<a href="multiple-linear-regression.html#inference" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>After choosing optimal model with best subset selection using a validation set, <strong>before inference, you must train the model in the entire data set</strong>.</p>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="multiple-linear-regression.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(best.val, <span class="dv">10</span>) <span class="co"># Check which variables to use in the lm.</span></span></code></pre></div>
-<pre><code>##  (Intercept)        AtBat         Hits        Walks       CAtBat        CRuns 
-##  208.9614606   -2.2486657    7.5962253    4.4881656   -0.1218319    1.3470183 
-##         CRBI       CWalks    DivisionW      PutOuts      Assists 
-##    0.6072330   -0.7200071 -114.7952764    0.2214360    0.3609139</code></pre>
+<pre><code>##  (Intercept)        AtBat         Hits        Walks       CAtBat        CHits 
+##  197.3578145   -1.4139285    4.5337726    5.0422543   -0.2263382    0.8527955 
+##       CHmRun        CRuns       CWalks    DivisionW      PutOuts 
+##    1.8809630    0.7917642   -0.9240811 -118.4446745    0.2533355</code></pre>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="multiple-linear-regression.html#cb134-1" aria-hidden="true" tabindex="-1"></a>ls10 <span class="ot">=</span> <span class="fu">lm</span>(Salary <span class="sc">~</span> AtBat <span class="sc">+</span> Hits <span class="sc">+</span> Runs <span class="sc">+</span> Walks <span class="sc">+</span> CAtBat <span class="sc">+</span> CRuns <span class="sc">+</span> CRBI <span class="sc">+</span> CWalks <span class="sc">+</span> Division <span class="sc">+</span> PutOuts, <span class="at">data =</span> Hitters)</span></code></pre></div>
 <p>Usual inference can follow.</p>
 <p>Note: using a validation set means the choice of the best model is random, depending on how you selected which observations were used for training and which were used for validation.</p>

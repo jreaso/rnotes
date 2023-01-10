@@ -901,7 +901,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="fu">today</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;2023-01-10&quot;</code></pre>
 <div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>()</span></code></pre></div>
-<pre><code>## [1] &quot;2023-01-10 13:38:33 GMT&quot;</code></pre>
+<pre><code>## [1] &quot;2023-01-10 21:18:09 GMT&quot;</code></pre>
 <div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(<span class="fu">today</span>()) <span class="co">#these are dates not strings</span></span></code></pre></div>
 <pre><code>##  Date[1:1], format: &quot;2023-01-10&quot;</code></pre>
 <p><strong>Constructing dates from strings and numbers</strong></p>
@@ -926,7 +926,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">13.3.1</span> Time Zones<a href="dssc---data-wrangling-presentation-and-applications.html#time-zones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Date creation functions take an argument <code>tz = "America/New_York"</code>.</p>
 <div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb454-1" aria-hidden="true" tabindex="-1"></a><span class="fu">now</span>(<span class="at">tz =</span> <span class="st">&quot;America/New_York&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;2023-01-10 08:38:33 EST&quot;</code></pre>
+<pre><code>## [1] &quot;2023-01-10 16:18:09 EST&quot;</code></pre>
 <p>To see all avaliable zones call <code>OlsonNames()</code></p>
 <p><strong>Changing Time Zone</strong></p>
 <div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="dssc---data-wrangling-presentation-and-applications.html#cb456-1" aria-hidden="true" tabindex="-1"></a><span class="co">#forces change of time zone without changing date/time</span></span>
