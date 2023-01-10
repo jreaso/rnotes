@@ -146,21 +146,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="1.2" data-path="r-basics.html"><a href="r-basics.html#data-frames"><i class="fa fa-check"></i><b>1.2</b> Data Frames</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="r-basics.html"><a href="r-basics.html#creating-data-frames"><i class="fa fa-check"></i><b>1.2.1</b> Creating Data Frames</a></li>
-<li class="chapter" data-level="1.2.2" data-path="r-basics.html"><a href="r-basics.html#accessing-data-frames"><i class="fa fa-check"></i><b>1.2.2</b> Accessing Data Frames</a></li>
-<li class="chapter" data-level="1.2.3" data-path="r-basics.html"><a href="r-basics.html#interrogating-data-frames"><i class="fa fa-check"></i><b>1.2.3</b> Interrogating Data Frames</a></li>
-<li class="chapter" data-level="1.2.4" data-path="r-basics.html"><a href="r-basics.html#manipulating-data-frames"><i class="fa fa-check"></i><b>1.2.4</b> Manipulating Data Frames</a></li>
-<li class="chapter" data-level="1.2.5" data-path="r-basics.html"><a href="r-basics.html#missing-data-in-data-frames"><i class="fa fa-check"></i><b>1.2.5</b> Missing Data in Data Frames</a></li>
+<li class="chapter" data-level="1.2.1" data-path="r-basics.html"><a href="r-basics.html#interrogating-data-frames"><i class="fa fa-check"></i><b>1.2.1</b> Interrogating Data Frames</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-basics.html"><a href="r-basics.html#manipulating-data-frames"><i class="fa fa-check"></i><b>1.2.2</b> Manipulating Data Frames</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-basics.html"><a href="r-basics.html#missing-data-in-data-frames"><i class="fa fa-check"></i><b>1.2.3</b> Missing Data in Data Frames</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="r-basics.html"><a href="r-basics.html#lists"><i class="fa fa-check"></i><b>1.3</b> Lists</a>
-<ul>
-<li class="chapter" data-level="1.3.1" data-path="r-basics.html"><a href="r-basics.html#accessing-lists"><i class="fa fa-check"></i><b>1.3.1</b> Accessing lists</a></li>
-</ul></li>
-<li class="chapter" data-level="1.4" data-path="r-basics.html"><a href="r-basics.html#data-types"><i class="fa fa-check"></i><b>1.4</b> Data Types</a>
-<ul>
-<li class="chapter" data-level="1.4.1" data-path="r-basics.html"><a href="r-basics.html#categorical-data-factors"><i class="fa fa-check"></i><b>1.4.1</b> Categorical Data (Factors)</a></li>
-</ul></li>
-<li class="chapter" data-level="1.5" data-path="r-basics.html"><a href="r-basics.html#other"><i class="fa fa-check"></i><b>1.5</b> Other</a></li>
+<li class="chapter" data-level="1.3" data-path="r-basics.html"><a href="r-basics.html#other"><i class="fa fa-check"></i><b>1.3</b> Other</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>2</b> Plotting</a>
 <ul>
@@ -284,6 +274,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="11.1" data-path="misc-exam-notes.html"><a href="misc-exam-notes.html#plotting-3"><i class="fa fa-check"></i><b>11.1</b> Plotting</a></li>
 <li class="chapter" data-level="11.2" data-path="misc-exam-notes.html"><a href="misc-exam-notes.html#generating-synthetic-data"><i class="fa fa-check"></i><b>11.2</b> Generating Synthetic Data</a></li>
+<li class="chapter" data-level="11.3" data-path="misc-exam-notes.html"><a href="misc-exam-notes.html#summary"><i class="fa fa-check"></i><b>11.3</b> <code>summary</code></a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="dssc---data-wrangling-presentation-and-applications.html"><a href="dssc---data-wrangling-presentation-and-applications.html"><i class="fa fa-check"></i><b>12</b> DSSC - Data Wrangling, Presentation and Applications</a>
 <ul>
@@ -336,27 +327,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="misc-exam-notes" class="section level1 hasAnchor" number="11">
 <h1><span class="header-section-number">Chapter 11</span> Misc Exam Notes<a href="misc-exam-notes.html#misc-exam-notes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Make sure to look at if the examples i’m basing my solution off is for classification or regression. For binary classification problems, use <code>type = "response"</code> in <code>predict()</code> function.</p>
+<p>** If, Else Function (<code>ifelse(condition, condition_true, condition_false)</code>)**</p>
+<p>Example: <code>status_pred=ifelse(pred.boost&lt;=0.5,"bad","good")</code></p>
 <div id="plotting-3" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> Plotting<a href="misc-exam-notes.html#plotting-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Basic Plot</strong></p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="misc-exam-notes.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">col =</span> <span class="st">&quot;darkgrey&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;X Label&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Y Label&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Title&quot;</span>, <span class="at">bty =</span> <span class="st">&#39;l&#39;</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="misc-exam-notes.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">col =</span> <span class="st">&quot;darkgrey&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;X Label&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Y Label&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Title&quot;</span>, <span class="at">bty =</span> <span class="st">&#39;l&#39;</span>, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <p><strong>Plotting with a <code>grid</code></strong></p>
 <p>Use instead of <code>sort(x)</code></p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="misc-exam-notes.html#cb298-1" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">=</span> <span class="fu">seq</span>(<span class="fu">min</span>(x), <span class="fu">max</span>(x), <span class="at">length.out =</span> <span class="dv">250</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="misc-exam-notes.html#cb2-1" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">=</span> <span class="fu">seq</span>(<span class="fu">min</span>(x), <span class="fu">max</span>(x), <span class="at">length.out =</span> <span class="dv">250</span>) </span></code></pre></div>
 </div>
 <div id="generating-synthetic-data" class="section level2 hasAnchor" number="11.2">
 <h2><span class="header-section-number">11.2</span> Generating Synthetic Data<a href="misc-exam-notes.html#generating-synthetic-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Use <code>rnorm</code>, <code>runif</code> etc functions to generate random data.</p>
 <p><strong>Trees Example - Surrogate Data</strong></p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="misc-exam-notes.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">212</span>)</span>
-<span id="cb299-2"><a href="misc-exam-notes.html#cb299-2" aria-hidden="true" tabindex="-1"></a>data_surrogate <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">runif</span>(<span class="dv">200</span>, <span class="dv">0</span>, <span class="fl">0.4</span>), <span class="fu">runif</span>(<span class="dv">400</span>, <span class="fl">0.4</span>, <span class="fl">0.65</span>), <span class="fu">runif</span>(<span class="dv">300</span>, <span class="fl">0.65</span>, <span class="dv">1</span>)),</span>
-<span id="cb299-3"><a href="misc-exam-notes.html#cb299-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">y =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="fl">1.5</span>), <span class="fu">rnorm</span>(<span class="dv">400</span>, <span class="dv">0</span>), <span class="fu">rnorm</span>(<span class="dv">300</span>, <span class="dv">2</span>)))</span></code></pre></div>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="misc-exam-notes.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span>data_surrogate<span class="sc">$</span>x[<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>], <span class="at">y=</span>data_surrogate<span class="sc">$</span>y[<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>], <span class="at">col=</span><span class="st">&#39;blue&#39;</span>,</span>
-<span id="cb300-2"><a href="misc-exam-notes.html#cb300-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;x&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">4</span>), <span class="at">bty =</span> <span class="st">&#39;l&#39;</span>, <span class="at">main =</span> <span class="st">&quot;Synthetic Surrogate Data&quot;</span>)</span>
-<span id="cb300-3"><a href="misc-exam-notes.html#cb300-3" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x=</span>data_surrogate<span class="sc">$</span>x[<span class="dv">201</span><span class="sc">:</span><span class="dv">600</span>], <span class="at">y=</span>data_surrogate<span class="sc">$</span>y[<span class="dv">201</span><span class="sc">:</span><span class="dv">600</span>], <span class="at">col=</span><span class="st">&#39;red&#39;</span>, <span class="at">pch=</span><span class="dv">19</span>)</span>
-<span id="cb300-4"><a href="misc-exam-notes.html#cb300-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x=</span>data_surrogate<span class="sc">$</span>x[<span class="dv">601</span><span class="sc">:</span><span class="dv">900</span>], <span class="at">y=</span>data_surrogate<span class="sc">$</span>y[<span class="dv">601</span><span class="sc">:</span><span class="dv">900</span>], <span class="at">col=</span><span class="st">&#39;green&#39;</span>, <span class="at">pch=</span><span class="dv">19</span>)</span></code></pre></div>
-<p><img src="bookdownproj_files/figure-html/unnamed-chunk-235-1.png" width="672" /></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="misc-exam-notes.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">212</span>)</span>
+<span id="cb3-2"><a href="misc-exam-notes.html#cb3-2" aria-hidden="true" tabindex="-1"></a>data_surrogate <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">runif</span>(<span class="dv">200</span>, <span class="dv">0</span>, <span class="fl">0.4</span>), <span class="fu">runif</span>(<span class="dv">400</span>, <span class="fl">0.4</span>, <span class="fl">0.65</span>), <span class="fu">runif</span>(<span class="dv">300</span>, <span class="fl">0.65</span>, <span class="dv">1</span>)),</span>
+<span id="cb3-3"><a href="misc-exam-notes.html#cb3-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">y =</span> <span class="fu">c</span>(<span class="fu">rnorm</span>(<span class="dv">200</span>, <span class="fl">1.5</span>), <span class="fu">rnorm</span>(<span class="dv">400</span>, <span class="dv">0</span>), <span class="fu">rnorm</span>(<span class="dv">300</span>, <span class="dv">2</span>)))</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="misc-exam-notes.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span>data_surrogate<span class="sc">$</span>x[<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>], <span class="at">y=</span>data_surrogate<span class="sc">$</span>y[<span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>], <span class="at">col=</span><span class="st">&#39;blue&#39;</span>,</span>
+<span id="cb4-2"><a href="misc-exam-notes.html#cb4-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;x&quot;</span>, <span class="at">ylab=</span><span class="st">&quot;y&quot;</span>, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>),<span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">2</span>,<span class="dv">4</span>), <span class="at">bty =</span> <span class="st">&#39;l&#39;</span>, <span class="at">main =</span> <span class="st">&quot;Synthetic Surrogate Data&quot;</span>)</span>
+<span id="cb4-3"><a href="misc-exam-notes.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x=</span>data_surrogate<span class="sc">$</span>x[<span class="dv">201</span><span class="sc">:</span><span class="dv">600</span>], <span class="at">y=</span>data_surrogate<span class="sc">$</span>y[<span class="dv">201</span><span class="sc">:</span><span class="dv">600</span>], <span class="at">col=</span><span class="st">&#39;red&#39;</span>, <span class="at">pch=</span><span class="dv">19</span>)</span>
+<span id="cb4-4"><a href="misc-exam-notes.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="at">x=</span>data_surrogate<span class="sc">$</span>x[<span class="dv">601</span><span class="sc">:</span><span class="dv">900</span>], <span class="at">y=</span>data_surrogate<span class="sc">$</span>y[<span class="dv">601</span><span class="sc">:</span><span class="dv">900</span>], <span class="at">col=</span><span class="st">&#39;green&#39;</span>, <span class="at">pch=</span><span class="dv">19</span>)</span></code></pre></div>
+<p><img src="bookdownproj_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="summary" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> <code>summary</code><a href="misc-exam-notes.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Make sure to read the summary of a model to answer any questions.</p>
 
 </div>
 </div>

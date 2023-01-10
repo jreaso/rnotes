@@ -76,9 +76,11 @@ tree-models
 building-tree-models
 bagging-and-random-forests
 boosting
-misc-exam-notes
+misc-exam-notes-temporary
 plotting-3
 generating-synthetic-data
+summary
+mock-practical-exam-solutions-temporary
 dssc---data-wrangling-presentation-and-applications
 data-wrangling-with-tidyverse
 tidy-form-tidyr

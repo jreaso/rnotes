@@ -73,7 +73,7 @@ summary(glm.fit)
 
 **Calculating Probability**
 
-Use `predict()` function with `type = "response"` or `type = "resp"`. Do not include any data to calculate predictions for training data (used to plot the curve)
+Use `predict()` function with `type = "response"` or `type = "resp"`. The `type = "response"` option tells `R` to output probabilities of the form `P(Y=1|X)`, as opposed to other information such as the logit. Do not include any data to calculate predictions for training data (used to plot the curve).
 
 ```{r}
 glm.probs = predict(glm.fit, type = "response")

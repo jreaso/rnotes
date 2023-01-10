@@ -1,0 +1,137 @@
+# Mock Practical Exam Solutions (Temporary)
+
+```{r}
+library(ISLR)
+library(tree)
+attach(Carseats)
+
+#?Carseats
+
+High=ifelse(Sales<=8,"No","Yes")
+Carseats=data.frame(Carseats, High)
+Carseats$High <- as.factor(Carseats$High)
+
+tree.carseats=tree(High~.-Sales,data=Carseats)
+summary(tree.carseats)
+#For classification trees, the deviance is calculated using cross-entropy (see lecture slides).
+plot(tree.carseats)
+text(tree.carseats,pretty=0)
+#pretty = 0 make sure that the level names of a factor split attributes are used unchanged.
+#For a detailed summary of the tree, print it:
+tree.carseats
+
+#27 terminal nodes (in summary)
+#Misclassification error rate: 9%
+
+
+set.seed(743)
+train_index=sample(1:nrow(Carseats),250)
+data_train=Carseats[train_index,]
+data_test=Carseats[-train_index,]
+
+
+tree.carseats = tree(High~.-Sales,data_train)
+plot(tree.carseats);text(tree.carseats,pretty=0)
+
+tree.pred = predict(tree.carseats,data_test, type="class") #USES TYPE="CLASS"!!!!!
+table(tree.pred, data_test$High)
+(80+31)/150
+#The percentage of correct predictions is 74%
+
+
+
+
+cv.carseats=cv.tree(tree.carseats,FUN=prune.misclass)
+cv.carseats
+plot(cv.carseats)
+
+prune.carseats=prune.misclass(tree.carseats,best=14)
+plot(prune.carseats);text(prune.carseats,pretty=0)
+
+tree.pred_prune=predict(prune.carseats,data_test,type="class")
+table(tree.pred_prune, data_test$High)
+
+(78+32)/150
+
+
+#The “optimal” size of the pruned tree according to the cross-validation is 14. The percentage of correct predictions is 73.3%
+
+
+
+
+#SECTION 2
+
+library(modeldata)
+library(randomForest)
+library(gbm)
+data(credit_data)
+credit_data=na.omit(credit_data)
+#There are some missing data in the data set, using na.omit() to remove them.
+
+
+
+set.seed(180)
+train = sample (1: nrow(credit_data), floor(nrow(credit_data )/2))
+data_train=credit_data[train,]
+data_test=credit_data[-train,]
+
+
+tree.credit = tree(Status~., data_train)
+summary(tree.credit)
+plot(tree.credit)
+text(tree.credit, pretty=0)
+
+
+tree.pred = predict(tree.credit,data_test,type="class")
+#table(tree.pred, data_test$Status)
+#(253+1286)/(253+215+266+1286)
+class_table=table(tree.pred, data_test$Status)
+success_rate=(class_table[1,1]+class_table[2,2])/sum(class_table)
+success_rate
+
+
+#Size of the tree is 10, success rate is 76.2%
+
+
+
+prune.credit = prune.misclass(tree.credit, best=4)
+plot(prune.credit)
+text(prune.credit, pretty=0)
+
+tree.pred=predict(prune.credit,data_test,type="class")
+#table(tree.pred, data_test$Status)
+class_table=table(tree.pred, data_test$Status)
+success_rate=(class_table[1,1]+class_table[2,2])/sum(class_table)
+success_rate
+
+#Success rate is 77.3%
+
+
+
+set.seed(472)
+rf.credit = randomForest(Status~., data=data_train, mtry=3, ntree=100, importance=TRUE)
+rf.credit
+importance(rf.credit)
+varImpPlot(rf.credit)
+
+pred.rf = predict(rf.credit,newdata =data_test,type="class")
+class_table=table(pred.rf, data_test$Status)
+success_rate=(class_table[1,1]+class_table[2,2])/sum(class_table)
+success_rate
+
+
+#Income has highest importance for Gini index and success rate is 79.3%
+
+
+
+boost.credit=gbm(unclass(Status)-1~.,data=data_train,distribution="bernoulli",n.trees =1000,interaction.depth=2)
+summary(boost.credit)
+
+pred.boost=predict(boost.credit,newdata =data_test, n.trees =1000, type="response")
+pred.boost.wrong=predict(boost.credit,newdata =data_test, n.trees =1000)
+
+status_pred=ifelse(pred.boost<=0.5,"bad","good")
+class_table=table(status_pred, data_test$Status)
+success_rate=(class_table[1,1]+class_table[2,2])/sum(class_table)
+success_rate
+```

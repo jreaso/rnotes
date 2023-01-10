@@ -1,4 +1,10 @@
-# Misc Exam Notes
+# Misc Exam Notes (Temporary)
+
+Make sure to look at if the examples i'm basing my solution off is for classification or regression. For binary classification problems, use `type = "response"` in `predict()` function.
+
+** If, Else Function (`ifelse(condition, condition_true, condition_false)`)**
+
+Example: `status_pred=ifelse(pred.boost<=0.5,"bad","good")`
 
 ## Plotting
 
@@ -39,3 +45,7 @@ plot(x=data_surrogate$x[1:200], y=data_surrogate$y[1:200], col='blue',
 points(x=data_surrogate$x[201:600], y=data_surrogate$y[201:600], col='red', pch=19)
 points(x=data_surrogate$x[601:900], y=data_surrogate$y[601:900], col='green', pch=19)
 ```
+
+## `summary`
+
+Make sure to read the summary of a model to answer any questions.
