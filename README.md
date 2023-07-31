@@ -2,7 +2,7 @@
 
 These are personal notes on R mainly for reference, written over the course of two modules taken at university,
 
-- MLLN (Machine Learning and Neural Networks) (2022-23)
+- MLNN (Machine Learning and Neural Networks) (2022-23)
 - DSSC (Data Science and Statistical Computing) (2021-22)
 
 Although this current version is more focused on the content for the MLLN module.
